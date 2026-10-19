@@ -140,9 +140,17 @@
   familyBtn?.addEventListener('click',()=>{const o=familyMenu.classList.toggle('is-open');familyBtn.setAttribute('aria-expanded',String(o))});
   document.addEventListener('click',e=>{if(familyMenu&&familyBtn&&!e.target.closest('.sd-family')){familyMenu.classList.remove('is-open');familyBtn.setAttribute('aria-expanded','false')}});
 
-  // Hide bottom CTA while footer is visible
-  const bottom=$('.sd-bottom-cta');const footer=$('.sd-footer');
-  if(bottom&&footer&&'IntersectionObserver'in window){const io=new IntersectionObserver(entries=>entries.forEach(en=>bottom.classList.toggle('is-hidden',en.isIntersecting&&en.intersectionRatio>.16)),{threshold:[0,.16,.4]});io.observe(footer)}
+  // Bottom reservation CTA: hidden at the very top, shown after a short scroll,
+  // and kept visible all the way through the footer.
+  const bottom=$('.sd-bottom-cta');
+  const CTA_REVEAL_Y=140;
+  function updateBottomCta(){
+    if(!bottom) return;
+    bottom.classList.toggle('is-hidden', window.scrollY < CTA_REVEAL_Y);
+  }
+  window.addEventListener('scroll', updateBottomCta, {passive:true});
+  window.addEventListener('pageshow', updateBottomCta);
+  updateBottomCta();
 
   // Lightweight GTM helper: works even before GTM is installed.
   document.addEventListener('click',e=>{
