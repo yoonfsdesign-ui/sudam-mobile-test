@@ -99,6 +99,41 @@
     window.dataLayer?.push({event:'address_copy',page_name:'main',section_name:'location',item_name:'address',cta_position:'main_location'});
   }));
 
+  // Language dropdowns (header + footer)
+  $$('[data-language-toggle]').forEach(btn=>{
+    const wrap=btn.closest('.sd-language');
+    const menu=wrap?.querySelector('.sd-language-menu');
+    if(!menu) return;
+    btn.addEventListener('click',e=>{
+      e.stopPropagation();
+      $$('.sd-language-menu.is-open').forEach(other=>{if(other!==menu){other.classList.remove('is-open');other.closest('.sd-language')?.querySelector('[data-language-toggle]')?.setAttribute('aria-expanded','false')}});
+      const open=menu.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded',String(open));
+    });
+  });
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.sd-language')){
+      $$('.sd-language-menu.is-open').forEach(menu=>{menu.classList.remove('is-open');menu.closest('.sd-language')?.querySelector('[data-language-toggle]')?.setAttribute('aria-expanded','false')});
+    }
+  });
+
+  // Review galleries: keep 1 / N counter synced while horizontally scrolling.
+  $$('[data-review-gallery]').forEach(gallery=>{
+    const scroller=$('.sd-review-photos',gallery);
+    const count=$('.sd-photo-count',gallery);
+    const imgs=$$('img',scroller);
+    if(!scroller||!count||!imgs.length) return;
+    const update=()=>{
+      const center=scroller.scrollLeft + scroller.clientWidth/2;
+      let best=0,dist=Infinity;
+      imgs.forEach((img,i)=>{const c=img.offsetLeft+img.offsetWidth/2;const d=Math.abs(c-center);if(d<dist){dist=d;best=i}});
+      count.textContent=`${best+1} / ${imgs.length}`;
+    };
+    scroller.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});
+    window.addEventListener('resize',update);
+    update();
+  });
+
   // Family site dropdown
   const familyBtn=$('[data-family-toggle]');
   const familyMenu=$('.sd-family-menu');

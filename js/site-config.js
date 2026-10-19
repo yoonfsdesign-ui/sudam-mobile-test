@@ -10,8 +10,16 @@ window.SUDAM_CONFIG = {
     naver_map: "https://map.naver.com/p/search/%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D",
     kakao_map: "https://map.kakao.com/?q=%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D",
 
-    cn: "",
+    kr: "./",
     en: "",
+    cn: "",
+    jp: "",
+
+    nav_sudam: "",
+    nav_menu: "",
+    nav_meeting: "",
+    nav_reviews: "",
+    nav_reservation: "",
 
     strength_room: "",
     strength_food: "",

@@ -419,3 +419,65 @@ html{scroll-behavior:smooth}
   .sd-meeting-card p{font-size:11.5px}
   .sd-menu-card .use{font-size:10px;min-height:58px}
 }
+
+
+/* ===== UI QA feedback v4 ===== */
+/* header language selector + globe */
+.sd-head-actions{gap:5px}
+.sd-language{position:relative;display:inline-flex;align-items:center}
+.sd-language-btn{height:34px;min-width:46px;border:0;background:transparent;color:inherit;font-family:"Noto Serif KR",serif;font-size:11px;font-weight:500;display:inline-flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0 4px}
+.sd-language-menu{position:absolute;top:calc(100% + 5px);right:0;min-width:54px;padding:5px;background:#fff;color:var(--sd-text);border:1px solid rgba(126,99,70,.16);border-radius:7px;box-shadow:0 8px 24px rgba(41,26,16,.16);display:none;z-index:1500}
+.sd-language-menu.is-open{display:grid}
+.sd-language-menu a{display:flex;align-items:center;justify-content:center;min-height:34px;padding:5px 8px;border-radius:5px;font-size:11px;font-weight:600}
+.sd-language-menu a:hover,.sd-language-menu a:focus-visible{background:var(--sd-bg-soft)}
+.sd-globe{font-size:16px;line-height:1;display:grid;place-items:center;width:30px;height:34px;filter:grayscale(.25)}
+.sd-language--header .sd-language-btn{color:#fff}
+.sd-language--header .sd-language-menu{top:39px}
+
+/* top category nav links to independent pages */
+.sd-primary-nav a{font-family:"Noto Serif KR",serif;font-size:14px;font-weight:500;letter-spacing:-.01em}
+.sd-drawer nav a{font-family:"Noto Serif KR",serif}
+
+/* hero */
+.sd-hero p{font-family:"Noto Serif KR",serif;font-size:15px;line-height:1.72}
+.sd-trust-em{font-style:normal;font-weight:600}
+.sd-trust-em--warm{color:#a87342}
+.sd-trust-em--deep{color:#7a483d}
+
+/* strength copy exact line breaks */
+#strength .sd-slide-copy h3{max-width:300px}
+#strength .sd-slide-copy p{max-width:300px}
+
+/* meeting copy preserves requested line breaks */
+.sd-meeting-card p br{display:block}
+
+/* space supporting copy */
+#space .sd-slide-copy p{max-width:260px}
+
+/* review gallery: all three images accessible; counter stays over gallery */
+.sd-review-gallery{position:relative;overflow:hidden}
+.sd-review-photos{display:flex;gap:7px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:8px;padding:8px 8px 10px;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:none}
+.sd-review-photos::-webkit-scrollbar{display:none}
+.sd-review-photos img{flex:0 0 92%;width:92%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:7px;scroll-snap-align:start;scroll-snap-stop:always}
+.sd-photo-count{position:absolute;right:14px;bottom:17px;margin:0;background:rgba(39,25,16,.72);color:#fff;border-radius:999px;padding:4px 8px;font-size:9px;z-index:3;pointer-events:none}
+.sd-review-meta span{display:flex;align-items:center;gap:3px;flex-wrap:wrap}
+.sd-review-meta b{font-weight:400;font-size:10px;line-height:1}
+
+/* footer: SNS restored to left of family site */
+.sd-footer-tools--main{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 18px;border-bottom:1px solid rgba(255,255,255,.14)}
+.sd-footer-tools--main .sd-family--footer{width:auto;margin:0;display:block}
+.sd-footer-tools--main .sd-family--footer .sd-family-btn{min-width:142px}
+.sd-footer-tools--main .sd-family--footer .sd-family-menu{right:0;transform:none;bottom:42px;min-width:210px}
+.sd-footer-language-row{display:flex;align-items:center;justify-content:flex-end;gap:4px;margin-top:12px;color:#eadfd2}
+.sd-language--footer .sd-language-btn{color:#eadfd2;border:1px solid rgba(255,255,255,.20);border-radius:999px;height:32px;min-width:52px;padding:0 9px}
+.sd-language--footer .sd-language-menu{top:auto;bottom:38px;right:0}
+.sd-footer-language-row .sd-globe{height:32px;width:30px}
+.sd-footer-bottom-tools{display:none}
+
+@media (max-width:359px){
+  .sd-primary-nav a{font-size:13px}
+  .sd-head-actions{gap:2px}
+  .sd-language-btn{min-width:42px}
+  .sd-globe{width:26px;font-size:15px}
+  .sd-footer-tools--main .sd-family--footer .sd-family-btn{min-width:132px;font-size:10px}
+}
