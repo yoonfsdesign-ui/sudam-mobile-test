@@ -13,6 +13,8 @@ window.SUDAM_CONFIG = {
     cn: "",
     en: "",
 
+    strength_room: "",
+    strength_food: "",
     b2b: "",
     meeting_family: "",
     meeting_formal: "",
@@ -35,9 +37,12 @@ window.SUDAM_CONFIG = {
     instagram: "",
     youtube: "",
 
-    family_group: "",
-    family_food: "",
+    family_sudam: "",
     family_guryong: "",
+    family_food: "",
+    family_group: "",
+    family_yfs: "",
+    family_ym: "",
 
     privacy: "",
     email_policy: "",

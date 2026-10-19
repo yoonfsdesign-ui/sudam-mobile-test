@@ -332,3 +332,90 @@ html{scroll-behavior:smooth}
   .sd-review-body{padding-left:8px;padding-right:8px}
   .sd-location-valet{grid-template-columns:1fr 88px;gap:8px}
 }
+
+/* ===== UI QA feedback v3 ===== */
+:root{
+  --sd-section-title-size:31px;
+  --sd-section-kicker-size:10.5px;
+  --sd-slide-title-size:30px;
+  --sd-slide-sub-size:12.5px;
+}
+
+/* common title hierarchy */
+.sd-kicker{font-size:var(--sd-section-kicker-size);margin-bottom:10px}
+.sd-title{font-size:var(--sd-section-title-size);line-height:1.34}
+.sd-title:after{
+  content:"";display:block;width:106px;height:16px;margin:14px auto 0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 106 16'%3E%3Cg fill='none' stroke='%237e6346' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M0 8h36M70 8h36'/%3E%3Cpath d='M38 8c4-7 8-7 15 0-7 7-11 7-15 0Zm30 0c-4-7-8-7-15 0 7 7 11 7 15 0Z'/%3E%3Cpath d='M48 3c2 2 2 8 0 10M58 3c-2 2-2 8 0 10'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+}
+.sd-desc{font-size:13.5px}
+
+/* hero/trust */
+.sd-hero p{font-size:14px;line-height:1.7;max-width:280px}
+.sd-trust-caption{font-size:17px;line-height:1.55;margin-bottom:30px;font-weight:500}
+.sd-trust-item strong{font-size:17px}
+
+/* strength + space shared slider style */
+#strength .sd-title,#space .sd-title{font-size:32px}
+.sd-slider--overlay .sd-slide-copy{top:44px;left:24px;right:24px}
+.sd-slider--overlay .sd-slide-copy small{
+  display:block;font-family:"Noto Serif KR",serif;font-size:var(--sd-slide-sub-size);line-height:1.45;
+  letter-spacing:.03em;color:#ead4bb;opacity:1;font-weight:500;
+}
+.sd-slider--overlay .sd-slide-copy h3{font-size:var(--sd-slide-title-size);line-height:1.32;margin:10px 0 10px}
+.sd-slider--overlay .sd-slide-copy p{font-size:12.5px;line-height:1.62;max-width:285px;color:#fffdf9;opacity:.94}
+.sd-slider--overlay .sd-slide-link{margin-top:14px;color:#f0dcc3;border-bottom-color:rgba(240,220,195,.78);font-family:"Noto Serif KR",serif;font-size:12px}
+.sd-slider--overlay .sd-dots{bottom:20px;gap:9px;padding:0;background:transparent;backdrop-filter:none}
+.sd-slider--overlay .sd-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.58);box-shadow:0 0 0 1px rgba(38,24,14,.12)}
+.sd-slider--overlay .sd-dot.is-active{width:10px;height:10px;border-radius:50%;background:#fff}
+
+/* meeting */
+.sd-meeting-card{min-height:96px;grid-template-columns:42px 1fr 34px;padding:14px 14px}
+.sd-meeting-card .no{font-family:"Noto Serif KR",serif;font-size:15px;font-weight:600}
+.sd-meeting-card h3{font-family:"Noto Serif KR",serif;font-size:18px;margin-bottom:6px}
+.sd-meeting-card p{font-size:12.5px;line-height:1.58;color:var(--sd-sub)}
+.sd-meeting-card .go{width:32px;height:32px}
+
+/* menu cards */
+.sd-menu-card .tag{font-size:9.5px;font-weight:700}
+.sd-menu-card .tag-signature{color:#8a6a45}
+.sd-menu-card .tag-premium{color:#7a493f}
+.sd-menu-card .price{font-size:12.5px;color:var(--sd-text);font-weight:600}
+.sd-course-knot{width:74px;height:12px;margin:8px auto 7px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 106 16'%3E%3Cg fill='none' stroke='%23a98a64' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M0 8h36M70 8h36'/%3E%3Cpath d='M38 8c4-7 8-7 15 0-7 7-11 7-15 0Zm30 0c-4-7-8-7-15 0 7 7 11 7 15 0Z'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+.sd-menu-card .use{font-size:11px;line-height:1.55;color:var(--sd-sub);margin-top:0;min-height:52px}
+.sd-menu-cta>span small{font-size:10.5px;line-height:1.45}
+
+/* review multi-photo scrolling */
+.sd-review-photos{position:relative;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.sd-review-photos img{flex-basis:88%;scroll-snap-stop:always}
+.sd-photo-count{position:sticky;right:8px;align-self:flex-end;flex:0 0 auto;margin-left:-44px;margin-bottom:8px;background:rgba(39,25,16,.68);color:#fff;border-radius:999px;padding:4px 7px;font-size:9px;z-index:2;pointer-events:none}
+
+/* location */
+.sd-copy-address-btn{border:1px solid var(--sd-line)!important;background:var(--sd-bg-soft)!important;color:var(--sd-brown-700)!important;border-radius:7px!important;padding:8px 10px!important;font-size:10.5px!important;font-weight:600!important;white-space:nowrap}
+.sd-valet-title{justify-content:flex-start;flex-wrap:wrap}
+.sd-valet-fee{margin-left:auto;font-size:9.5px;color:var(--sd-gold-dark);border:1px solid #ddc8b4;border-radius:999px;padding:4px 7px;background:#fbf7f1;font-weight:600}
+.sd-valet-highlight{font-family:"Noto Serif KR",serif;font-size:11.5px;font-weight:500;line-height:1.5;color:var(--sd-brown-800)}
+.sd-valet-copy li{font-size:10px;line-height:1.48}
+
+/* footer order/layout */
+.sd-footer{padding-top:34px}
+.sd-footer-links--top{margin:0 0 24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.14);font-size:10px}
+.sd-family--footer{width:100%;margin:0 auto 6px;display:grid;place-items:center}
+.sd-family--footer .sd-family-btn{min-width:180px}
+.sd-family--footer .sd-family-menu{right:50%;transform:translateX(50%);bottom:42px;min-width:210px}
+.sd-footer-logo{margin-top:28px;margin-bottom:14px}
+.sd-footer-intro{text-align:center;max-width:360px;margin:0 auto;color:#eadfd2}
+.sd-footer-intro .ko{font-family:"Noto Serif KR",serif;font-size:13px;line-height:1.8;margin:0}
+.sd-footer-intro .en{font-size:10px;line-height:1.65;color:#bfae9c;margin:12px 0 0}
+.sd-footer-knot{width:112px;height:18px;margin:22px auto 20px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 106 16'%3E%3Cg fill='none' stroke='%23d7b98f' stroke-width='1.15' stroke-linecap='round'%3E%3Cpath d='M0 8h36M70 8h36'/%3E%3Cpath d='M38 8c4-7 8-7 15 0-7 7-11 7-15 0Zm30 0c-4-7-8-7-15 0 7 7 11 7 15 0Z'/%3E%3Cpath d='M48 3c2 2 2 8 0 10M58 3c-2 2-2 8 0 10'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+.sd-footer-info{font-size:10.5px;line-height:1.85}
+.sd-footer-bottom-tools{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px}
+.sd-footer-lang{display:flex;gap:6px}
+.sd-footer-lang a{min-width:32px;height:32px;border:1px solid rgba(255,255,255,.22);border-radius:50%;display:grid;place-items:center;font-size:9.5px}
+
+@media (max-width:359px){
+  :root{--sd-section-title-size:28px;--sd-slide-title-size:27px}
+  #strength .sd-title,#space .sd-title{font-size:29px}
+  .sd-meeting-card p{font-size:11.5px}
+  .sd-menu-card .use{font-size:10px;min-height:58px}
+}
