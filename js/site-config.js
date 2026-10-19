@@ -7,7 +7,8 @@ window.SUDAM_CONFIG = {
   urls: {
     reservation: "",
     kakao: "",
-    naver_map: "",
+    naver_map: "https://map.naver.com/p/search/%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D",
+    kakao_map: "https://map.kakao.com/?q=%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D",
 
     cn: "",
     en: "",
@@ -21,6 +22,7 @@ window.SUDAM_CONFIG = {
     course_jinyeon: "",
     course_sura: "",
     menu_all: "",
+    course_consult: "",
     space_all: "",
 
     reviews_all: "",
