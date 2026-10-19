@@ -45,7 +45,8 @@ img{display:block;width:100%;height:auto}
   background:var(--sd-bg);
   min-height:100vh;
   padding-bottom:calc(var(--sd-bottom-bar) + env(safe-area-inset-bottom));
-  overflow:hidden;
+  /* overflow:hidden은 sticky의 기준 컨테이너를 만들 수 있어 header 고정을 방해함 */
+  overflow:clip;
   box-shadow:0 0 40px rgba(0,0,0,.06);
 }
 
@@ -55,7 +56,15 @@ img{display:block;width:100%;height:auto}
 .sd-skip:focus{left:12px;top:12px;z-index:9999;background:#fff;padding:10px 12px;border-radius:6px}
 
 /* Header */
-.sd-header-wrap{position:relative;z-index:1200}
+.sd-header-wrap{
+  position:sticky;
+  top:0;
+  z-index:1200;
+  width:100%;
+}
+.sd-header-wrap.is-sticky{
+  box-shadow:0 6px 24px rgba(32,20,12,.14);
+}
 .sd-brandbar{
   height:56px;
   padding:0 var(--sd-gutter);
@@ -65,9 +74,10 @@ img{display:block;width:100%;height:auto}
   transition:background .25s ease,box-shadow .25s ease;
 }
 .sd-brandbar.is-sticky{
-  position:fixed;top:0;left:50%;transform:translateX(-50%);
-  width:min(100%,var(--sd-max));
-  box-shadow:0 6px 24px rgba(32,20,12,.14);
+  position:relative;
+  top:auto;left:auto;transform:none;
+  width:100%;
+  box-shadow:none;
 }
 .sd-logo{display:flex;align-items:center;width:92px;height:38px;overflow:hidden}
 .sd-logo img{width:74px;height:74px;object-fit:contain;object-position:center;transform:scale(1.4)}

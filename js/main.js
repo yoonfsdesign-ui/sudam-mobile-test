@@ -38,17 +38,12 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape') setDrawer(false)});
   $$('.sd-drawer a').forEach(a=>a.addEventListener('click',()=>setDrawer(false)));
 
-  // Sticky brandbar after the 2nd nav passes upward.
-  const brandbar=$('.sd-brandbar');
+  // Header 전체(브랜드바 + 수담/메뉴/모임/후기/예약)를 상단에 고정.
+  // 실제 고정은 CSS position:sticky로 처리하고, 스크롤 시 그림자만 추가한다.
   const headerWrap=$('.sd-header-wrap');
-  let placeholder=null;
   function updateSticky(){
-    if(!brandbar||!headerWrap) return;
-    const on=window.scrollY>44;
-    brandbar.classList.toggle('is-sticky',on);
-    if(on){
-      if(!placeholder){placeholder=document.createElement('div');placeholder.style.height='56px';placeholder.dataset.sdStickyPlaceholder='1';headerWrap.prepend(placeholder)}
-    }else if(placeholder){placeholder.remove();placeholder=null}
+    if(!headerWrap) return;
+    headerWrap.classList.toggle('is-sticky', window.scrollY > 0);
   }
   window.addEventListener('scroll',updateSticky,{passive:true});
   updateSticky();
