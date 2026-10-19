@@ -1,95 +1,121 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f8f6f1" />
-  <meta name="description" content="수담한정식의 소식, 브랜드 스토리, 공간, 제휴 안내를 만나보세요." />
-  <title>수담 소개 | 수담한정식</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
-  <script src="./script.js" defer></script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#2E1F12" />
+<meta name="description" content="수담한정식 소식·이벤트, 브랜드 스토리, 공간 안내, 제휴 정보를 만나보세요." />
+<title>수담 소개 | 수담한정식</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/style.css?v=20261019-43" />
+<link rel="stylesheet" href="../css/subpages.css?v=20261019-s1" />
 </head>
-<body>
-  <a class="skip-link" href="#main">본문 바로가기</a>
-  <header class="site-header" id="site-header">
-    <div class="header-inner">
-      <a class="brand" href="../" aria-label="수담한정식 메인으로"><img src="./assets/logo.png" alt="수담한정식" /></a>
-      <div class="header-actions">
-        <label class="sr-only" for="language">언어 선택</label>
-        <select id="language" aria-label="언어 선택"><option value="ko">KR</option><option value="en">EN</option><option value="zh">CN</option><option value="ja">JP</option></select>
-        <button class="icon-button" id="menu-toggle" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="drawer"><span class="hamburger"><i></i><i></i><i></i></span></button>
-      </div>
-    </div>
-  </header>
-  <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
-  <nav id="drawer" class="drawer" aria-label="전체 메뉴" aria-hidden="true">
-    <div class="drawer-head"><span>MENU</span><button id="drawer-close" class="icon-button" aria-label="메뉴 닫기">✕</button></div>
-    <a href="../">홈 <span>↗</span></a>
-    <a href="./">수담 소개 <span>01</span></a>
-    <a href="#news">소식·이벤트 <span>↗</span></a>
-    <a href="#story">수담 스토리 <span>↗</span></a>
-    <a href="#space">공간 안내 <span>↗</span></a>
-    <a href="#partnership">제휴 안내 <span>↗</span></a>
-    <div class="drawer-divider"></div>
-    <a href="../menu/">메뉴 안내 <span>↗</span></a>
-    <a href="../occasions/">모임 안내 <span>↗</span></a>
-    <a href="../reviews/">이용 후기 <span>↗</span></a>
-    <a href="../reservation/">예약 / 오시는 길 <span>↗</span></a>
-    <a href="tel:025584900">전화 예약 <span>↗</span></a>
-  </nav>
+<body class="sd-subpage" data-page="about">
+<a class="sd-skip" href="#sdMain">본문 바로가기</a>
+<div class="sd-page">
+<header class="sd-header-wrap">
+<div class="sd-brandbar">
+<a aria-label="수담한정식 홈" class="sd-logo" href="../"><img alt="수담한정식" src="../images/logo-white.png"/></a>
+<div class="sd-head-actions">
+<div class="sd-language sd-language--header">
+<button aria-expanded="false" aria-haspopup="true" class="sd-language-btn" data-language-toggle="" type="button">KR <span aria-hidden="true">▾</span></button>
+<div class="sd-language-menu" role="menu">
+<a data-url-key="en" href="#!" role="menuitem">EN</a><a data-url-key="cn" href="#!" role="menuitem">CN</a><a data-url-key="jp" href="#!" role="menuitem">JP</a>
+</div>
+</div>
+<span aria-hidden="true" class="sd-globe">🌐</span>
+<button aria-expanded="false" aria-label="메뉴 열기" class="sd-hamburger" data-sd-menu-open="" type="button"><span></span></button>
+</div>
+</div>
+<nav aria-label="주요 메뉴" class="sd-primary-nav">
+<a aria-current="page" data-event="header_nav_click" data-item="수담" data-url-key="nav_sudam" href="#!">수담</a>
+<a data-event="header_nav_click" data-item="메뉴" data-url-key="nav_menu" href="#!">메뉴</a>
+<a data-event="header_nav_click" data-item="모임" data-url-key="nav_meeting" href="#!">모임</a>
+<a data-event="header_nav_click" data-item="후기" data-url-key="nav_reviews" href="#!">후기</a>
+<a data-event="header_nav_click" data-item="예약" data-url-key="nav_reservation" href="#!">예약</a>
+</nav>
+</header>
+<div aria-hidden="true" class="sd-dim"></div>
+<aside aria-label="전체 메뉴" class="sd-drawer">
+<div class="sd-drawer-head"><div class="sd-drawer-logo"><img alt="수담한정식" src="../images/logo.png"/></div><button aria-label="메뉴 닫기" class="sd-close" data-sd-menu-close="" type="button">×</button></div>
+<nav><a aria-current="page" data-url-key="nav_sudam" href="#!">수담</a><a data-url-key="nav_menu" href="#!">메뉴</a><a data-url-key="nav_meeting" href="#!">모임</a><a data-url-key="nav_reviews" href="#!">후기</a><a data-url-key="nav_reservation" href="#!">예약</a></nav>
+<div class="sd-drawer-foot">
+<div class="sd-drawer-language">KR · EN · CN · JP</div><div>예약 문의 02-558-4900</div>
+<div class="sd-drawer-cta"><a href="tel:025584900">전화 예약</a><a class="js-reservation-url" data-url-key="reservation" href="#!">네이버 예약</a></div>
+<div class="sd-prototype-note">※ 현재 가안 테스트 페이지입니다.</div></div>
+</aside>
+<main id="sdMain">
 
-  <main id="main">
-    <div id="top" class="hero">
-      <div class="hero-art" aria-hidden="true"><span class="hero-ring ring-a"></span><span class="hero-ring ring-b"></span><span class="hero-branch">✦</span></div>
-      <div class="hero-content"><span class="eyebrow light">ABOUT SUDAM</span><h1>정성을 담아,<br />품격을 완성하다</h1><div class="hero-line"></div><p>한식의 깊은 맛과 소중한 만남이 함께하는 공간,<br />수담한정식</p></div>
-      <div class="hero-bottom">SCROLL TO EXPLORE <span>↓</span></div>
-    </div>
-    <nav class="section-nav" aria-label="수담 소개 섹션 이동"><a href="#news" class="active">소식·이벤트</a><a href="#story">수담 스토리</a><a href="#space">공간 안내</a><a href="#partnership">제휴 안내</a></nav>
+<section class="sd-subhero" aria-label="수담 소개">
+ <img src="../images/space-temp.jpg" alt="수담한정식 공간 (임시 테스트 이미지)" />
+ <div><span class="sd-sub-kicker">ABOUT SUDAM</span><h1>정성을 담아,<br>품격을 완성하다</h1><div class="sd-subornament sd-subornament--light" aria-hidden="true">✦</div><p>한식의 깊은 맛과 소중한 만남이 함께하는 공간,<br>수담한정식</p></div>
+</section>
+<nav class="sd-subanchors" aria-label="수담 소개 페이지 내부 이동">
+ <a href="#news" class="is-active">소식·이벤트</a><a href="#story">수담 스토리</a><a href="#space">공간 안내</a><a href="#partnership">제휴 안내</a>
+</nav>
+<section class="sd-sub-section" id="news">
+ <div class="sd-sub-heading"><div class="sd-kicker">01 / NEWS & EVENTS</div><h2>수담의 새로운 소식</h2><div class="sd-subornament" aria-hidden="true">✦</div><p>수담한정식에서 전하는 다양한 이야기를 확인해 보세요.</p></div>
+ <article class="sd-sub-news-main"><div class="sd-sub-news-image"><img src="../images/hero-temp.jpg" alt="수담한정식 상차림 임시 이미지" /><span class="sd-sub-news-image-label">NEWS &amp; EVENTS</span></div>
+ <div class="sd-sub-news-copy"><span class="sd-sub-chip">소식 준비 중</span><h3>수담한정식의 새로운 소식을<br>전해드립니다</h3><p>진행 중인 행사 및 운영 소식은 자료 확인 후 이곳에서 안내합니다.</p><button type="button" class="sd-sub-arrow-link" data-news-index="0">자세히 보기 <span aria-hidden="true">↗</span></button></div></article>
+ <div class="sd-sub-news-items">
+  <button class="sd-sub-news-item" type="button" data-news-index="1"><div><span class="sd-sub-small-label">NEWS · TEST CONTENT</span><strong>새로운 이야기 등록 준비 중</strong><time>추후 등록</time></div><span aria-hidden="true">›</span></button>
+  <button class="sd-sub-news-item" type="button" data-news-index="2"><div><span class="sd-sub-small-label">EVENT · TEST CONTENT</span><strong>행사 정보 등록 준비 중</strong><time>추후 등록</time></div><span aria-hidden="true">›</span></button>
+  <div data-news-extra hidden><button class="sd-sub-news-item" type="button" data-news-index="0"><div><span class="sd-sub-small-label">NOTICE</span><strong>수담한정식 소식 안내</strong><time>등록 준비 중</time></div><span aria-hidden="true">›</span></button></div>
+ </div>
+ <button class="sd-sub-button sd-sub-button--line" type="button" data-news-expand aria-expanded="false">소식 전체보기 <span aria-hidden="true">↗</span></button>
+</section>
+<section class="sd-sub-section" id="story">
+ <div class="sd-sub-heading"><div class="sd-kicker">02 / OUR STORY</div><h2>정성을 이어온<br>수담의 이야기</h2><div class="sd-subornament" aria-hidden="true">✦</div></div>
+ <div class="sd-sub-image sd-sub-image--wide"><img loading="lazy" src="../images/hero-temp.jpg" alt="수담한정식의 상차림 임시 이미지" /></div>
+ <div class="sd-sub-story-copy"><span class="sd-sub-eyebrow">OUR PHILOSOPHY</span><h3 class="sd-sub-h3">한식의 깊이를 담아,<br>소중한 순간을 완성합니다.</h3><p class="sd-sub-copy">좋은 재료를 고르고 정성스럽게 준비한 한 상. 수담한정식은 전통 한식의 가치를 오늘의 식탁에 전하고자 합니다.</p></div>
+ <div class="sd-sub-rule"></div>
+ <div class="sd-sub-chef"><div class="sd-sub-image"><img loading="lazy" src="../images/strength-temp.jpg" alt="명인 프로필 사진 교체 예정 — 공간 임시 이미지" /></div><div><span class="sd-sub-eyebrow">MASTER CHEF</span><h3 class="sd-sub-h3">한식 명인의<br>정성과 철학</h3><p class="sd-sub-copy">이성자 명인의 한식을 향한 철학과 전문성을 소개합니다. 공식 프로필 사진 및 상세 이력은 자료 확인 후 반영합니다.</p></div></div>
+ <div class="sd-sub-rule"></div>
+ <span class="sd-sub-eyebrow">RECOGNITION</span><h3 class="sd-sub-h3">수담이 쌓아온 신뢰</h3>
+ <div class="sd-sub-ribbon"><div class="sd-sub-ribbon-visual"><span>BLUE<br>RIBBON</span><small style="font-family:Arial;font-size:8px">이미지 교체</small></div><p class="sd-sub-copy">블루리본 등 수담한정식의 선정·인증 이력을 소개합니다. 구체적인 연도 및 선정 이력은 확인 후 등록합니다.</p></div>
+ <div class="sd-sub-rule"></div>
+ <span class="sd-sub-eyebrow">SUDAM GROUP</span><h3 class="sd-sub-h3">한식의 정성을 이어가는<br>수담외식그룹</h3><p class="sd-sub-copy">수담외식그룹은 한식의 정성과 외식 경험을 바탕으로 다양한 브랜드를 운영하고 있습니다.</p>
+ <div class="sd-sub-brands"><div>수담한정식</div><div>구룡각</div><div>수담식품관</div></div>
+</section>
+<section class="sd-sub-section" id="space">
+ <div class="sd-sub-heading"><div class="sd-kicker">03 / OUR SPACE</div><h2>소중한 만남을 위한 공간</h2><div class="sd-subornament" aria-hidden="true">✦</div><p>모임의 목적과 인원에 맞는 다양한 공간을 살펴보세요.</p></div>
+ <div data-gallery data-asset-prefix="../images/">
+  <div class="sd-sub-space-tabs" role="group" aria-label="공간 이미지 분류 선택">
+   <button type="button" data-gallery-filter="전체" class="is-active" aria-pressed="true">전체</button><button type="button" data-gallery-filter="외관">외관</button><button type="button" data-gallery-filter="로비">로비</button><button type="button" data-gallery-filter="프라이빗룸">프라이빗룸</button><button type="button" data-gallery-filter="행사 공간">행사 공간</button>
+  </div>
+  <button class="sd-sub-space-view" type="button" data-gallery-zoom aria-label="현재 공간 이미지 크게 보기"><img src="../images/space-temp.jpg" data-gallery-photo alt="수담한정식 공간 임시 이미지"/><span class="sd-sub-zoom" aria-hidden="true">⤢</span></button>
+  <div class="sd-sub-space-caption"><h3 data-gallery-title>공간 소개</h3><span data-gallery-count>01 / 05</span></div>
+  <p class="sd-sub-space-desc" data-gallery-desc>다양한 모임 공간을 확인해 보세요.</p>
+  <div class="sd-sub-gallery-nav"><button type="button" data-gallery-prev aria-label="이전 공간 사진">←</button><div data-gallery-dots class="sd-sub-gallery-dots" aria-hidden="true"></div><button type="button" data-gallery-next aria-label="다음 공간 사진">→</button></div>
+ </div>
+ <a class="sd-sub-button sd-sub-button--line" href="../occasions/">모임 안내 바로가기 <span aria-hidden="true">↗</span></a>
+</section>
+<section class="sd-sub-section" id="partnership">
+ <div class="sd-sub-heading"><div class="sd-kicker">04 / PARTNERSHIP</div><h2>수담과 함께하는<br>특별한 협력</h2><div class="sd-subornament" aria-hidden="true">✦</div><p>기업 행사와 단체 모임부터 다양한 협력 제안까지</p></div>
+ <div class="sd-sub-partner-panel"><span class="sd-sub-eyebrow">OUR PARTNERS</span><h3 class="sd-sub-h3">함께한 기업과 기관</h3><p class="sd-sub-copy">실제 방문 및 제휴 사례는 공개 승인을 받은 자료만 등록합니다.</p><div class="sd-sub-partner-placeholder">기업·기관 로고 등록 영역<br>확인된 자료 확보 후 노출</div></div>
+ <div class="sd-sub-partner-contact"><span class="sd-sub-eyebrow">BUSINESS INQUIRY</span><h3 class="sd-sub-h3">제휴 및 단체행사 문의</h3><p>행사 목적과 인원, 일정에 맞는 상담을 안내합니다.</p><a class="sd-sub-button" href="tel:025584900">전화로 제휴 문의하기 ↗</a>
+ <a class="sd-sub-button sd-sub-button--line" href="#!" data-url-key="proposal_pdf">제안서 PDF 다운로드 ↓</a><div class="sd-sub-notice">제안서 PDF는 원본 자료를 등록한 후 다운로드 링크가 활성화됩니다.</div></div>
+ <span class="sd-sub-eyebrow">SUDAM GROUP BRANDS</span><h3 class="sd-sub-h3">수담외식그룹 브랜드</h3><p class="sd-sub-copy">다양한 외식 경험으로 고객의 일상과 특별한 순간을 함께합니다.</p>
+ <div class="sd-sub-brand-list"><div>수담한정식 <span>한정식 다이닝</span></div><div>구룡각 <span>중식 다이닝</span></div><div>수담식품관 <span>식품관</span></div></div>
+</section>
+<div class="sd-sub-closing"><span class="sd-sub-eyebrow" style="color:#ddc098">SUDAM HANJEONGSIK</span><h2>소중한 자리에<br>정성을 더합니다.</h2><p>예약 및 모임 상담을 도와드립니다.</p><a href="tel:025584900" class="sd-sub-button">예약 문의하기 ↗</a></div>
+<div class="sd-sub-overlay" data-sub-overlay aria-hidden="true"><div class="sd-sub-dialog" role="dialog" aria-modal="true" aria-labelledby="sdSubModalTitle"><button type="button" class="sd-sub-dialog-close" data-sub-modal-close aria-label="닫기">×</button><h2 id="sdSubModalTitle" data-sub-modal-title></h2><div data-sub-modal-body></div></div></div>
 
-    <section id="news" class="section section-news">
-      <div class="section-heading"><span class="eyebrow">01 / NEWS & EVENTS</span><h2>수담의 새로운 소식</h2><div class="ornament"><span></span>✦<span></span></div><p>수담한정식에서 전하는 다양한 이야기</p></div>
-      <article class="featured-news">
-        <div class="photo-placeholder news-image"><span>NEWS & EVENT</span><small>대표 이벤트 이미지 등록 영역</small></div>
-        <div class="featured-copy"><span class="pill">소식 안내</span><h3>수담한정식의 새로운 소식을<br />전해드립니다</h3><p>진행 중인 행사와 새로운 소식을 이곳에서 만나보세요.</p><button class="text-link" data-news="0">자세히 보기 <span>↗</span></button></div>
-      </article>
-      <div class="news-list" id="news-list"></div>
-      <button class="outline-button full" id="show-all-news">소식 전체보기 <span>↗</span></button>
-    </section>
-
-    <section id="story" class="section section-story">
-      <div class="section-heading"><span class="eyebrow">02 / OUR STORY</span><h2>정성을 이어온<br />수담의 이야기</h2><div class="ornament"><span></span>✦<span></span></div></div>
-      <div class="story-cover photo-placeholder"><span>THE ART OF KOREAN DINING</span><small>브랜드 대표 이미지 등록 영역</small></div>
-      <div class="story-intro"><span class="micro-label">OUR PHILOSOPHY</span><h3>한식의 깊이를 담아,<br />소중한 순간을 완성합니다.</h3><p>좋은 재료를 고르고 정성스럽게 준비한 한 상. 수담한정식은 전통 한식의 가치를 오늘의 식탁에 전하고자 합니다.</p></div>
-      <div class="story-rule"></div>
-      <div class="chef-block"><div class="chef-portrait photo-placeholder"><span>MASTER<br />CHEF</span><small>인물 사진 등록 영역</small></div><div class="chef-copy"><span class="micro-label">MASTER CHEF</span><h3>한식 명인의<br />정성과 철학</h3><p>한식을 향한 깊은 이해와 정성을 바탕으로 완성하는 수담의 맛을 소개합니다.</p><button class="text-link" data-modal="chef">이야기 더보기 <span>↗</span></button></div></div>
-      <div class="story-rule"></div>
-      <div class="recognition"><span class="micro-label">RECOGNITION</span><h3>수담이 쌓아온 신뢰</h3><div class="recognition-row"><div class="recognition-icon">BLUE<br />RIBBON</div><p>블루리본 등 수담한정식의 실제 선정·인증 내역을 소개하는 영역입니다. <span class="muted">(세부 이력 확인 후 반영)</span></p></div></div>
-      <div class="story-rule"></div>
-      <div class="group-story"><span class="micro-label">SUDAM GROUP</span><h3>한식의 정성을 이어가는<br />수담외식그룹</h3><p>한식을 향한 마음과 외식 경험을 바탕으로, 다양한 브랜드를 통해 고객의 일상과 특별한 순간을 함께합니다.</p></div>
-    </section>
-
-    <section id="space" class="section section-space">
-      <div class="section-heading"><span class="eyebrow">03 / OUR SPACE</span><h2>소중한 만남을 위한 공간</h2><div class="ornament"><span></span>✦<span></span></div><p>모임의 목적과 인원에 맞는 다양한 공간을 만나보세요.</p></div>
-      <div class="space-filters" id="space-filters" role="group" aria-label="공간 종류 선택"></div>
-      <div class="gallery"><button id="gallery-image" class="gallery-image photo-placeholder" aria-label="공간 사진 크게 보기"><span id="gallery-image-label">공간 이미지</span><small>실제 매장 사진으로 교체 예정 · 클릭하여 확대</small><span class="expand-icon">⤢</span></button><div class="gallery-controls"><div><h3 id="gallery-title">프라이빗룸</h3><p id="gallery-description"></p></div><div class="gallery-arrows"><button id="gallery-prev" aria-label="이전 사진">←</button><button id="gallery-next" aria-label="다음 사진">→</button></div></div><div class="gallery-counter" id="gallery-counter">01 / 05</div></div>
-      <a class="outline-button full" href="../occasions/">모임 안내 바로가기 <span>↗</span></a>
-    </section>
-
-    <section id="partnership" class="section section-partnership">
-      <div class="section-heading"><span class="eyebrow">04 / PARTNERSHIP</span><h2>수담과 함께하는<br />특별한 협력</h2><div class="ornament"><span></span>✦<span></span></div><p>기업 행사와 단체 모임부터 다양한 협력 제안까지</p></div>
-      <div class="partner-logos"><span class="micro-label">OUR PARTNERS</span><h3>함께한 기업과 기관</h3><p>실제 방문·제휴 기업 자료 확인 후 로고가 표시됩니다.</p><div class="logo-grid"><div>PARTNER<br />LOGO</div><div>PARTNER<br />LOGO</div><div>PARTNER<br />LOGO</div><div>PARTNER<br />LOGO</div><div>PARTNER<br />LOGO</div><div>PARTNER<br />LOGO</div></div></div>
-      <div class="partnership-contact"><span class="micro-label">BUSINESS INQUIRY</span><h3>제휴 및 단체행사 문의</h3><p>행사 목적과 인원, 일정에 맞는 상담을 안내합니다.</p><a class="solid-button full" href="tel:025584900">전화로 제휴 문의하기 <span>↗</span></a><button class="outline-button full" id="proposal-download">제안서 PDF 다운로드 <span>↓</span></button><p class="download-note" id="proposal-note">제안서 파일은 추후 담당자 자료로 연결됩니다.</p></div>
-      <div class="group-brands"><span class="micro-label">SUDAM GROUP BRANDS</span><h3>수담외식그룹 브랜드</h3><p>다양한 외식 경험으로 고객의 일상에 함께합니다.</p><div class="brand-list"><div>수담한정식 <span>한정식</span></div><div>구룡각 <span>중식</span></div><div>수담식품관 <span>식품관</span></div></div></div>
-    </section>
-    <div class="closing-cta"><span class="eyebrow light">SUDAM HANJEONGSIK</span><h2>소중한 자리에<br />정성을 더합니다.</h2><p>예약 및 모임 상담을 도와드립니다.</p><a href="tel:025584900">예약 문의하기 <span>↗</span></a></div>
-  </main>
-
-  <footer class="footer"><img src="./assets/logo-white.png" alt="수담한정식" /><p>한식의 깊은 맛과 정성, 소중한 만남을 위한 공간.</p><div class="footer-links"><button data-coming="개인정보처리방침">개인정보처리방침</button><button data-coming="이메일무단수집거부">이메일무단수집거부</button><a href="../reservation/#consultation">제휴 문의</a></div><div class="footer-rule"></div><p class="footer-small">사업자 정보 및 공식 SNS 링크는 실제 운영 자료 확인 후 등록합니다.</p><p class="footer-small">© SUDAM HANJEONGSIK. ALL RIGHTS RESERVED.</p></footer>
-  <div class="fixed-booking" id="fixed-booking" aria-label="빠른 예약"><button data-coming="네이버 예약 링크">네이버 예약</button><a href="tel:025584900">전화 문의</a><button data-coming="카카오톡 상담 링크">카카오톡</button></div>
-  <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button id="modal-close" class="modal-close" aria-label="닫기">✕</button><span class="micro-label" id="modal-label"></span><h2 id="modal-title"></h2><div id="modal-body"></div></div></div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</main>
+<footer class="sd-footer">
+<div class="sd-footer-inner"><div class="sd-footer-links sd-footer-links--top"><a data-url-key="privacy" href="#!">개인정보처리방침</a><a data-url-key="email_policy" href="#!">이메일 무단수집거부</a><a data-url-key="recruit" href="#!">인재채용</a><a data-url-key="partnership" href="#!">제휴문의</a></div><div class="sd-footer-tools sd-footer-tools--main"><div class="sd-sns"><a aria-label="블로그" data-url-key="blog" href="#!">B</a><a aria-label="인스타그램" data-url-key="instagram" href="#!">I</a><a aria-label="유튜브" data-url-key="youtube" href="#!">Y</a></div><div class="sd-family sd-family--footer"><button aria-expanded="false" class="sd-family-btn" data-family-toggle="" type="button">FAMILY SITE ▾</button><div class="sd-family-menu"><a data-url-key="family_sudam" href="#!">수담한정식</a><a data-url-key="family_guryong" href="#!">구룡각</a><a data-url-key="family_food" href="#!">수담식품관</a><a data-url-key="family_group" href="#!">수담외식그룹</a><a data-url-key="family_yfs" href="#!">윤에프에스</a><a data-url-key="family_ym" href="#!">와이엠마케팅기획</a></div></div></div><div class="sd-footer-language-row"><div class="sd-language sd-language--footer"><button aria-expanded="false" aria-haspopup="true" class="sd-language-btn" data-language-toggle="" type="button">KR <span aria-hidden="true">▾</span></button><div class="sd-language-menu" role="menu"><a data-url-key="en" href="#!" role="menuitem">EN</a><a data-url-key="cn" href="#!" role="menuitem">CN</a><a data-url-key="jp" href="#!" role="menuitem">JP</a></div></div><span aria-hidden="true" class="sd-globe">🌐</span></div><div class="sd-footer-logo"><img alt="수담한정식" src="../images/logo-white.png"/></div><div class="sd-footer-intro"><p class="ko">수담한정식은 중요한 자리를 위한 프리미엄 한정식 다이닝으로, 정갈한 코스요리와 프라이빗한 공간을 통해 품격 있는 식사 경험을 선사합니다.</p><p class="en">Sudam Hanjeongsik is a premium Korean dining destination for meaningful occasions, offering refined course cuisine and private spaces for an elevated dining experience.</p></div><div aria-hidden="true" class="sd-footer-knot"></div><div class="sd-footer-info">대표: 박민경 · 사업자등록번호: 120-12-31310<br/>서울 강남구 봉은사로 418 조양빌딩 B1<br/>Tel. 02-558-4900 · E-mail: koreasudam@naver.com</div><div class="sd-copy">Copyright © 2026 Sudam. All Rights Reserved.</div></div>
+</footer>
+<div aria-label="예약 바로가기" class="sd-bottom-cta is-hidden">
+<a class="js-reservation-url" data-event="reservation_click" data-item="네이버 예약" data-section="bottom_cta" data-url-key="reservation" href="#!">N 예약</a>
+<a class="phone" data-event="phone_click" data-item="전화 문의" data-section="bottom_cta" href="tel:025584900">☎ 전화 문의</a>
+<a class="js-kakao-url" data-event="kakao_click" data-item="카카오톡 상담" data-section="bottom_cta" data-url-key="kakao" href="#!">톡 상담</a>
+</div>
+<div aria-live="polite" class="sd-toast" role="status"></div>
+</div>
+<script src="../js/site-config.js?v=20261019-s1"></script>
+<script src="../js/main.js?v=20261019-43"></script>
+<script src="../js/subpages.js?v=20261019-s1"></script>
 </body>
 </html>
