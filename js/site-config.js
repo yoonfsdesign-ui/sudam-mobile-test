@@ -15,7 +15,7 @@ window.SUDAM_CONFIG = {
     cn: "",
     jp: "",
 
-    nav_sudam: "",
+    nav_sudam: "./about/",
     nav_menu: "",
     nav_meeting: "",
     nav_reviews: "",
