@@ -491,3 +491,282 @@ html{scroll-behavior:smooth}
   .sd-globe{width:26px;font-size:15px}
   .sd-footer-tools--main .sd-family--footer .sd-family-btn{min-width:132px;font-size:10px}
 }
+
+
+/* =========================================================
+   v5.0 디자인 콘셉트 비교 모드
+   기존 / 1안 Classic Heritage / 2안 Premium Minimal
+   / 3안 Modern Korean Heritage / 4안 Bright Editorial
+   레이아웃·콘텐츠·사진 배치는 유지하고 시각 톤만 변경한다.
+   ========================================================= */
+
+.sd-theme-compare{
+  position:fixed;
+  left:50%;
+  bottom:14px;
+  transform:translateX(-50%);
+  width:min(calc(100% - 24px),420px);
+  z-index:1360;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:3px;
+  padding:4px;
+  border:1px solid color-mix(in srgb, var(--sd-line) 75%, transparent);
+  border-radius:999px;
+  background:color-mix(in srgb, var(--sd-bg-soft) 92%, transparent);
+  box-shadow:0 8px 28px rgba(20,16,12,.16);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:bottom .22s ease,background .25s ease,border-color .25s ease;
+}
+.sd-bottom-cta:not(.is-hidden) ~ .sd-theme-compare{
+  bottom:calc(var(--sd-bottom-bar) + env(safe-area-inset-bottom) + 12px);
+}
+.sd-theme-compare button{
+  min-height:34px;
+  padding:0 6px;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:var(--sd-sub);
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease,transform .15s ease;
+}
+.sd-theme-compare button:active{transform:scale(.97)}
+.sd-theme-compare button[aria-pressed="true"]{
+  background:var(--sd-brown-800);
+  color:var(--sd-white);
+  box-shadow:0 3px 10px rgba(20,16,12,.12);
+}
+@media (max-width:359px){
+  .sd-theme-compare{width:calc(100% - 16px)}
+  .sd-theme-compare button{font-size:10px;min-height:32px}
+}
+
+/* 공통 theme transition */
+.sd-page,
+.sd-brandbar,
+.sd-primary-nav,
+.sd-drawer,
+.sd-trust,
+.sd-section,
+.sd-meeting,
+.sd-menu-card,
+.sd-menu-cta,
+.sd-space,
+.sd-reviews,
+.sd-review-card,
+.sd-location,
+.sd-location-row,
+.sd-location-valet,
+.sd-footer,
+.sd-bottom-cta{
+  transition:
+    background-color .32s ease,
+    background .32s ease,
+    color .32s ease,
+    border-color .32s ease,
+    box-shadow .32s ease;
+}
+
+/* ---------- 1안 : Classic Heritage Luxury ---------- */
+html[data-sudam-theme="classic"]{
+  --sd-bg:#F2ECE3;
+  --sd-bg-soft:#FFFFFF;
+  --sd-bg-warm:#D3C2A9;
+  --sd-brown-950:#36251D;
+  --sd-brown-900:#4F3528;
+  --sd-brown-800:#4F3528;
+  --sd-brown-700:#6E5543;
+  --sd-brown-500:#806A58;
+  --sd-gold:#9E8468;
+  --sd-gold-dark:#876E53;
+  --sd-text:#3E3027;
+  --sd-sub:#77685C;
+  --sd-line:#D3C2A9;
+  --sd-white:#FFFFFF;
+  --sd-shadow:0 10px 30px rgba(79,53,40,.12);
+  --sd-radius:10px;
+}
+html[data-sudam-theme="classic"] body{background:#E8DFD5}
+html[data-sudam-theme="classic"] .sd-page{background:#F2ECE3}
+html[data-sudam-theme="classic"] .sd-brandbar{background:#4F3528}
+html[data-sudam-theme="classic"] .sd-primary-nav{background:rgba(255,255,255,.96);border-color:rgba(79,53,40,.15)}
+html[data-sudam-theme="classic"] .sd-hero-media img{filter:saturate(.78) sepia(.10) contrast(1.02) brightness(1.02)}
+html[data-sudam-theme="classic"] .sd-hero-media:after{background:linear-gradient(90deg,rgba(242,236,227,.90) 0%,rgba(242,236,227,.60) 40%,rgba(242,236,227,.10) 72%),linear-gradient(0deg,rgba(79,53,40,.10),transparent 48%)}
+html[data-sudam-theme="classic"] .sd-trust{background:linear-gradient(180deg,#EEE5DB,#E7DACD)}
+html[data-sudam-theme="classic"] .sd-trust:before{border-color:rgba(158,132,104,.16)}
+html[data-sudam-theme="classic"] .sd-meeting{background:linear-gradient(rgba(242,236,227,.70),rgba(242,236,227,.82)),url('../images/meeting-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="classic"] .sd-meeting-card{background:rgba(255,255,255,.91);border-color:rgba(79,53,40,.14)}
+html[data-sudam-theme="classic"] .sd-menu-cta{background:#D3C2A9}
+html[data-sudam-theme="classic"] .sd-space{background:linear-gradient(180deg,#E8DED2,#F2ECE3)}
+html[data-sudam-theme="classic"] .sd-reviews{background:#FFFDF9}
+html[data-sudam-theme="classic"] .sd-footer{background:#36251D}
+html[data-sudam-theme="classic"] .sd-footer:before{background:linear-gradient(rgba(54,37,29,.82),rgba(54,37,29,.91)),url('../images/footer-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="classic"] .sd-trust-em--warm{color:#9E6F48}
+html[data-sudam-theme="classic"] .sd-trust-em--deep{color:#68493A}
+html[data-sudam-theme="classic"] .sd-menu-card .tag-signature{color:#8D7358}
+html[data-sudam-theme="classic"] .sd-menu-card .tag-premium{color:#5E4032}
+
+/* 은은한 한지 질감 - 장식 이미지 없이 미세 패턴만 */
+html[data-sudam-theme="classic"] .sd-section:not(.sd-meeting):not(.sd-space):not(.sd-reviews):not(.sd-location){
+  background-image:radial-gradient(rgba(79,53,40,.028) .6px,transparent .7px);
+  background-size:4px 4px;
+}
+
+/* ---------- 2안 : Korean Premium Minimal ---------- */
+html[data-sudam-theme="minimal"]{
+  --sd-bg:#FFFFFF;
+  --sd-bg-soft:#FFFFFF;
+  --sd-bg-warm:#F0EFEC;
+  --sd-brown-950:#111111;
+  --sd-brown-900:#111111;
+  --sd-brown-800:#111111;
+  --sd-brown-700:#333333;
+  --sd-brown-500:#555555;
+  --sd-gold:#969696;
+  --sd-gold-dark:#555555;
+  --sd-text:#111111;
+  --sd-sub:#666666;
+  --sd-line:#D8D8D5;
+  --sd-white:#FFFFFF;
+  --sd-shadow:0 10px 30px rgba(0,0,0,.10);
+  --sd-radius:4px;
+}
+html[data-sudam-theme="minimal"] body{background:#E6E6E4}
+html[data-sudam-theme="minimal"] .sd-page{background:#FFFFFF}
+html[data-sudam-theme="minimal"] .sd-brandbar{background:#111111}
+html[data-sudam-theme="minimal"] .sd-primary-nav{background:rgba(255,255,255,.98);border-color:#E1E1DE}
+html[data-sudam-theme="minimal"] .sd-kicker{color:#777;letter-spacing:.26em}
+html[data-sudam-theme="minimal"] .sd-title{font-weight:400;letter-spacing:-.025em}
+html[data-sudam-theme="minimal"] .sd-hero-media img{filter:grayscale(.72) saturate(.35) contrast(1.06) brightness(1.04)}
+html[data-sudam-theme="minimal"] .sd-hero-media:after{background:linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.65) 41%,rgba(255,255,255,.05) 74%),linear-gradient(0deg,rgba(0,0,0,.08),transparent 48%)}
+html[data-sudam-theme="minimal"] .sd-trust{background:#111111;color:#FFFFFF}
+html[data-sudam-theme="minimal"] .sd-trust-caption,
+html[data-sudam-theme="minimal"] .sd-trust-item strong{color:#FFFFFF}
+html[data-sudam-theme="minimal"] .sd-trust-grid:after{background:#333333}
+html[data-sudam-theme="minimal"] .sd-trust-icon{color:#C9C9C6}
+html[data-sudam-theme="minimal"] .sd-trust-em--warm{color:#D7D7D3}
+html[data-sudam-theme="minimal"] .sd-trust-em--deep{color:#FFFFFF}
+html[data-sudam-theme="minimal"] .sd-meeting{background:linear-gradient(rgba(255,255,255,.75),rgba(240,239,236,.86)),url('../images/meeting-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="minimal"] .sd-meeting-card{background:rgba(255,255,255,.96);border-color:#DADAD7;border-radius:2px}
+html[data-sudam-theme="minimal"] .sd-menu-card,
+html[data-sudam-theme="minimal"] .sd-review-card,
+html[data-sudam-theme="minimal"] .sd-location-row,
+html[data-sudam-theme="minimal"] .sd-location-valet{border-radius:2px}
+html[data-sudam-theme="minimal"] .sd-menu-cta{background:#111111;color:#FFFFFF}
+html[data-sudam-theme="minimal"] .sd-menu-cta small{color:#CFCFCD}
+html[data-sudam-theme="minimal"] .sd-menu-cta>b{background:#FFFFFF;color:#111111}
+html[data-sudam-theme="minimal"] .sd-space{background:#F0EFEC}
+html[data-sudam-theme="minimal"] .sd-reviews{background:#FFFFFF}
+html[data-sudam-theme="minimal"] .sd-review-tags span{background:#F0EFEC;color:#333333}
+html[data-sudam-theme="minimal"] .sd-map,
+html[data-sudam-theme="minimal"] .sd-valet-highlight{background:#F0EFEC}
+html[data-sudam-theme="minimal"] .sd-footer{background:#111111}
+html[data-sudam-theme="minimal"] .sd-footer:before{background:linear-gradient(rgba(17,17,17,.88),rgba(17,17,17,.94)),url('../images/footer-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="minimal"] .sd-slider-btn{border-color:#FFFFFF;background:#FFFFFF;color:#111111}
+html[data-sudam-theme="minimal"] .sd-menu-card .tag-signature{color:#555}
+html[data-sudam-theme="minimal"] .sd-menu-card .tag-premium{color:#111}
+
+/* ---------- 3안 : Modern Korean Heritage ---------- */
+html[data-sudam-theme="heritage"]{
+  --sd-bg:#F4F2EB;
+  --sd-bg-soft:#FBFAF6;
+  --sd-bg-warm:#C8C9B8;
+  --sd-brown-950:#34352C;
+  --sd-brown-900:#34352C;
+  --sd-brown-800:#505A3D;
+  --sd-brown-700:#505A3D;
+  --sd-brown-500:#687052;
+  --sd-gold:#747E58;
+  --sd-gold-dark:#626C49;
+  --sd-text:#34352C;
+  --sd-sub:#6F7164;
+  --sd-line:#C8C9B8;
+  --sd-white:#FFFDF8;
+  --sd-shadow:0 10px 30px rgba(52,53,44,.11);
+  --sd-radius:8px;
+}
+html[data-sudam-theme="heritage"] body{background:#E4E4DA}
+html[data-sudam-theme="heritage"] .sd-page{background:#F4F2EB}
+html[data-sudam-theme="heritage"] .sd-brandbar{background:#34352C}
+html[data-sudam-theme="heritage"] .sd-primary-nav{background:rgba(244,242,235,.97);border-color:#C8C9B8}
+html[data-sudam-theme="heritage"] .sd-kicker{color:#747E58}
+html[data-sudam-theme="heritage"] .sd-title{font-weight:400;letter-spacing:-.025em}
+html[data-sudam-theme="heritage"] .sd-hero-media img{filter:saturate(.72) sepia(.05) contrast(1.02) brightness(1.03)}
+html[data-sudam-theme="heritage"] .sd-hero-media:after{background:linear-gradient(90deg,rgba(244,242,235,.91) 0%,rgba(244,242,235,.60) 40%,rgba(244,242,235,.08) 74%),linear-gradient(0deg,rgba(80,90,61,.09),transparent 48%)}
+html[data-sudam-theme="heritage"] .sd-trust{background:linear-gradient(180deg,#E7E7DD,#D9DCCB)}
+html[data-sudam-theme="heritage"] .sd-trust-em--warm{color:#747E58}
+html[data-sudam-theme="heritage"] .sd-trust-em--deep{color:#505A3D}
+html[data-sudam-theme="heritage"] .sd-meeting{background:linear-gradient(rgba(244,242,235,.70),rgba(244,242,235,.82)),url('../images/meeting-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="heritage"] .sd-meeting-card{background:rgba(251,250,246,.92);border-color:rgba(80,90,61,.18)}
+html[data-sudam-theme="heritage"] .sd-menu-cta{background:#747E58;color:#FFFFFF}
+html[data-sudam-theme="heritage"] .sd-menu-cta small{color:#EEF0E7}
+html[data-sudam-theme="heritage"] .sd-menu-cta>b{background:#34352C;color:#FFFFFF}
+html[data-sudam-theme="heritage"] .sd-space{background:#505A3D;color:#FFFDF8}
+html[data-sudam-theme="heritage"] .sd-space .sd-kicker{color:#C8C9B8}
+html[data-sudam-theme="heritage"] .sd-space .sd-title{color:#FFFDF8}
+html[data-sudam-theme="heritage"] .sd-reviews{background:#FBFAF6}
+html[data-sudam-theme="heritage"] .sd-review-tags span{background:#E6E7DB;color:#505A3D}
+html[data-sudam-theme="heritage"] .sd-map{background:#ECECE4}
+html[data-sudam-theme="heritage"] .sd-footer{background:#34352C}
+html[data-sudam-theme="heritage"] .sd-footer:before{background:linear-gradient(rgba(52,53,44,.84),rgba(52,53,44,.92)),url('../images/footer-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="heritage"] .sd-menu-card .tag-signature{color:#747E58}
+html[data-sudam-theme="heritage"] .sd-menu-card .tag-premium{color:#34352C}
+html[data-sudam-theme="heritage"] .sd-section:not(.sd-meeting):not(.sd-space):not(.sd-reviews):not(.sd-location){
+  background-image:linear-gradient(90deg,transparent 0,transparent calc(100% - 1px),rgba(80,90,61,.035) calc(100% - 1px));
+  background-size:44px 100%;
+}
+
+/* ---------- 4안 : Bright Editorial Premium ---------- */
+html[data-sudam-theme="editorial"]{
+  --sd-bg:#FFFAF6;
+  --sd-bg-soft:#FFFFFF;
+  --sd-bg-warm:#F3E3DD;
+  --sd-brown-950:#494040;
+  --sd-brown-900:#494040;
+  --sd-brown-800:#494040;
+  --sd-brown-700:#5A4D4D;
+  --sd-brown-500:#6D6060;
+  --sd-gold:#D8ACB3;
+  --sd-gold-dark:#B9858E;
+  --sd-text:#494040;
+  --sd-sub:#786A6C;
+  --sd-line:#E9CDCA;
+  --sd-white:#FFFAF6;
+  --sd-shadow:0 12px 32px rgba(73,64,64,.10);
+  --sd-radius:7px;
+}
+html[data-sudam-theme="editorial"] body{background:#F2E8E5}
+html[data-sudam-theme="editorial"] .sd-page{background:#FFFAF6}
+html[data-sudam-theme="editorial"] .sd-brandbar{background:#494040}
+html[data-sudam-theme="editorial"] .sd-primary-nav{background:rgba(255,250,246,.97);border-color:#E9CDCA}
+html[data-sudam-theme="editorial"] .sd-kicker{color:#B9858E;letter-spacing:.24em}
+html[data-sudam-theme="editorial"] .sd-title{font-weight:400;letter-spacing:-.02em}
+html[data-sudam-theme="editorial"] .sd-hero-media img{filter:saturate(.82) brightness(1.07) contrast(.98)}
+html[data-sudam-theme="editorial"] .sd-hero-media:after{background:linear-gradient(90deg,rgba(255,250,246,.92) 0%,rgba(243,227,221,.62) 42%,rgba(255,250,246,.06) 74%),linear-gradient(0deg,rgba(216,172,179,.10),transparent 48%)}
+html[data-sudam-theme="editorial"] .sd-trust{background:linear-gradient(180deg,#F3E3DD,#F8ECE8)}
+html[data-sudam-theme="editorial"] .sd-trust-em--warm{color:#B87580}
+html[data-sudam-theme="editorial"] .sd-trust-em--deep{color:#7B5B61}
+html[data-sudam-theme="editorial"] .sd-meeting{background:linear-gradient(rgba(255,250,246,.68),rgba(243,227,221,.78)),url('../images/meeting-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="editorial"] .sd-meeting-card{background:rgba(255,250,246,.93);border-color:#E9CDCA}
+html[data-sudam-theme="editorial"] .sd-menu-cta{background:#E9CDCA;color:#494040}
+html[data-sudam-theme="editorial"] .sd-menu-cta>b{background:#494040;color:#FFFAF6}
+html[data-sudam-theme="editorial"] .sd-space{background:#D8ACB3;color:#494040}
+html[data-sudam-theme="editorial"] .sd-space .sd-kicker{color:#6A5559}
+html[data-sudam-theme="editorial"] .sd-space .sd-title{color:#494040}
+html[data-sudam-theme="editorial"] .sd-reviews{background:#FFFDFB}
+html[data-sudam-theme="editorial"] .sd-review-tags span{background:#F3E3DD;color:#8F626B}
+html[data-sudam-theme="editorial"] .sd-map{background:#F8EFEC}
+html[data-sudam-theme="editorial"] .sd-valet-highlight{background:#F3E3DD}
+html[data-sudam-theme="editorial"] .sd-footer{background:#494040}
+html[data-sudam-theme="editorial"] .sd-footer:before{background:linear-gradient(rgba(73,64,64,.84),rgba(73,64,64,.92)),url('../images/footer-temp.jpg') center/cover no-repeat}
+html[data-sudam-theme="editorial"] .sd-menu-card .tag-signature{color:#B87580}
+html[data-sudam-theme="editorial"] .sd-menu-card .tag-premium{color:#6C555A}
+html[data-sudam-theme="editorial"] .sd-slider-btn{border-color:#FFFAF6;background:rgba(255,250,246,.92);color:#494040}
+
+/* 4안의 에디토리얼 섹션 대비: 꽃/꽃무늬 없이 컬러 면만 사용 */
+html[data-sudam-theme="editorial"] #menu{background:#FFF5F1}
+html[data-sudam-theme="editorial"] .sd-location{background:#FFFFFF}

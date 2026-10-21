@@ -1,0 +1,18 @@
+수담한정식 모바일 메인페이지 v5.0 - 디자인 콘셉트 비교
+
+추가 기능
+- 화면 하단에 '기존 / 1안 / 2안 / 3안 / 4안' 톤앤매너 비교 버튼 추가
+- 선택 즉시 같은 레이아웃/콘텐츠에서 컬러, 대비, 타이포 무게감, 섹션 배경, 카드/버튼 스타일 변경
+- 선택값은 브라우저 localStorage에 저장되어 새로고침 후에도 유지
+
+콘셉트
+1안 Classic Heritage Luxury
+  #4F3528 / #9E8468 / #D3C2A9 / #F2ECE3 / #FFFFFF
+2안 Korean Premium Minimal
+  #111111 / #333333 / #969696 / #F0EFEC / #FFFFFF
+3안 Modern Korean Heritage
+  #505A3D / #747E58 / #C8C9B8 / #F4F2EB / #34352C
+4안 Bright Editorial Premium
+  #D8ACB3 / #E9CDCA / #F3E3DD / #FFFAF6 / #494040
+
+PPT의 공통 기준에 맞춰 섹션 순서, 콘텐츠, 사진 배치, 카드 개수, 예약 CTA 위치는 변경하지 않았습니다.

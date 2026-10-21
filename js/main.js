@@ -147,6 +147,41 @@
   window.addEventListener('pageshow', updateBottomCta);
   updateBottomCta();
 
+
+
+  // Design tone comparison: 기존 / 1안 / 2안 / 3안 / 4안
+  const themeButtons=$$('[data-theme-choice]');
+  const themeMeta=$('meta[name="theme-color"]');
+  const THEME_STORAGE_KEY='sudam-tone-theme';
+  const themeColors={
+    default:'#2E1F12',
+    classic:'#4F3528',
+    minimal:'#111111',
+    heritage:'#34352C',
+    editorial:'#494040'
+  };
+  const validThemes=new Set(Object.keys(themeColors));
+
+  function applyToneTheme(theme,save=true){
+    const selected=validThemes.has(theme)?theme:'default';
+    document.documentElement.setAttribute('data-sudam-theme',selected);
+    themeButtons.forEach(btn=>{
+      const active=btn.dataset.themeChoice===selected;
+      btn.setAttribute('aria-pressed',String(active));
+    });
+    themeMeta?.setAttribute('content',themeColors[selected]);
+    if(save){
+      try{localStorage.setItem(THEME_STORAGE_KEY,selected)}catch(e){}
+    }
+    window.dispatchEvent(new Event('resize'));
+  }
+
+  let initialTheme='default';
+  try{initialTheme=localStorage.getItem(THEME_STORAGE_KEY)||document.documentElement.getAttribute('data-sudam-theme')||'default'}catch(e){}
+  applyToneTheme(initialTheme,false);
+  themeButtons.forEach(btn=>btn.addEventListener('click',()=>applyToneTheme(btn.dataset.themeChoice,true)));
+
+
   // Lightweight GTM helper: works even before GTM is installed.
   document.addEventListener('click',e=>{
     const el=e.target.closest('[data-event]');if(!el)return;

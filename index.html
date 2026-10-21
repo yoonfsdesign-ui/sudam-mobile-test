@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- SUDAM-MOCKUP-BUILD: v4.2 -->
+<!-- SUDAM-MOCKUP-BUILD: v5.0 THEME COMPARE -->
 <html lang="ko">
 <head>
 <meta charset="utf-8"/>
@@ -10,7 +10,17 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="./css/style.css?v=20261019-43" rel="stylesheet"/>
+<script>
+(function(){
+  try{
+    var saved=localStorage.getItem('sudam-tone-theme')||'default';
+    document.documentElement.setAttribute('data-sudam-theme', saved);
+  }catch(e){
+    document.documentElement.setAttribute('data-sudam-theme','default');
+  }
+})();
+</script>
+<link href="./css/style.css?v=20261021-50" rel="stylesheet"/>
 <meta content="#2E1F12" name="theme-color"/></head>
 <body>
 <a class="sd-skip" href="#sdMain">본문 바로가기</a>
@@ -141,8 +151,17 @@
 <a class="phone" data-event="phone_click" data-item="전화 문의" data-section="bottom_cta" href="tel:025584900">☎ 전화 문의</a>
 <a class="js-kakao-url" data-event="kakao_click" data-item="카카오톡 상담" data-section="bottom_cta" data-url-key="kakao" href="#!">톡 상담</a>
 </div>
+
+<div aria-label="디자인 톤앤매너 비교" class="sd-theme-compare">
+  <button aria-pressed="true" data-theme-choice="default" title="현재 디자인" type="button">기존</button>
+  <button aria-pressed="false" data-theme-choice="classic" title="1안 Classic Heritage Luxury" type="button">1안</button>
+  <button aria-pressed="false" data-theme-choice="minimal" title="2안 Korean Premium Minimal" type="button">2안</button>
+  <button aria-pressed="false" data-theme-choice="heritage" title="3안 Modern Korean Heritage" type="button">3안</button>
+  <button aria-pressed="false" data-theme-choice="editorial" title="4안 Bright Editorial Premium" type="button">4안</button>
+</div>
+
 <div aria-live="polite" class="sd-toast" role="status"></div>
 </div>
-<script src="./js/site-config.js?v=20261019-43"></script><script src="./js/main.js?v=20261019-43"></script>
+<script src="./js/site-config.js?v=20261021-50"></script><script src="./js/main.js?v=20261021-50"></script>
 </body>
 </html>
