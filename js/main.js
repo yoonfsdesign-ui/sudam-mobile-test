@@ -155,7 +155,7 @@
   const THEME_STORAGE_KEY='sudam-tone-theme';
   const themeColors={
     default:'#2E1F12',
-    classic:'#4F3528',
+    classic:'#3B281F',
     minimal:'#111111',
     heritage:'#34352C',
     editorial:'#494040'

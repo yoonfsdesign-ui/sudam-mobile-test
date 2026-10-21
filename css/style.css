@@ -770,3 +770,645 @@ html[data-sudam-theme="editorial"] .sd-slider-btn{border-color:#FFFAF6;backgroun
 /* 4안의 에디토리얼 섹션 대비: 꽃/꽃무늬 없이 컬러 면만 사용 */
 html[data-sudam-theme="editorial"] #menu{background:#FFF5F1}
 html[data-sudam-theme="editorial"] .sd-location{background:#FFFFFF}
+
+
+/* =========================================================
+   v5.1 — Designed Tone & Manner Compare
+   단순 색상 치환이 아니라 각 콘셉트별로
+   섹션 컬러 리듬 / 카드 / 버튼 / 상·하단 메뉴 / 컨트롤까지 함께 변경.
+   "어떤 만남을 준비하시나요?"는 모든 안에서 이미지 배경을 제거하고 컬러 면으로 구성.
+   ========================================================= */
+
+/* ---------- 테마 공통 확장 변수 ---------- */
+:root{
+  --tone-brand:#2E1F12;
+  --tone-page:#F4ECE4;
+  --tone-nav-bg:#FBF7F1;
+  --tone-nav-text:#2E241C;
+  --tone-accent:#7E6346;
+  --tone-accent-2:#A98A64;
+  --tone-accent-soft:#DBC3AA;
+  --tone-card:#FFFDF9;
+  --tone-card-border:#DFCDBA;
+  --tone-meeting-bg:#E4D6C8;
+  --tone-meeting-card:#FBF7F1;
+  --tone-menu-bg:#F4ECE4;
+  --tone-space-bg:linear-gradient(180deg,#EADDD1,#F4EAE1);
+  --tone-space-title:#2E241C;
+  --tone-reviews-bg:#FBF7F1;
+  --tone-location-bg:#FFFFFF;
+  --tone-footer:#24170F;
+  --tone-footer-text:#EADFD2;
+  --tone-control-bg:#FFFDF9;
+  --tone-control-text:#3A291C;
+  --tone-control-border:#D9C7B5;
+  --tone-button-bg:#3A291C;
+  --tone-button-text:#FFFFFF;
+  --tone-bottom-bg:#FFFDF9;
+  --tone-bottom-text:#3A291C;
+  --tone-bottom-emphasis:#2E1F12;
+  --tone-bottom-emphasis-text:#FFFFFF;
+  --tone-chip-bg:#F3E8DD;
+  --tone-chip-text:#7E6346;
+  --tone-radius:10px;
+}
+
+/* ---------- 비교 버튼: 콘텐츠 오른쪽 바깥, 세로 배치 ---------- */
+.sd-theme-compare{
+  position:fixed!important;
+  left:calc(50% + 250px)!important;
+  right:auto!important;
+  top:50%!important;
+  bottom:auto!important;
+  transform:translateY(-50%)!important;
+  width:48px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  grid-template-columns:none!important;
+  gap:5px!important;
+  padding:5px!important;
+  border:1px solid color-mix(in srgb,var(--tone-control-border) 82%,transparent)!important;
+  border-radius:14px!important;
+  background:color-mix(in srgb,var(--tone-control-bg) 94%,transparent)!important;
+  box-shadow:0 8px 26px rgba(20,16,12,.12)!important;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  z-index:1360;
+}
+.sd-theme-compare:before{
+  content:"TONE";
+  display:block;
+  padding:3px 0 1px;
+  text-align:center;
+  font-size:7px;
+  line-height:1;
+  font-weight:800;
+  letter-spacing:.13em;
+  color:color-mix(in srgb,var(--tone-control-text) 48%,transparent);
+}
+.sd-theme-compare button{
+  width:38px!important;
+  min-width:38px!important;
+  min-height:34px!important;
+  height:34px!important;
+  padding:0!important;
+  border-radius:9px!important;
+  font-size:10px!important;
+  line-height:1!important;
+  color:color-mix(in srgb,var(--tone-control-text) 72%,transparent)!important;
+}
+.sd-theme-compare button[aria-pressed="true"]{
+  background:var(--tone-button-bg)!important;
+  color:var(--tone-button-text)!important;
+}
+.sd-bottom-cta:not(.is-hidden) ~ .sd-theme-compare{
+  bottom:auto!important;
+}
+
+/* 화면이 좁아 콘텐츠 바깥 공간이 없을 때는 우측 가장자리에 슬림하게 유지 */
+@media (max-width:610px){
+  .sd-theme-compare{
+    left:auto!important;
+    right:5px!important;
+    width:42px!important;
+    padding:4px!important;
+    border-radius:12px!important;
+  }
+  .sd-theme-compare button{
+    width:32px!important;
+    min-width:32px!important;
+    height:31px!important;
+    min-height:31px!important;
+    font-size:9px!important;
+  }
+}
+@media (max-width:390px){
+  .sd-theme-compare{right:3px!important;opacity:.88}
+}
+
+/* ---------- 페이지/헤더/메뉴 ---------- */
+.sd-page{background:var(--tone-page)}
+.sd-brandbar{background:var(--tone-brand)}
+.sd-primary-nav{
+  background:color-mix(in srgb,var(--tone-nav-bg) 97%,transparent)!important;
+  border-bottom-color:color-mix(in srgb,var(--tone-control-border) 72%,transparent)!important;
+  box-shadow:0 4px 16px color-mix(in srgb,var(--tone-brand) 5%,transparent);
+}
+.sd-primary-nav a{color:var(--tone-nav-text)!important}
+.sd-primary-nav a:after{background:var(--tone-accent)!important}
+.sd-kicker{color:var(--tone-accent)!important}
+.sd-link{color:var(--tone-accent)!important}
+:focus-visible{outline-color:var(--tone-accent)!important}
+
+/* Drawer / 언어 선택도 전부 테마화 */
+.sd-language-menu{
+  background:var(--tone-control-bg)!important;
+  color:var(--tone-control-text)!important;
+  border-color:var(--tone-control-border)!important;
+  border-radius:var(--tone-radius)!important;
+}
+.sd-language-menu a{color:var(--tone-control-text)!important}
+.sd-language-menu a:hover,
+.sd-language-menu a:focus-visible{background:var(--tone-chip-bg)!important}
+.sd-drawer{
+  background:var(--tone-control-bg)!important;
+  color:var(--tone-control-text)!important;
+}
+.sd-drawer-head,
+.sd-drawer nav a{border-color:var(--tone-control-border)!important}
+.sd-drawer nav a{color:var(--tone-control-text)!important}
+.sd-drawer-foot{color:color-mix(in srgb,var(--tone-control-text) 64%,transparent)!important}
+.sd-drawer-cta a{
+  border-color:var(--tone-control-border)!important;
+  color:var(--tone-control-text)!important;
+  background:transparent!important;
+  border-radius:var(--tone-radius)!important;
+}
+.sd-drawer-cta a:first-child{
+  background:var(--tone-button-bg)!important;
+  border-color:var(--tone-button-bg)!important;
+  color:var(--tone-button-text)!important;
+}
+
+/* 전통매듭 장식도 테마 포인트색 적용 */
+.sd-title:after,
+.sd-course-knot,
+.sd-footer-knot{
+  background-image:none!important;
+  background-color:var(--tone-accent)!important;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 106 16'%3E%3Cg fill='none' stroke='black' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M0 8h36M70 8h36'/%3E%3Cpath d='M38 8c4-7 8-7 15 0-7 7-11 7-15 0Zm30 0c-4-7-8-7-15 0 7 7 11 7 15 0Z'/%3E%3Cpath d='M48 3c2 2 2 8 0 10M58 3c-2 2-2 8 0 10'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 106 16'%3E%3Cg fill='none' stroke='black' stroke-width='1.25' stroke-linecap='round'%3E%3Cpath d='M0 8h36M70 8h36'/%3E%3Cpath d='M38 8c4-7 8-7 15 0-7 7-11 7-15 0Zm30 0c-4-7-8-7-15 0 7 7 11 7 15 0Z'/%3E%3Cpath d='M48 3c2 2 2 8 0 10M58 3c-2 2-2 8 0 10'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+}
+.sd-footer-knot{background-color:color-mix(in srgb,var(--tone-accent) 70%,white)!important}
+
+/* 슬라이드 내 컨트롤도 테마 */
+.sd-slider-btn{
+  border-color:color-mix(in srgb,var(--tone-accent) 52%,white)!important;
+  background:color-mix(in srgb,var(--tone-control-bg) 88%,transparent)!important;
+  color:var(--tone-control-text)!important;
+}
+.sd-dot{
+  background:color-mix(in srgb,var(--tone-control-bg) 70%,transparent)!important;
+  border-color:color-mix(in srgb,var(--tone-accent) 55%,white)!important;
+}
+.sd-dot.is-active{background:var(--tone-accent)!important;border-color:var(--tone-accent)!important}
+.sd-slide-link{
+  color:color-mix(in srgb,var(--tone-accent-2) 55%,white)!important;
+  border-bottom-color:currentColor!important;
+}
+
+/* ---------- 어떤 만남을 준비하시나요?
+   전 테마 공통: 배경 이미지를 완전히 제거 ---------- */
+.sd-meeting{
+  background-image:none!important;
+  background:var(--tone-meeting-bg)!important;
+}
+.sd-meeting-card{
+  background:var(--tone-meeting-card)!important;
+  border-color:color-mix(in srgb,var(--tone-control-border) 88%,transparent)!important;
+  border-radius:var(--tone-radius)!important;
+  backdrop-filter:none!important;
+}
+.sd-meeting-card .no{color:var(--tone-accent)!important}
+.sd-meeting-card .go{
+  border-color:var(--tone-accent)!important;
+  color:var(--tone-accent)!important;
+}
+@media (hover:hover){
+  .sd-meeting-card:hover{
+    background:color-mix(in srgb,var(--tone-meeting-card) 90%,white)!important;
+    box-shadow:0 10px 24px color-mix(in srgb,var(--tone-brand) 10%,transparent);
+  }
+}
+
+/* ---------- 메뉴 ---------- */
+#menu{background:var(--tone-menu-bg)!important}
+.sd-menu-card{
+  background:var(--tone-card)!important;
+  border-color:var(--tone-card-border)!important;
+  border-radius:var(--tone-radius)!important;
+}
+.sd-menu-card .tag,
+.sd-stars{color:var(--tone-accent)!important}
+.sd-menu-cta{
+  background:var(--tone-accent-soft)!important;
+  color:var(--tone-control-text)!important;
+  border-radius:var(--tone-radius)!important;
+}
+.sd-menu-cta small{color:color-mix(in srgb,var(--tone-control-text) 72%,transparent)!important}
+.sd-menu-cta>b{
+  background:var(--tone-button-bg)!important;
+  color:var(--tone-button-text)!important;
+  border:1px solid var(--tone-button-bg)!important;
+  border-radius:calc(var(--tone-radius) * .62)!important;
+}
+
+/* ---------- 공간 ---------- */
+.sd-space{background:var(--tone-space-bg)!important}
+.sd-space>.sd-title{color:var(--tone-space-title)!important}
+.sd-space>.sd-kicker{color:var(--tone-accent)!important}
+
+/* ---------- 후기 ---------- */
+.sd-reviews{background:var(--tone-reviews-bg)!important}
+.sd-review-card{
+  background:var(--tone-card)!important;
+  border-color:var(--tone-card-border)!important;
+  border-radius:var(--tone-radius)!important;
+}
+.sd-review-tags span{
+  color:var(--tone-chip-text)!important;
+  background:var(--tone-chip-bg)!important;
+}
+.sd-photo-count{background:color-mix(in srgb,var(--tone-brand) 78%,transparent)!important}
+
+/* ---------- 오시는 길 / 지도 / 버튼 ---------- */
+.sd-location{background:var(--tone-location-bg)!important}
+.sd-map{
+  background:color-mix(in srgb,var(--tone-page) 72%,white)!important;
+  border-color:var(--tone-control-border)!important;
+  border-radius:var(--tone-radius)!important;
+}
+.sd-map-badge{
+  background:var(--tone-button-bg)!important;
+  color:var(--tone-button-text)!important;
+}
+.sd-map-switch a{
+  background:color-mix(in srgb,var(--tone-control-bg) 96%,transparent)!important;
+  border-color:var(--tone-control-border)!important;
+  color:var(--tone-control-text)!important;
+  border-radius:calc(var(--tone-radius) * .7)!important;
+}
+.sd-location-list,
+.sd-location-row{border-color:var(--tone-control-border)!important}
+.sd-location-row .ico,
+.sd-valet-title .ico{color:var(--tone-accent)!important}
+.sd-copy-address-btn{
+  background:var(--tone-control-bg)!important;
+  color:var(--tone-control-text)!important;
+  border-color:var(--tone-control-border)!important;
+  border-radius:calc(var(--tone-radius) * .7)!important;
+}
+.sd-naver-reserve{
+  color:var(--tone-control-text)!important;
+  border-color:var(--tone-accent)!important;
+  background:var(--tone-control-bg)!important;
+  border-radius:calc(var(--tone-radius) * .7)!important;
+}
+.sd-valet-fee{
+  color:var(--tone-accent)!important;
+  border-color:var(--tone-control-border)!important;
+  background:var(--tone-control-bg)!important;
+}
+.sd-valet-highlight{
+  background:var(--tone-chip-bg)!important;
+  color:var(--tone-control-text)!important;
+  border-radius:calc(var(--tone-radius) * .65)!important;
+}
+
+/* ---------- 푸터 / SNS / 패밀리 / 언어 ---------- */
+.sd-footer{
+  background:var(--tone-footer)!important;
+  color:var(--tone-footer-text)!important;
+}
+.sd-footer:before{
+  background:
+    linear-gradient(
+      color-mix(in srgb,var(--tone-footer) 87%,transparent),
+      color-mix(in srgb,var(--tone-footer) 95%,transparent)
+    ),
+    url('../images/footer-temp.jpg') center/cover no-repeat!important;
+}
+.sd-footer-intro,
+.sd-footer-info,
+.sd-footer-links,
+.sd-copy{color:color-mix(in srgb,var(--tone-footer-text) 86%,transparent)!important}
+.sd-footer-intro .en{color:color-mix(in srgb,var(--tone-footer-text) 66%,transparent)!important}
+.sd-sns a,
+.sd-family-btn,
+.sd-language--footer .sd-language-btn{
+  border-color:color-mix(in srgb,var(--tone-footer-text) 34%,transparent)!important;
+  color:var(--tone-footer-text)!important;
+}
+.sd-sns a:hover,
+.sd-family-btn:hover,
+.sd-language--footer .sd-language-btn:hover{
+  background:color-mix(in srgb,var(--tone-accent) 26%,transparent)!important;
+  border-color:var(--tone-accent)!important;
+}
+.sd-family-menu{
+  background:var(--tone-control-bg)!important;
+  color:var(--tone-control-text)!important;
+  border:1px solid var(--tone-control-border)!important;
+  border-radius:var(--tone-radius)!important;
+}
+.sd-family-menu a{color:var(--tone-control-text)!important}
+.sd-family-menu a:hover{background:var(--tone-chip-bg)!important}
+
+/* ---------- 하단 고정 예약 메뉴 ---------- */
+.sd-bottom-cta{
+  background:var(--tone-bottom-bg)!important;
+  border-top-color:var(--tone-control-border)!important;
+  box-shadow:0 -8px 24px color-mix(in srgb,var(--tone-brand) 12%,transparent)!important;
+}
+.sd-bottom-cta a{
+  color:var(--tone-bottom-text)!important;
+  border-right-color:var(--tone-control-border)!important;
+}
+.sd-bottom-cta .phone{
+  background:var(--tone-bottom-emphasis)!important;
+  color:var(--tone-bottom-emphasis-text)!important;
+}
+
+/* =========================================================
+   기존 — 기존 수담 톤 유지, 모임 배경만 컬러 면으로 변경
+   ========================================================= */
+html[data-sudam-theme="default"]{
+  --tone-brand:#2E1F12;
+  --tone-page:#F4ECE4;
+  --tone-nav-bg:#FBF7F1;
+  --tone-nav-text:#2E241C;
+  --tone-accent:#7E6346;
+  --tone-accent-2:#A98A64;
+  --tone-accent-soft:#DBC3AA;
+  --tone-card:#FFFDF9;
+  --tone-card-border:#DFCDBA;
+  --tone-meeting-bg:#E4D6C8;
+  --tone-meeting-card:#FBF7F1;
+  --tone-menu-bg:#F4ECE4;
+  --tone-space-bg:linear-gradient(180deg,#EADDD1,#F4EAE1);
+  --tone-space-title:#2E241C;
+  --tone-reviews-bg:#FBF7F1;
+  --tone-location-bg:#FFFFFF;
+  --tone-footer:#24170F;
+  --tone-footer-text:#EADFD2;
+  --tone-control-bg:#FFFDF9;
+  --tone-control-text:#3A291C;
+  --tone-control-border:#D9C7B5;
+  --tone-button-bg:#3A291C;
+  --tone-button-text:#FFFFFF;
+  --tone-bottom-bg:#FFFDF9;
+  --tone-bottom-text:#3A291C;
+  --tone-bottom-emphasis:#2E1F12;
+  --tone-bottom-emphasis-text:#FFFFFF;
+  --tone-chip-bg:#F3E8DD;
+  --tone-chip-text:#7E6346;
+  --tone-radius:10px;
+}
+
+/* =========================================================
+   1안 Classic Heritage Luxury
+   깊은 브라운 + 버터 아이보리 + 브론즈
+   섹션 리듬: 크림 → 토프 → 크림 → 딥브라운 → 샌드 → 화이트
+   ========================================================= */
+html[data-sudam-theme="classic"]{
+  --tone-brand:#3B281F;
+  --tone-page:#F3EDE5;
+  --tone-nav-bg:#FFFDF8;
+  --tone-nav-text:#3D2D24;
+  --tone-accent:#9B7C5B;
+  --tone-accent-2:#C4A784;
+  --tone-accent-soft:#CDB79D;
+  --tone-card:#FFFCF7;
+  --tone-card-border:#D7C6B4;
+  --tone-meeting-bg:#D8C7B5;
+  --tone-meeting-card:#F7F0E7;
+  --tone-menu-bg:#F5EFE8;
+  --tone-space-bg:#4F3528;
+  --tone-space-title:#FFF8EF;
+  --tone-reviews-bg:#EFE4D9;
+  --tone-location-bg:#FFFCF8;
+  --tone-footer:#2B1D17;
+  --tone-footer-text:#EADFD3;
+  --tone-control-bg:#FFFDF8;
+  --tone-control-text:#3D2D24;
+  --tone-control-border:#CFBAA5;
+  --tone-button-bg:#4F3528;
+  --tone-button-text:#FFF9F1;
+  --tone-bottom-bg:#F7EFE5;
+  --tone-bottom-text:#4F3528;
+  --tone-bottom-emphasis:#4F3528;
+  --tone-bottom-emphasis-text:#FFFFFF;
+  --tone-chip-bg:#E9DDD0;
+  --tone-chip-text:#7D6249;
+  --tone-radius:9px;
+}
+html[data-sudam-theme="classic"] .sd-title{letter-spacing:-.015em}
+html[data-sudam-theme="classic"] .sd-space>.sd-kicker{color:#CDB79D!important}
+html[data-sudam-theme="classic"] .sd-space .sd-title:after{background-color:#CDB79D!important}
+html[data-sudam-theme="classic"] .sd-menu-cta{
+  background:#4F3528!important;
+  color:#FFF8EF!important;
+}
+html[data-sudam-theme="classic"] .sd-menu-cta small{color:#DCCBBC!important}
+html[data-sudam-theme="classic"] .sd-menu-cta>b{
+  background:#D3C2A9!important;
+  color:#3A281F!important;
+  border-color:#D3C2A9!important;
+}
+html[data-sudam-theme="classic"] .sd-bottom-cta>a:first-child{
+  background:#CDB79D!important;color:#3B281F!important;
+}
+html[data-sudam-theme="classic"] .sd-bottom-cta>a:last-child{
+  background:#F7EFE5!important;color:#4F3528!important;
+}
+
+/* =========================================================
+   2안 Korean Premium Minimal
+   화이트 여백 + 블랙 정보 블록. 라운드/장식을 줄여 그래픽하게.
+   ========================================================= */
+html[data-sudam-theme="minimal"]{
+  --tone-brand:#111111;
+  --tone-page:#FFFFFF;
+  --tone-nav-bg:#FFFFFF;
+  --tone-nav-text:#111111;
+  --tone-accent:#111111;
+  --tone-accent-2:#969696;
+  --tone-accent-soft:#111111;
+  --tone-card:#FFFFFF;
+  --tone-card-border:#D8D8D5;
+  --tone-meeting-bg:#F0EFEC;
+  --tone-meeting-card:#FFFFFF;
+  --tone-menu-bg:#FFFFFF;
+  --tone-space-bg:#111111;
+  --tone-space-title:#FFFFFF;
+  --tone-reviews-bg:#F5F5F3;
+  --tone-location-bg:#FFFFFF;
+  --tone-footer:#111111;
+  --tone-footer-text:#EDEDEB;
+  --tone-control-bg:#FFFFFF;
+  --tone-control-text:#111111;
+  --tone-control-border:#D4D4D1;
+  --tone-button-bg:#111111;
+  --tone-button-text:#FFFFFF;
+  --tone-bottom-bg:#FFFFFF;
+  --tone-bottom-text:#111111;
+  --tone-bottom-emphasis:#111111;
+  --tone-bottom-emphasis-text:#FFFFFF;
+  --tone-chip-bg:#EEEEEB;
+  --tone-chip-text:#333333;
+  --tone-radius:2px;
+}
+html[data-sudam-theme="minimal"] .sd-title{
+  font-weight:400;letter-spacing:-.035em;
+}
+html[data-sudam-theme="minimal"] .sd-title:after,
+html[data-sudam-theme="minimal"] .sd-course-knot{
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  width:44px!important;
+  height:1px!important;
+  background:#111111!important;
+}
+html[data-sudam-theme="minimal"] .sd-space .sd-title:after{background:#FFFFFF!important}
+html[data-sudam-theme="minimal"] .sd-space>.sd-kicker{color:#BDBDBA!important}
+html[data-sudam-theme="minimal"] .sd-meeting-card{
+  border-left:3px solid #111111!important;
+  box-shadow:none!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card .go{
+  border-radius:0!important;border-color:#111111!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-card{box-shadow:none!important}
+html[data-sudam-theme="minimal"] .sd-menu-cta{
+  background:#111111!important;color:#FFFFFF!important;border-radius:0!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-cta small{color:#C9C9C6!important}
+html[data-sudam-theme="minimal"] .sd-menu-cta>b{
+  background:#FFFFFF!important;color:#111111!important;border-color:#FFFFFF!important;border-radius:0!important;
+}
+html[data-sudam-theme="minimal"] .sd-slider-window,
+html[data-sudam-theme="minimal"] .sd-review-card,
+html[data-sudam-theme="minimal"] .sd-map{border-radius:0!important}
+html[data-sudam-theme="minimal"] .sd-slider-btn{
+  border-radius:0!important;background:#FFFFFF!important;color:#111111!important;border-color:#111111!important;
+}
+html[data-sudam-theme="minimal"] .sd-theme-compare,
+html[data-sudam-theme="minimal"] .sd-theme-compare button,
+html[data-sudam-theme="minimal"] .sd-language-menu,
+html[data-sudam-theme="minimal"] .sd-family-menu{border-radius:2px!important}
+
+/* =========================================================
+   3안 Modern Korean Heritage
+   오프화이트 + 세이지 + 딥 올리브 + 먹색.
+   밝은 세이지 모임 섹션과 짙은 올리브 공간 섹션으로 리듬.
+   ========================================================= */
+html[data-sudam-theme="heritage"]{
+  --tone-brand:#34352C;
+  --tone-page:#F4F2EB;
+  --tone-nav-bg:#F8F7F1;
+  --tone-nav-text:#34352C;
+  --tone-accent:#747E58;
+  --tone-accent-2:#A9B08E;
+  --tone-accent-soft:#B9BEA4;
+  --tone-card:#FBFAF5;
+  --tone-card-border:#CACCB9;
+  --tone-meeting-bg:#DDE0D0;
+  --tone-meeting-card:#F7F6EF;
+  --tone-menu-bg:#F4F2EB;
+  --tone-space-bg:#505A3D;
+  --tone-space-title:#FAF9F2;
+  --tone-reviews-bg:#E9EBDF;
+  --tone-location-bg:#F9F8F3;
+  --tone-footer:#34352C;
+  --tone-footer-text:#EBEBDC;
+  --tone-control-bg:#F8F7F1;
+  --tone-control-text:#34352C;
+  --tone-control-border:#C7CAB6;
+  --tone-button-bg:#505A3D;
+  --tone-button-text:#F9F8F1;
+  --tone-bottom-bg:#F7F6EF;
+  --tone-bottom-text:#34352C;
+  --tone-bottom-emphasis:#505A3D;
+  --tone-bottom-emphasis-text:#FFFFFF;
+  --tone-chip-bg:#E0E3D3;
+  --tone-chip-text:#626C49;
+  --tone-radius:7px;
+}
+html[data-sudam-theme="heritage"] .sd-title{
+  font-weight:400;letter-spacing:-.025em;
+}
+html[data-sudam-theme="heritage"] .sd-space>.sd-kicker{color:#C8C9B8!important}
+html[data-sudam-theme="heritage"] .sd-space .sd-title:after{background-color:#C8C9B8!important}
+html[data-sudam-theme="heritage"] .sd-meeting-card{border-left:3px solid #747E58!important}
+html[data-sudam-theme="heritage"] .sd-menu-cta{
+  background:#747E58!important;color:#FFFFFF!important;
+}
+html[data-sudam-theme="heritage"] .sd-menu-cta small{color:#E8EBDD!important}
+html[data-sudam-theme="heritage"] .sd-menu-cta>b{
+  background:#34352C!important;color:#FFFFFF!important;border-color:#34352C!important;
+}
+html[data-sudam-theme="heritage"] .sd-bottom-cta>a:first-child{
+  background:#DDE0D0!important;color:#34352C!important;
+}
+
+/* =========================================================
+   4안 Bright Editorial Premium
+   로즈 크림 + 밝은 아이보리 + 딥 잉크.
+   섹션별 로즈 농도를 달리하고, 버튼/컨트롤에 잉크색을 써 성숙하게 정리.
+   ========================================================= */
+html[data-sudam-theme="editorial"]{
+  --tone-brand:#494040;
+  --tone-page:#FFFAF6;
+  --tone-nav-bg:#FFFAF6;
+  --tone-nav-text:#494040;
+  --tone-accent:#B9828C;
+  --tone-accent-2:#D8ACB3;
+  --tone-accent-soft:#E9CDCA;
+  --tone-card:#FFFFFF;
+  --tone-card-border:#E7CFCD;
+  --tone-meeting-bg:#F0DAD6;
+  --tone-meeting-card:#FFFAF6;
+  --tone-menu-bg:#FFF5F1;
+  --tone-space-bg:#D8ACB3;
+  --tone-space-title:#494040;
+  --tone-reviews-bg:#F7E8E3;
+  --tone-location-bg:#FFFFFF;
+  --tone-footer:#494040;
+  --tone-footer-text:#F5EDEC;
+  --tone-control-bg:#FFFAF6;
+  --tone-control-text:#494040;
+  --tone-control-border:#E4C7C6;
+  --tone-button-bg:#494040;
+  --tone-button-text:#FFF9F6;
+  --tone-bottom-bg:#FFFAF6;
+  --tone-bottom-text:#494040;
+  --tone-bottom-emphasis:#494040;
+  --tone-bottom-emphasis-text:#FFFFFF;
+  --tone-chip-bg:#F3E3DD;
+  --tone-chip-text:#996872;
+  --tone-radius:7px;
+}
+html[data-sudam-theme="editorial"] .sd-title{
+  font-weight:400;letter-spacing:-.02em;
+}
+html[data-sudam-theme="editorial"] .sd-meeting-card{
+  border-top:2px solid #D8ACB3!important;
+}
+html[data-sudam-theme="editorial"] .sd-menu-cta{
+  background:#E9CDCA!important;color:#494040!important;
+}
+html[data-sudam-theme="editorial"] .sd-menu-cta>b{
+  background:#494040!important;color:#FFF9F6!important;border-color:#494040!important;
+}
+html[data-sudam-theme="editorial"] .sd-space>.sd-kicker{color:#76585F!important}
+html[data-sudam-theme="editorial"] .sd-space .sd-title:after{background:#76585F!important}
+html[data-sudam-theme="editorial"] .sd-bottom-cta>a:first-child{
+  background:#F3E3DD!important;color:#494040!important;
+}
+html[data-sudam-theme="editorial"] .sd-bottom-cta>a:last-child{
+  background:#E9CDCA!important;color:#494040!important;
+}
+
+/* 테마 전환 시 시각적으로 자연스럽게 */
+.sd-page,.sd-brandbar,.sd-primary-nav,.sd-drawer,.sd-trust,.sd-section,
+.sd-meeting,.sd-meeting-card,.sd-menu-card,.sd-menu-cta,.sd-space,
+.sd-reviews,.sd-review-card,.sd-location,.sd-map,.sd-location-row,
+.sd-location-valet,.sd-footer,.sd-bottom-cta,.sd-language-menu,
+.sd-family-menu,.sd-theme-compare,.sd-slider-btn{
+  transition:
+    background-color .28s ease,
+    background .28s ease,
+    color .28s ease,
+    border-color .28s ease,
+    box-shadow .28s ease;
+}
