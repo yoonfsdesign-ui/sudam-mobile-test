@@ -2306,3 +2306,139 @@ html[data-sudam-theme="editorial"] .sd-footer:before{background:linear-gradient(
   border-color:var(--tone-accent)!important;
   box-shadow:0 6px 18px color-mix(in srgb,var(--tone-brand) 18%,transparent)!important;
 }
+
+
+/* =========================================================
+   v5.8 FULL STRUCTURE RESTORE — HEADER/NAV COMPATIBILITY
+   Supports original subpages and the current main page together.
+   ========================================================= */
+.sd-header-wrap{
+  position:sticky!important;
+  top:0!important;
+  z-index:1200!important;
+  width:100%!important;
+}
+.sd-brandbar{
+  min-height:56px!important;
+  height:56px!important;
+  padding:0 16px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+}
+.sd-logo{
+  flex:0 0 auto!important;
+}
+.sd-logo.sd-logo--horizontal{
+  width:158px!important;
+  height:38px!important;
+  overflow:visible!important;
+  display:flex!important;
+  align-items:center!important;
+}
+.sd-logo.sd-logo--horizontal img{
+  width:150px!important;
+  max-width:150px!important;
+  height:30px!important;
+  object-fit:contain!important;
+  object-position:left center!important;
+  transform:none!important;
+}
+/* Subpages are also switched to the horizontal logo by the recovery build. */
+.sd-head-actions{
+  flex:0 0 auto!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:2px!important;
+}
+
+/* Critical repair: direct nav anchors and wrapped nav anchors must behave identically. */
+.sd-primary-nav{
+  min-height:46px!important;
+  height:46px!important;
+  padding:0 8px!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  align-items:stretch!important;
+  width:100%!important;
+}
+.sd-primary-links{
+  display:contents!important;
+}
+.sd-primary-nav > a,
+.sd-primary-nav > .sd-primary-links > a{
+  min-width:0!important;
+  height:46px!important;
+  padding:0 2px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  font-family:"Noto Serif KR",serif!important;
+  font-size:14px!important;
+  line-height:1!important;
+  font-weight:500!important;
+  letter-spacing:-.02em!important;
+  position:relative!important;
+}
+.sd-primary-nav a[aria-current="page"]{
+  color:var(--tone-accent,var(--sd-gold-dark))!important;
+  font-weight:600!important;
+}
+.sd-primary-nav a[aria-current="page"]:after{
+  content:""!important;
+  position:absolute!important;
+  left:28%!important;
+  right:28%!important;
+  bottom:5px!important;
+  height:1px!important;
+  background:var(--tone-accent,var(--sd-gold-dark))!important;
+}
+
+/* Old subpages used a colored emoji. Replace it with the same white line globe everywhere. */
+.sd-globe{
+  width:30px!important;
+  height:38px!important;
+  display:grid!important;
+  place-items:center!important;
+  color:#fff!important;
+  font-size:0!important;
+  line-height:0!important;
+}
+.sd-globe > svg{
+  width:18px!important;
+  height:18px!important;
+  fill:none!important;
+  stroke:#fff!important;
+  stroke-width:1.5!important;
+}
+.sd-globe:not(:has(svg))::before{
+  content:"";
+  display:block;
+  width:18px;
+  height:18px;
+  background:#fff;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='1.6'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3.6 9h16.8M3.6 15h16.8M12 3c2.2 2.45 3.3 5.45 3.3 9S14.2 18.55 12 21M12 3C9.8 5.45 8.7 8.45 8.7 12s1.1 6.55 3.3 9'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='black' stroke-width='1.6'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M3.6 9h16.8M3.6 15h16.8M12 3c2.2 2.45 3.3 5.45 3.3 9S14.2 18.55 12 21M12 3C9.8 5.45 8.7 8.45 8.7 12s1.1 6.55 3.3 9'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+}
+
+/* Dropdowns must float above sections on every page. */
+.sd-language,
+.sd-family{position:relative!important;z-index:3000!important}
+.sd-language-menu,
+.sd-family-menu{z-index:4000!important}
+.sd-drawer{z-index:2200!important}
+.sd-dim{z-index:2100!important}
+
+@media(max-width:359px){
+  .sd-brandbar{padding:0 12px!important}
+  .sd-logo.sd-logo--horizontal{width:136px!important}
+  .sd-logo.sd-logo--horizontal img{width:130px!important;height:28px!important}
+  .sd-primary-nav > a,
+  .sd-primary-nav > .sd-primary-links > a{font-size:13px!important}
+  .sd-language-btn{min-width:38px!important;padding-left:5px!important;padding-right:5px!important}
+  .sd-hamburger{width:40px!important}
+  .sd-globe{width:26px!important}
+}

@@ -1,60 +1,67 @@
 /*
- * 수담한정식 GitHub Pages 테스트용 링크 설정
- * 실제 URL이 확정되면 따옴표 안에 주소만 넣으세요.
- * 비워두면 클릭 시 "연결 URL 준비 중입니다" 토스트가 표시됩니다.
+ * 수담한정식 v5.8 공통 경로 설정
+ * GitHub Pages 저장소 경로를 현재 script 위치에서 자동 계산합니다.
+ * 메인/서브/상세 어느 깊이에서도 동일한 링크를 사용합니다.
  */
-window.SUDAM_CONFIG = {
-  urls: {
-    reservation: "https://naver.me/51YnYeCW",
-    kakao: "https://pf.kakao.com/_uxhrnl/chat",
-    naver_map: "https://map.naver.com/p/search/%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D",
-    kakao_map: "https://map.kakao.com/?q=%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D",
+(function(){
+  'use strict';
+  const scriptUrl = document.currentScript
+    ? document.currentScript.src
+    : new URL('js/site-config.js', document.baseURI).href;
+  const root = new URL('../', scriptUrl);
+  const path = relative => {
+    const u = new URL(relative, root);
+    return u.pathname + u.search + u.hash;
+  };
 
-    kr: "/sudam-mobile-test/",
-    en: "",
-    cn: "",
-    jp: "",
+  window.SUDAM_CONFIG = {
+    urls: {
+      reservation: '',
+      kakao: '',
+      wechat: '',
+      naver_map: 'https://map.naver.com/p/search/%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D',
+      kakao_map: 'https://map.kakao.com/?q=%EC%88%98%EB%8B%B4%ED%95%9C%EC%A0%95%EC%8B%9D',
 
-    nav_sudam: "/sudam-mobile-test/about/",
-    nav_menu: "/sudam-mobile-test/menu/",
-    nav_meeting: "/sudam-mobile-test/occasions/",
-    nav_reviews: "/sudam-mobile-test/reviews/",
-    nav_reservation: "/sudam-mobile-test/reservation/",
+      kr: path(''), en:'', cn:'', jp:'',
 
-    strength_room: "/sudam-mobile-test/about/",
-    strength_food: "/sudam-mobile-test/menu/",
-    b2b: "/sudam-mobile-test/occasions/",
-    meeting_family: "/sudam-mobile-test/occasions/",
-    meeting_formal: "/sudam-mobile-test/occasions/",
-    meeting_group: "/sudam-mobile-test/occasions/",
-    meeting_wedding: "/sudam-mobile-test/occasions/",
+      nav_sudam: path('about/'),
+      nav_menu: path('menu/'),
+      nav_meeting: path('occasions/'),
+      nav_reviews: path('reviews/'),
+      nav_reservation: path('reservation/'),
 
-    course_jinyeon: "/sudam-mobile-test/menu/course/",
-    course_sura: "/sudam-mobile-test/menu/course/",
-    menu_all: "/sudam-mobile-test/menu/",
-    course_consult: "/sudam-mobile-test/reservation/",
-    space_all: "/sudam-mobile-test/about/",
+      strength_room: path('about/#space'),
+      strength_food: path('about/#story'),
+      b2b: path('about/#partnership'),
 
-    reviews_all: "/sudam-mobile-test/reviews/",
-    review_1: "/sudam-mobile-test/reviews/",
-    review_2: "/sudam-mobile-test/reviews/",
-    review_3: "/sudam-mobile-test/reviews/",
-    review_4: "/sudam-mobile-test/reviews/",
+      meeting_family: path('occasions/family/'),
+      meeting_formal: path('occasions/formal/'),
+      meeting_baby: path('occasions/baby/'),
+      meeting_vip: path('occasions/vip/'),
+      meeting_corporate: path('occasions/corporate/'),
+      meeting_group: path('occasions/group/'),
+      meeting_wedding: path('occasions/wedding/'),
 
-    blog: "",
-    instagram: "",
-    youtube: "",
+      course_daegam: path('menu/course/daegam/'),
+      course_jinyeon: path('menu/course/jinyeon/'),
+      course_sura: path('menu/course/sura/'),
+      menu_all: path('menu/'),
+      course_consult: path('reservation/'),
+      space_all: path('about/#space'),
 
-    family_sudam: "",
-    family_guryong: "",
-    family_food: "",
-    family_group: "",
-    family_yfs: "",
-    family_ym: "",
+      reviews_all: path('reviews/'),
+      review_1: path('reviews/detail/?id=r01'),
+      review_2: path('reviews/detail/?id=r02'),
+      review_3: path('reviews/detail/?id=r03'),
+      review_4: path('reviews/detail/?id=r04'),
 
-    privacy: "",
-    email_policy: "",
-    recruit: "",
-    partnership: ""
-  }
-};
+      invitation: path('reservation/invitation/'),
+
+      blog:'', instagram:'', youtube:'',
+      family_sudam: path(''), family_guryong:'', family_food:'', family_group:'', family_yfs:'', family_ym:'',
+      privacy:'', email_policy:'', recruit:'',
+      partnership: path('about/#partnership'),
+      menu_pdf:'', proposal_pdf:''
+    }
+  };
+})();
