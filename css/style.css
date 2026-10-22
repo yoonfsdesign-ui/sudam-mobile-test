@@ -1412,3 +1412,561 @@ html[data-sudam-theme="editorial"] .sd-bottom-cta>a:last-child{
     border-color .28s ease,
     box-shadow .28s ease;
 }
+
+
+/* =========================================================
+   v5.2 — Rich Tone & Manner refinement
+   - 전체 폰트 확대
+   - 중앙 장식선을 깔끔한 다이아몬드 형태로 통일
+   - 2안의 각진 사각형 제거, 부드러운 라운드로 수정
+   - 푸터/SNS/Family/Language/오시는길/하단 CTA까지 콘셉트별 세부색 분리
+   - 섹션별 명도·채도 리듬 강화
+   ========================================================= */
+
+/* ---------- 전체 타이포 확대 ---------- */
+:root{
+  --sd-section-title-size:33px;
+  --sd-section-kicker-size:11.5px;
+  --sd-slide-title-size:31px;
+  --sd-slide-sub-size:13px;
+}
+.sd-primary-nav a{font-size:14px!important}
+.sd-language-btn{font-size:12px!important}
+.sd-drawer nav a{font-size:23px!important}
+.sd-drawer-foot{font-size:14px!important}
+.sd-kicker{font-size:var(--sd-section-kicker-size)!important}
+.sd-title{font-size:var(--sd-section-title-size)!important}
+.sd-desc{font-size:14.5px!important;line-height:1.75!important;max-width:350px!important}
+.sd-link{font-size:13.5px!important}
+.sd-hero-eyebrow{font-size:16px!important}
+.sd-hero h1{font-size:38px!important}
+.sd-hero p{font-size:15px!important;max-width:295px!important}
+.sd-trust-caption{font-size:18px!important}
+.sd-trust-item strong{font-size:18px!important}
+.sd-trust-item span{font-size:12px!important}
+.sd-slider--overlay .sd-slide-copy small{font-size:13px!important}
+.sd-slider--overlay .sd-slide-copy h3{font-size:31px!important}
+.sd-slider--overlay .sd-slide-copy p{font-size:13.5px!important}
+.sd-slider--overlay .sd-slide-link{font-size:13px!important}
+.sd-meeting-card .no{font-size:16px!important}
+.sd-meeting-card h3{font-size:19px!important}
+.sd-meeting-card p{font-size:13.2px!important;line-height:1.6!important}
+.sd-menu-card .tag{font-size:10.5px!important}
+.sd-menu-card h3{font-size:19px!important}
+.sd-menu-card .price{font-size:13.5px!important}
+.sd-menu-card .use{font-size:12px!important;line-height:1.6!important}
+.sd-menu-cta>span strong{font-size:15px!important}
+.sd-menu-cta>span small{font-size:11.5px!important}
+.sd-menu-cta>b{font-size:12px!important}
+.sd-review-body{font-size:13px!important}
+.sd-review-body h3{font-size:15.5px!important}
+.sd-review-body p{font-size:12.5px!important;line-height:1.55!important}
+.sd-review-meta{font-size:11px!important}
+.sd-review-tags span{font-size:10.5px!important}
+.sd-map-switch a{font-size:12px!important}
+.sd-map-badge{font-size:12px!important}
+.sd-location-row{font-size:13px!important}
+.sd-location-row strong{font-size:13px!important}
+.sd-location-row small{font-size:11px!important}
+.sd-copy-address-btn,
+.sd-naver-reserve{font-size:11.5px!important}
+.sd-valet-title{font-size:13px!important}
+.sd-valet-highlight{font-size:12.5px!important}
+.sd-valet-copy li{font-size:11px!important}
+.sd-footer-links--top{font-size:11px!important}
+.sd-footer-intro .ko{font-size:14px!important}
+.sd-footer-intro .en{font-size:11px!important}
+.sd-footer-info{font-size:11.5px!important}
+.sd-copy{font-size:10.5px!important}
+.sd-family-btn{font-size:11.5px!important}
+.sd-sns a{font-size:11.5px!important}
+.sd-bottom-cta a{font-size:12.5px!important}
+
+@media (max-width:359px){
+  :root{
+    --sd-section-title-size:30px;
+    --sd-slide-title-size:29px;
+  }
+  .sd-primary-nav a{font-size:13px!important}
+  .sd-hero h1{font-size:35px!important}
+  .sd-meeting-card p{font-size:12.3px!important}
+}
+
+/* ---------- 전통매듭 라인 → 중앙 다이아몬드 장식 ---------- */
+.sd-title:after,
+.sd-course-knot,
+.sd-footer-knot{
+  -webkit-mask:none!important;
+  mask:none!important;
+  background-color:transparent!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 18'%3E%3Cg fill='none' stroke='currentColor' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 9h43M69 9h43'/%3E%3Cpath d='M49 9l7-6 7 6-7 6-7-6Z'/%3E%3C/g%3E%3C/svg%3E")!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  background-size:contain!important;
+  color:var(--tone-accent)!important;
+}
+.sd-title:after{width:112px!important;height:18px!important;margin-top:15px!important}
+.sd-course-knot{width:78px!important;height:13px!important;margin:9px auto 8px!important}
+.sd-footer-knot{width:122px!important;height:20px!important;color:var(--footer-english)!important}
+
+/* data URI의 currentColor가 CSS background-image 내부에서는 직접 적용되지 않아
+   각 테마에서 stroke 컬러가 자연스럽게 보이도록 필터 대신 단색 SVG를 마스크로 재정의 */
+.sd-title:after,
+.sd-course-knot,
+.sd-footer-knot{
+  background-image:none!important;
+  background-color:var(--tone-accent)!important;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 18'%3E%3Cg fill='none' stroke='black' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 9h43M69 9h43'/%3E%3Cpath d='M49 9l7-6 7 6-7 6-7-6Z'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat!important;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 18'%3E%3Cg fill='none' stroke='black' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 9h43M69 9h43'/%3E%3Cpath d='M49 9l7-6 7 6-7 6-7-6Z'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat!important;
+}
+.sd-footer-knot{background-color:var(--footer-english)!important}
+
+/* ---------- 테마별 확장 변수 ---------- */
+html[data-sudam-theme="default"]{
+  --footer-english:#C6A984;
+  --footer-policy:#D9C9B7;
+  --footer-social-1:#8C6D4F;
+  --footer-social-2:#6F523C;
+  --footer-family-bg:#E7D5C3;
+  --footer-family-text:#3A291C;
+  --footer-lang-bg:#4D3828;
+  --loc-primary:#4C3520;
+  --loc-primary-text:#FFFFFF;
+  --loc-secondary:#EFE1D3;
+  --loc-secondary-text:#4C3520;
+  --loc-copy:#F5ECE3;
+  --loc-copy-text:#6E513A;
+  --cta-left:#E8D4C0;
+  --cta-left-text:#4C3520;
+  --cta-mid:#2E1F12;
+  --cta-mid-text:#FFFFFF;
+  --cta-right:#C7A98A;
+  --cta-right-text:#2E241C;
+}
+html[data-sudam-theme="classic"]{
+  --footer-english:#D6B68E;
+  --footer-policy:#D7C5B2;
+  --footer-social-1:#A48362;
+  --footer-social-2:#6C4B36;
+  --footer-family-bg:#D6BEA5;
+  --footer-family-text:#33231B;
+  --footer-lang-bg:#523729;
+  --loc-primary:#4F3528;
+  --loc-primary-text:#FFF9F1;
+  --loc-secondary:#D7C3AC;
+  --loc-secondary-text:#3F2C22;
+  --loc-copy:#F1E8DE;
+  --loc-copy-text:#6F513D;
+  --cta-left:#D8C2A9;
+  --cta-left-text:#3C291F;
+  --cta-mid:#4F3528;
+  --cta-mid-text:#FFFFFF;
+  --cta-right:#9E8468;
+  --cta-right-text:#FFFFFF;
+}
+html[data-sudam-theme="minimal"]{
+  --footer-english:#B7B7B4;
+  --footer-policy:#D7D7D4;
+  --footer-social-1:#FFFFFF;
+  --footer-social-2:#D0D0CD;
+  --footer-family-bg:#FFFFFF;
+  --footer-family-text:#111111;
+  --footer-lang-bg:#2B2B2B;
+  --loc-primary:#111111;
+  --loc-primary-text:#FFFFFF;
+  --loc-secondary:#E8E8E5;
+  --loc-secondary-text:#111111;
+  --loc-copy:#F3F3F1;
+  --loc-copy-text:#333333;
+  --cta-left:#EFEFEC;
+  --cta-left-text:#111111;
+  --cta-mid:#111111;
+  --cta-mid-text:#FFFFFF;
+  --cta-right:#D7D7D3;
+  --cta-right-text:#111111;
+}
+html[data-sudam-theme="heritage"]{
+  --footer-english:#BEC79A;
+  --footer-policy:#D4D7C3;
+  --footer-social-1:#747E58;
+  --footer-social-2:#9AA27C;
+  --footer-family-bg:#C8CDB0;
+  --footer-family-text:#34352C;
+  --footer-lang-bg:#596047;
+  --loc-primary:#505A3D;
+  --loc-primary-text:#FFFFFF;
+  --loc-secondary:#DDE1CF;
+  --loc-secondary-text:#4C553A;
+  --loc-copy:#ECEDE4;
+  --loc-copy-text:#626C49;
+  --cta-left:#DDE0D0;
+  --cta-left-text:#34352C;
+  --cta-mid:#505A3D;
+  --cta-mid-text:#FFFFFF;
+  --cta-right:#AAB28D;
+  --cta-right-text:#34352C;
+}
+html[data-sudam-theme="editorial"]{
+  --footer-english:#E4B7BF;
+  --footer-policy:#E9D8D9;
+  --footer-social-1:#C88F99;
+  --footer-social-2:#E4BCC2;
+  --footer-family-bg:#E9CDCA;
+  --footer-family-text:#494040;
+  --footer-lang-bg:#655457;
+  --loc-primary:#494040;
+  --loc-primary-text:#FFF9F6;
+  --loc-secondary:#EFCFD0;
+  --loc-secondary-text:#6E4F55;
+  --loc-copy:#F8EAE7;
+  --loc-copy-text:#8E626B;
+  --cta-left:#F3E3DD;
+  --cta-left-text:#494040;
+  --cta-mid:#494040;
+  --cta-mid-text:#FFFFFF;
+  --cta-right:#D8ACB3;
+  --cta-right-text:#494040;
+}
+
+/* ---------- 섹션 리듬 강화 ---------- */
+/* 기존 */
+html[data-sudam-theme="default"] .sd-trust{background:linear-gradient(180deg,#F1E4D6,#E8D6C6)!important}
+html[data-sudam-theme="default"] .sd-meeting{background:#DDCBBB!important}
+html[data-sudam-theme="default"] #menu{background:#F7F0E8!important}
+html[data-sudam-theme="default"] .sd-space{background:linear-gradient(180deg,#D9C3AE,#F1E5D9)!important}
+html[data-sudam-theme="default"] .sd-reviews{background:#F5EBE1!important}
+
+/* 1안 */
+html[data-sudam-theme="classic"] .sd-trust{background:linear-gradient(180deg,#E9DDCF,#DDC8B4)!important}
+html[data-sudam-theme="classic"] .sd-meeting{background:#D0B89F!important}
+html[data-sudam-theme="classic"] #menu{background:#F8F3EC!important}
+html[data-sudam-theme="classic"] .sd-space{background:#4F3528!important}
+html[data-sudam-theme="classic"] .sd-reviews{background:#EADCCF!important}
+html[data-sudam-theme="classic"] .sd-location{background:#FFFCF7!important}
+
+/* 2안 */
+html[data-sudam-theme="minimal"] .sd-trust{background:#111111!important}
+html[data-sudam-theme="minimal"] .sd-meeting{background:#ECECE9!important}
+html[data-sudam-theme="minimal"] #menu{background:#FFFFFF!important}
+html[data-sudam-theme="minimal"] .sd-space{background:#282828!important}
+html[data-sudam-theme="minimal"] .sd-reviews{background:#F0F0ED!important}
+html[data-sudam-theme="minimal"] .sd-location{background:#FAFAF8!important}
+
+/* 3안 */
+html[data-sudam-theme="heritage"] .sd-trust{background:linear-gradient(180deg,#DCE0CF,#C9D0B5)!important}
+html[data-sudam-theme="heritage"] .sd-meeting{background:#E3E5D8!important}
+html[data-sudam-theme="heritage"] #menu{background:#F6F4EC!important}
+html[data-sudam-theme="heritage"] .sd-space{background:#505A3D!important}
+html[data-sudam-theme="heritage"] .sd-reviews{background:#E4E8D7!important}
+html[data-sudam-theme="heritage"] .sd-location{background:#FAF8F1!important}
+
+/* 4안 */
+html[data-sudam-theme="editorial"] .sd-trust{background:linear-gradient(180deg,#F5E5E1,#EECFD0)!important}
+html[data-sudam-theme="editorial"] .sd-meeting{background:#EBCBC9!important}
+html[data-sudam-theme="editorial"] #menu{background:#FFF7F3!important}
+html[data-sudam-theme="editorial"] .sd-space{background:#D8ACB3!important}
+html[data-sudam-theme="editorial"] .sd-reviews{background:#F5E1DC!important}
+html[data-sudam-theme="editorial"] .sd-location{background:#FFFFFF!important}
+
+/* ---------- 2안: 각진 사각형 제거 ---------- */
+html[data-sudam-theme="minimal"]{
+  --tone-radius:9px!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card,
+html[data-sudam-theme="minimal"] .sd-menu-card,
+html[data-sudam-theme="minimal"] .sd-review-card,
+html[data-sudam-theme="minimal"] .sd-map,
+html[data-sudam-theme="minimal"] .sd-slider-window,
+html[data-sudam-theme="minimal"] .sd-location-row,
+html[data-sudam-theme="minimal"] .sd-location-valet,
+html[data-sudam-theme="minimal"] .sd-language-menu,
+html[data-sudam-theme="minimal"] .sd-family-menu{
+  border-radius:9px!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card{
+  border-left:1px solid #D8D8D5!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.055)!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card .go,
+html[data-sudam-theme="minimal"] .sd-slider-btn{
+  border-radius:50%!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-cta,
+html[data-sudam-theme="minimal"] .sd-menu-cta>b{
+  border-radius:9px!important;
+}
+html[data-sudam-theme="minimal"] .sd-title:after,
+html[data-sudam-theme="minimal"] .sd-course-knot{
+  width:112px!important;
+  height:18px!important;
+  background-color:#111111!important;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 18'%3E%3Cg fill='none' stroke='black' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 9h43M69 9h43'/%3E%3Cpath d='M49 9l7-6 7 6-7 6-7-6Z'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat!important;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 112 18'%3E%3Cg fill='none' stroke='black' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 9h43M69 9h43'/%3E%3Cpath d='M49 9l7-6 7 6-7 6-7-6Z'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat!important;
+}
+html[data-sudam-theme="minimal"] .sd-course-knot{width:78px!important;height:13px!important}
+
+/* ---------- 공간 섹션: 짙은 배경일 때 제목/장식 대비 ---------- */
+html[data-sudam-theme="classic"] .sd-space>.sd-title,
+html[data-sudam-theme="minimal"] .sd-space>.sd-title,
+html[data-sudam-theme="heritage"] .sd-space>.sd-title{
+  color:#FFFDF8!important;
+}
+html[data-sudam-theme="classic"] .sd-space>.sd-kicker{color:#D9C3A8!important}
+html[data-sudam-theme="minimal"] .sd-space>.sd-kicker{color:#BEBEBA!important}
+html[data-sudam-theme="heritage"] .sd-space>.sd-kicker{color:#CDD2B4!important}
+html[data-sudam-theme="classic"] .sd-space .sd-title:after{background-color:#D9C3A8!important}
+html[data-sudam-theme="minimal"] .sd-space .sd-title:after{background-color:#D0D0CC!important}
+html[data-sudam-theme="heritage"] .sd-space .sd-title:after{background-color:#CDD2B4!important}
+
+/* ---------- 영어 Kicker: 테마별 별도 톤 ---------- */
+html[data-sudam-theme="default"] .sd-kicker{color:#9A7757!important}
+html[data-sudam-theme="classic"] .sd-kicker{color:#A07D59!important}
+html[data-sudam-theme="minimal"] .sd-kicker{color:#71716E!important}
+html[data-sudam-theme="heritage"] .sd-kicker{color:#747E58!important}
+html[data-sudam-theme="editorial"] .sd-kicker{color:#B36F7A!important}
+
+/* ---------- 오시는 길: 버튼을 같은 색으로 두지 않고 역할별 분리 ---------- */
+.sd-map-switch a:first-child{
+  background:var(--loc-primary)!important;
+  color:var(--loc-primary-text)!important;
+  border-color:var(--loc-primary)!important;
+}
+.sd-map-switch a:last-child{
+  background:var(--loc-secondary)!important;
+  color:var(--loc-secondary-text)!important;
+  border-color:color-mix(in srgb,var(--loc-secondary-text) 18%,transparent)!important;
+}
+.sd-map-switch a:first-child b,
+.sd-map-switch a:last-child b{color:inherit!important}
+.sd-copy-address-btn{
+  background:var(--loc-copy)!important;
+  color:var(--loc-copy-text)!important;
+  border-color:color-mix(in srgb,var(--loc-copy-text) 22%,transparent)!important;
+}
+.sd-naver-reserve{
+  background:var(--loc-primary)!important;
+  color:var(--loc-primary-text)!important;
+  border-color:var(--loc-primary)!important;
+}
+.sd-valet-fee{
+  background:var(--loc-secondary)!important;
+  color:var(--loc-secondary-text)!important;
+  border-color:transparent!important;
+}
+.sd-valet-highlight{
+  background:color-mix(in srgb,var(--loc-secondary) 72%,white)!important;
+  color:var(--loc-secondary-text)!important;
+}
+.sd-location-row .ico,
+.sd-valet-title .ico{color:var(--loc-primary)!important}
+
+/* ---------- 푸터: 영어/정책/버튼 각각 색 역할 분리 ---------- */
+.sd-footer-links--top{color:var(--footer-policy)!important}
+.sd-footer-links--top a{color:var(--footer-policy)!important}
+.sd-footer-intro .en{color:var(--footer-english)!important}
+.sd-footer-knot{background-color:var(--footer-english)!important}
+.sd-footer-info{color:color-mix(in srgb,var(--footer-policy) 86%,transparent)!important}
+.sd-copy{color:color-mix(in srgb,var(--footer-policy) 70%,transparent)!important}
+
+/* SNS는 모두 같은 버튼색이 아니라 미세하게 변화 */
+.sd-sns a{
+  border-color:transparent!important;
+  color:#FFFFFF!important;
+}
+.sd-sns a:nth-child(1){background:var(--footer-social-1)!important}
+.sd-sns a:nth-child(2){background:var(--footer-social-2)!important}
+.sd-sns a:nth-child(3){
+  background:color-mix(in srgb,var(--footer-social-1) 58%,var(--footer-social-2))!important;
+}
+.sd-family-btn{
+  background:var(--footer-family-bg)!important;
+  color:var(--footer-family-text)!important;
+  border-color:transparent!important;
+}
+.sd-language--footer .sd-language-btn{
+  background:var(--footer-lang-bg)!important;
+  color:#FFFFFF!important;
+  border-color:color-mix(in srgb,#FFFFFF 18%,transparent)!important;
+}
+.sd-footer-language-row .sd-globe{
+  color:var(--footer-english)!important;
+}
+
+/* ---------- 하단 예약바: 세 버튼을 동일 톤에서 역할별 3단계로 ---------- */
+.sd-bottom-cta a:nth-child(1){
+  background:var(--cta-left)!important;
+  color:var(--cta-left-text)!important;
+}
+.sd-bottom-cta a:nth-child(2){
+  background:var(--cta-mid)!important;
+  color:var(--cta-mid-text)!important;
+}
+.sd-bottom-cta a:nth-child(3){
+  background:var(--cta-right)!important;
+  color:var(--cta-right-text)!important;
+}
+.sd-bottom-cta a{
+  border-right-color:color-mix(in srgb,var(--tone-control-border) 60%,transparent)!important;
+}
+
+/* ---------- 상단 메뉴 / 헤더도 각 안에서 포인트 다양화 ---------- */
+html[data-sudam-theme="classic"] .sd-primary-nav a:hover:after,
+html[data-sudam-theme="classic"] .sd-primary-nav a:focus-visible:after{background:#A48362!important}
+html[data-sudam-theme="minimal"] .sd-primary-nav a:hover:after,
+html[data-sudam-theme="minimal"] .sd-primary-nav a:focus-visible:after{background:#111111!important}
+html[data-sudam-theme="heritage"] .sd-primary-nav a:hover:after,
+html[data-sudam-theme="heritage"] .sd-primary-nav a:focus-visible:after{background:#747E58!important}
+html[data-sudam-theme="editorial"] .sd-primary-nav a:hover:after,
+html[data-sudam-theme="editorial"] .sd-primary-nav a:focus-visible:after{background:#B36F7A!important}
+
+/* ---------- Theme selector도 각 안에 맞게 ---------- */
+html[data-sudam-theme="classic"] .sd-theme-compare{border-color:#C9B39D!important}
+html[data-sudam-theme="minimal"] .sd-theme-compare{border-radius:12px!important;border-color:#D5D5D2!important}
+html[data-sudam-theme="minimal"] .sd-theme-compare button{border-radius:8px!important}
+html[data-sudam-theme="heritage"] .sd-theme-compare{border-color:#BDC2A8!important}
+html[data-sudam-theme="editorial"] .sd-theme-compare{border-color:#E1C0C3!important}
+
+/* ---------- 카드의 톤도 조금씩 분화 ---------- */
+html[data-sudam-theme="classic"] .sd-meeting-card,
+html[data-sudam-theme="classic"] .sd-review-card{box-shadow:0 8px 24px rgba(79,53,40,.075)!important}
+html[data-sudam-theme="heritage"] .sd-meeting-card,
+html[data-sudam-theme="heritage"] .sd-review-card{box-shadow:0 8px 24px rgba(80,90,61,.075)!important}
+html[data-sudam-theme="editorial"] .sd-meeting-card,
+html[data-sudam-theme="editorial"] .sd-review-card{box-shadow:0 8px 24px rgba(120,76,84,.07)!important}
+
+/* 4안은 로즈가 과해지지 않도록 카드/정보 UI는 크림과 잉크로 균형 */
+html[data-sudam-theme="editorial"] .sd-menu-card{background:#FFFDFB!important}
+html[data-sudam-theme="editorial"] .sd-meeting-card{background:#FFF8F5!important}
+html[data-sudam-theme="editorial"] .sd-review-card{background:#FFFFFF!important}
+
+/* 3안은 메뉴 CTA만 딥올리브, 일반 정보 버튼은 세이지로 분리 */
+html[data-sudam-theme="heritage"] .sd-menu-cta{
+  background:#747E58!important;
+}
+html[data-sudam-theme="heritage"] .sd-menu-cta>b{
+  background:#34352C!important;
+}
+
+/* 1안 푸터는 금색 남발 대신 브론즈 버튼 1~2곳만 */
+html[data-sudam-theme="classic"] .sd-footer .sd-family-btn{
+  background:#D3C2A9!important;
+}
+
+/* 2안은 완전 흑백이지만 버튼의 명도 차로 리듬을 준다 */
+html[data-sudam-theme="minimal"] .sd-footer .sd-family-btn{
+  background:#F2F2F0!important;
+  color:#111111!important;
+}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(1){background:#FFFFFF!important;color:#111111!important}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(2){background:#BDBDBA!important;color:#111111!important}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(3){background:#555555!important;color:#FFFFFF!important}
+
+/* 4안 푸터는 로즈 버튼 + 잉크 버튼의 대비 */
+html[data-sudam-theme="editorial"] .sd-footer .sd-family-btn{
+  background:#E9CDCA!important;
+  color:#494040!important;
+}
+html[data-sudam-theme="editorial"] .sd-language--footer .sd-language-btn{
+  background:#6B575B!important;
+}
+
+/* 접근성: 확대된 텍스트가 버튼 높이에 눌리지 않도록 */
+.sd-map-switch a{min-height:42px!important;height:auto!important;padding:9px 8px!important}
+.sd-copy-address-btn,
+.sd-naver-reserve{padding:9px 10px!important}
+.sd-family-btn{min-height:38px!important;height:auto!important;padding:8px 13px!important}
+.sd-bottom-cta{min-height:64px!important}
+
+
+/* =========================================================
+   v5.3 — 기존안 원안 이미지 복원 + 상단 메뉴 가로형 로고
+   ========================================================= */
+
+/* 상단 고정 메뉴: 가로형 로고 + 5개 메뉴 */
+.sd-primary-nav{
+  height:50px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  padding:0 8px 0 10px!important;
+}
+.sd-primary-logo{
+  flex:0 0 76px!important;
+  width:76px!important;
+  height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  padding:0!important;
+  position:relative!important;
+}
+.sd-primary-logo:after{display:none!important}
+.sd-primary-logo img{
+  display:block!important;
+  width:74px!important;
+  max-width:74px!important;
+  height:30px!important;
+  object-fit:contain!important;
+  object-position:left center!important;
+}
+.sd-primary-links{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  align-self:stretch!important;
+}
+.sd-primary-links>a{
+  min-width:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  font-size:13px!important;
+  padding:0 1px!important;
+}
+.sd-primary-links>a:hover:after,
+.sd-primary-links>a:focus-visible:after{
+  content:"";
+  position:absolute;
+  left:20%;right:20%;bottom:5px;
+  height:1px;
+  background:var(--tone-accent)!important;
+}
+@media (max-width:359px){
+  .sd-primary-nav{padding-left:7px!important;gap:1px!important}
+  .sd-primary-logo{flex-basis:63px!important;width:63px!important}
+  .sd-primary-logo img{width:61px!important;max-width:61px!important;height:28px!important}
+  .sd-primary-links>a{font-size:12px!important}
+}
+
+/* 기존안은 최초 디자인처럼 실제 사진 배경을 사용한다. */
+html[data-sudam-theme="default"] .sd-meeting{
+  background:
+    linear-gradient(180deg,rgba(247,241,234,.57),rgba(247,241,234,.74)),
+    url('../images/meeting-default-bg.jpg') center/cover no-repeat!important;
+}
+html[data-sudam-theme="default"] .sd-meeting-card{
+  background:rgba(255,253,249,.88)!important;
+  border-color:rgba(126,99,70,.14)!important;
+  backdrop-filter:blur(3px)!important;
+  -webkit-backdrop-filter:blur(3px)!important;
+}
+
+/* 기존안 푸터도 최초 시안처럼 이미지+딥브라운 오버레이 */
+html[data-sudam-theme="default"] .sd-footer:before{
+  background:
+    linear-gradient(rgba(35,22,13,.78),rgba(35,22,13,.90)),
+    url('../images/footer-bg.jpg') center/cover no-repeat!important;
+}
+
+/* 1~4안의 '어떤 만남'은 비교용 컬러 배경 유지 */
+html[data-sudam-theme="classic"] .sd-meeting{background:#D0B89F!important;background-image:none!important}
+html[data-sudam-theme="minimal"] .sd-meeting{background:#ECECE9!important;background-image:none!important}
+html[data-sudam-theme="heritage"] .sd-meeting{background:#E3E5D8!important;background-image:none!important}
+html[data-sudam-theme="editorial"] .sd-meeting{background:#EBCBC9!important;background-image:none!important}
+
+/* 가로형 로고도 테마에 맞춰 자연스럽게 보이도록 배경은 항상 투명 */
+.sd-primary-logo img{filter:none!important}
+html[data-sudam-theme="minimal"] .sd-primary-logo img{filter:grayscale(1) contrast(1.08)!important}
+html[data-sudam-theme="heritage"] .sd-primary-logo img{filter:saturate(.72) hue-rotate(18deg)!important}
+html[data-sudam-theme="editorial"] .sd-primary-logo img{filter:saturate(.76) sepia(.08)!important}
