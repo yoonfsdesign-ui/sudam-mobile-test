@@ -1,0 +1,77 @@
+수담한정식 모바일 메인페이지 v5.4 — 이미지 교체 슬롯 안내
+
+사용 방법
+- 아래 파일을 동일한 파일명/확장자로 images 폴더에 덮어쓰기만 하면 됩니다.
+- HTML/CSS 수정은 필요 없습니다.
+- 텍스트가 들어가지 않은 원본 이미지를 권장합니다.
+- JPG는 sRGB, 품질 80~90 권장 / 투명 요소는 PNG 권장.
+
+[상단]
+logo-header-horizontal.png
+  - 갈색 상단 브랜드바의 가로형 흰색 로고
+  - 투명 PNG / 가로형 약 4.5:1 이상 권장
+
+[메인]
+hero-main.jpg
+  - 첫 Hero 대표 이미지
+  - 세로 이미지 권장 (현재 780×1040)
+
+[신뢰 요소]
+trust-particle-left.png
+trust-particle-right.png
+  - 신뢰 문구 좌/우 장식 파티클 / 투명 PNG
+trust-blue-ribbon-icon.png
+  - 블루리본 연속 선정 아이콘 / 투명 PNG
+trust-meeting-icon.png
+  - 연간 5,000건 이상 모임 아이콘 / 투명 PNG
+
+[수담의 강점 — 반드시 3개 개별 이미지]
+strength-01-room.jpg
+  - 27개의 프라이빗룸
+strength-02-chef-food.jpg
+  - 조리명인의 제철한정식
+strength-03-event.jpg
+  - 전문성과 노하우 / 기업·글로벌 모임
+
+[어떤 만남을 준비하시나요?]
+meeting-default-bg.jpg
+  - '기존' 테마에서만 사용하는 배경 이미지
+  - 1~4안은 컬러 배경 유지
+
+[모임에 맞는 메뉴]
+menu-jinyeon.jpg
+  - 진연상 카드 이미지
+menu-sura.jpg
+  - 수라상 카드 이미지
+menu-consult-bg.jpg
+  - '코스 비교 & 상담 안내' CTA 배경 이미지
+
+[공간 인테리어 — 3개 개별 이미지]
+space-01.jpg
+space-02.jpg
+space-03.jpg
+  - 슬라이드 순서대로 교체
+
+[실제 고객후기]
+review-01-01.jpg
+review-01-02.jpg
+review-01-03.jpg
+  - 후기 1의 1~3번째 이미지
+review-02-01.jpg
+review-02-02.jpg
+review-02-03.jpg
+  - 후기 2의 1~3번째 이미지
+  - 각 후기는 자동전환 + 좌우 버튼 + 손가락 Swipe 모두 지원
+  - 4:3 가로 이미지 권장
+
+[오시는 길]
+- 지도는 이미지가 아니라 실제 위치 지도 iframe으로 구현됨.
+- 중심 위치: 서울 강남구 봉은사로 418, 위도 37.5106603 / 경도 127.0459178
+- location-map-fallback.jpg는 향후 정적 지도 이미지로 전환할 경우 사용할 예비 슬롯.
+valet-building.jpg
+  - 주차·발렛 안내 우측 건물 이미지
+
+[푸터]
+footer-bg.jpg
+  - 푸터 전체 배경 이미지
+  - v5.4부터 기존보다 어두운 오버레이를 약하게 적용하여 사진이 더 선명하게 보임

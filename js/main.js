@@ -112,21 +112,65 @@
     }
   });
 
-  // Review galleries: keep 1 / N counter synced while horizontally scrolling.
+  // Review galleries: swipe + buttons + automatic rotation + synced counter.
   $$('[data-review-gallery]').forEach(gallery=>{
     const scroller=$('.sd-review-photos',gallery);
     const count=$('.sd-photo-count',gallery);
+    const prev=$('.sd-review-prev',gallery);
+    const next=$('.sd-review-next',gallery);
+    if(!scroller||!count) return;
     const imgs=$$('img',scroller);
-    if(!scroller||!count||!imgs.length) return;
-    const update=()=>{
-      const center=scroller.scrollLeft + scroller.clientWidth/2;
+    if(!imgs.length) return;
+
+    let current=0;
+    let timer=null;
+    let resumeTimer=null;
+    const delay=Number(gallery.dataset.reviewAutoplay||5200);
+    const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const nearestIndex=()=>{
+      const center=scroller.scrollLeft+scroller.clientWidth/2;
       let best=0,dist=Infinity;
-      imgs.forEach((img,i)=>{const c=img.offsetLeft+img.offsetWidth/2;const d=Math.abs(c-center);if(d<dist){dist=d;best=i}});
-      count.textContent=`${best+1} / ${imgs.length}`;
+      imgs.forEach((img,i)=>{
+        const c=img.offsetLeft+img.offsetWidth/2;
+        const d=Math.abs(c-center);
+        if(d<dist){dist=d;best=i;}
+      });
+      return best;
     };
+    const update=()=>{
+      current=nearestIndex();
+      count.textContent=`${current+1} / ${imgs.length}`;
+    };
+    const go=(n,behavior='smooth')=>{
+      current=(n+imgs.length)%imgs.length;
+      const left=Math.max(0,imgs[current].offsetLeft-parseFloat(getComputedStyle(scroller).paddingLeft||0));
+      scroller.scrollTo({left,behavior});
+      count.textContent=`${current+1} / ${imgs.length}`;
+    };
+    const stop=()=>{if(timer){clearInterval(timer);timer=null;}};
+    const start=()=>{
+      if(reduceMotion||!delay||imgs.length<2) return;
+      stop();
+      timer=setInterval(()=>go(current+1),delay);
+    };
+    const pauseForUser=()=>{
+      stop();
+      clearTimeout(resumeTimer);
+      resumeTimer=setTimeout(start,8000);
+    };
+
+    prev?.addEventListener('click',()=>{go(current-1);pauseForUser();});
+    next?.addEventListener('click',()=>{go(current+1);pauseForUser();});
     scroller.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});
-    window.addEventListener('resize',update);
+    scroller.addEventListener('pointerdown',pauseForUser,{passive:true});
+    scroller.addEventListener('touchstart',pauseForUser,{passive:true});
+    gallery.addEventListener('mouseenter',stop);
+    gallery.addEventListener('mouseleave',start);
+    window.addEventListener('resize',()=>go(current,'auto'));
+    document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
     update();
+    start();
   });
 
   // Family site dropdown
