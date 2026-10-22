@@ -21,7 +21,7 @@
 })();
 </script>
 <link href="./css/style.css?v=20261022-59" rel="stylesheet"/>
-<meta content="#2E1F12" name="theme-color"/><link rel="stylesheet" href="./css/polish-v5.9.css?v=20261022-59" />
+<meta content="#2E1F12" name="theme-color"/><link rel="stylesheet" href="./css/polish-v5.9.css?v=20261022-59" /><link rel="stylesheet" href="./css/kakao-map-v5.10.css?v=20261022-510" />
 </head>
 <body>
 <a class="sd-skip" href="#sdMain">본문 바로가기</a>
@@ -137,11 +137,11 @@
 <section class="sd-section sd-section--tight sd-location" id="location">
 <div class="sd-kicker">Location</div><h2 class="sd-title">오시는 길</h2><p class="sd-desc">9호선 선정릉역 3번 출구 도보 3분<br/>발렛파킹 이용 가능 3,000원/대</p>
 <div aria-label="수담한정식 지도" class="sd-map">
-<div class="sd-naver-map-shell" data-naver-map data-lat="37.5106603" data-lng="127.0459178">
-  <div class="sd-naver-map-canvas" id="sdNaverMap" aria-label="네이버 지도 - 수담한정식 위치"></div>
-  <a class="sd-naver-map-fallback" data-url-key="naver_map" href="#!" aria-label="네이버 지도에서 수담한정식 위치 열기">
-    <img alt="수담한정식 지도 이미지 - 네이버 지도 API 미연결 시 표시" src="./images/location-map.jpg"/>
-    <span class="sd-naver-map-fallback-copy"><b>N</b><span><strong>네이버 지도에서 수담한정식 보기</strong><small>서울 강남구 봉은사로 418 조양빌딩 B1</small></span></span>
+<div class="sd-kakao-map-shell" data-kakao-map data-lat="37.5106603" data-lng="127.0459178" data-level="3">
+  <div class="sd-kakao-map-canvas" id="sdKakaoMapMain" aria-label="카카오맵 - 수담한정식 위치"></div>
+  <a class="sd-kakao-map-fallback" data-url-key="kakao_map" href="#!" aria-label="카카오맵에서 수담한정식 위치 열기">
+    <img alt="수담한정식 지도 이미지 - 카카오맵 API 미연결 시 표시" src="./images/location-map.jpg"/>
+    <span class="sd-kakao-map-fallback-copy"><b>K</b><span><strong>카카오맵에서 수담한정식 보기</strong><small>서울 강남구 봉은사로 418 조양빌딩 B1</small></span></span>
   </a>
 </div>
 <div class="sd-map-switch"><a data-event="map_click" data-item="네이버 지도" data-section="location" data-url-key="naver_map" href="#!"><b>N</b> 네이버 지도</a><a data-event="map_click" data-item="카카오맵" data-section="location" data-url-key="kakao_map" href="#!"><b>K</b> 카카오맵</a></div>
@@ -172,6 +172,6 @@
 
 <div aria-live="polite" class="sd-toast" role="status"></div>
 </div>
-<script src="./js/site-config.js?v=20261022-59"></script><script src="./js/main.js?v=20261022-59"></script>
+<script src="./js/site-config.js?v=20261022-510"></script><script src="./js/main.js?v=20261022-510"></script>
 </body>
 </html>

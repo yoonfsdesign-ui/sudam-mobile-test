@@ -1,5 +1,5 @@
 /*
- * 수담한정식 v5.8 공통 경로 설정
+ * 수담한정식 v5.10 공통 경로 설정
  * GitHub Pages 저장소 경로를 현재 script 위치에서 자동 계산합니다.
  * 메인/서브/상세 어느 깊이에서도 동일한 링크를 사용합니다.
  */
@@ -15,9 +15,10 @@
   };
 
   window.SUDAM_CONFIG = {
-    // NAVER Cloud Platform Maps > Dynamic Map Client ID (ncpKeyId).
-    // 비워두면 location-map.jpg를 보여주고 클릭 시 네이버 지도 검색으로 이동합니다.
-    naverMapClientId: '',
+    // Kakao Map Web(JavaScript) SDK용 JavaScript 키.
+    // 카카오디벨로퍼스 > 앱 > 플랫폼 키 > JavaScript 키에서 복사해 넣으세요.
+    // 비워두면 location-map.jpg가 표시되고, 클릭하면 카카오맵으로 이동합니다.
+    kakaoMapJavaScriptKey: '7da613ee82ddeea2894810879bfa2acc',
     urls: {
       reservation: '',
       kakao: '',
