@@ -1,0 +1,12 @@
+수담한정식 모바일 메인페이지 v5.5
+
+수정사항
+- 실제 고객후기 좌우 화살표 버튼 삭제
+- 후기 이미지는 다음 이미지 일부가 보이는 88% 폭 스냅 갤러리로 변경
+- 후기 1/3 카운터 유지 + 스와이프/가로스크롤 + 자동전환 유지
+- Family Site: 클릭형 하단 드롭다운, 최상위 z-index, hover 대비색 보강
+- Footer 언어선택: 클릭형 하단 드롭다운, 최상위 z-index
+- Family/언어 메뉴가 Footer overflow에 잘리지 않도록 레이어 구조 수정
+- 지구본을 컬러 emoji에서 흰색 선형 SVG 아이콘으로 변경
+- Hero 로딩 모션, 섹션 스크롤 reveal, 파티클 floating, 슬라이드 이미지 subtle zoom, 버튼 hover 모션 추가
+- prefers-reduced-motion 환경에서는 애니메이션 최소화

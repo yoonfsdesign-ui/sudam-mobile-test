@@ -2128,3 +2128,181 @@ html[data-sudam-theme="classic"] .sd-footer:before{background:linear-gradient(rg
 html[data-sudam-theme="minimal"] .sd-footer:before{background:linear-gradient(rgba(17,17,17,.52),rgba(17,17,17,.68)),url('../images/footer-bg.jpg') center/cover no-repeat!important}
 html[data-sudam-theme="heritage"] .sd-footer:before{background:linear-gradient(rgba(52,53,44,.48),rgba(52,53,44,.65)),url('../images/footer-bg.jpg') center/cover no-repeat!important}
 html[data-sudam-theme="editorial"] .sd-footer:before{background:linear-gradient(rgba(73,64,64,.46),rgba(73,64,64,.63)),url('../images/footer-bg.jpg') center/cover no-repeat!important}
+
+
+/* =========================================================
+   v5.5 — clean review carousel / footer dropdowns / motion
+   ========================================================= */
+
+/* 후기: 버튼 없이 다음 이미지가 일부 보이는 스냅 갤러리 */
+.sd-review-gallery{overflow:hidden!important}
+.sd-review-photos{
+  display:flex!important;
+  gap:8px!important;
+  overflow-x:auto!important;
+  scroll-snap-type:x mandatory!important;
+  scroll-padding-left:8px!important;
+  padding:8px 8px 10px!important;
+  scroll-behavior:smooth!important;
+  scrollbar-width:none!important;
+  -webkit-overflow-scrolling:touch!important;
+  overscroll-behavior-x:contain!important;
+}
+.sd-review-photos::-webkit-scrollbar{display:none!important}
+.sd-review-photos img{
+  flex:0 0 88%!important;
+  width:88%!important;
+  max-width:88%!important;
+  aspect-ratio:4/3!important;
+  height:auto!important;
+  object-fit:cover!important;
+  border-radius:8px!important;
+  scroll-snap-align:start!important;
+  scroll-snap-stop:always!important;
+  transition:transform .55s cubic-bezier(.22,1,.36,1),filter .45s ease!important;
+}
+.sd-review-photos img:hover{transform:scale(1.015)}
+.sd-review-nav{display:none!important}
+.sd-photo-count{
+  right:17px!important;
+  bottom:16px!important;
+  padding:5px 9px!important;
+  font-size:10px!important;
+  letter-spacing:.02em!important;
+  background:rgba(28,22,18,.68)!important;
+  backdrop-filter:blur(5px)!important;
+  -webkit-backdrop-filter:blur(5px)!important;
+}
+
+/* Footer dropdowns: clipping 제거 + 항상 다른 레이어 위에 표시 */
+.sd-footer{overflow:visible!important;isolation:isolate;z-index:5}
+.sd-footer-inner,.sd-footer-tools--main,.sd-footer-language-row,.sd-family,.sd-language--footer{overflow:visible!important}
+.sd-footer-inner{z-index:6!important}
+.sd-family--footer,.sd-language--footer{position:relative!important;z-index:2600!important}
+.sd-family-menu,
+.sd-language--footer .sd-language-menu{
+  z-index:3000!important;
+  display:grid!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translateY(-7px)!important;
+  transition:opacity .18s ease,transform .22s cubic-bezier(.22,1,.36,1),visibility .18s ease!important;
+  box-shadow:0 16px 40px rgba(15,12,10,.24)!important;
+  border:1px solid color-mix(in srgb,var(--tone-accent) 24%,var(--tone-control-border))!important;
+  background:var(--tone-control-bg)!important;
+}
+.sd-family-menu{
+  top:calc(100% + 8px)!important;
+  bottom:auto!important;
+  right:0!important;
+  min-width:210px!important;
+  padding:7px!important;
+}
+.sd-language--footer .sd-language-menu{
+  top:calc(100% + 7px)!important;
+  bottom:auto!important;
+  right:0!important;
+  min-width:72px!important;
+  padding:6px!important;
+}
+.sd-family-menu.is-open,
+.sd-language--footer .sd-language-menu.is-open{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translateY(0)!important;
+}
+.sd-family-menu a,
+.sd-language--footer .sd-language-menu a{
+  color:var(--tone-control-text)!important;
+  background:transparent!important;
+  border-radius:7px!important;
+  transition:background .16s ease,color .16s ease,transform .16s ease!important;
+}
+.sd-family-menu a:hover,.sd-family-menu a:focus-visible,
+.sd-language--footer .sd-language-menu a:hover,.sd-language--footer .sd-language-menu a:focus-visible{
+  background:var(--tone-accent)!important;
+  color:var(--tone-button-text)!important;
+  transform:translateX(2px)!important;
+}
+.sd-family-btn[aria-expanded="true"],
+.sd-language--footer .sd-language-btn[aria-expanded="true"]{
+  background:var(--tone-accent)!important;
+  color:var(--tone-button-text)!important;
+  border-color:var(--tone-accent)!important;
+}
+
+/* 지구본: emoji 대신 currentColor SVG -> 항상 흰색 */
+.sd-globe{color:#fff!important;filter:none!important;display:grid!important;place-items:center!important}
+.sd-globe svg{width:18px;height:18px;display:block;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sd-footer-language-row .sd-globe{color:#fff!important}
+
+/* 전체 페이지 모션: 과하지 않은 등장/이미지 줌/버튼 반응 */
+@keyframes sdHeroImageIn{
+  from{transform:scale(1.065);filter:brightness(.92)}
+  to{transform:scale(1);filter:brightness(1)}
+}
+@keyframes sdHeroCopyIn{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes sdParticleFloat{
+  0%,100%{transform:translate3d(0,0,0) rotate(0deg)}
+  50%{transform:translate3d(0,-7px,0) rotate(1deg)}
+}
+@keyframes sdDotBreath{
+  0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--tone-accent) 0%,transparent)}
+  50%{box-shadow:0 0 0 4px color-mix(in srgb,var(--tone-accent) 16%,transparent)}
+}
+
+.sd-hero-media img{animation:sdHeroImageIn 1.25s cubic-bezier(.22,1,.36,1) both}
+.sd-hero-copy>*{opacity:0;animation:sdHeroCopyIn .72s cubic-bezier(.22,1,.36,1) forwards}
+.sd-hero-copy .sd-hero-eyebrow{animation-delay:.12s}
+.sd-hero-copy h1{animation-delay:.22s}
+.sd-hero-copy p{animation-delay:.34s}
+.sd-trust-particle{animation:sdParticleFloat 5.8s ease-in-out infinite}
+.sd-trust-particle--right{animation-delay:-2.7s}
+.sd-dot.is-active{animation:sdDotBreath 2.2s ease-in-out infinite}
+
+.sd-motion-ready .sd-reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .62s cubic-bezier(.22,1,.36,1),transform .68s cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--sd-reveal-delay,0ms);
+}
+.sd-motion-ready .sd-reveal.is-visible{opacity:1;transform:translateY(0)}
+
+.sd-slide-media img{transition:transform 6s ease,filter .6s ease!important;transform:scale(1.01)}
+.sd-slide.is-active .sd-slide-media img{transform:scale(1.055)}
+.sd-slide-copy>*{transition:transform .4s ease,opacity .4s ease}
+.sd-slide:not(.is-active) .sd-slide-copy>*{transform:translateY(7px);opacity:.82}
+.sd-slide.is-active .sd-slide-copy>*{transform:translateY(0);opacity:1}
+
+.sd-link .arr,.sd-slide-link,.sd-meeting-card .go,.sd-menu-cta b{transition:transform .22s ease,color .22s ease,background .22s ease!important}
+@media (hover:hover){
+  .sd-link:hover .arr{display:inline-block;transform:translateX(4px)}
+  .sd-slide-link:hover{transform:translateX(3px)}
+  .sd-menu-cta:hover b{transform:translateX(3px)}
+  .sd-map-switch a:hover,.sd-copy-address-btn:hover,.sd-naver-reserve:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(20,16,12,.10)}
+  .sd-sns a:hover{transform:translateY(-2px) scale(1.03)}
+}
+.sd-map-switch a,.sd-copy-address-btn,.sd-naver-reserve,.sd-sns a,.sd-family-btn,.sd-language-btn{transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease,border-color .2s ease!important}
+
+/* footer dropdown이 bottom CTA보다 위로 떠야 함 */
+.sd-family-menu,.sd-language--footer .sd-language-menu{z-index:3200!important}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .sd-motion-ready .sd-reveal{opacity:1!important;transform:none!important}
+}
+
+/* v5.5 stacking/hover final correction: dropdown is allowed to sit above fixed UI */
+.sd-footer{isolation:auto!important;z-index:auto!important}
+.sd-family-btn:hover,.sd-family-btn:focus-visible,
+.sd-language--footer .sd-language-btn:hover,.sd-language--footer .sd-language-btn:focus-visible{
+  background:var(--tone-accent)!important;
+  color:var(--tone-button-text)!important;
+  border-color:var(--tone-accent)!important;
+  box-shadow:0 6px 18px color-mix(in srgb,var(--tone-brand) 18%,transparent)!important;
+}
