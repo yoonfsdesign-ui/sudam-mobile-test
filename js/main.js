@@ -236,82 +236,35 @@
     start();
   }
 
-  // Kakao Map Web(JavaScript) SDK-ready map.
-  // Requires SUDAM_CONFIG.kakaoMapJavaScriptKey.
-  // Without a key, the replaceable static map image remains visible and links to Kakao Map.
-  const kakaoMapShells=$$('[data-kakao-map]');
-  if(kakaoMapShells.length){
-    const key=String(config.kakaoMapJavaScriptKey||'').trim();
-
-    const renderKakaoMaps=()=>{
-      if(!window.kakao?.maps)return;
-      kakaoMapShells.forEach((shell)=>{
-        const canvas=$('.sd-kakao-map-canvas',shell);
-        if(!canvas || shell.classList.contains('is-live'))return;
-
-        const lat=Number(shell.dataset.lat||37.5106603);
-        const lng=Number(shell.dataset.lng||127.0459178);
-        const level=Number(shell.dataset.level||3);
-        const center=new kakao.maps.LatLng(lat,lng);
-        const map=new kakao.maps.Map(canvas,{center,level});
-
-        new kakao.maps.Marker({
-          position:center,
-          map,
-          title:'수담한정식'
-        });
-
-        const zoomControl=new kakao.maps.ZoomControl();
-        map.addControl(zoomControl,kakao.maps.ControlPosition.RIGHT);
-
-        requestAnimationFrame(()=>{
-          try{
-            map.relayout();
-            map.setCenter(center);
-          }catch(_){}
-        });
-
-        shell.classList.add('is-live');
-      });
+  // NAVER Maps API-ready map.
+  // Requires SUDAM_CONFIG.naverMapClientId (NAVER Cloud ncpKeyId).
+  // Without a key, a simple replaceable map image remains visible and links to NAVER Map.
+  const naverMapShell=$('[data-naver-map]');
+  if(naverMapShell){
+    const key=config.naverMapClientId;
+    const canvas=$('.sd-naver-map-canvas',naverMapShell);
+    const lat=Number(naverMapShell.dataset.lat||37.5106603);
+    const lng=Number(naverMapShell.dataset.lng||127.0459178);
+    const showLiveMap=()=>{
+      if(!canvas||!window.naver?.maps)return;
+      const center=new naver.maps.LatLng(lat,lng);
+      const map=new naver.maps.Map(canvas,{center,zoom:17,zoomControl:true,zoomControlOptions:{position:naver.maps.Position.TOP_RIGHT}});
+      new naver.maps.Marker({position:center,map,title:'수담한정식'});
+      naverMapShell.classList.add('is-live');
     };
-
-    const bootKakaoMap=()=>{
-      if(!key)return;
-
-      if(window.kakao?.maps?.Map){
-        renderKakaoMaps();
-        return;
+    if(key){
+      if(window.naver?.maps){showLiveMap();}
+      else{
+        const cb='__sudamNaverMapReady';
+        window[cb]=()=>{showLiveMap();try{delete window[cb]}catch(_){}};
+        window.navermap_authFailure=()=>naverMapShell.classList.remove('is-live');
+        const script=document.createElement('script');
+        script.src=`https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(key)}&callback=${cb}`;
+        script.async=true;
+        script.onerror=()=>naverMapShell.classList.remove('is-live');
+        document.head.appendChild(script);
       }
-
-      if(window.kakao?.maps?.load){
-        window.kakao.maps.load(renderKakaoMaps);
-        return;
-      }
-
-      let script=document.querySelector('script[data-sudam-kakao-map-sdk]');
-      if(script){
-        script.addEventListener('load',()=>{
-          if(window.kakao?.maps?.load)window.kakao.maps.load(renderKakaoMaps);
-        },{once:true});
-        return;
-      }
-
-      script=document.createElement('script');
-      script.dataset.sudamKakaoMapSdk='true';
-      script.src=`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false`;
-      script.async=true;
-      script.onload=()=>{
-        if(window.kakao?.maps?.load){
-          window.kakao.maps.load(renderKakaoMaps);
-        }
-      };
-      script.onerror=()=>{
-        kakaoMapShells.forEach(shell=>shell.classList.remove('is-live'));
-      };
-      document.head.appendChild(script);
-    };
-
-    bootKakaoMap();
+    }
   }
 
   // Family site dropdown: opens downward and stays above footer/other layers.
