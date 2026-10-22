@@ -4,13 +4,18 @@
   const $$ = (s,ctx=document)=>Array.from(ctx.querySelectorAll(s));
   const body=document.body;
 
-  // Prototype URL mapping. Empty URLs stay testable without jumping to page top.
+  // URL mapping. Known links are also hard-coded in HTML as a fallback.
+  // If config fails or a URL is intentionally empty, never destroy a valid existing href.
   const config=window.SUDAM_CONFIG||{urls:{}};
   $$('[data-url-key]').forEach(el=>{
     const key=el.dataset.urlKey;
-    const url=config.urls?.[key];
+    const configuredUrl=config.urls?.[key];
+    const existingHref=(el.getAttribute('href')||'').trim();
+    const existingValid=existingHref && existingHref!=='#!' && existingHref!=='#';
+    const url=configuredUrl || (existingValid ? existingHref : '');
     if(url){
       el.setAttribute('href',url);
+      delete el.dataset.placeholderLink;
       if(/^https?:\/\//i.test(url)){
         el.setAttribute('target','_blank');
         el.setAttribute('rel','noopener');
