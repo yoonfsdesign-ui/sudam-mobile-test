@@ -1,0 +1,27 @@
+수담한정식 v5.10 — 카카오맵 API 교체 패치
+
+1. 카카오디벨로퍼스에서 앱을 생성합니다.
+2. 해당 앱의 [카카오맵] > [사용 설정]에서 상태를 ON으로 변경합니다.
+3. [앱] > [플랫폼 키] > [JavaScript 키]에서 JavaScript 키를 확인합니다.
+4. 같은 JavaScript 키 설정에서 JavaScript SDK 도메인에 아래 주소를 등록합니다.
+   https://yoonfsdesign-ui.github.io
+5. js/site-config.js 파일에서 아래 항목을 찾습니다.
+   kakaoMapJavaScriptKey: '',
+6. 따옴표 사이에 JavaScript 키를 넣습니다.
+   kakaoMapJavaScriptKey: 'YOUR_JAVASCRIPT_KEY',
+7. js/site-config.js를 다시 GitHub에 업로드합니다.
+
+주의
+- REST API 키가 아닙니다.
+- Admin 키가 아닙니다.
+- 반드시 JavaScript 키를 사용합니다.
+
+동작
+- 키가 비어 있으면: 기존 location-map.jpg + 카카오맵 이동 링크
+- 키가 정상 등록되면: 메인 오시는 길 + 예약/오시는길 페이지에 실제 카카오맵 표시
+- 지도 좌표: 37.5106603, 127.0459178
+
+
+[현재 패치 상태]
+JavaScript 키가 이미 site-config.js에 입력되어 있습니다.
+GitHub Pages 도메인 등록만 정확히 되어 있으면 지도가 로드됩니다.

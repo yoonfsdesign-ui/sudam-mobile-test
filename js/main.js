@@ -116,21 +116,25 @@
     }
   });
 
-  // Review galleries: partial-next preview + swipe/scroll + automatic rotation + synced counter. No arrow buttons.
-  $$('[data-review-gallery]').forEach(gallery=>{
+  // Review galleries v5.9:
+  // partial-next preview + touch swipe + desktop mouse drag + ONE shared autoplay clock.
+  // Manual movement on either review synchronizes both galleries to the same image index.
+  const reviewGalleries=$$('[data-review-gallery]').map(gallery=>{
     const scroller=$('.sd-review-photos',gallery);
     const count=$('.sd-photo-count',gallery);
-    if(!scroller||!count) return;
-    const imgs=$$('img',scroller);
-    if(!imgs.length) return;
+    const imgs=scroller?$$('img',scroller):[];
+    return {gallery,scroller,count,imgs,current:0,userActive:false,snapTimer:null};
+  }).filter(x=>x.scroller&&x.count&&x.imgs.length);
 
-    let current=0;
-    let timer=null;
+  if(reviewGalleries.length){
+    let sharedIndex=0;
+    let reviewTimer=null;
     let resumeTimer=null;
-    const delay=Number(gallery.dataset.reviewAutoplay||5200);
+    const delay=Math.min(...reviewGalleries.map(x=>Number(x.gallery.dataset.reviewAutoplay||5200)).filter(Boolean));
     const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const nearestIndex=()=>{
+    const nearestIndex=item=>{
+      const {scroller,imgs}=item;
       const center=scroller.scrollLeft+scroller.clientWidth/2;
       let best=0,dist=Infinity;
       imgs.forEach((img,i)=>{
@@ -140,38 +144,175 @@
       });
       return best;
     };
-    const update=()=>{
-      current=nearestIndex();
-      count.textContent=`${current+1} / ${imgs.length}`;
+    const goItem=(item,n,behavior='smooth')=>{
+      const len=item.imgs.length;
+      item.current=(n+len)%len;
+      const pad=parseFloat(getComputedStyle(item.scroller).paddingLeft||0);
+      const left=Math.max(0,item.imgs[item.current].offsetLeft-pad);
+      item.scroller.scrollTo({left,behavior});
+      item.count.textContent=`${item.current+1} / ${len}`;
     };
-    const go=(n,behavior='smooth')=>{
-      current=(n+imgs.length)%imgs.length;
-      const left=Math.max(0,imgs[current].offsetLeft-parseFloat(getComputedStyle(scroller).paddingLeft||0));
-      scroller.scrollTo({left,behavior});
-      count.textContent=`${current+1} / ${imgs.length}`;
+    const goAll=(n,behavior='smooth')=>{
+      const maxLen=Math.min(...reviewGalleries.map(x=>x.imgs.length));
+      sharedIndex=(n+maxLen)%maxLen;
+      reviewGalleries.forEach(item=>goItem(item,sharedIndex,behavior));
     };
-    const stop=()=>{if(timer){clearInterval(timer);timer=null;}};
+    const stop=()=>{if(reviewTimer){clearInterval(reviewTimer);reviewTimer=null;}};
     const start=()=>{
-      if(reduceMotion||!delay||imgs.length<2) return;
+      if(reduceMotion||!delay||reviewGalleries.length===0)return;
       stop();
-      timer=setInterval(()=>go(current+1),delay);
+      reviewTimer=setInterval(()=>goAll(sharedIndex+1),delay);
     };
-    const pauseForUser=()=>{
+    const pauseAndResume=()=>{
       stop();
       clearTimeout(resumeTimer);
-      resumeTimer=setTimeout(start,8000);
+      resumeTimer=setTimeout(start,7000);
+    };
+    const syncFrom=item=>{
+      const n=nearestIndex(item);
+      goAll(n);
     };
 
-    scroller.addEventListener('scroll',()=>requestAnimationFrame(update),{passive:true});
-    scroller.addEventListener('pointerdown',pauseForUser,{passive:true});
-    scroller.addEventListener('touchstart',pauseForUser,{passive:true});
-    gallery.addEventListener('mouseenter',stop);
-    gallery.addEventListener('mouseleave',start);
-    window.addEventListener('resize',()=>go(current,'auto'));
+    reviewGalleries.forEach(item=>{
+      const {scroller}=item;
+      let pointerId=null,startX=0,startScroll=0,moved=false;
+
+      scroller.addEventListener('pointerdown',e=>{
+        if(e.pointerType==='touch') return;
+        pointerId=e.pointerId; startX=e.clientX; startScroll=scroller.scrollLeft; moved=false;
+        item.userActive=true; scroller.classList.add('is-dragging');
+        scroller.setPointerCapture?.(e.pointerId);
+        pauseAndResume();
+      });
+      scroller.addEventListener('pointermove',e=>{
+        if(pointerId!==e.pointerId) return;
+        const dx=e.clientX-startX;
+        if(Math.abs(dx)>3)moved=true;
+        scroller.scrollLeft=startScroll-dx;
+      });
+      const endDrag=e=>{
+        if(pointerId==null||(e.pointerId!=null&&pointerId!==e.pointerId))return;
+        try{scroller.releasePointerCapture?.(pointerId)}catch(_){}
+        pointerId=null; scroller.classList.remove('is-dragging');
+        item.userActive=false;
+        syncFrom(item);
+      };
+      scroller.addEventListener('pointerup',endDrag);
+      scroller.addEventListener('pointercancel',endDrag);
+
+      // Mouse wheel / trackpad: vertical wheel becomes horizontal only over the gallery.
+      scroller.addEventListener('wheel',e=>{
+        if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){
+          e.preventDefault();
+          scroller.scrollLeft+=e.deltaY;
+        }
+        pauseAndResume();
+        clearTimeout(item.snapTimer);
+        item.snapTimer=setTimeout(()=>syncFrom(item),140);
+      },{passive:false});
+
+      // Native mobile swipe remains enabled; synchronize the other review after swipe settles.
+      scroller.addEventListener('touchstart',()=>{
+        item.userActive=true;
+        pauseAndResume();
+      },{passive:true});
+      scroller.addEventListener('touchend',()=>{
+        clearTimeout(item.snapTimer);
+        item.snapTimer=setTimeout(()=>{item.userActive=false;syncFrom(item)},180);
+      },{passive:true});
+
+      scroller.addEventListener('keydown',e=>{
+        if(e.key==='ArrowRight'){e.preventDefault();pauseAndResume();goAll(sharedIndex+1)}
+        if(e.key==='ArrowLeft'){e.preventDefault();pauseAndResume();goAll(sharedIndex-1)}
+      });
+    });
+
+    const reviewsSection=$('.sd-reviews');
+    reviewsSection?.addEventListener('mouseenter',stop);
+    reviewsSection?.addEventListener('mouseleave',start);
+    window.addEventListener('resize',()=>goAll(sharedIndex,'auto'));
     document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
-    update();
+    goAll(0,'auto');
     start();
-  });
+  }
+
+  // Kakao Map Web(JavaScript) SDK-ready map.
+  // Requires SUDAM_CONFIG.kakaoMapJavaScriptKey.
+  // Without a key, the replaceable static map image remains visible and links to Kakao Map.
+  const kakaoMapShells=$$('[data-kakao-map]');
+  if(kakaoMapShells.length){
+    const key=String(config.kakaoMapJavaScriptKey||'').trim();
+
+    const renderKakaoMaps=()=>{
+      if(!window.kakao?.maps)return;
+      kakaoMapShells.forEach((shell)=>{
+        const canvas=$('.sd-kakao-map-canvas',shell);
+        if(!canvas || shell.classList.contains('is-live'))return;
+
+        const lat=Number(shell.dataset.lat||37.5106603);
+        const lng=Number(shell.dataset.lng||127.0459178);
+        const level=Number(shell.dataset.level||3);
+        const center=new kakao.maps.LatLng(lat,lng);
+        const map=new kakao.maps.Map(canvas,{center,level});
+
+        new kakao.maps.Marker({
+          position:center,
+          map,
+          title:'수담한정식'
+        });
+
+        const zoomControl=new kakao.maps.ZoomControl();
+        map.addControl(zoomControl,kakao.maps.ControlPosition.RIGHT);
+
+        requestAnimationFrame(()=>{
+          try{
+            map.relayout();
+            map.setCenter(center);
+          }catch(_){}
+        });
+
+        shell.classList.add('is-live');
+      });
+    };
+
+    const bootKakaoMap=()=>{
+      if(!key)return;
+
+      if(window.kakao?.maps?.Map){
+        renderKakaoMaps();
+        return;
+      }
+
+      if(window.kakao?.maps?.load){
+        window.kakao.maps.load(renderKakaoMaps);
+        return;
+      }
+
+      let script=document.querySelector('script[data-sudam-kakao-map-sdk]');
+      if(script){
+        script.addEventListener('load',()=>{
+          if(window.kakao?.maps?.load)window.kakao.maps.load(renderKakaoMaps);
+        },{once:true});
+        return;
+      }
+
+      script=document.createElement('script');
+      script.dataset.sudamKakaoMapSdk='true';
+      script.src=`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${encodeURIComponent(key)}&autoload=false`;
+      script.async=true;
+      script.onload=()=>{
+        if(window.kakao?.maps?.load){
+          window.kakao.maps.load(renderKakaoMaps);
+        }
+      };
+      script.onerror=()=>{
+        kakaoMapShells.forEach(shell=>shell.classList.remove('is-live'));
+      };
+      document.head.appendChild(script);
+    };
+
+    bootKakaoMap();
+  }
 
   // Family site dropdown: opens downward and stays above footer/other layers.
   const familyBtn=$('[data-family-toggle]');
