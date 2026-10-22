@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* SUDAM v5.13 — compact light beige bottom CTA */
+
+:root{
+  --sd-bottom-bar:58px;
+}
+
+/* 전체 높이 축소 */
+.sd-bottom-cta{
+  min-height:58px!important;
+  grid-template-columns:1fr 1.16fr 1fr!important;
+  background:#F6EBDD!important;
+  border-top:1px solid rgba(144,110,78,.16)!important;
+  box-shadow:0 -4px 16px rgba(69,48,30,.07)!important;
+}
+.sd-bottom-cta a{
+  min-height:58px!important;
+  padding:4px 5px!important;
+  gap:4px!important;
+  line-height:1.05!important;
+  border-right-color:rgba(135,100,70,.13)!important;
+}
+
+/* 기본안: 원안에 가까운 밝은 베이지 3단계 */
+html[data-sudam-theme="default"]{
+  --cta-left:#F5E9DA;
+  --cta-left-text:#4A3527;
+  --cta-mid:#E2C9AF;
+  --cta-mid-text:#35251B;
+  --cta-right:#EFE0CE;
+  --cta-right-text:#493528;
+}
+
+/* 1안도 전체를 밝게 */
+html[data-sudam-theme="classic"]{
+  --cta-left:#F4ECE3;
+  --cta-left-text:#4F3528;
+  --cta-mid:#DCC8B4;
+  --cta-mid-text:#3C291F;
+  --cta-right:#EADCCF;
+  --cta-right-text:#4F3528;
+}
+
+/* 2안: 블랙 대신 밝은 웜그레이 3단계 */
+html[data-sudam-theme="minimal"]{
+  --cta-left:#F6F6F3;
+  --cta-left-text:#171717;
+  --cta-mid:#DEDEDA;
+  --cta-mid-text:#111111;
+  --cta-right:#ECECEA;
+  --cta-right-text:#1C1C1C;
+}
+
+/* 3안: 밝은 세이지 */
+html[data-sudam-theme="heritage"]{
+  --cta-left:#F0F1E8;
+  --cta-left-text:#3F4634;
+  --cta-mid:#D9DDC8;
+  --cta-mid-text:#343A2B;
+  --cta-right:#E7E9DD;
+  --cta-right-text:#424838;
+}
+
+/* 4안: 밝은 로즈 크림 */
+html[data-sudam-theme="editorial"]{
+  --cta-left:#FFF4F0;
+  --cta-left-text:#59474A;
+  --cta-mid:#EFD8D6;
+  --cta-mid-text:#493B3D;
+  --cta-right:#F7E5E1;
+  --cta-right-text:#59474A;
+}
+
+/* 세 버튼에 새 밝은 배색 강제 적용 */
+.sd-bottom-cta a:nth-child(1){
+  background:var(--cta-left)!important;
+  color:var(--cta-left-text)!important;
+}
+.sd-bottom-cta a:nth-child(2){
+  background:var(--cta-mid)!important;
+  color:var(--cta-mid-text)!important;
+}
+.sd-bottom-cta a:nth-child(3){
+  background:var(--cta-right)!important;
+  color:var(--cta-right-text)!important;
+}
+
+/* 가운데 전화 문의는 여전히 가장 강하게 */
+.sd-bottom-cta .phone .sd-cta-icon{
+  width:23px!important;
+  height:23px!important;
+}
+.sd-bottom-cta .phone .sd-cta-icon svg{
+  width:23px!important;
+  height:23px!important;
+}
+.sd-cta-label--phone{
+  gap:1px!important;
+}
+.sd-cta-label--phone strong{
+  font-size:14px!important;
+  line-height:1!important;
+  font-weight:800!important;
+}
+.sd-cta-label--phone small{
+  font-size:9.4px!important;
+  line-height:1!important;
+  font-weight:650!important;
+}
+
+/* 좌우 메뉴는 조금 더 컴팩트 */
+.sd-bottom-cta>a:first-child,
+.sd-bottom-cta>a:last-child{
+  font-size:10.7px!important;
+}
+.sd-bottom-cta>a:first-child .sd-cta-icon,
+.sd-bottom-cta>a:last-child .sd-cta-icon{
+  width:18px!important;
+  height:18px!important;
+}
+
+@media(max-width:359px){
+  :root{--sd-bottom-bar:56px}
+  .sd-bottom-cta,
+  .sd-bottom-cta a{
+    min-height:56px!important;
+  }
+  .sd-cta-label--phone strong{font-size:13.2px!important}
+  .sd-cta-label--phone small{font-size:8.9px!important}
+  .sd-bottom-cta>a:first-child,
+  .sd-bottom-cta>a:last-child{font-size:10px!important}
+}
