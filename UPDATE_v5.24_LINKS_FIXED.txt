@@ -1,0 +1,34 @@
+SUDAM v5.24 — 메인페이지 서브페이지 링크 복구
+
+직접 연결한 내부 링크
+- 수담 → ./about/
+- 메뉴 → ./menu/
+- 모임 → ./occasions/
+- 후기 → ./reviews/
+- 예약 → ./reservation/
+- 수담의 강점 1 → ./about/#space
+- 수담의 강점 2 → ./about/#story
+- 수담의 강점 3 → ./about/#partnership
+- 생신·가족 모임 → ./occasions/family/
+- 상견례 → ./occasions/formal/
+- 단체행사 → ./occasions/group/
+- 하우스 웨딩 → ./occasions/wedding/
+- 전체 메뉴 보기 → ./menu/
+- 진연상 → ./menu/course/jinyeon/
+- 수라상 → ./menu/course/sura/
+- 코스 상담 → ./reservation/
+- 공간 인테리어 자세히 보기 → ./about/#space
+- 전체 후기 보기 → ./reviews/
+- 후기 1 → ./reviews/detail/?id=r01
+- 후기 2 → ./reviews/detail/?id=r02
+- 제휴문의 → ./about/#partnership
+- Family Site 수담한정식 → ./
+
+확인된 외부 링크
+- 네이버 지도
+- 카카오맵
+
+중요
+- 위 내부 링크들은 data-url-key를 제거해 main.js가 다시 #! 또는 다른 값으로 덮어쓰지 못하게 했습니다.
+- 네이버 예약 / 카카오톡 상담 / SNS / 외국어 / 개인정보처리방침 등은 실제 목적 URL이 현재 자료에서 확인되지 않아 임의 연결하지 않았습니다.
+- 기존 원안/1~4안 디자인, 이미지, CSS, JS는 변경하지 않습니다.
