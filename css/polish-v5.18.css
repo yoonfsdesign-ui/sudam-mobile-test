@@ -1,0 +1,221 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.18 — recovery / narrow fixes only
+   v5.15 global color overrides removed from HTML.
+   This file only keeps the fixes that were actually requested.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HERO ONLY — readability redesign
+   No other section colors are touched.
+   --------------------------------------------------------- */
+html[data-sudam-theme="default"] .sd-hero-media:after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(244,229,209,.48) 0%,
+      rgba(244,229,209,.31) 30%,
+      rgba(244,229,209,.10) 53%,
+      rgba(244,229,209,0) 70%
+    ),
+    linear-gradient(
+      0deg,
+      #F1E4D6 0%,
+      rgba(241,228,214,.91) 4%,
+      rgba(241,228,214,.46) 10%,
+      rgba(241,228,214,.10) 17%,
+      rgba(241,228,214,0) 23%
+    )!important;
+}
+html[data-sudam-theme="default"] .sd-hero-copy{
+  background:transparent!important;
+  text-align:left!important;
+  width:78%!important;
+  padding-right:22px!important;
+}
+html[data-sudam-theme="default"] .sd-hero-eyebrow{
+  color:#A66D35!important;
+  font-size:25px!important;
+  line-height:1.3!important;
+  font-weight:600!important;
+  letter-spacing:-.025em!important;
+  text-shadow:none!important;
+  margin-bottom:8px!important;
+}
+html[data-sudam-theme="default"] .sd-hero h1,
+html[data-sudam-theme="default"] .sd-hero-title{
+  color:#8B572B!important;
+  font-size:47px!important;
+  line-height:1.16!important;
+  font-weight:700!important;
+  letter-spacing:-.045em!important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.22),
+    0 2px 8px rgba(84,52,27,.08)!important;
+}
+html[data-sudam-theme="default"] .sd-hero h1:after{
+  width:104px!important;
+  height:13px!important;
+  margin-top:16px!important;
+  background:#A8753F!important;
+  opacity:.94!important;
+}
+html[data-sudam-theme="default"] .sd-hero-copy>p,
+html[data-sudam-theme="default"] .sd-hero-copy .sd-hero-sub{
+  color:#6A5545!important;
+  font-size:16.5px!important;
+  line-height:1.62!important;
+  font-weight:550!important;
+  letter-spacing:-.015em!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.22)!important;
+  margin-top:18px!important;
+}
+
+/* ---------------------------------------------------------
+   TRUST — preserve user's own image files.
+   Equal CSS box, no per-icon scaling / no image replacement.
+   --------------------------------------------------------- */
+.sd-trust{
+  padding-top:34px!important;
+  padding-bottom:34px!important;
+}
+.sd-trust-caption{
+  margin-bottom:8px!important;
+}
+.sd-trust-grid{
+  gap:2px!important;
+}
+.sd-trust-item{
+  padding:0 2px!important;
+  gap:0!important;
+}
+.sd-trust-icon--image{
+  width:134px!important;
+  height:134px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+}
+.sd-trust-icon--image img,
+.sd-trust-item:nth-child(1) .sd-trust-icon--image img,
+.sd-trust-item:nth-child(2) .sd-trust-icon--image img{
+  width:134px!important;
+  height:134px!important;
+  max-width:134px!important;
+  max-height:134px!important;
+  object-fit:contain!important;
+  transform:none!important;
+  margin:0!important;
+}
+
+/* ---------------------------------------------------------
+   SPACE — requested wording remains in HTML.
+   Fix only the accidental box on Classic theme kicker.
+   --------------------------------------------------------- */
+html[data-sudam-theme="classic"] #space > .sd-kicker{
+  display:block!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  padding:0!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:none!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html[data-sudam-theme="classic"] #space > .sd-kicker::before,
+html[data-sudam-theme="classic"] #space > .sd-kicker::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* ---------------------------------------------------------
+   FOOTER — Family Site contrast only.
+   No global footer typography recoloring.
+   --------------------------------------------------------- */
+.sd-footer .sd-family--footer .sd-family-btn{
+  color:#FFF4DF!important;
+  background:rgba(35,23,15,.34)!important;
+  border:1px solid rgba(255,238,210,.50)!important;
+  font-weight:650!important;
+  opacity:1!important;
+}
+.sd-footer .sd-family--footer .sd-family-btn:hover,
+.sd-footer .sd-family--footer .sd-family-btn:focus-visible,
+.sd-footer .sd-family--footer.is-open .sd-family-btn,
+.sd-footer .sd-family--footer .sd-family-btn[aria-expanded="true"]{
+  color:#FFFFFF!important;
+  background:rgba(91,61,40,.74)!important;
+  border-color:rgba(255,230,190,.74)!important;
+}
+
+/* ---------------------------------------------------------
+   Bottom Kakao icon — keep existing markup but prevent distortion.
+   --------------------------------------------------------- */
+.sd-bottom-cta>a:last-child .sd-cta-icon{
+  width:25px!important;
+  height:25px!important;
+  min-width:25px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:7px!important;
+  background:#FEE500!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+.sd-bottom-cta>a:last-child .sd-cta-icon svg{
+  width:19px!important;
+  height:19px!important;
+  display:block!important;
+  fill:#191919!important;
+  stroke:none!important;
+}
+.sd-bottom-cta>a:last-child .sd-cta-icon svg path{
+  fill:#191919!important;
+  stroke:none!important;
+}
+
+@media(max-width:390px){
+  html[data-sudam-theme="default"] .sd-hero-eyebrow{
+    font-size:23px!important;
+  }
+  html[data-sudam-theme="default"] .sd-hero h1,
+  html[data-sudam-theme="default"] .sd-hero-title{
+    font-size:43px!important;
+  }
+  html[data-sudam-theme="default"] .sd-hero-copy>p,
+  html[data-sudam-theme="default"] .sd-hero-copy .sd-hero-sub{
+    font-size:15.6px!important;
+  }
+
+  .sd-trust{
+    padding-top:30px!important;
+    padding-bottom:30px!important;
+  }
+  .sd-trust-icon--image{
+    width:124px!important;
+    height:124px!important;
+  }
+  .sd-trust-icon--image img,
+  .sd-trust-item:nth-child(1) .sd-trust-icon--image img,
+  .sd-trust-item:nth-child(2) .sd-trust-icon--image img{
+    width:124px!important;
+    height:124px!important;
+    max-width:124px!important;
+    max-height:124px!important;
+  }
+}
