@@ -1,0 +1,17 @@
+SUDAM v5.22b — 아이콘 미노출 수정
+
+원인
+- v5.22에서 기존 PNG를 숨긴 뒤 외부 SVG를 CSS mask로 불러오는 방식 사용
+- 브라우저/GitHub Pages 환경에서 mask 렌더링이 실패하면 기존 PNG와 새 아이콘이 모두 안 보일 수 있음
+
+수정
+- 외부 SVG mask 방식 완전 제거
+- 신뢰 아이콘 SVG를 index.html 안에 inline으로 직접 삽입
+- 원안(default): 기존 사용자 PNG 그대로 표시
+- 1~4안: inline SVG 표시
+- 별도 SVG 파일 로딩에 의존하지 않음
+- 하단 전화 아이콘 배경박스 제거 수정은 그대로 유지
+
+덮어쓰기 파일
+- index.html
+- css/polish-v5.22.css

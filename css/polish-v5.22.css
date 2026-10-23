@@ -1,68 +1,44 @@
 @charset "utf-8";
 /* =========================================================
-   SUDAM v5.22 — refined trust icons + phone icon cleanup
+   SUDAM v5.22b — inline trust icons + phone icon cleanup
    DEFAULT/원안은 의도적으로 제외합니다.
+   외부 SVG mask를 사용하지 않습니다.
    ========================================================= */
 
-/* ---------- 1~4안: 신뢰 아이콘 리디자인 ---------- */
+/* 기본 원안: 새 SVG 숨김 */
+.sd-trust-icon-alt{
+  display:none;
+}
+
+/* 1~4안: 사용자가 교체한 기존 PNG는 숨기고 inline SVG 표시 */
+html[data-sudam-theme="classic"] .sd-trust-icon-original,
+html[data-sudam-theme="minimal"] .sd-trust-icon-original,
+html[data-sudam-theme="heritage"] .sd-trust-icon-original,
+html[data-sudam-theme="editorial"] .sd-trust-icon-original{
+  display:none!important;
+}
+
+html[data-sudam-theme="classic"] .sd-trust-icon-alt,
+html[data-sudam-theme="minimal"] .sd-trust-icon-alt,
+html[data-sudam-theme="heritage"] .sd-trust-icon-alt,
+html[data-sudam-theme="editorial"] .sd-trust-icon-alt{
+  display:block!important;
+  width:112px!important;
+  height:112px!important;
+  overflow:visible!important;
+}
+
+/* 동일한 wrapper 규격 */
 html[data-sudam-theme="classic"] .sd-trust-icon--image,
 html[data-sudam-theme="minimal"] .sd-trust-icon--image,
 html[data-sudam-theme="heritage"] .sd-trust-icon--image,
 html[data-sudam-theme="editorial"] .sd-trust-icon--image{
-  position:relative!important;
+  width:134px!important;
+  height:134px!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
-  width:134px!important;
-  height:134px!important;
   margin:0 auto!important;
-}
-
-/* 기존 사용자 PNG는 원안에서는 그대로, 1~4안에서만 숨김 */
-html[data-sudam-theme="classic"] .sd-trust-icon--image img,
-html[data-sudam-theme="minimal"] .sd-trust-icon--image img,
-html[data-sudam-theme="heritage"] .sd-trust-icon--image img,
-html[data-sudam-theme="editorial"] .sd-trust-icon--image img{
-  opacity:0!important;
-  visibility:hidden!important;
-  filter:none!important;
-  transform:none!important;
-}
-
-/* 같은 규격 / 같은 선굵기 */
-html[data-sudam-theme="classic"] .sd-trust-icon--image::before,
-html[data-sudam-theme="minimal"] .sd-trust-icon--image::before,
-html[data-sudam-theme="heritage"] .sd-trust-icon--image::before,
-html[data-sudam-theme="editorial"] .sd-trust-icon--image::before{
-  content:""!important;
-  display:block!important;
-  width:112px!important;
-  height:112px!important;
-  background:currentColor!important;
-  -webkit-mask-position:center!important;
-  mask-position:center!important;
-  -webkit-mask-repeat:no-repeat!important;
-  mask-repeat:no-repeat!important;
-  -webkit-mask-size:contain!important;
-  mask-size:contain!important;
-}
-
-/* 블루리본 */
-html[data-sudam-theme="classic"] .sd-trust-item:nth-child(1) .sd-trust-icon--image::before,
-html[data-sudam-theme="minimal"] .sd-trust-item:nth-child(1) .sd-trust-icon--image::before,
-html[data-sudam-theme="heritage"] .sd-trust-item:nth-child(1) .sd-trust-icon--image::before,
-html[data-sudam-theme="editorial"] .sd-trust-item:nth-child(1) .sd-trust-icon--image::before{
-  -webkit-mask-image:url("../images/trust-icon-ribbon-modern.svg")!important;
-  mask-image:url("../images/trust-icon-ribbon-modern.svg")!important;
-}
-
-/* 5,000건 월계관 */
-html[data-sudam-theme="classic"] .sd-trust-item:nth-child(2) .sd-trust-icon--image::before,
-html[data-sudam-theme="minimal"] .sd-trust-item:nth-child(2) .sd-trust-icon--image::before,
-html[data-sudam-theme="heritage"] .sd-trust-item:nth-child(2) .sd-trust-icon--image::before,
-html[data-sudam-theme="editorial"] .sd-trust-item:nth-child(2) .sd-trust-icon--image::before{
-  -webkit-mask-image:url("../images/trust-icon-laurel-modern.svg")!important;
-  mask-image:url("../images/trust-icon-laurel-modern.svg")!important;
 }
 
 /* 테마별 컬러 */
@@ -71,7 +47,7 @@ html[data-sudam-theme="minimal"] .sd-trust-icon--image{color:#2E2B28!important}
 html[data-sudam-theme="heritage"] .sd-trust-icon--image{color:#65704E!important}
 html[data-sudam-theme="editorial"] .sd-trust-icon--image{color:#9F6671!important}
 
-/* 아이콘과 텍스트 사이 작은 기준선 */
+/* 아이콘과 텍스트 사이 얇은 기준선 */
 html[data-sudam-theme="classic"] .sd-trust-item strong,
 html[data-sudam-theme="minimal"] .sd-trust-item strong,
 html[data-sudam-theme="heritage"] .sd-trust-item strong,
@@ -85,8 +61,8 @@ html[data-sudam-theme="heritage"] .sd-trust-item strong::before,
 html[data-sudam-theme="editorial"] .sd-trust-item strong::before{
   content:""!important;
   position:absolute!important;
-  top:0!important;
   left:50%!important;
+  top:0!important;
   width:22px!important;
   height:1px!important;
   transform:translateX(-50%)!important;
@@ -94,7 +70,7 @@ html[data-sudam-theme="editorial"] .sd-trust-item strong::before{
   opacity:.32!important;
 }
 
-/* ---------- 1~4안: 전화 아이콘은 배경박스 없이 glyph 자체만 컬러 ---------- */
+/* 1~4안 전화 아이콘: 배경색 박스 제거, glyph 자체만 색상 */
 html[data-sudam-theme="classic"] .sd-bottom-cta .phone .sd-cta-icon,
 html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon,
 html[data-sudam-theme="heritage"] .sd-bottom-cta .phone .sd-cta-icon,
@@ -118,9 +94,9 @@ html[data-sudam-theme="classic"] .sd-bottom-cta .phone .sd-cta-icon svg,
 html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon svg,
 html[data-sudam-theme="heritage"] .sd-bottom-cta .phone .sd-cta-icon svg,
 html[data-sudam-theme="editorial"] .sd-bottom-cta .phone .sd-cta-icon svg{
-  display:block!important;
   width:24px!important;
   height:24px!important;
+  display:block!important;
   fill:currentColor!important;
   stroke:none!important;
 }
@@ -133,18 +109,18 @@ html[data-sudam-theme="editorial"] .sd-bottom-cta .phone .sd-cta-icon svg path{
 }
 
 @media(max-width:390px){
+  html[data-sudam-theme="classic"] .sd-trust-icon-alt,
+  html[data-sudam-theme="minimal"] .sd-trust-icon-alt,
+  html[data-sudam-theme="heritage"] .sd-trust-icon-alt,
+  html[data-sudam-theme="editorial"] .sd-trust-icon-alt{
+    width:104px!important;
+    height:104px!important;
+  }
   html[data-sudam-theme="classic"] .sd-trust-icon--image,
   html[data-sudam-theme="minimal"] .sd-trust-icon--image,
   html[data-sudam-theme="heritage"] .sd-trust-icon--image,
   html[data-sudam-theme="editorial"] .sd-trust-icon--image{
     width:124px!important;
     height:124px!important;
-  }
-  html[data-sudam-theme="classic"] .sd-trust-icon--image::before,
-  html[data-sudam-theme="minimal"] .sd-trust-icon--image::before,
-  html[data-sudam-theme="heritage"] .sd-trust-icon--image::before,
-  html[data-sudam-theme="editorial"] .sd-trust-icon--image::before{
-    width:104px!important;
-    height:104px!important;
   }
 }
