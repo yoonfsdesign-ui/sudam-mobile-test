@@ -1,54 +1,48 @@
 @charset "utf-8";
 /* =========================================================
-   SUDAM v5.16 — hero readability / trust icon normalization /
-                 footer family contrast / Kakao channel icon
+   SUDAM v5.16 corrected
+   - 사용자 교체 신뢰 아이콘 파일 유지
+   - CSS 표시 크기만 동일하게 조정
    ========================================================= */
 
-/* ---------------------------------------------------------
-   HERO
-   v5.15 #FFF0CF was too close to ivory-white.
-   Warm champagne beige keeps premium tone but reads as a title.
-   --------------------------------------------------------- */
+/* HERO: 밝기 과다 보정 */
 .sd-hero-copy h1,
 .sd-hero-title{
-  color:#E6C693!important;
+  color:#E2BE82!important;
   font-weight:800!important;
   text-shadow:
     0 2px 10px rgba(45,29,18,.30),
     0 0 1px rgba(55,35,20,.24)!important;
 }
 .sd-hero-copy .sd-hero-eyebrow{
-  color:#CFA66F!important;
+  color:#C99D62!important;
 }
 .sd-hero-copy>p,
 .sd-hero-copy .sd-hero-sub{
   color:rgba(255,247,237,.88)!important;
 }
 
-/* comparison themes retain their palette but keep title/body separation */
+/* 1~4안의 메인 제목도 각 팔레트 안에서 읽히는 중명도 유지 */
 html[data-sudam-theme="classic"] .sd-hero-copy h1,
 html[data-sudam-theme="classic"] .sd-hero-title{
-  color:#DFC08F!important;
+  color:#D7B47C!important;
 }
 html[data-sudam-theme="minimal"] .sd-hero-copy h1,
 html[data-sudam-theme="minimal"] .sd-hero-title{
-  color:#E3D7C7!important;
+  color:#DDD0BE!important;
 }
 html[data-sudam-theme="heritage"] .sd-hero-copy h1,
 html[data-sudam-theme="heritage"] .sd-hero-title{
-  color:#E1D5AF!important;
+  color:#D7C998!important;
 }
 html[data-sudam-theme="editorial"] .sd-hero-copy h1,
 html[data-sudam-theme="editorial"] .sd-hero-title{
-  color:#EAC9C3!important;
+  color:#DFB8B1!important;
 }
 
-/* ---------------------------------------------------------
-   TRUST ICONS
-   PNG files are normalized so both visible drawings occupy
-   the same 88px height on the same 128px transparent canvas.
-   No per-icon transform is needed anymore.
-   --------------------------------------------------------- */
+/* TRUST ICONS
+   사용자가 교체한 기존 PNG 파일을 그대로 사용.
+   한쪽만 확대/축소하지 않고 둘 다 동일한 box size로 표시. */
 .sd-trust-icon--image{
   width:134px!important;
   height:134px!important;
@@ -63,17 +57,18 @@ html[data-sudam-theme="editorial"] .sd-hero-title{
 .sd-trust-item:nth-child(2) .sd-trust-icon--image img{
   width:134px!important;
   height:134px!important;
-  max-width:none!important;
+  max-width:134px!important;
+  max-height:134px!important;
   object-fit:contain!important;
   transform:none!important;
   margin:0!important;
 }
 .sd-trust{
-  padding-top:36px!important;
-  padding-bottom:36px!important;
+  padding-top:34px!important;
+  padding-bottom:34px!important;
 }
 .sd-trust-caption{
-  margin-bottom:9px!important;
+  margin-bottom:8px!important;
 }
 .sd-trust-grid{
   gap:2px!important;
@@ -86,15 +81,11 @@ html[data-sudam-theme="editorial"] .sd-hero-title{
   margin-top:-2px!important;
 }
 
-/* ---------------------------------------------------------
-   FOOTER FAMILY SITE
-   Ensure button text remains readable against every footer tone.
-   --------------------------------------------------------- */
+/* FOOTER FAMILY SITE */
 .sd-footer .sd-family--footer .sd-family-btn{
   color:#FFF4DF!important;
-  background:rgba(35,23,15,.32)!important;
-  border:1px solid rgba(255,238,210,.48)!important;
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)!important;
+  background:rgba(35,23,15,.34)!important;
+  border:1px solid rgba(255,238,210,.50)!important;
   font-weight:650!important;
   opacity:1!important;
 }
@@ -103,52 +94,42 @@ html[data-sudam-theme="editorial"] .sd-hero-title{
 .sd-footer .sd-family--footer.is-open .sd-family-btn,
 .sd-footer .sd-family--footer .sd-family-btn[aria-expanded="true"]{
   color:#FFFFFF!important;
-  background:rgba(91,61,40,.72)!important;
-  border-color:rgba(255,230,190,.72)!important;
+  background:rgba(91,61,40,.74)!important;
+  border-color:rgba(255,230,190,.74)!important;
 }
 
-/* ---------------------------------------------------------
-   BOTTOM CTA — KakaoTalk Channel
-   Previous SVG was only a generic speech bubble.
-   Keep only the icon in Kakao Yellow / black.
-   --------------------------------------------------------- */
+/* KAKAO CONSULT ICON
+   기존 generic bubble이 찌그러져 보이지 않도록
+   Kakao Yellow badge + black speech-bubble mark로 정리 */
 .sd-bottom-cta>a:last-child .sd-cta-icon{
   width:25px!important;
   height:25px!important;
+  min-width:25px!important;
   padding:0!important;
   border:0!important;
   border-radius:7px!important;
   background:#FEE500!important;
-  color:#191919!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
   overflow:hidden!important;
 }
-.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark{
-  width:24px!important;
-  height:24px!important;
+.sd-bottom-cta>a:last-child .sd-cta-icon svg{
+  width:19px!important;
+  height:19px!important;
   display:block!important;
-  overflow:visible!important;
-  fill:none!important;
+  fill:#191919!important;
   stroke:none!important;
 }
-.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark path{
+.sd-bottom-cta>a:last-child .sd-cta-icon svg path{
   fill:#191919!important;
-}
-.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark text{
-  fill:#FEE500!important;
-}
-
-/* Do not let old generic icon fill rules distort the new mark */
-.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark *{
   stroke:none!important;
 }
 
 @media(max-width:390px){
   .sd-trust{
-    padding-top:31px!important;
-    padding-bottom:31px!important;
+    padding-top:30px!important;
+    padding-bottom:30px!important;
   }
   .sd-trust-icon--image{
     width:124px!important;
@@ -159,5 +140,7 @@ html[data-sudam-theme="editorial"] .sd-hero-title{
   .sd-trust-item:nth-child(2) .sd-trust-icon--image img{
     width:124px!important;
     height:124px!important;
+    max-width:124px!important;
+    max-height:124px!important;
   }
 }

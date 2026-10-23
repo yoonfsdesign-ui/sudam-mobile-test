@@ -1,0 +1,13 @@
+SUDAM v5.16 corrected
+
+중요:
+- 블루리본/월계관 이미지는 사용자가 직접 교체한 파일이므로 절대 수정/교체하지 않습니다.
+- 이번 패치에는 images 폴더 자체가 없습니다.
+- 기존 trust-blue-ribbon-icon.png / trust-meeting-icon.png 파일을 그대로 사용합니다.
+- 두 아이콘은 CSS에서 동일한 width/height/object-fit만 적용합니다.
+- 한쪽에만 scale을 주는 보정은 제거했습니다.
+
+그 외:
+- Hero '품격을 더하다' 색상 과도한 밝기 완화
+- FAMILY SITE 가독성 보강
+- 하단 카카오 상담 아이콘 표시 보정
