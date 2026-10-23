@@ -1,0 +1,163 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.16 — hero readability / trust icon normalization /
+                 footer family contrast / Kakao channel icon
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HERO
+   v5.15 #FFF0CF was too close to ivory-white.
+   Warm champagne beige keeps premium tone but reads as a title.
+   --------------------------------------------------------- */
+.sd-hero-copy h1,
+.sd-hero-title{
+  color:#E6C693!important;
+  font-weight:800!important;
+  text-shadow:
+    0 2px 10px rgba(45,29,18,.30),
+    0 0 1px rgba(55,35,20,.24)!important;
+}
+.sd-hero-copy .sd-hero-eyebrow{
+  color:#CFA66F!important;
+}
+.sd-hero-copy>p,
+.sd-hero-copy .sd-hero-sub{
+  color:rgba(255,247,237,.88)!important;
+}
+
+/* comparison themes retain their palette but keep title/body separation */
+html[data-sudam-theme="classic"] .sd-hero-copy h1,
+html[data-sudam-theme="classic"] .sd-hero-title{
+  color:#DFC08F!important;
+}
+html[data-sudam-theme="minimal"] .sd-hero-copy h1,
+html[data-sudam-theme="minimal"] .sd-hero-title{
+  color:#E3D7C7!important;
+}
+html[data-sudam-theme="heritage"] .sd-hero-copy h1,
+html[data-sudam-theme="heritage"] .sd-hero-title{
+  color:#E1D5AF!important;
+}
+html[data-sudam-theme="editorial"] .sd-hero-copy h1,
+html[data-sudam-theme="editorial"] .sd-hero-title{
+  color:#EAC9C3!important;
+}
+
+/* ---------------------------------------------------------
+   TRUST ICONS
+   PNG files are normalized so both visible drawings occupy
+   the same 88px height on the same 128px transparent canvas.
+   No per-icon transform is needed anymore.
+   --------------------------------------------------------- */
+.sd-trust-icon--image{
+  width:134px!important;
+  height:134px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0 auto!important;
+  overflow:visible!important;
+}
+.sd-trust-icon--image img,
+.sd-trust-item:nth-child(1) .sd-trust-icon--image img,
+.sd-trust-item:nth-child(2) .sd-trust-icon--image img{
+  width:134px!important;
+  height:134px!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  transform:none!important;
+  margin:0!important;
+}
+.sd-trust{
+  padding-top:36px!important;
+  padding-bottom:36px!important;
+}
+.sd-trust-caption{
+  margin-bottom:9px!important;
+}
+.sd-trust-grid{
+  gap:2px!important;
+}
+.sd-trust-item{
+  padding:0 2px!important;
+  gap:0!important;
+}
+.sd-trust-item strong{
+  margin-top:-2px!important;
+}
+
+/* ---------------------------------------------------------
+   FOOTER FAMILY SITE
+   Ensure button text remains readable against every footer tone.
+   --------------------------------------------------------- */
+.sd-footer .sd-family--footer .sd-family-btn{
+  color:#FFF4DF!important;
+  background:rgba(35,23,15,.32)!important;
+  border:1px solid rgba(255,238,210,.48)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03)!important;
+  font-weight:650!important;
+  opacity:1!important;
+}
+.sd-footer .sd-family--footer .sd-family-btn:hover,
+.sd-footer .sd-family--footer .sd-family-btn:focus-visible,
+.sd-footer .sd-family--footer.is-open .sd-family-btn,
+.sd-footer .sd-family--footer .sd-family-btn[aria-expanded="true"]{
+  color:#FFFFFF!important;
+  background:rgba(91,61,40,.72)!important;
+  border-color:rgba(255,230,190,.72)!important;
+}
+
+/* ---------------------------------------------------------
+   BOTTOM CTA — KakaoTalk Channel
+   Previous SVG was only a generic speech bubble.
+   Keep only the icon in Kakao Yellow / black.
+   --------------------------------------------------------- */
+.sd-bottom-cta>a:last-child .sd-cta-icon{
+  width:25px!important;
+  height:25px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:7px!important;
+  background:#FEE500!important;
+  color:#191919!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark{
+  width:24px!important;
+  height:24px!important;
+  display:block!important;
+  overflow:visible!important;
+  fill:none!important;
+  stroke:none!important;
+}
+.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark path{
+  fill:#191919!important;
+}
+.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark text{
+  fill:#FEE500!important;
+}
+
+/* Do not let old generic icon fill rules distort the new mark */
+.sd-bottom-cta>a:last-child .sd-cta-icon svg.sd-kakao-channel-mark *{
+  stroke:none!important;
+}
+
+@media(max-width:390px){
+  .sd-trust{
+    padding-top:31px!important;
+    padding-bottom:31px!important;
+  }
+  .sd-trust-icon--image{
+    width:124px!important;
+    height:124px!important;
+  }
+  .sd-trust-icon--image img,
+  .sd-trust-item:nth-child(1) .sd-trust-icon--image img,
+  .sd-trust-item:nth-child(2) .sd-trust-icon--image img{
+    width:124px!important;
+    height:124px!important;
+  }
+}
