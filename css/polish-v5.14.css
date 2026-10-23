@@ -1,0 +1,153 @@
+@charset "utf-8";
+/* SUDAM v5.14 — trust density + hero emphasis */
+
+/* ---------------------------------------------------------
+   HERO — main copy larger / bolder
+   --------------------------------------------------------- */
+.sd-hero-copy .sd-hero-kicker,
+.sd-hero-copy .sd-hero-eyebrow{
+  font-weight:700!important;
+}
+.sd-hero-copy h1,
+.sd-hero-title{
+  font-size:44px!important;
+  line-height:1.18!important;
+  font-weight:800!important;
+  letter-spacing:-.035em!important;
+}
+.sd-hero-copy h1 .sd-hero-pre,
+.sd-hero-title .sd-hero-pre,
+.sd-hero-copy .sd-hero-pre{
+  font-size:27px!important;
+  line-height:1.25!important;
+  font-weight:700!important;
+}
+.sd-hero-copy .sd-hero-sub,
+.sd-hero-copy>p{
+  font-size:16.5px!important;
+  line-height:1.62!important;
+  font-weight:500!important;
+}
+
+/* ---------------------------------------------------------
+   TRUST — reduce empty space around enlarged icons
+   --------------------------------------------------------- */
+.sd-trust{
+  padding-top:54px!important;
+  padding-bottom:54px!important;
+  padding-left:40px!important;
+  padding-right:40px!important;
+}
+.sd-trust-caption{
+  margin-bottom:22px!important;
+}
+.sd-trust-grid{
+  gap:14px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.sd-trust-item{
+  padding:8px 8px 6px!important;
+  gap:8px!important;
+}
+.sd-trust-item .sd-trust-icon,
+.sd-trust-item img,
+.sd-trust-item picture{
+  margin-bottom:6px!important;
+}
+.sd-trust-item strong{
+  margin-top:0!important;
+  margin-bottom:3px!important;
+}
+.sd-trust-item p,
+.sd-trust-item small{
+  margin-top:0!important;
+}
+
+/* Compact the center divider area too */
+.sd-trust-grid:before,
+.sd-trust-grid:after{
+  top:10%!important;
+  bottom:10%!important;
+}
+
+/* ---------------------------------------------------------
+   TRUST FRAME — slightly rounded, still refined
+   --------------------------------------------------------- */
+.sd-trust:before{
+  left:20px!important;
+  right:20px!important;
+  top:20px!important;
+  bottom:20px!important;
+  border-radius:8px!important;
+}
+.sd-trust:after{
+  left:28px!important;
+  right:28px!important;
+  top:28px!important;
+  bottom:28px!important;
+  border-radius:5px!important;
+}
+
+/* Keep default decorative leaves visually close to the frame */
+html[data-sudam-theme="default"] .sd-trust-particle--left{
+  left:-66px!important;
+  top:-34px!important;
+}
+html[data-sudam-theme="default"] .sd-trust-particle--right{
+  right:-66px!important;
+  bottom:-48px!important;
+}
+
+@media(max-width:390px){
+  .sd-hero-copy h1,
+  .sd-hero-title{
+    font-size:40px!important;
+    line-height:1.17!important;
+  }
+  .sd-hero-copy h1 .sd-hero-pre,
+  .sd-hero-title .sd-hero-pre,
+  .sd-hero-copy .sd-hero-pre{
+    font-size:25px!important;
+  }
+  .sd-hero-copy .sd-hero-sub,
+  .sd-hero-copy>p{
+    font-size:15.8px!important;
+  }
+
+  .sd-trust{
+    padding-top:46px!important;
+    padding-bottom:46px!important;
+    padding-left:32px!important;
+    padding-right:32px!important;
+  }
+  .sd-trust-caption{
+    margin-bottom:18px!important;
+  }
+  .sd-trust-grid{
+    gap:8px!important;
+  }
+  .sd-trust-item{
+    padding:5px 5px 4px!important;
+    gap:5px!important;
+  }
+  .sd-trust-item .sd-trust-icon,
+  .sd-trust-item img,
+  .sd-trust-item picture{
+    margin-bottom:4px!important;
+  }
+  .sd-trust:before{
+    left:14px!important;
+    right:14px!important;
+    top:16px!important;
+    bottom:16px!important;
+    border-radius:7px!important;
+  }
+  .sd-trust:after{
+    left:21px!important;
+    right:21px!important;
+    top:23px!important;
+    bottom:23px!important;
+    border-radius:4px!important;
+  }
+}
