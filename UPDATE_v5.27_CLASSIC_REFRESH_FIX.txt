@@ -1,0 +1,21 @@
+SUDAM v5.27 — 1안 강제 새로고침 멈춤 현상 수정
+
+원인 구조
+- 저장된 1안을 <head>에서 DOM 생성 전에 즉시 적용
+- 기존 main.js의 viewport reveal과 새 motion-v5.23.js가 별도 시스템으로 존재
+- '기존에서 1안 클릭'과 '1안 저장 상태로 강제 새로고침'이 서로 다른 초기화 경로를 사용
+- 새 모션은 페이지 최초 로드 시점의 테마만 보고 초기화되어 테마 클릭 전환과 새로고침 동작도 일치하지 않았음
+
+수정
+1. 저장 테마를 <head>에서 바로 렌더링하지 않고 pending 값으로만 보관
+2. DOM 생성 뒤 main.js에서 저장 테마 적용
+3. 기존 main.js reveal은 원안(default) 최초 로드에서만 동작
+4. 1~4안은 motion-v5.23.js 한 시스템만 사용
+5. 테마 변경 시 sudam:themechange 이벤트로 모션 lifecycle 동기화
+6. IntersectionObserver는 한 개만 유지하고 테마 변경 시 정리/재생성
+7. MutationObserver 제거
+8. 1.8초 안전장치: 옵저버가 멈춰도 숨겨진 콘텐츠 강제 노출
+9. 지도는 모션 대상에서 완전 제외
+10. 하단 고정 메뉴는 기존 is-hidden 상태를 이용한 CSS transition으로 처리
+
+기존 디자인/이미지/서브페이지는 변경하지 않습니다.

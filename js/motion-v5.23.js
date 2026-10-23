@@ -1,16 +1,28 @@
-/* SUDAM v5.25-safe motion system — alternate themes only */
+/* SUDAM v5.27 — stable alternate-theme motion lifecycle */
 (function(){
   'use strict';
 
-  var root = document.documentElement;
+  var root=document.documentElement;
+  var io=null;
+  var failTimer=0;
+  var marked=false;
 
-  function isAltTheme(){
-    var theme = root.getAttribute('data-sudam-theme') || 'default';
-    return theme !== 'default';
+  function currentTheme(){
+    return root.getAttribute('data-sudam-theme')||'default';
+  }
+  function isAlt(theme){
+    return theme && theme!=='default';
+  }
+  function reduceMotion(){
+    return window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   function markTargets(){
-    var headingSelectors = [
+    if(marked) return;
+    marked=true;
+
+    [
       '.sd-trust-caption',
       '#strength > .sd-kicker','#strength > .sd-title',
       '#meeting > .sd-kicker','#meeting > .sd-title',
@@ -18,116 +30,128 @@
       '#space > .sd-kicker','#space > .sd-title',
       '#reviews > .sd-kicker','#reviews > .sd-title','#reviews > .sd-desc',
       '#location > .sd-kicker','#location > .sd-title','#location > .sd-desc'
-    ];
-
-    headingSelectors.forEach(function(sel){
+    ].forEach(function(sel){
       document.querySelectorAll(sel).forEach(function(el){
         el.setAttribute('data-sd-motion','heading');
       });
     });
 
-    var trustItems = document.querySelectorAll('.sd-trust-item');
-    if(trustItems[0]) trustItems[0].setAttribute('data-sd-motion','left');
-    if(trustItems[1]) trustItems[1].setAttribute('data-sd-motion','right');
+    var trust=document.querySelectorAll('.sd-trust-item');
+    if(trust[0]) trust[0].setAttribute('data-sd-motion','left');
+    if(trust[1]) trust[1].setAttribute('data-sd-motion','right');
 
-    document.querySelectorAll('#strength .sd-slider, #space .sd-slider, .sd-review-grid').forEach(function(el){
-      el.setAttribute('data-sd-motion','media');
-    });
+    document.querySelectorAll('#strength .sd-slider,#space .sd-slider,.sd-review-grid')
+      .forEach(function(el){el.setAttribute('data-sd-motion','media')});
 
-    document.querySelectorAll('.sd-meeting-card').forEach(function(el,i){
-      el.setAttribute('data-sd-motion', i % 2 ? 'card-right' : 'card-left');
-      el.style.setProperty('--sd-motion-delay',(i*45)+'ms');
-    });
+    document.querySelectorAll('.sd-meeting-card,.sd-menu-card')
+      .forEach(function(el,i){
+        el.setAttribute('data-sd-motion',i%2?'card-right':'card-left');
+        el.style.setProperty('--sd-motion-delay',Math.min(i*50,150)+'ms');
+      });
 
-    document.querySelectorAll('.sd-menu-card').forEach(function(el,i){
-      el.setAttribute('data-sd-motion', i % 2 ? 'card-right' : 'card-left');
-      el.style.setProperty('--sd-motion-delay',(i*55)+'ms');
-    });
+    document.querySelectorAll('.sd-menu-cta')
+      .forEach(function(el){el.setAttribute('data-sd-motion','cta')});
 
-    /* CTA can animate, but the map itself must never be hidden. */
-    document.querySelectorAll('.sd-menu-cta').forEach(function(el){
-      el.setAttribute('data-sd-motion','cta');
-    });
+    document.querySelectorAll('.sd-location-row,.sd-location-valet')
+      .forEach(function(el,i){
+        el.setAttribute('data-sd-motion',i%2?'card-right':'card-left');
+        el.style.setProperty('--sd-motion-delay',Math.min(i*45,135)+'ms');
+      });
+  }
 
-    document.querySelectorAll('.sd-location-row, .sd-location-valet').forEach(function(el,i){
-      el.setAttribute('data-sd-motion', i % 2 ? 'card-right' : 'card-left');
-      el.style.setProperty('--sd-motion-delay',(i*45)+'ms');
-    });
+  function allTargets(){
+    return Array.prototype.slice.call(document.querySelectorAll('[data-sd-motion]'));
   }
 
   function revealAll(){
-    document.querySelectorAll('[data-sd-motion]').forEach(function(el){
+    allTargets().forEach(function(el){
       el.classList.add('is-inview');
-      el.style.animationDelay = '0ms';
     });
   }
 
-  function observe(){
-    var els = Array.prototype.slice.call(document.querySelectorAll('[data-sd-motion]'));
-    if(!els.length) return;
+  function stopObserver(){
+    if(io){io.disconnect();io=null}
+    if(failTimer){clearTimeout(failTimer);failTimer=0}
+  }
 
-    if(!('IntersectionObserver' in window)){
+  function startObserver(){
+    stopObserver();
+    var targets=allTargets();
+    if(!targets.length) return;
+
+    if(reduceMotion() || !('IntersectionObserver' in window)){
       revealAll();
       return;
     }
 
-    var io = new IntersectionObserver(function(entries){
+    io=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(!entry.isIntersecting) return;
-        var el = entry.target;
-        var delay = getComputedStyle(el).getPropertyValue('--sd-motion-delay').trim();
-        if(delay) el.style.animationDelay = delay;
+        var el=entry.target;
+        var delay=getComputedStyle(el).getPropertyValue('--sd-motion-delay').trim();
+        if(delay) el.style.animationDelay=delay;
         el.classList.add('is-inview');
         io.unobserve(el);
       });
     },{
-      threshold:0.08,
-      rootMargin:'0px 0px -4% 0px'
+      threshold:0.06,
+      rootMargin:'0px 0px -3% 0px'
     });
 
-    els.forEach(function(el){ io.observe(el); });
+    targets.forEach(function(el){
+      el.classList.remove('is-inview');
+      io.observe(el);
+    });
 
-    /* Hard fail-safe: never leave content hidden. */
-    setTimeout(function(){
-      root.classList.add('sd-motion-failsafe');
+    /* Safety only: never let content remain hidden if browser observer stalls. */
+    failTimer=window.setTimeout(function(){
       revealAll();
-      io.disconnect();
-    }, 2600);
+      stopObserver();
+    },1800);
   }
 
-  function bootChrome(){
-    var hero = document.querySelector('.sd-hero');
+  function activate(){
+    markTargets();
+
+    /* Remove classes from the old/default reveal system if the user
+       changed from default to an alternative theme after page load. */
+    document.querySelectorAll('.sd-reveal').forEach(function(el){
+      el.classList.remove('sd-reveal','is-visible');
+      el.style.removeProperty('--sd-reveal-delay');
+    });
+
+    root.classList.remove('sd-motion-ready','sd-motion-failsafe');
+    root.classList.add('sd-motion-v527');
+
+    var hero=document.querySelector('.sd-hero');
     if(hero) hero.classList.add('sd-motion-hero');
 
-    var bottom = document.querySelector('.sd-bottom-cta');
-    if(bottom){
-      var play = function(){
-        if(!bottom.classList.contains('is-hidden')){
-          bottom.classList.add('sd-motion-bottom-enter');
-        }
-      };
-      play();
-      if('MutationObserver' in window){
-        var mo = new MutationObserver(play);
-        mo.observe(bottom,{attributes:true,attributeFilter:['class']});
-        setTimeout(function(){ play(); mo.disconnect(); },1800);
-      }
+    startObserver();
+  }
+
+  function deactivate(){
+    stopObserver();
+    revealAll();
+    root.classList.remove('sd-motion-v527','sd-motion-ready','sd-motion-failsafe');
+  }
+
+  function sync(theme){
+    if(isAlt(theme)){
+      activate();
+    }else{
+      deactivate();
     }
   }
 
+  window.addEventListener('sudam:themechange',function(e){
+    sync((e.detail&&e.detail.theme)||currentTheme());
+  });
+
   function init(){
-    if(!isAltTheme()) return;
-
-    markTargets();
-
-    /* Only now do CSS hidden states become eligible. */
-    root.classList.add('sd-motion-ready');
-
-    bootChrome();
-    observe();
+    sync(currentTheme());
   }
 
-  if(document.readyState === 'loading'){
+  if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',init,{once:true});
   }else{
     init();

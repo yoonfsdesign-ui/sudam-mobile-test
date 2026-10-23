@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.27 — classic hard-refresh stability
+   New motion namespace: .sd-motion-v527
+   ========================================================= */
+
+/* No JS / default / inactive state => content is always visible. */
+html:not(.sd-motion-v527) [data-sd-motion]{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  clip-path:none!important;
+  filter:none!important;
+}
+
+/* Header & primary nav: run once when an alternative theme activates. */
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-brandbar{
+  animation:sd527Header .46s cubic-bezier(.22,.61,.36,1) both!important;
+}
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-primary-nav{
+  animation:sd527Nav .56s cubic-bezier(.22,.61,.36,1) .05s both!important;
+}
+@keyframes sd527Header{
+  from{opacity:.6;transform:translateY(-7px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes sd527Nav{
+  from{opacity:.65;clip-path:inset(0 30% 0 30%)}
+  to{opacity:1;clip-path:inset(0 0 0 0)}
+}
+
+/* Hero */
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-hero.sd-motion-hero .sd-hero-media img{
+  animation:sd527HeroMedia .82s cubic-bezier(.22,.61,.36,1) both!important;
+}
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-hero.sd-motion-hero .sd-hero-copy{
+  animation:sd527HeroCopy .58s cubic-bezier(.22,.61,.36,1) .10s both!important;
+}
+@keyframes sd527HeroMedia{
+  from{opacity:.9;transform:scale(1.018)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes sd527HeroCopy{
+  from{opacity:0;transform:translateX(-12px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* Scroll motions — only while the v5.27 system is active. */
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="heading"]:not(.is-inview){
+  opacity:0;
+  transform:translateX(-10px);
+}
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="media"]:not(.is-inview){
+  opacity:0;
+  transform:scale(.99);
+}
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="left"]:not(.is-inview),
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-left"]:not(.is-inview){
+  opacity:0;
+  transform:translateX(-10px);
+}
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="right"]:not(.is-inview),
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-right"]:not(.is-inview){
+  opacity:0;
+  transform:translateX(10px);
+}
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="cta"]:not(.is-inview){
+  opacity:0;
+  transform:scale(.985);
+}
+
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion].is-inview{
+  animation:sd527Reveal .48s cubic-bezier(.22,.61,.36,1) both!important;
+}
+@keyframes sd527Reveal{
+  to{opacity:1;transform:none}
+}
+
+/* Bottom fixed CTA uses existing is-hidden state; no MutationObserver needed. */
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta{
+  transition:
+    opacity .32s ease,
+    transform .38s cubic-bezier(.22,.61,.36,1),
+    box-shadow .22s ease!important;
+}
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta.is-hidden{
+  opacity:0!important;
+  transform:translateY(10px)!important;
+  pointer-events:none!important;
+}
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta:not(.is-hidden){
+  opacity:1!important;
+  transform:translateY(0)!important;
+}
+
+/* Map is never a motion target. */
+.sd-map,
+.sd-kakao-map-shell,
+.sd-kakao-map-canvas,
+.sd-kakao-map-fallback{
+  animation:none;
+}
+
+/* Theme selector stays interactive above animated content. */
+.sd-theme-compare{
+  z-index:12000!important;
+  pointer-events:auto!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  html.sd-motion-v527 [data-sd-motion],
+  html.sd-motion-v527 .sd-brandbar,
+  html.sd-motion-v527 .sd-primary-nav,
+  html.sd-motion-v527 .sd-hero-media img,
+  html.sd-motion-v527 .sd-hero-copy,
+  html.sd-motion-v527 .sd-bottom-cta{
+    animation:none!important;
+    transition:none!important;
+    opacity:1!important;
+    transform:none!important;
+    clip-path:none!important;
+    filter:none!important;
+  }
+}

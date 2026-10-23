@@ -330,10 +330,17 @@
   familyMenu?.addEventListener('keydown',e=>{if(e.key==='Escape'){closeFamily();familyBtn?.focus()}});
 
 
-  // Subtle motion system: reveal content as it enters the viewport.
-  // Keeps the site lively without changing layout or creating distracting motion.
+  // Original/default reveal only.
+  // Alternative themes use motion-v5.23.js so hard refresh never runs two
+  // independent viewport animation observers at the same time.
   const reduceMotionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(!reduceMotionQuery.matches){
+  let bootTheme='default';
+  try{
+    bootTheme=document.documentElement.getAttribute('data-sudam-initial-theme')
+      ||localStorage.getItem('sudam-tone-theme')
+      ||'default';
+  }catch(e){}
+  if(!reduceMotionQuery.matches && bootTheme==='default'){
     body.classList.add('sd-motion-ready');
     const revealGroups=[
       '.sd-trust-caption','.sd-trust-item',
@@ -386,7 +393,9 @@
 
   function applyToneTheme(theme,save=true){
     const selected=validThemes.has(theme)?theme:'default';
+    const previous=document.documentElement.getAttribute('data-sudam-theme')||'default';
     document.documentElement.setAttribute('data-sudam-theme',selected);
+    document.documentElement.removeAttribute('data-sudam-initial-theme');
     themeButtons.forEach(btn=>{
       const active=btn.dataset.themeChoice===selected;
       btn.setAttribute('aria-pressed',String(active));
@@ -395,6 +404,9 @@
     if(save){
       try{localStorage.setItem(THEME_STORAGE_KEY,selected)}catch(e){}
     }
+    window.dispatchEvent(new CustomEvent('sudam:themechange',{
+      detail:{theme:selected,previous}
+    }));
     window.dispatchEvent(new Event('resize'));
   }
 
