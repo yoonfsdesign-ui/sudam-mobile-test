@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.26
+   Strength / Space slider arrow buttons:
+   center the 40px circular buttons on the image boundary.
+   ========================================================= */
+
+#strength .sd-slider,
+#space .sd-slider{
+  overflow:visible!important;
+}
+
+/* 40px button => -20px places its center exactly on the image edge */
+#strength .sd-slider > .sd-slider-prev,
+#space .sd-slider > .sd-slider-prev{
+  left:-20px!important;
+  right:auto!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  z-index:7!important;
+}
+
+#strength .sd-slider > .sd-slider-next,
+#space .sd-slider > .sd-slider-next{
+  right:-20px!important;
+  left:auto!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  z-index:7!important;
+}
+
+/* Keep only the image viewport clipped; arrows remain outside it */
+#strength .sd-slider-window,
+#space .sd-slider-window{
+  overflow:hidden!important;
+}
+
+/* On the narrowest screens keep a tiny safety gap from the device edge */
+@media(max-width:359px){
+  #strength .sd-slider > .sd-slider-prev,
+  #space .sd-slider > .sd-slider-prev{
+    left:-16px!important;
+  }
+  #strength .sd-slider > .sd-slider-next,
+  #space .sd-slider > .sd-slider-next{
+    right:-16px!important;
+  }
+}
