@@ -1,0 +1,342 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.19 — Theme 2 "Korean Premium Minimal" rework
+   Goal: Black Minimal -> Warm Graphite Minimal
+   Scope: ONLY html[data-sudam-theme="minimal"]
+   ========================================================= */
+
+/* ---------- palette ---------- */
+html[data-sudam-theme="minimal"]{
+  --sd-bg:#FBFAF7!important;
+  --sd-bg-soft:#F7F4EF!important;
+  --sd-bg-warm:#E9E4DC!important;
+
+  --sd-brown-950:#2D2925!important;
+  --sd-brown-900:#332E29!important;
+  --sd-brown-800:#474039!important;
+  --sd-brown-700:#5B5249!important;
+  --sd-brown-500:#817568!important;
+
+  --sd-gold:#A8957E!important;
+  --sd-gold-dark:#86735F!important;
+  --sd-text:#302C28!important;
+  --sd-sub:#71685F!important;
+  --sd-line:#D8D1C7!important;
+  --sd-white:#FFFEFB!important;
+  --sd-shadow:0 10px 28px rgba(52,45,38,.08)!important;
+
+  --tone-brand:#332E29!important;
+  --tone-page:#FBFAF7!important;
+  --tone-nav-bg:#FCFBF8!important;
+  --tone-nav-text:#332E29!important;
+  --tone-accent:#8F7B67!important;
+  --tone-accent-2:#B8A997!important;
+  --tone-accent-soft:#DED6CC!important;
+  --tone-card:#FFFDF9!important;
+  --tone-card-border:#D9D2C9!important;
+  --tone-meeting-bg:#EAE5DE!important;
+  --tone-meeting-card:#FBF9F5!important;
+  --tone-menu-bg:#FBFAF7!important;
+  --tone-space-bg:#4A433D!important;
+  --tone-space-title:#FFF9F1!important;
+  --tone-reviews-bg:#F2EEE8!important;
+  --tone-location-bg:#FBFAF7!important;
+  --tone-footer:#302B27!important;
+  --tone-footer-text:#EDE3D8!important;
+  --tone-control-bg:#FBF9F5!important;
+  --tone-control-text:#332E29!important;
+  --tone-control-border:#D8D1C7!important;
+  --tone-button-bg:#4A433D!important;
+  --tone-button-text:#FFF9F2!important;
+  --tone-bottom-bg:#F5F1EB!important;
+  --tone-bottom-text:#332E29!important;
+  --tone-bottom-emphasis:#D9CABB!important;
+  --tone-bottom-emphasis-text:#302A25!important;
+  --tone-chip-bg:#ECE6DF!important;
+  --tone-chip-text:#534A42!important;
+}
+
+/* ---------- page / header ---------- */
+html[data-sudam-theme="minimal"] body{
+  background:#EAE6E0!important;
+  color:#302C28!important;
+}
+html[data-sudam-theme="minimal"] .sd-page{
+  background:#FBFAF7!important;
+}
+html[data-sudam-theme="minimal"] .sd-brandbar{
+  background:#332E29!important;
+  border-bottom-color:rgba(255,255,255,.06)!important;
+}
+html[data-sudam-theme="minimal"] .sd-primary-nav{
+  background:rgba(252,251,248,.985)!important;
+  border-color:#DED8D0!important;
+}
+html[data-sudam-theme="minimal"] .sd-primary-nav a{
+  color:#3A342E!important;
+}
+html[data-sudam-theme="minimal"] .sd-primary-nav > a + a:before,
+html[data-sudam-theme="minimal"] .sd-primary-nav > .sd-primary-links > a + a:before{
+  background:rgba(112,96,79,.22)!important;
+}
+
+/* ---------- hero: retain photography, avoid obituary-like grayscale ---------- */
+html[data-sudam-theme="minimal"] .sd-hero-media img{
+  filter:grayscale(.16) saturate(.78) contrast(1.02) brightness(1.035)!important;
+}
+html[data-sudam-theme="minimal"] .sd-hero-media:after{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(249,246,241,.88) 0%,
+      rgba(249,246,241,.61) 39%,
+      rgba(249,246,241,.12) 70%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(231,225,217,.54) 0%,
+      rgba(231,225,217,.10) 20%,
+      rgba(0,0,0,0) 44%
+    )!important;
+}
+html[data-sudam-theme="minimal"] .sd-hero-eyebrow{
+  color:#8E7964!important;
+}
+html[data-sudam-theme="minimal"] .sd-hero h1,
+html[data-sudam-theme="minimal"] .sd-hero-title{
+  color:#332E29!important;
+  font-weight:650!important;
+}
+html[data-sudam-theme="minimal"] .sd-hero-copy>p,
+html[data-sudam-theme="minimal"] .sd-hero-copy .sd-hero-sub{
+  color:#665E56!important;
+}
+
+/* ---------- typography: softer graphic minimal ---------- */
+html[data-sudam-theme="minimal"] .sd-title{
+  color:#332E29!important;
+  font-weight:500!important;
+  letter-spacing:-.032em!important;
+}
+html[data-sudam-theme="minimal"] .sd-kicker{
+  color:#8B7967!important;
+  letter-spacing:.20em!important;
+}
+html[data-sudam-theme="minimal"] .sd-title:after,
+html[data-sudam-theme="minimal"] .sd-course-knot{
+  background-color:#A6937E!important;
+}
+
+/* ---------- trust: biggest funeral trigger -> warm stone, not black ---------- */
+html[data-sudam-theme="minimal"] .sd-trust{
+  background:#E7E1D9!important;
+  color:#3A342F!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust-caption,
+html[data-sudam-theme="minimal"] .sd-trust-item strong{
+  color:#3C3630!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust-em--warm{
+  color:#8D735A!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust-em--deep{
+  color:#2F2B27!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust-grid:after{
+  background:#C5B9AC!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust-icon--image img{
+  filter:none!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust:before{
+  border-color:rgba(157,132,104,.52)!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.28),
+    0 8px 24px rgba(80,65,50,.04)!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust:after{
+  border-color:rgba(157,132,104,.13)!important;
+}
+
+/* ---------- meeting: warm stone / no black stripe ---------- */
+html[data-sudam-theme="minimal"] .sd-meeting{
+  background:#EAE5DE!important;
+  background-image:none!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card{
+  background:#FBF9F5!important;
+  border:1px solid #D8D0C6!important;
+  box-shadow:0 7px 20px rgba(62,52,43,.055)!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card .no{
+  color:#9B836C!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card h3{
+  color:#37312C!important;
+}
+html[data-sudam-theme="minimal"] .sd-meeting-card .go{
+  color:#564A40!important;
+  border-color:#BFB2A4!important;
+  background:#F4F0EA!important;
+}
+
+/* ---------- menu: off-white with graphite/taupe accents ---------- */
+html[data-sudam-theme="minimal"] #menu{
+  background:#FBFAF7!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-card{
+  background:#FFFDF9!important;
+  border-color:#DDD6CD!important;
+  box-shadow:0 7px 20px rgba(64,53,43,.045)!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-card .tag-signature{
+  color:#836E59!important;
+  background:#EFE8DF!important;
+  border-color:#D8CCBF!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-card .tag-premium{
+  color:#FFF9F1!important;
+  background:#655B52!important;
+  border-color:#655B52!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-card .price{
+  color:#756553!important;
+}
+
+/* consultation CTA: dark graphite, not black; no background photo */
+html[data-sudam-theme="minimal"] .sd-menu-cta{
+  background:#4A433D!important;
+  color:#FFF9F1!important;
+  border-color:#4A433D!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-cta-bg{
+  display:none!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-cta:after{
+  background:linear-gradient(105deg,#4A433D 0%,#5A5149 100%)!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-cta small{
+  color:#D8CBBE!important;
+}
+html[data-sudam-theme="minimal"] .sd-menu-cta>b{
+  background:#F0E9E1!important;
+  color:#423A34!important;
+  border-color:#F0E9E1!important;
+}
+
+/* ---------- space: keep one dramatic dark section, but warm graphite ---------- */
+html[data-sudam-theme="minimal"] .sd-space{
+  background:#4A433D!important;
+}
+html[data-sudam-theme="minimal"] .sd-space>.sd-title{
+  color:#FFF8EE!important;
+}
+html[data-sudam-theme="minimal"] .sd-space>.sd-kicker{
+  color:#CCB9A4!important;
+  background:none!important;
+}
+html[data-sudam-theme="minimal"] .sd-space .sd-title:after{
+  background-color:#C6AE94!important;
+}
+html[data-sudam-theme="minimal"] #space .sd-slide-copy small{
+  color:#D8BE9F!important;
+}
+html[data-sudam-theme="minimal"] #space .sd-slide-link{
+  color:#E8D0B3!important;
+}
+
+/* ---------- reviews / location: warm whites, not clinical gray ---------- */
+html[data-sudam-theme="minimal"] .sd-reviews{
+  background:#F2EEE8!important;
+  background-image:none!important;
+}
+html[data-sudam-theme="minimal"] .sd-review-card{
+  background:#FFFDF9!important;
+  border-color:#DDD5CC!important;
+}
+html[data-sudam-theme="minimal"] .sd-review-tags span{
+  background:#EBE5DE!important;
+  color:#5B5148!important;
+}
+html[data-sudam-theme="minimal"] .sd-location{
+  background:#FBFAF7!important;
+}
+html[data-sudam-theme="minimal"] .sd-map,
+html[data-sudam-theme="minimal"] .sd-location-row,
+html[data-sudam-theme="minimal"] .sd-location-valet,
+html[data-sudam-theme="minimal"] .sd-valet-highlight{
+  background:#F4F0EA!important;
+  border-color:#DDD4CA!important;
+}
+
+/* ---------- controls / buttons ---------- */
+html[data-sudam-theme="minimal"] .sd-slider-btn{
+  background:#F8F5F0!important;
+  color:#403932!important;
+  border-color:#CFC4B8!important;
+}
+html[data-sudam-theme="minimal"] .sd-slider-btn:hover{
+  background:#EAE3DB!important;
+}
+html[data-sudam-theme="minimal"] .sd-review-total,
+html[data-sudam-theme="minimal"] .sd-link{
+  color:#796652!important;
+}
+
+/* ---------- footer: warm charcoal, not funeral black ---------- */
+html[data-sudam-theme="minimal"] .sd-footer{
+  background:#302B27!important;
+  color:#EDE3D8!important;
+}
+html[data-sudam-theme="minimal"] .sd-footer:before{
+  background:#302B27!important;
+  background-image:none!important;
+}
+html[data-sudam-theme="minimal"] .sd-footer .sd-family-btn{
+  background:#E6DDD4!important;
+  color:#342F2A!important;
+  border-color:#E6DDD4!important;
+}
+html[data-sudam-theme="minimal"] .sd-language--footer .sd-language-btn{
+  background:#443C36!important;
+  color:#F7EEE5!important;
+  border-color:#655A51!important;
+}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(1){
+  background:#F3ECE4!important;
+  color:#332E29!important;
+}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(2){
+  background:#B7AA9C!important;
+  color:#332E29!important;
+}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(3){
+  background:#5C5249!important;
+  color:#FFF8F0!important;
+}
+html[data-sudam-theme="minimal"] .sd-footer-links a{
+  color:#E8DCCF!important;
+}
+
+/* ---------- bottom CTA: already light; tune to warm minimal ---------- */
+html[data-sudam-theme="minimal"]{
+  --cta-left:#F4F0EA!important;
+  --cta-left-text:#332E29!important;
+  --cta-mid:#DCCFC1!important;
+  --cta-mid-text:#302A25!important;
+  --cta-right:#EAE3DA!important;
+  --cta-right-text:#3D3630!important;
+}
+
+/* ---------- theme comparison control ---------- */
+html[data-sudam-theme="minimal"] .sd-theme-compare{
+  border-color:#CFC6BC!important;
+  background:rgba(251,249,245,.92)!important;
+}
+html[data-sudam-theme="minimal"] .sd-theme-compare button{
+  color:#655B52!important;
+}
+html[data-sudam-theme="minimal"] .sd-theme-compare button.is-active{
+  background:#514840!important;
+  color:#FFF8F0!important;
+}
