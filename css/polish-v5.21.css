@@ -1,0 +1,259 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.21
+   - original/default theme untouched
+   - alternate themes: icon/line tone consistency
+   - Theme 2 trust section refined from blotchy hanji to
+     clean paper + charcoal graphic rhythm
+   - Theme 2 / Theme 3 SPACE kicker box removed
+   ========================================================= */
+
+/* =========================================================
+   THEME 2 — Korean Premium Minimal
+   reference direction:
+   warm off-white + charcoal + restrained taupe
+   ========================================================= */
+
+/* v5.20의 번짐형 먹 얼룩은 제거하고,
+   레퍼런스처럼 밝은 종이 바탕 + 차콜 선/아이콘으로 정리 */
+html[data-sudam-theme="minimal"] .sd-trust{
+  background:
+    repeating-linear-gradient(
+      118deg,
+      rgba(45,43,40,.018) 0 1px,
+      rgba(255,255,255,0) 1px 16px
+    ),
+    repeating-linear-gradient(
+      22deg,
+      rgba(45,43,40,.012) 0 1px,
+      rgba(255,255,255,0) 1px 20px
+    ),
+    linear-gradient(180deg,#F8F6F2 0%,#F0ECE6 100%)!important;
+  color:#2F2C29!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.65),
+    0 8px 22px rgba(42,38,34,.04)!important;
+}
+
+/* 이전 v5.20의 흐린 먹 얼룩 pseudo 제거 */
+html[data-sudam-theme="minimal"] .sd-trust .sd-trust-grid:before,
+html[data-sudam-theme="minimal"] .sd-trust .sd-trust-grid:after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  filter:none!important;
+  opacity:0!important;
+}
+
+/* 대신 두 콘텐츠 사이 얇은 차콜/토프 라인으로 구조감 */
+html[data-sudam-theme="minimal"] .sd-trust-item + .sd-trust-item{
+  border-left:1px solid rgba(82,75,68,.24)!important;
+}
+
+/* 프레임도 골드가 아니라 얇은 웜그레이/차콜 */
+html[data-sudam-theme="minimal"] .sd-trust:before{
+  border-color:rgba(72,67,62,.28)!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.34),
+    0 7px 20px rgba(45,40,36,.03)!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust:after{
+  border-color:rgba(72,67,62,.09)!important;
+}
+
+html[data-sudam-theme="minimal"] .sd-trust-caption{
+  color:#46413C!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust-em--warm{
+  color:#756A60!important;
+}
+html[data-sudam-theme="minimal"] .sd-trust-em--deep,
+html[data-sudam-theme="minimal"] .sd-trust-item strong{
+  color:#292623!important;
+}
+
+/* 사용자가 교체한 신뢰 아이콘 파일은 그대로 두고
+   2안에서만 차콜 블랙으로 표시 */
+html[data-sudam-theme="minimal"] .sd-trust-icon--image img{
+  filter:grayscale(1) brightness(.24) contrast(1.22)!important;
+  opacity:.96!important;
+}
+
+/* 정보/기능 아이콘도 동일한 차콜 계열 */
+html[data-sudam-theme="minimal"] .sd-location-row .ico,
+html[data-sudam-theme="minimal"] .sd-valet-title .ico,
+html[data-sudam-theme="minimal"] .sd-copy-address-btn,
+html[data-sudam-theme="minimal"] .sd-meeting-card .no{
+  color:#37332F!important;
+}
+html[data-sudam-theme="minimal"] .sd-slider-btn{
+  color:#393530!important;
+  border-color:#AAA097!important;
+  background:#F7F4EF!important;
+}
+html[data-sudam-theme="minimal"] .sd-dots button,
+html[data-sudam-theme="minimal"] .sd-dot{
+  background:#B9B0A7!important;
+}
+html[data-sudam-theme="minimal"] .sd-dots button.is-active,
+html[data-sudam-theme="minimal"] .sd-dot.is-active{
+  background:#38332F!important;
+}
+
+/* footer sns도 black & white hierarchy */
+html[data-sudam-theme="minimal"] .sd-sns a{
+  border-color:rgba(255,255,255,.26)!important;
+}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(1){
+  background:#EEE8E1!important;
+  color:#292623!important;
+}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(2){
+  background:#A9A096!important;
+  color:#292623!important;
+}
+html[data-sudam-theme="minimal"] .sd-sns a:nth-child(3){
+  background:#3A3531!important;
+  color:#FFF9F2!important;
+}
+
+/* phone icon만 테마 컬러 적용.
+   NAVER/Kakao 브랜드 아이콘은 브랜드 색 유지 */
+html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon{
+  background:#3A3531!important;
+  color:#FFF9F2!important;
+}
+html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon svg,
+html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon svg *{
+  fill:currentColor!important;
+  stroke:currentColor!important;
+}
+
+/* =========================================================
+   THEME 1 — Classic
+   icon / line accents only
+   ========================================================= */
+html[data-sudam-theme="classic"] .sd-trust-icon--image img{
+  filter:grayscale(1) sepia(1) saturate(.75) brightness(.72) contrast(.94)!important;
+}
+html[data-sudam-theme="classic"] .sd-location-row .ico,
+html[data-sudam-theme="classic"] .sd-valet-title .ico,
+html[data-sudam-theme="classic"] .sd-copy-address-btn,
+html[data-sudam-theme="classic"] .sd-meeting-card .no{
+  color:#9E7951!important;
+}
+html[data-sudam-theme="classic"] .sd-slider-btn{
+  color:#6D5039!important;
+  border-color:#CDBBA7!important;
+  background:#F7F0E8!important;
+}
+html[data-sudam-theme="classic"] .sd-dots button.is-active,
+html[data-sudam-theme="classic"] .sd-dot.is-active{
+  background:#9E7951!important;
+}
+html[data-sudam-theme="classic"] .sd-bottom-cta .phone .sd-cta-icon{
+  background:#A9835C!important;
+  color:#FFF9F1!important;
+}
+
+/* =========================================================
+   THEME 3 — Modern Korean Heritage
+   icon / line accents only
+   ========================================================= */
+html[data-sudam-theme="heritage"] .sd-trust-icon--image img{
+  filter:grayscale(1) sepia(.38) hue-rotate(35deg) saturate(1.25) brightness(.64) contrast(.98)!important;
+}
+html[data-sudam-theme="heritage"] .sd-location-row .ico,
+html[data-sudam-theme="heritage"] .sd-valet-title .ico,
+html[data-sudam-theme="heritage"] .sd-copy-address-btn,
+html[data-sudam-theme="heritage"] .sd-meeting-card .no{
+  color:#68724F!important;
+}
+html[data-sudam-theme="heritage"] .sd-slider-btn{
+  color:#4E573D!important;
+  border-color:#ABB19A!important;
+  background:#F0F1E8!important;
+}
+html[data-sudam-theme="heritage"] .sd-dots button.is-active,
+html[data-sudam-theme="heritage"] .sd-dot.is-active{
+  background:#68724F!important;
+}
+html[data-sudam-theme="heritage"] .sd-bottom-cta .phone .sd-cta-icon{
+  background:#66704E!important;
+  color:#F8F7EF!important;
+}
+
+/* =========================================================
+   THEME 4 — Bright Editorial
+   icon / line accents only
+   ========================================================= */
+html[data-sudam-theme="editorial"] .sd-trust-icon--image img{
+  filter:grayscale(1) sepia(.30) hue-rotate(285deg) saturate(1.05) brightness(.75) contrast(.94)!important;
+}
+html[data-sudam-theme="editorial"] .sd-location-row .ico,
+html[data-sudam-theme="editorial"] .sd-valet-title .ico,
+html[data-sudam-theme="editorial"] .sd-copy-address-btn,
+html[data-sudam-theme="editorial"] .sd-meeting-card .no{
+  color:#A26772!important;
+}
+html[data-sudam-theme="editorial"] .sd-slider-btn{
+  color:#735258!important;
+  border-color:#D7BFC1!important;
+  background:#FFF4F0!important;
+}
+html[data-sudam-theme="editorial"] .sd-dots button.is-active,
+html[data-sudam-theme="editorial"] .sd-dot.is-active{
+  background:#A26772!important;
+}
+html[data-sudam-theme="editorial"] .sd-bottom-cta .phone .sd-cta-icon{
+  background:#B67882!important;
+  color:#FFF9F7!important;
+}
+
+/* =========================================================
+   THEME 2 + THEME 3
+   Space & Interior English kicker accidental box removal
+   ========================================================= */
+html[data-sudam-theme="minimal"] #space > .sd-kicker,
+html[data-sudam-theme="heritage"] #space > .sd-kicker{
+  display:block!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  padding:0!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  border:0!important;
+  outline:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:none!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html[data-sudam-theme="minimal"] #space > .sd-kicker::before,
+html[data-sudam-theme="minimal"] #space > .sd-kicker::after,
+html[data-sudam-theme="heritage"] #space > .sd-kicker::before,
+html[data-sudam-theme="heritage"] #space > .sd-kicker::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+/* kicker text color itself stays in each theme */
+html[data-sudam-theme="minimal"] #space > .sd-kicker{
+  color:#B8A58F!important;
+}
+html[data-sudam-theme="heritage"] #space > .sd-kicker{
+  color:#C7CDB3!important;
+}
+
+@media(max-width:390px){
+  html[data-sudam-theme="minimal"] .sd-trust-item + .sd-trust-item{
+    border-left-color:rgba(82,75,68,.20)!important;
+  }
+}
