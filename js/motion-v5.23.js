@@ -1,4 +1,4 @@
-/* SUDAM v5.23 motion system — alternate themes only */
+/* SUDAM v5.25-safe motion system — alternate themes only */
 (function(){
   'use strict';
 
@@ -9,42 +9,7 @@
     return theme !== 'default';
   }
 
-  function bootChrome(){
-    root.classList.add('sd-motion-init');
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        root.classList.add('sd-motion-mounted');
-      });
-    });
-
-    var hero = document.querySelector('.sd-hero');
-    if(hero) hero.classList.add('sd-motion-hero');
-
-    var bottom = document.querySelector('.sd-bottom-cta');
-    if(!bottom) return;
-
-    var played = false;
-    function playBottom(){
-      if(played || !isAltTheme() || bottom.classList.contains('is-hidden')) return;
-      played = true;
-      bottom.classList.add('sd-motion-bottom-enter');
-    }
-
-    playBottom();
-
-    if('MutationObserver' in window){
-      var mo = new MutationObserver(playBottom);
-      mo.observe(bottom,{attributes:true,attributeFilter:['class']});
-      setTimeout(function(){
-        playBottom();
-        if(played) mo.disconnect();
-      },1600);
-    }else{
-      setTimeout(playBottom,700);
-    }
-  }
-
-  function markMotionTargets(){
+  function markTargets(){
     var headingSelectors = [
       '.sd-trust-caption',
       '#strength > .sd-kicker','#strength > .sd-title',
@@ -71,30 +36,38 @@
 
     document.querySelectorAll('.sd-meeting-card').forEach(function(el,i){
       el.setAttribute('data-sd-motion', i % 2 ? 'card-right' : 'card-left');
-      el.style.setProperty('--sd-motion-delay', (i * 55) + 'ms');
+      el.style.setProperty('--sd-motion-delay',(i*45)+'ms');
     });
 
     document.querySelectorAll('.sd-menu-card').forEach(function(el,i){
       el.setAttribute('data-sd-motion', i % 2 ? 'card-right' : 'card-left');
-      el.style.setProperty('--sd-motion-delay', (i * 70) + 'ms');
+      el.style.setProperty('--sd-motion-delay',(i*55)+'ms');
     });
 
-    document.querySelectorAll('.sd-menu-cta, .sd-map').forEach(function(el){
-      el.setAttribute('data-sd-motion','open');
+    /* CTA can animate, but the map itself must never be hidden. */
+    document.querySelectorAll('.sd-menu-cta').forEach(function(el){
+      el.setAttribute('data-sd-motion','cta');
     });
 
     document.querySelectorAll('.sd-location-row, .sd-location-valet').forEach(function(el,i){
       el.setAttribute('data-sd-motion', i % 2 ? 'card-right' : 'card-left');
-      el.style.setProperty('--sd-motion-delay', (i * 60) + 'ms');
+      el.style.setProperty('--sd-motion-delay',(i*45)+'ms');
     });
   }
 
-  function observeMotion(){
+  function revealAll(){
+    document.querySelectorAll('[data-sd-motion]').forEach(function(el){
+      el.classList.add('is-inview');
+      el.style.animationDelay = '0ms';
+    });
+  }
+
+  function observe(){
     var els = Array.prototype.slice.call(document.querySelectorAll('[data-sd-motion]'));
     if(!els.length) return;
 
     if(!('IntersectionObserver' in window)){
-      els.forEach(function(el){ el.classList.add('is-inview'); });
+      revealAll();
       return;
     }
 
@@ -108,20 +81,50 @@
         io.unobserve(el);
       });
     },{
-      root:null,
-      threshold:0.12,
-      rootMargin:'0px 0px -7% 0px'
+      threshold:0.08,
+      rootMargin:'0px 0px -4% 0px'
     });
 
     els.forEach(function(el){ io.observe(el); });
+
+    /* Hard fail-safe: never leave content hidden. */
+    setTimeout(function(){
+      root.classList.add('sd-motion-failsafe');
+      revealAll();
+      io.disconnect();
+    }, 2600);
+  }
+
+  function bootChrome(){
+    var hero = document.querySelector('.sd-hero');
+    if(hero) hero.classList.add('sd-motion-hero');
+
+    var bottom = document.querySelector('.sd-bottom-cta');
+    if(bottom){
+      var play = function(){
+        if(!bottom.classList.contains('is-hidden')){
+          bottom.classList.add('sd-motion-bottom-enter');
+        }
+      };
+      play();
+      if('MutationObserver' in window){
+        var mo = new MutationObserver(play);
+        mo.observe(bottom,{attributes:true,attributeFilter:['class']});
+        setTimeout(function(){ play(); mo.disconnect(); },1800);
+      }
+    }
   }
 
   function init(){
-    /* Marking is safe even when default is active;
-       CSS motion is scoped to alternate themes only. */
+    if(!isAltTheme()) return;
+
+    markTargets();
+
+    /* Only now do CSS hidden states become eligible. */
+    root.classList.add('sd-motion-ready');
+
     bootChrome();
-    markMotionTargets();
-    observeMotion();
+    observe();
   }
 
   if(document.readyState === 'loading'){

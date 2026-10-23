@@ -325,159 +325,231 @@ html[data-sudam-theme="minimal"] .sd-bottom-cta .phone small{
 }
 
 /* =========================================================
-   ALT THEME MOTION SYSTEM — 1~4 only
-   Motion vocabulary:
-   A. top reveal / center-open for chrome
-   B. horizontal reveal for headings
-   C. clip / scale for media
-   D. left-right stagger for repeated cards
+   v5.25 UI STABILITY OVERRIDES
+   - structural layout restored
+   - map never hidden by motion
+   - top action links stay in section header rows
    ========================================================= */
 
-html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-brandbar,
-html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-primary-nav,
-html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta{
-  will-change:transform,opacity,clip-path;
+/* Menu / Review top action links: keep them above cards/images */
+.sd-menu-head,
+.sd-review-subhead{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:12px!important;
+  position:relative!important;
+  z-index:5!important;
+}
+.sd-menu-head .sd-link,
+.sd-review-subhead .sd-link{
+  position:static!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  transform:none!important;
+  flex:0 0 auto!important;
+  margin:0!important;
 }
 
-/* Header / top nav boot */
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init .sd-brandbar{
-  opacity:0;
-  transform:translateY(-12px);
+/* Map: canvas/fallback area + service buttons below the image/map */
+.sd-map{
+  display:block!important;
+  position:relative!important;
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  clip-path:none!important;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init.sd-motion-mounted .sd-brandbar{
-  opacity:1;
-  transform:translateY(0);
-  transition:opacity .52s cubic-bezier(.22,.61,.36,1),transform .58s cubic-bezier(.22,.61,.36,1);
+.sd-kakao-map-shell{
+  position:relative!important;
+  width:100%!important;
+  min-height:310px!important;
+  overflow:hidden!important;
+  z-index:0!important;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init .sd-primary-nav{
-  opacity:0;
-  clip-path:inset(0 48% 0 48%);
+.sd-kakao-map-canvas{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  z-index:2!important;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init.sd-motion-mounted .sd-primary-nav{
-  opacity:1;
-  clip-path:inset(0 0 0 0);
-  transition:opacity .45s ease .16s,clip-path .62s cubic-bezier(.22,.61,.36,1) .10s;
+.sd-kakao-map-shell:not(.is-live) .sd-kakao-map-fallback{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init .sd-primary-nav a{
-  opacity:0;
-  transform:translateY(-5px);
+.sd-kakao-map-shell.is-live .sd-kakao-map-canvas{
+  opacity:1!important;
+  visibility:visible!important;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init.sd-motion-mounted .sd-primary-nav a{
-  opacity:1;
-  transform:translateY(0);
-  transition:opacity .38s ease .28s,transform .42s ease .28s;
+.sd-kakao-map-shell.is-live .sd-kakao-map-fallback{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init.sd-motion-mounted .sd-primary-nav a:nth-child(2){transition-delay:.32s}
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init.sd-motion-mounted .sd-primary-nav a:nth-child(3){transition-delay:.36s}
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init.sd-motion-mounted .sd-primary-nav a:nth-child(4){transition-delay:.40s}
-html[data-sudam-theme]:not([data-sudam-theme="default"]).sd-motion-init.sd-motion-mounted .sd-primary-nav a:nth-child(5){transition-delay:.44s}
+.sd-map-switch{
+  position:relative!important;
+  left:auto!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:auto!important;
+  width:auto!important;
+  margin:10px 12px 12px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:8px!important;
+  z-index:3!important;
+}
+.sd-map-switch a{
+  position:static!important;
+  min-width:0!important;
+  width:100%!important;
+  min-height:44px!important;
+  box-sizing:border-box!important;
+}
 
-/* Bottom CTA: enters as one bar, not three bouncing items */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta.sd-motion-bottom-enter{
-  animation:sdBottomBarIn .54s cubic-bezier(.22,.61,.36,1) both;
+/* Slider controls should remain in their original dedicated overlay positions */
+.sd-slider{
+  position:relative!important;
 }
-@keyframes sdBottomBarIn{
-  from{opacity:0;transform:translateY(10px) scaleX(.97)}
-  to{opacity:1;transform:translateY(0) scaleX(1)}
+.sd-slider > .sd-slider-prev,
+.sd-slider > .sd-slider-next{
+  position:absolute!important;
+  top:50%!important;
+  bottom:auto!important;
+  transform:translateY(-50%)!important;
+  z-index:6!important;
+}
+.sd-slider > .sd-slider-prev{left:10px!important;right:auto!important}
+.sd-slider > .sd-slider-next{right:10px!important;left:auto!important}
+.sd-slider > .sd-dots{
+  position:absolute!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:14px!important;
+  transform:translateX(-50%)!important;
+  z-index:6!important;
 }
 
-/* Hero: image settles, copy enters laterally */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-hero.sd-motion-hero .sd-hero-media img{
-  animation:sdHeroSettle 1.15s cubic-bezier(.22,.61,.36,1) both;
+/* =========================================================
+   SAFE MOTION SYSTEM — alternative themes only
+   JS must add .sd-motion-ready before anything is hidden.
+   If JS is absent/blocked, every element remains visible.
+   ========================================================= */
+
+/* fail-safe baseline: visible */
+html:not(.sd-motion-ready) [data-sd-motion],
+html.sd-motion-failsafe [data-sd-motion]{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:none!important;
+  clip-path:none!important;
+  filter:none!important;
+  animation:none!important;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-hero.sd-motion-hero .sd-hero-copy{
-  animation:sdHeroCopyIn .72s cubic-bezier(.22,.61,.36,1) .18s both;
+
+/* Header / nav only after motion system is confirmed ready */
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-brandbar{
+  animation:sd25HeaderIn .52s cubic-bezier(.22,.61,.36,1) both;
 }
-@keyframes sdHeroSettle{
-  from{opacity:.72;transform:scale(1.035)}
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-primary-nav{
+  animation:sd25NavOpen .62s cubic-bezier(.22,.61,.36,1) .08s both;
+}
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta.sd-motion-bottom-enter{
+  animation:sd25BottomIn .52s cubic-bezier(.22,.61,.36,1) both;
+}
+
+@keyframes sd25HeaderIn{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes sd25NavOpen{
+  from{opacity:0;clip-path:inset(0 44% 0 44%)}
+  to{opacity:1;clip-path:inset(0 0 0 0)}
+}
+@keyframes sd25BottomIn{
+  from{opacity:0;transform:translateY(9px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Hero motion: no layout shift */
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-hero.sd-motion-hero .sd-hero-media img{
+  animation:sd25HeroMedia 1s cubic-bezier(.22,.61,.36,1) both;
+}
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-hero.sd-motion-hero .sd-hero-copy{
+  animation:sd25HeroCopy .66s cubic-bezier(.22,.61,.36,1) .12s both;
+}
+@keyframes sd25HeroMedia{
+  from{opacity:.82;transform:scale(1.025)}
   to{opacity:1;transform:scale(1)}
 }
-@keyframes sdHeroCopyIn{
-  from{opacity:0;transform:translateX(-18px)}
+@keyframes sd25HeroCopy{
+  from{opacity:0;transform:translateX(-14px)}
   to{opacity:1;transform:translateX(0)}
 }
 
-/* Generic in-view motions */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion]{
-  will-change:opacity,transform,clip-path;
-}
-
-/* heading: horizontal / clip reveal */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="heading"]{
-  opacity:0;
-  transform:translateX(-14px);
-  clip-path:inset(0 18% 0 0);
-}
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="heading"].is-inview{
-  animation:sdHeadingIn .62s cubic-bezier(.22,.61,.36,1) both;
-}
-@keyframes sdHeadingIn{
-  from{opacity:0;transform:translateX(-14px);clip-path:inset(0 18% 0 0)}
-  to{opacity:1;transform:translateX(0);clip-path:inset(0 0 0 0)}
-}
-
-/* media / slider: soft focus + scale */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="media"]{
-  opacity:0;
-  filter:blur(3px);
-  clip-path:inset(0 4% 0 4% round 2px);
-}
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="media"].is-inview{
-  animation:sdMediaIn .70s cubic-bezier(.22,.61,.36,1) both;
-}
-@keyframes sdMediaIn{
-  from{opacity:0;filter:blur(3px);clip-path:inset(0 4% 0 4% round 2px)}
-  to{opacity:1;filter:blur(0);clip-path:inset(0 0 0 0 round 0)}
-}
-
-/* paired trust items: come from opposite sides */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="left"]{
-  opacity:0;
-  transform:translateX(-16px);
-}
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="right"]{
-  opacity:0;
-  transform:translateX(16px);
-}
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="left"].is-inview,
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="right"].is-inview{
-  animation:sdSideIn .58s cubic-bezier(.22,.61,.36,1) both;
-}
-@keyframes sdSideIn{
-  to{opacity:1;transform:translateX(0)}
-}
-
-/* card rows: alternate left/right, tiny distance */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-left"]{
+/* Heading */
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="heading"]{
   opacity:0;
   transform:translateX(-12px);
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-right"]{
-  opacity:0;
-  transform:translateX(12px);
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="heading"].is-inview{
+  animation:sd25Heading .55s cubic-bezier(.22,.61,.36,1) both;
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-left"].is-inview,
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-right"].is-inview{
-  animation:sdCardSideIn .52s cubic-bezier(.22,.61,.36,1) both;
-}
-@keyframes sdCardSideIn{
+@keyframes sd25Heading{
   to{opacity:1;transform:translateX(0)}
 }
 
-/* wide CTA / map: center-open reveal */
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="open"]{
+/* Media: scale/fade only, no clip-path */
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="media"]{
   opacity:0;
-  clip-path:inset(0 50% 0 50%);
+  transform:scale(.985);
 }
-html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="open"].is-inview{
-  animation:sdOpenIn .66s cubic-bezier(.22,.61,.36,1) both;
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="media"].is-inview{
+  animation:sd25Media .62s cubic-bezier(.22,.61,.36,1) both;
 }
-@keyframes sdOpenIn{
-  from{opacity:0;clip-path:inset(0 50% 0 50%)}
-  to{opacity:1;clip-path:inset(0 0 0 0)}
+@keyframes sd25Media{
+  to{opacity:1;transform:scale(1)}
 }
 
-/* interaction polish — restrained */
+/* paired / repeated content */
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="left"],
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-left"]{
+  opacity:0;
+  transform:translateX(-12px);
+}
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="right"],
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-right"]{
+  opacity:0;
+  transform:translateX(12px);
+}
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="left"].is-inview,
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="right"].is-inview,
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-left"].is-inview,
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="card-right"].is-inview{
+  animation:sd25Side .52s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes sd25Side{
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* CTA: simple soft pop, never used on map */
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="cta"]{
+  opacity:0;
+  transform:scale(.98);
+}
+html.sd-motion-ready[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion="cta"].is-inview{
+  animation:sd25Cta .5s cubic-bezier(.22,.61,.36,1) both;
+}
+@keyframes sd25Cta{
+  to{opacity:1;transform:scale(1)}
+}
+
+/* Interaction polish */
 html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-primary-nav a,
 html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-menu-head .sd-link,
 html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-review-subhead .sd-link,
@@ -492,7 +564,6 @@ html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-meeting-card .go{
     box-shadow .22s ease!important;
 }
 
-/* Reduced motion: no staged motion */
 @media (prefers-reduced-motion:reduce){
   html[data-sudam-theme]:not([data-sudam-theme="default"]) *,
   html[data-sudam-theme]:not([data-sudam-theme="default"]) *::before,
@@ -500,19 +571,16 @@ html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-meeting-card .go{
     animation-duration:.001ms!important;
     animation-iteration-count:1!important;
     transition-duration:.001ms!important;
-    scroll-behavior:auto!important;
   }
-  html[data-sudam-theme]:not([data-sudam-theme="default"]) [data-sd-motion]{
+  [data-sd-motion]{
     opacity:1!important;
+    visibility:visible!important;
     transform:none!important;
     clip-path:none!important;
     filter:none!important;
   }
 }
 
-@media(max-width:390px){
-  html[data-sudam-theme="minimal"] #menu .sd-menu-head .sd-link,
-  html[data-sudam-theme="minimal"] .sd-reviews .sd-review-subhead .sd-link{
-    padding:7px 10px!important;
-  }
+@media(max-width:480px){
+  .sd-kakao-map-shell{min-height:292px!important}
 }
