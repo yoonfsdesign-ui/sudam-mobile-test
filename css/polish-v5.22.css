@@ -1,34 +1,11 @@
 @charset "utf-8";
 /* =========================================================
-   SUDAM v5.22b — inline trust icons + phone icon cleanup
-   DEFAULT/원안은 의도적으로 제외합니다.
-   외부 SVG mask를 사용하지 않습니다.
+   SUDAM v5.22c — restore user trust icons
+   DEFAULT/원안 untouched.
+   1~4안: 기존 사용자 아이콘 형태 유지 + 테마별 색감만 보정.
    ========================================================= */
 
-/* 기본 원안: 새 SVG 숨김 */
-.sd-trust-icon-alt{
-  display:none;
-}
-
-/* 1~4안: 사용자가 교체한 기존 PNG는 숨기고 inline SVG 표시 */
-html[data-sudam-theme="classic"] .sd-trust-icon-original,
-html[data-sudam-theme="minimal"] .sd-trust-icon-original,
-html[data-sudam-theme="heritage"] .sd-trust-icon-original,
-html[data-sudam-theme="editorial"] .sd-trust-icon-original{
-  display:none!important;
-}
-
-html[data-sudam-theme="classic"] .sd-trust-icon-alt,
-html[data-sudam-theme="minimal"] .sd-trust-icon-alt,
-html[data-sudam-theme="heritage"] .sd-trust-icon-alt,
-html[data-sudam-theme="editorial"] .sd-trust-icon-alt{
-  display:block!important;
-  width:112px!important;
-  height:112px!important;
-  overflow:visible!important;
-}
-
-/* 동일한 wrapper 규격 */
+/* 1~4안 공통: 기존 사용자 PNG 그대로 사용 */
 html[data-sudam-theme="classic"] .sd-trust-icon--image,
 html[data-sudam-theme="minimal"] .sd-trust-icon--image,
 html[data-sudam-theme="heritage"] .sd-trust-icon--image,
@@ -40,37 +17,52 @@ html[data-sudam-theme="editorial"] .sd-trust-icon--image{
   justify-content:center!important;
   margin:0 auto!important;
 }
-
-/* 테마별 컬러 */
-html[data-sudam-theme="classic"] .sd-trust-icon--image{color:#9B7650!important}
-html[data-sudam-theme="minimal"] .sd-trust-icon--image{color:#2E2B28!important}
-html[data-sudam-theme="heritage"] .sd-trust-icon--image{color:#65704E!important}
-html[data-sudam-theme="editorial"] .sd-trust-icon--image{color:#9F6671!important}
-
-/* 아이콘과 텍스트 사이 얇은 기준선 */
-html[data-sudam-theme="classic"] .sd-trust-item strong,
-html[data-sudam-theme="minimal"] .sd-trust-item strong,
-html[data-sudam-theme="heritage"] .sd-trust-item strong,
-html[data-sudam-theme="editorial"] .sd-trust-item strong{
-  position:relative!important;
-  padding-top:8px!important;
+html[data-sudam-theme="classic"] .sd-trust-icon--image img,
+html[data-sudam-theme="minimal"] .sd-trust-icon--image img,
+html[data-sudam-theme="heritage"] .sd-trust-icon--image img,
+html[data-sudam-theme="editorial"] .sd-trust-icon--image img{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:134px!important;
+  height:134px!important;
+  max-width:134px!important;
+  max-height:134px!important;
+  object-fit:contain!important;
+  transform:none!important;
+  margin:0!important;
 }
+
+/* 1안: 웜 골드브라운 */
+html[data-sudam-theme="classic"] .sd-trust-icon--image img{
+  filter:grayscale(1) sepia(.86) saturate(.82) hue-rotate(346deg) brightness(.72) contrast(1.02)!important;
+}
+
+/* 2안: 차콜 블랙 — 형태는 그대로, 색만 정리 */
+html[data-sudam-theme="minimal"] .sd-trust-icon--image img{
+  filter:grayscale(1) brightness(.27) contrast(1.18)!important;
+}
+
+/* 3안: 뮤트 그린 */
+html[data-sudam-theme="heritage"] .sd-trust-icon--image img{
+  filter:grayscale(1) sepia(.30) saturate(.92) hue-rotate(38deg) brightness(.60) contrast(1.02)!important;
+}
+
+/* 4안: 뮤트 로즈 */
+html[data-sudam-theme="editorial"] .sd-trust-icon--image img{
+  filter:grayscale(1) sepia(.26) saturate(.88) hue-rotate(298deg) brightness(.69) contrast(.98)!important;
+}
+
+/* 아이콘 뒤 추가 장식/선 없음 — 원래 형태가 주인공 */
 html[data-sudam-theme="classic"] .sd-trust-item strong::before,
 html[data-sudam-theme="minimal"] .sd-trust-item strong::before,
 html[data-sudam-theme="heritage"] .sd-trust-item strong::before,
 html[data-sudam-theme="editorial"] .sd-trust-item strong::before{
-  content:""!important;
-  position:absolute!important;
-  left:50%!important;
-  top:0!important;
-  width:22px!important;
-  height:1px!important;
-  transform:translateX(-50%)!important;
-  background:currentColor!important;
-  opacity:.32!important;
+  content:none!important;
+  display:none!important;
 }
 
-/* 1~4안 전화 아이콘: 배경색 박스 제거, glyph 자체만 색상 */
+/* 하단 전화문의 — 배경색 박스 없이 전화기 자체에만 테마 컬러 */
 html[data-sudam-theme="classic"] .sd-bottom-cta .phone .sd-cta-icon,
 html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon,
 html[data-sudam-theme="heritage"] .sd-bottom-cta .phone .sd-cta-icon,
@@ -84,7 +76,6 @@ html[data-sudam-theme="editorial"] .sd-bottom-cta .phone .sd-cta-icon{
   min-width:25px!important;
   padding:0!important;
 }
-
 html[data-sudam-theme="classic"] .sd-bottom-cta .phone .sd-cta-icon{color:#A27A51!important}
 html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon{color:#34312E!important}
 html[data-sudam-theme="heritage"] .sd-bottom-cta .phone .sd-cta-icon{color:#626D4D!important}
@@ -94,9 +85,9 @@ html[data-sudam-theme="classic"] .sd-bottom-cta .phone .sd-cta-icon svg,
 html[data-sudam-theme="minimal"] .sd-bottom-cta .phone .sd-cta-icon svg,
 html[data-sudam-theme="heritage"] .sd-bottom-cta .phone .sd-cta-icon svg,
 html[data-sudam-theme="editorial"] .sd-bottom-cta .phone .sd-cta-icon svg{
+  display:block!important;
   width:24px!important;
   height:24px!important;
-  display:block!important;
   fill:currentColor!important;
   stroke:none!important;
 }
@@ -109,18 +100,20 @@ html[data-sudam-theme="editorial"] .sd-bottom-cta .phone .sd-cta-icon svg path{
 }
 
 @media(max-width:390px){
-  html[data-sudam-theme="classic"] .sd-trust-icon-alt,
-  html[data-sudam-theme="minimal"] .sd-trust-icon-alt,
-  html[data-sudam-theme="heritage"] .sd-trust-icon-alt,
-  html[data-sudam-theme="editorial"] .sd-trust-icon-alt{
-    width:104px!important;
-    height:104px!important;
-  }
   html[data-sudam-theme="classic"] .sd-trust-icon--image,
   html[data-sudam-theme="minimal"] .sd-trust-icon--image,
   html[data-sudam-theme="heritage"] .sd-trust-icon--image,
   html[data-sudam-theme="editorial"] .sd-trust-icon--image{
     width:124px!important;
     height:124px!important;
+  }
+  html[data-sudam-theme="classic"] .sd-trust-icon--image img,
+  html[data-sudam-theme="minimal"] .sd-trust-icon--image img,
+  html[data-sudam-theme="heritage"] .sd-trust-icon--image img,
+  html[data-sudam-theme="editorial"] .sd-trust-icon--image img{
+    width:124px!important;
+    height:124px!important;
+    max-width:124px!important;
+    max-height:124px!important;
   }
 }
