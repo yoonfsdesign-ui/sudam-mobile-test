@@ -1,0 +1,140 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.31 — Theme-aware full hero overlay for image1~6
+   Goal: improve copy readability without visually tinting the
+   image too strongly. The overlay is subtle and theme-aware.
+   Existing default hero remains untouched.
+   ========================================================= */
+
+/* Theme-level subtle overlay tints (kept close to neutral) */
+html[data-sudam-theme="default"]{
+  --hero-v531-dark-overlay: rgba(48,40,34,.18);
+  --hero-v531-light-overlay: rgba(248,244,238,.10);
+}
+html[data-sudam-theme="classic"]{
+  --hero-v531-dark-overlay: rgba(52,43,36,.17);
+  --hero-v531-light-overlay: rgba(246,241,233,.10);
+}
+html[data-sudam-theme="minimal"]{
+  --hero-v531-dark-overlay: rgba(42,38,35,.17);
+  --hero-v531-light-overlay: rgba(246,243,239,.11);
+}
+html[data-sudam-theme="heritage"]{
+  --hero-v531-dark-overlay: rgba(45,44,37,.17);
+  --hero-v531-light-overlay: rgba(245,243,236,.10);
+}
+html[data-sudam-theme="editorial"]{
+  --hero-v531-dark-overlay: rgba(50,41,38,.16);
+  --hero-v531-light-overlay: rgba(247,242,238,.11);
+}
+
+/* Full-image overlay only for image comparison set. */
+html[data-sudam-hero-image^="image"] .sd-hero-media{
+  position:relative!important;
+  overflow:hidden!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero-media::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:2!important;
+  pointer-events:none!important;
+  background:var(--hero-v531-overlay-color, rgba(48,40,34,.16))!important;
+  opacity:var(--hero-v531-overlay-opacity, 1)!important;
+  transition:background-color .24s ease, opacity .24s ease!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero-media img{
+  position:relative!important;
+  z-index:1!important;
+  transition:opacity .24s ease, transform .36s cubic-bezier(.22,.61,.36,1), filter .24s ease!important;
+  filter:var(--hero-v531-image-filter, none)!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero-copy{
+  z-index:4!important;
+}
+
+/* Image-specific readability balance.
+   1,2,5,6 keep light text -> soft dark overlay.
+   3,4 keep dark text -> soft light overlay. */
+html[data-sudam-hero-image="image1"]{
+  --hero-v531-overlay-color: var(--hero-v531-dark-overlay);
+  --hero-v531-overlay-opacity: 1;
+  --hero-v531-image-filter: brightness(.95) saturate(1.02);
+}
+html[data-sudam-hero-image="image2"]{
+  --hero-v531-overlay-color: var(--hero-v531-dark-overlay);
+  --hero-v531-overlay-opacity: .88;
+  --hero-v531-image-filter: brightness(.97) saturate(1.02);
+}
+html[data-sudam-hero-image="image3"]{
+  --hero-v531-overlay-color: var(--hero-v531-light-overlay);
+  --hero-v531-overlay-opacity: 1;
+  --hero-v531-image-filter: brightness(.97) contrast(1.01);
+}
+html[data-sudam-hero-image="image4"]{
+  --hero-v531-overlay-color: var(--hero-v531-light-overlay);
+  --hero-v531-overlay-opacity: .92;
+  --hero-v531-image-filter: brightness(.98) contrast(1.01);
+}
+html[data-sudam-hero-image="image5"]{
+  --hero-v531-overlay-color: var(--hero-v531-dark-overlay);
+  --hero-v531-overlay-opacity: .9;
+  --hero-v531-image-filter: brightness(.97) saturate(1.03);
+}
+html[data-sudam-hero-image="image6"]{
+  --hero-v531-overlay-color: var(--hero-v531-dark-overlay);
+  --hero-v531-overlay-opacity: .85;
+  --hero-v531-image-filter: brightness(.98) saturate(1.02);
+}
+
+/* Tone down text shadows a bit now that the image itself supports contrast. */
+html[data-sudam-hero-image="image1"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image2"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image5"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image6"] .sd-hero-eyebrow{
+  text-shadow:0 1px 2px rgba(17,14,12,.72), 0 3px 12px rgba(17,14,12,.34)!important;
+}
+html[data-sudam-hero-image="image1"] .sd-hero h1,
+html[data-sudam-hero-image="image2"] .sd-hero h1,
+html[data-sudam-hero-image="image5"] .sd-hero h1,
+html[data-sudam-hero-image="image6"] .sd-hero h1,
+html[data-sudam-hero-image="image1"] .sd-hero-title,
+html[data-sudam-hero-image="image2"] .sd-hero-title,
+html[data-sudam-hero-image="image5"] .sd-hero-title,
+html[data-sudam-hero-image="image6"] .sd-hero-title{
+  text-shadow:0 1px 2px rgba(17,14,12,.82), 0 4px 16px rgba(17,14,12,.36)!important;
+}
+html[data-sudam-hero-image="image1"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image2"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image5"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image6"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image1"] .sd-hero-sub,
+html[data-sudam-hero-image="image2"] .sd-hero-sub,
+html[data-sudam-hero-image="image5"] .sd-hero-sub,
+html[data-sudam-hero-image="image6"] .sd-hero-sub{
+  text-shadow:0 1px 2px rgba(17,14,12,.78), 0 3px 12px rgba(17,14,12,.30)!important;
+}
+
+html[data-sudam-hero-image="image3"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image4"] .sd-hero-eyebrow{
+  text-shadow:0 1px 0 rgba(255,255,255,.22)!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero h1,
+html[data-sudam-hero-image="image4"] .sd-hero h1,
+html[data-sudam-hero-image="image3"] .sd-hero-title,
+html[data-sudam-hero-image="image4"] .sd-hero-title{
+  text-shadow:0 1px 0 rgba(255,255,255,.28), 0 2px 8px rgba(255,255,255,.14)!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image4"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image3"] .sd-hero-sub,
+html[data-sudam-hero-image="image4"] .sd-hero-sub{
+  text-shadow:0 1px 0 rgba(255,255,255,.18)!important;
+}
+
+@media(prefers-reduced-motion:reduce){
+  html[data-sudam-hero-image^="image"] .sd-hero-media::after,
+  html[data-sudam-hero-image^="image"] .sd-hero-media img{
+    transition:none!important;
+  }
+}
