@@ -1,0 +1,272 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.30 — Hero copy readability by selected image
+   - default hero remains untouched
+   - image1~6: remove white/light gradient veil
+   - per-image copy position + contrast treatment
+   ========================================================= */
+
+/* Theme-aware accent variables used only by image1~6 */
+html[data-sudam-theme="default"]{
+  --hero-v530-accent-dark:#A66D35;
+  --hero-v530-accent-light:#E4C39E;
+}
+html[data-sudam-theme="classic"]{
+  --hero-v530-accent-dark:#8F6C4D;
+  --hero-v530-accent-light:#DEC5A8;
+}
+html[data-sudam-theme="minimal"]{
+  --hero-v530-accent-dark:#766B61;
+  --hero-v530-accent-light:#D7CBC0;
+}
+html[data-sudam-theme="heritage"]{
+  --hero-v530-accent-dark:#66704E;
+  --hero-v530-accent-light:#CBD0B5;
+}
+html[data-sudam-theme="editorial"]{
+  --hero-v530-accent-dark:#9B6670;
+  --hero-v530-accent-light:#E6C7CB;
+}
+
+/* Selected comparison images: photo is shown cleanly.
+   Removes all older white / beige / theme hero gradients. */
+html[data-sudam-hero-image^="image"] .sd-hero-media:after{
+  content:""!important;
+  background:none!important;
+  background-image:none!important;
+  opacity:0!important;
+}
+
+/* No text panel / white veil. */
+html[data-sudam-hero-image^="image"] .sd-hero-copy{
+  position:absolute!important;
+  z-index:4!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+
+/* Slightly compact copy so it can sit in the photo's natural negative space. */
+html[data-sudam-hero-image^="image"] .sd-hero-eyebrow{
+  font-size:22px!important;
+  line-height:1.28!important;
+  font-weight:600!important;
+  margin-bottom:7px!important;
+  letter-spacing:-.025em!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero h1,
+html[data-sudam-hero-image^="image"] .sd-hero-title{
+  font-size:43px!important;
+  line-height:1.14!important;
+  font-weight:700!important;
+  letter-spacing:-.045em!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero h1:after{
+  width:92px!important;
+  height:11px!important;
+  margin-top:14px!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero-copy>p,
+html[data-sudam-hero-image^="image"] .sd-hero-copy .sd-hero-sub{
+  font-size:15.5px!important;
+  line-height:1.62!important;
+  font-weight:550!important;
+  margin-top:15px!important;
+  max-width:none!important;
+}
+
+/* ---------------------------------------------------------
+   LIGHT COPY MODE
+   image1 exterior / image2 entrance / image5 green room /
+   image6 sinseollo
+   --------------------------------------------------------- */
+html[data-sudam-hero-image="image1"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image2"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image5"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image6"] .sd-hero-eyebrow{
+  color:var(--hero-v530-accent-light)!important;
+  text-shadow:
+    0 1px 2px rgba(20,16,13,.82),
+    0 4px 15px rgba(20,16,13,.55)!important;
+}
+html[data-sudam-hero-image="image1"] .sd-hero h1,
+html[data-sudam-hero-image="image2"] .sd-hero h1,
+html[data-sudam-hero-image="image5"] .sd-hero h1,
+html[data-sudam-hero-image="image6"] .sd-hero h1,
+html[data-sudam-hero-image="image1"] .sd-hero-title,
+html[data-sudam-hero-image="image2"] .sd-hero-title,
+html[data-sudam-hero-image="image5"] .sd-hero-title,
+html[data-sudam-hero-image="image6"] .sd-hero-title{
+  color:#FFF9F2!important;
+  text-shadow:
+    0 1px 2px rgba(19,15,12,.88),
+    0 5px 18px rgba(19,15,12,.58)!important;
+}
+html[data-sudam-hero-image="image1"] .sd-hero h1:after,
+html[data-sudam-hero-image="image2"] .sd-hero h1:after,
+html[data-sudam-hero-image="image5"] .sd-hero h1:after,
+html[data-sudam-hero-image="image6"] .sd-hero h1:after{
+  background:var(--hero-v530-accent-light)!important;
+  box-shadow:0 2px 8px rgba(0,0,0,.25)!important;
+}
+html[data-sudam-hero-image="image1"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image2"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image5"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image6"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image1"] .sd-hero-sub,
+html[data-sudam-hero-image="image2"] .sd-hero-sub,
+html[data-sudam-hero-image="image5"] .sd-hero-sub,
+html[data-sudam-hero-image="image6"] .sd-hero-sub{
+  color:#F4EDE5!important;
+  text-shadow:
+    0 1px 2px rgba(18,14,11,.90),
+    0 4px 14px rgba(18,14,11,.55)!important;
+}
+
+/* ---------------------------------------------------------
+   DARK COPY MODE
+   image3 food spread / image4 gray room
+   --------------------------------------------------------- */
+html[data-sudam-hero-image="image3"] .sd-hero-eyebrow,
+html[data-sudam-hero-image="image4"] .sd-hero-eyebrow{
+  color:var(--hero-v530-accent-dark)!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.38)!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero h1,
+html[data-sudam-hero-image="image4"] .sd-hero h1,
+html[data-sudam-hero-image="image3"] .sd-hero-title,
+html[data-sudam-hero-image="image4"] .sd-hero-title{
+  color:#2D2925!important;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.42),
+    0 3px 12px rgba(255,255,255,.18)!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero h1:after,
+html[data-sudam-hero-image="image4"] .sd-hero h1:after{
+  background:var(--hero-v530-accent-dark)!important;
+  box-shadow:none!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image4"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image3"] .sd-hero-sub,
+html[data-sudam-hero-image="image4"] .sd-hero-sub{
+  color:#4C433C!important;
+  text-shadow:0 1px 0 rgba(255,255,255,.36)!important;
+}
+
+/* ---------------------------------------------------------
+   PER-IMAGE COPY PLACEMENT
+   The copy follows each photo's negative space instead of
+   forcing all six photographs into one composition.
+   --------------------------------------------------------- */
+
+/* 1. Exterior — use the dark sign / entrance side */
+html[data-sudam-hero-image="image1"] .sd-hero-copy{
+  top:23%!important;
+  right:6.5%!important;
+  bottom:auto!important;
+  left:auto!important;
+  width:64%!important;
+  text-align:right!important;
+}
+html[data-sudam-hero-image="image1"] .sd-hero h1:after{
+  margin-left:auto!important;
+  margin-right:0!important;
+}
+
+/* 2. Entrance cabinet — upper-left dark wall */
+html[data-sudam-hero-image="image2"] .sd-hero-copy{
+  top:9.5%!important;
+  left:7%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:66%!important;
+  text-align:left!important;
+}
+
+/* 3. Food spread — clean beige negative space at upper-right */
+html[data-sudam-hero-image="image3"] .sd-hero-copy{
+  top:8.5%!important;
+  right:6.5%!important;
+  left:auto!important;
+  bottom:auto!important;
+  width:68%!important;
+  text-align:right!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero h1:after{
+  margin-left:auto!important;
+  margin-right:0!important;
+}
+
+/* 4. Gray private room — broad quiet wall at upper-right */
+html[data-sudam-hero-image="image4"] .sd-hero-copy{
+  top:9%!important;
+  right:6.5%!important;
+  left:auto!important;
+  bottom:auto!important;
+  width:64%!important;
+  text-align:right!important;
+}
+html[data-sudam-hero-image="image4"] .sd-hero h1:after{
+  margin-left:auto!important;
+  margin-right:0!important;
+}
+
+/* 5. Green private room — muted green wall at upper-left */
+html[data-sudam-hero-image="image5"] .sd-hero-copy{
+  top:10%!important;
+  left:6.5%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:64%!important;
+  text-align:left!important;
+}
+
+/* 6. Sinseollo — darker pot/food mass at upper-left */
+html[data-sudam-hero-image="image6"] .sd-hero-copy{
+  top:11%!important;
+  left:6.5%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:67%!important;
+  text-align:left!important;
+}
+
+/* Keep line ornament aligned to text direction. */
+html[data-sudam-hero-image="image2"] .sd-hero h1:after,
+html[data-sudam-hero-image="image5"] .sd-hero h1:after,
+html[data-sudam-hero-image="image6"] .sd-hero h1:after{
+  margin-left:0!important;
+  margin-right:auto!important;
+}
+
+@media(max-width:390px){
+  html[data-sudam-hero-image^="image"] .sd-hero-eyebrow{
+    font-size:20px!important;
+  }
+  html[data-sudam-hero-image^="image"] .sd-hero h1,
+  html[data-sudam-hero-image^="image"] .sd-hero-title{
+    font-size:39px!important;
+  }
+  html[data-sudam-hero-image^="image"] .sd-hero-copy>p,
+  html[data-sudam-hero-image^="image"] .sd-hero-copy .sd-hero-sub{
+    font-size:14.5px!important;
+  }
+
+  html[data-sudam-hero-image="image1"] .sd-hero-copy{width:69%!important;right:5.5%!important}
+  html[data-sudam-hero-image="image2"] .sd-hero-copy{width:72%!important;left:6%!important}
+  html[data-sudam-hero-image="image3"] .sd-hero-copy{width:73%!important;right:5.5%!important}
+  html[data-sudam-hero-image="image4"] .sd-hero-copy{width:70%!important;right:5.5%!important}
+  html[data-sudam-hero-image="image5"] .sd-hero-copy{width:70%!important;left:5.5%!important}
+  html[data-sudam-hero-image="image6"] .sd-hero-copy{width:72%!important;left:5.5%!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html[data-sudam-hero-image^="image"] .sd-hero-copy{
+    transition:none!important;
+  }
+}
