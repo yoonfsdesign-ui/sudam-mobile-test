@@ -1,0 +1,144 @@
+{
+  "order": [
+    "이미지1 외관",
+    "이미지2 입구 장식장",
+    "이미지3 한정식 상차림",
+    "이미지4 프라이빗룸(그레이)",
+    "이미지5 프라이빗룸(그린)",
+    "이미지6 신선로 클로즈업"
+  ],
+  "processing": [
+    {
+      "name": "hero-compare-01.jpg",
+      "source": "7(이미지_s).png",
+      "source_size": [
+        330,
+        377
+      ],
+      "crop_box": [
+        43,
+        0,
+        326,
+        377
+      ],
+      "output_size": [
+        283,
+        377
+      ],
+      "focal": [
+        0.56,
+        0.5
+      ]
+    },
+    {
+      "name": "hero-compare-02.jpg",
+      "source": "2.jpg",
+      "source_size": [
+        945,
+        2048
+      ],
+      "crop_box": [
+        0,
+        558,
+        945,
+        1818
+      ],
+      "output_size": [
+        945,
+        1260
+      ],
+      "focal": [
+        0.5,
+        0.58
+      ]
+    },
+    {
+      "name": "hero-compare-03.jpg",
+      "source": "2(1).png",
+      "source_size": [
+        941,
+        1672
+      ],
+      "crop_box": [
+        0,
+        292,
+        941,
+        1547
+      ],
+      "output_size": [
+        941,
+        1255
+      ],
+      "focal": [
+        0.54,
+        0.55
+      ]
+    },
+    {
+      "name": "hero-compare-04.jpg",
+      "source": "6(2).jpg",
+      "source_size": [
+        2048,
+        1365
+      ],
+      "crop_box": [
+        758,
+        0,
+        1782,
+        1365
+      ],
+      "output_size": [
+        1024,
+        1365
+      ],
+      "focal": [
+        0.62,
+        0.52
+      ]
+    },
+    {
+      "name": "hero-compare-05.jpg",
+      "source": "234(1).jpg",
+      "source_size": [
+        2048,
+        1365
+      ],
+      "crop_box": [
+        512,
+        0,
+        1536,
+        1365
+      ],
+      "output_size": [
+        1024,
+        1365
+      ],
+      "focal": [
+        0.5,
+        0.52
+      ]
+    },
+    {
+      "name": "hero-compare-06.jpg",
+      "source": "자연송이궁중신선로01.jpg",
+      "source_size": [
+        2048,
+        1365
+      ],
+      "crop_box": [
+        635,
+        0,
+        1659,
+        1365
+      ],
+      "output_size": [
+        1024,
+        1365
+      ],
+      "focal": [
+        0.56,
+        0.5
+      ]
+    }
+  ]
+}
