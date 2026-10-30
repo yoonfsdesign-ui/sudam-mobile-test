@@ -1,0 +1,117 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.32 — Hero image 1~4 readability/layout tuning
+   - image1: move copy to lower-right
+   - image2: stronger overlay + lower-left copy
+   - image3: stronger overlay + centered copy
+   - image4: slightly stronger overlay
+   Default hero and image5~6 remain unchanged.
+   ========================================================= */
+
+/* Ensure selected comparison images use a full-image overlay layer. */
+html[data-sudam-hero-image^="image"] .sd-hero-media{
+  position:relative!important;
+  overflow:hidden!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero-media::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:2!important;
+  pointer-events:none!important;
+  background:var(--hero-v532-overlay, rgba(45,39,34,.14))!important;
+  opacity:1!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero-media img{
+  position:relative!important;
+  z-index:1!important;
+}
+html[data-sudam-hero-image^="image"] .sd-hero-copy{
+  z-index:4!important;
+}
+
+/* Theme-aware but intentionally very subtle tint difference. */
+html[data-sudam-theme="default"]{--hero-v532-dark:rgba(46,39,34,.20);--hero-v532-light:rgba(248,244,238,.13)}
+html[data-sudam-theme="classic"]{--hero-v532-dark:rgba(50,42,36,.20);--hero-v532-light:rgba(247,242,234,.13)}
+html[data-sudam-theme="minimal"]{--hero-v532-dark:rgba(40,37,34,.20);--hero-v532-light:rgba(247,244,240,.14)}
+html[data-sudam-theme="heritage"]{--hero-v532-dark:rgba(43,43,37,.20);--hero-v532-light:rgba(246,244,238,.13)}
+html[data-sudam-theme="editorial"]{--hero-v532-dark:rgba(48,40,38,.19);--hero-v532-light:rgba(248,243,239,.14)}
+
+/* image1 — keep overlay moderate, move copy away from sign to lower-right */
+html[data-sudam-hero-image="image1"]{--hero-v532-overlay:var(--hero-v532-dark)}
+html[data-sudam-hero-image="image1"] .sd-hero-copy{
+  top:auto!important;
+  right:6%!important;
+  bottom:8.5%!important;
+  left:auto!important;
+  width:68%!important;
+  text-align:right!important;
+}
+html[data-sudam-hero-image="image1"] .sd-hero h1:after{
+  margin-left:auto!important;
+  margin-right:0!important;
+}
+
+/* image2 — stronger dark overlay + lower-left copy */
+html[data-sudam-hero-image="image2"]{--hero-v532-overlay:rgba(42,36,32,.26)}
+html[data-sudam-theme="minimal"][data-sudam-hero-image="image2"]{--hero-v532-overlay:rgba(37,34,32,.25)}
+html[data-sudam-theme="heritage"][data-sudam-hero-image="image2"]{--hero-v532-overlay:rgba(40,40,34,.25)}
+html[data-sudam-theme="editorial"][data-sudam-hero-image="image2"]{--hero-v532-overlay:rgba(45,37,35,.24)}
+html[data-sudam-hero-image="image2"] .sd-hero-copy{
+  top:auto!important;
+  left:6.5%!important;
+  right:auto!important;
+  bottom:9%!important;
+  width:72%!important;
+  text-align:left!important;
+}
+html[data-sudam-hero-image="image2"] .sd-hero h1:after{
+  margin-left:0!important;
+  margin-right:auto!important;
+}
+
+/* image3 — stronger dark neutral overlay and centered composition */
+html[data-sudam-hero-image="image3"]{--hero-v532-overlay:rgba(38,34,31,.24)}
+html[data-sudam-theme="minimal"][data-sudam-hero-image="image3"]{--hero-v532-overlay:rgba(35,33,31,.23)}
+html[data-sudam-theme="heritage"][data-sudam-hero-image="image3"]{--hero-v532-overlay:rgba(38,38,33,.23)}
+html[data-sudam-theme="editorial"][data-sudam-hero-image="image3"]{--hero-v532-overlay:rgba(43,36,34,.22)}
+html[data-sudam-hero-image="image3"] .sd-hero-copy{
+  top:50%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:82%!important;
+  transform:translate(-50%,-50%)!important;
+  text-align:center!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero-eyebrow{
+  color:#F1DCC3!important;
+  text-shadow:0 1px 2px rgba(15,12,10,.72),0 3px 12px rgba(15,12,10,.30)!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero h1,
+html[data-sudam-hero-image="image3"] .sd-hero-title{
+  color:#FFF9F2!important;
+  text-shadow:0 1px 2px rgba(15,12,10,.80),0 4px 15px rgba(15,12,10,.34)!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero-copy>p,
+html[data-sudam-hero-image="image3"] .sd-hero-sub{
+  color:#F4EDE5!important;
+  text-shadow:0 1px 2px rgba(15,12,10,.76),0 3px 11px rgba(15,12,10,.28)!important;
+}
+html[data-sudam-hero-image="image3"] .sd-hero h1:after{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  background:#D9B78D!important;
+}
+
+/* image4 — only a slight increase, preserving current copy position */
+html[data-sudam-hero-image="image4"]{--hero-v532-overlay:rgba(246,243,238,.16)}
+html[data-sudam-theme="minimal"][data-sudam-hero-image="image4"]{--hero-v532-overlay:rgba(246,243,239,.17)}
+html[data-sudam-theme="heritage"][data-sudam-hero-image="image4"]{--hero-v532-overlay:rgba(245,243,237,.16)}
+html[data-sudam-theme="editorial"][data-sudam-hero-image="image4"]{--hero-v532-overlay:rgba(248,243,239,.17)}
+
+@media(max-width:390px){
+  html[data-sudam-hero-image="image1"] .sd-hero-copy{right:5.5%!important;bottom:7.5%!important;width:72%!important}
+  html[data-sudam-hero-image="image2"] .sd-hero-copy{left:5.5%!important;bottom:8%!important;width:76%!important}
+  html[data-sudam-hero-image="image3"] .sd-hero-copy{width:86%!important}
+}
