@@ -410,8 +410,10 @@
     window.dispatchEvent(new Event('resize'));
   }
 
-  let initialTheme='default';
-  try{initialTheme=localStorage.getItem(THEME_STORAGE_KEY)||document.documentElement.getAttribute('data-sudam-theme')||'default'}catch(e){}
+  let initialTheme=document.documentElement.getAttribute('data-sudam-initial-theme')||'default';
+  if(initialTheme==='default'){
+    try{initialTheme=localStorage.getItem(THEME_STORAGE_KEY)||document.documentElement.getAttribute('data-sudam-theme')||'default'}catch(e){}
+  }
   applyToneTheme(initialTheme,false);
   themeButtons.forEach(btn=>btn.addEventListener('click',()=>applyToneTheme(btn.dataset.themeChoice,true)));
 

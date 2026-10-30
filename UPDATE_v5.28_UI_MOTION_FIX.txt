@@ -1,0 +1,33 @@
+SUDAM v5.28 — 1~4안 하단바 / 2안 햄버거 / 모션 재정비
+
+[하단 고정 메뉴바]
+- v5.27에서 transform:translateY()가 기존 translateX(-50%)를 덮어써 중앙 고정이 풀리던 문제 수정
+- 1~4안 모두 원안과 동일한 fixed 위치/폭 사용
+- 숨김: translate(-50%, 12px)
+- 노출: translate(-50%, 0)
+
+[2안 햄버거]
+- .sd-hamburger 버튼 본체에 아이보리 background가 들어가던 오류 제거
+- 버튼 배경/테두리/그림자: 투명
+- span + before + after 3개 선만 아이보리 적용
+
+[모션]
+- v5.23의 구형 SAFE MOTION 블록 제거 (opacity:1!important로 새 모션을 막던 원인)
+- 현재 모션 시스템 1개만 유지
+- 1.8초 후 전체 요소를 강제 노출하던 로직 제거
+- IntersectionObserver로 실제 viewport 진입 요소만 reveal
+- fallback도 현재 viewport 안 요소만 reveal
+- 화면 아래 후기/오시는길 등은 스크롤할 때까지 대기하므로 모션이 미리 소진되지 않음
+- 지도는 모션 대상 아님
+- 저장된 1~4안은 DOM 생성 후 pending theme를 정상 적용하도록 main.js 초기화 수정
+
+[검증]
+- JS node --check 통과
+- Chromium 실제 렌더 테스트(430x800)에서 1~4안 모두:
+  · 하단바 노출 시 left=0 / width=430 / bottom=800 동일
+  · 2안 햄버거 background=transparent, 선 rgb(247,243,237)
+  · 강점 타이틀 진입 전 opacity=0, 진입 후 is-inview + opacity=1
+  · 화면 아래 후기 타이틀은 inview=false / opacity=0으로 대기
+  · 헤더 animation-name 적용 확인
+
+이미지 파일은 변경하지 않습니다.

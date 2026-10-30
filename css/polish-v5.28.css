@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.28 — bottom bar / minimal hamburger / motion cleanup
+   ========================================================= */
+
+/* 1~4안: 원안과 동일한 fixed geometry를 유지한다.
+   hide/show 시 Y축만 움직이고 X 중앙정렬은 절대 풀지 않는다. */
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta{
+  position:fixed!important;
+  left:50%!important;
+  right:auto!important;
+  top:auto!important;
+  bottom:0!important;
+  width:min(100%,var(--sd-max))!important;
+  margin:0!important;
+  transform:translateX(-50%)!important;
+  z-index:1300!important;
+}
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta.is-hidden{
+  transform:translate(-50%,12px)!important;
+}
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta:not(.is-hidden){
+  transform:translate(-50%,0)!important;
+}
+html.sd-motion-v527[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-bottom-cta{
+  animation:none!important;
+}
+
+/* 2안 햄버거: 버튼 박스는 투명, 실제 3개 선만 아이보리 */
+html[data-sudam-theme="minimal"] .sd-brandbar .sd-hamburger{
+  background:transparent!important;
+  background-color:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  color:var(--m23-ivory,#F7F3ED)!important;
+}
+html[data-sudam-theme="minimal"] .sd-brandbar .sd-hamburger::before,
+html[data-sudam-theme="minimal"] .sd-brandbar .sd-hamburger::after{
+  content:none!important;
+  display:none!important;
+  background:transparent!important;
+}
+html[data-sudam-theme="minimal"] .sd-brandbar .sd-hamburger span,
+html[data-sudam-theme="minimal"] .sd-brandbar .sd-hamburger span::before,
+html[data-sudam-theme="minimal"] .sd-brandbar .sd-hamburger span::after{
+  background:var(--m23-ivory,#F7F3ED)!important;
+  background-color:var(--m23-ivory,#F7F3ED)!important;
+  border:0!important;
+}
+
+/* v5.23 motion block 제거 후 유지해야 할 공통 인터랙션 */
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-primary-nav a,
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-menu-head .sd-link,
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-review-subhead .sd-link,
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-copy-address-btn,
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-slide-link,
+html[data-sudam-theme]:not([data-sudam-theme="default"]) .sd-meeting-card .go{
+  transition:background-color .22s ease,color .22s ease,border-color .22s ease,opacity .22s ease,box-shadow .22s ease!important;
+}
+
+@media(max-width:480px){
+  .sd-kakao-map-shell{min-height:292px!important}
+}
