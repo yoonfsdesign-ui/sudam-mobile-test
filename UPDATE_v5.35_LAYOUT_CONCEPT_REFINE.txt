@@ -1,0 +1,33 @@
+SUDAM v5.35 — Layout concept refinement
+
+핵심
+- 내용/섹션 순서/링크는 유지
+- 레이아웃별 영문 키커, 메인 타이틀, 장식선, 줄바꿈, 상단 고정 메뉴, 푸터, 하단 CTA 표현을 더 적극적으로 차별화
+- 어떤 만남을 준비하시나요? 섹션을 3안 각각 별도 구조 규칙으로 재정의하여 모바일 깨짐 방지
+- 톤/이미지/레이아웃 비교 패널 옆에 독립 ↑ TOP 버튼 추가
+
+Layout 1 Refined Card
+- 프레임/카드/원형 컨트롤 중심
+- 좌측 정렬 섹션 헤더 + 짧은 장식선
+- Meeting 2x2 안정형 카드
+- 상단 nav 인셋 프레임 / 하단 CTA 플로팅 카드
+
+Layout 2 Full Bleed Editorial
+- Hero eyebrow 제거, 타이포 확대
+- Strength/Space 메인 섹션 타이틀 숨김, 영문 키커를 chapter label처럼 사용
+- 고정 줄바꿈 일부 해제
+- Meeting 풀폭 타이포 내비게이션
+- 이미지 없는 미니멀 좌측 정렬 Footer / 다크 하단 CTA
+
+Layout 3 Offset Editorial
+- 섹션별 01~06 번호형 kicker
+- Offset panel 슬라이드의 고정 줄바꿈 일부 해제
+- Meeting 편집형 mosaic: 1/4 full width + 2/3 paired
+- Footer를 logo + intro 2열 editorial grid로 변형
+- 중앙 전화 CTA를 pill로 강조
+
+추가 파일
+- css/polish-v5.35.css
+- js/layout-v5.35.js
+수정
+- index.html
