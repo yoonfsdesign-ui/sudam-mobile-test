@@ -1,0 +1,321 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.38 — feedback-driven layout refinement
+   - Accurate Blue Ribbon years: 2021 / 2022 / 2025 / 2026
+   - Layout 1: stronger hero+trust, tighter copy/card spacing
+   - Layout 2: Restaurant o'neul-inspired mobile rhythm
+   - Layout 3: preserve editorial character, fix readability/alignment
+   - Review imagery: explicit placeholders in Layout 1 & 3
+   - Location: unique treatment per layout
+   ========================================================= */
+
+.sd-trust-years{display:none}
+
+/* =========================================================
+   LAYOUT 1 — BALANCED PREMIUM / stronger first impression
+   ========================================================= */
+html[data-sudam-layout="layout1"] .sd-hero{
+  height:77svh!important;min-height:610px!important;max-height:780px!important;
+  overflow:hidden!important;
+}
+html[data-sudam-layout="layout1"] .sd-hero-media::before{
+  content:""!important;position:absolute!important;inset:0!important;z-index:2!important;pointer-events:none!important;
+  background:linear-gradient(180deg,rgba(18,14,11,.03) 15%,rgba(18,14,11,.08) 48%,rgba(18,14,11,.58) 100%)!important;
+}
+html[data-sudam-layout="layout1"] .sd-hero-copy{
+  left:7%!important;right:7%!important;top:auto!important;bottom:12%!important;width:auto!important;max-width:370px!important;
+  padding:0!important;border:0!important;text-align:left!important;transform:none!important;
+}
+html[data-sudam-layout="layout1"] .sd-hero-copy::before{
+  content:"SUDAM HANJEONGSIK";display:block;margin-bottom:10px;
+  color:rgba(255,249,242,.78);font:700 9px/1.1 "Pretendard Variable",Pretendard,sans-serif;letter-spacing:.20em;
+}
+html[data-sudam-layout="layout1"] .sd-hero-eyebrow{font-size:18px!important;color:#E7C59F!important;text-shadow:0 2px 12px rgba(0,0,0,.28)!important}
+html[data-sudam-layout="layout1"] .sd-hero h1{
+  font:600 48px/1.10 "Noto Serif KR",serif!important;letter-spacing:-.055em!important;color:#FFF9F2!important;
+  text-shadow:0 2px 16px rgba(0,0,0,.34)!important;
+}
+html[data-sudam-layout="layout1"] .sd-hero-copy>p{font-size:14.5px!important;line-height:1.62!important;color:rgba(255,249,242,.9)!important;text-shadow:0 2px 12px rgba(0,0,0,.28)!important}
+html[data-sudam-layout="layout1"][data-sudam-hero-image="image1"] .sd-hero-copy{left:auto!important;right:7%!important;bottom:10%!important;text-align:right!important}
+html[data-sudam-layout="layout1"][data-sudam-hero-image="image1"] .sd-hero-copy::before{margin-left:auto}
+html[data-sudam-layout="layout1"][data-sudam-hero-image="image3"] .sd-hero-copy{left:50%!important;right:auto!important;bottom:12%!important;transform:translateX(-50%)!important;width:86%!important;text-align:center!important}
+
+/* Hero + trust act as one composed first screen. */
+html[data-sudam-layout="layout1"] .sd-trust{
+  width:calc(100% - 28px)!important;margin:-42px auto 0!important;padding:0!important;position:relative!important;z-index:7!important;
+  border:1px solid rgba(116,91,69,.14)!important;border-radius:16px!important;overflow:hidden!important;
+  background:color-mix(in srgb,var(--tone-page,#F7F1E9) 94%,#fff 6%)!important;
+  box-shadow:0 16px 36px rgba(37,27,19,.13)!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-grid{grid-template-columns:1.35fr .85fr!important}
+html[data-sudam-layout="layout1"] .sd-trust-item{min-height:116px!important;padding:19px 18px 17px!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(1):before{
+  content:"2021 · 2022\A2025 · 2026"!important;white-space:pre!important;font-size:21px!important;line-height:1.18!important;letter-spacing:-.025em!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(2):before{content:"5,000+"!important;font-size:28px!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(1):after{content:"BLUE RIBBON · 4회 선정"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(2):after{content:"ANNUAL MEETINGS"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item strong{font-size:10.5px!important;margin-top:5px!important;color:var(--ly-sub,#6D6258)!important}
+
+/* Tighter section rhythm and single-line titles requested. */
+html[data-sudam-layout="layout1"] .sd-section{padding-top:62px!important;padding-bottom:62px!important}
+html[data-sudam-layout="layout1"] #meeting>.sd-title,
+html[data-sudam-layout="layout1"] #menu>.sd-title{font-size:25px!important;line-height:1.2!important;white-space:nowrap!important;letter-spacing:-.055em!important}
+html[data-sudam-layout="layout1"] #meeting>.sd-title br,
+html[data-sudam-layout="layout1"] #menu>.sd-title br,
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy h3 br,
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy p br,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy h3 br,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy p br{display:none!important}
+
+html[data-sudam-layout="layout1"] #strength .sd-slider,
+html[data-sudam-layout="layout1"] #space .sd-slider{margin-top:22px!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy{
+  min-height:0!important;padding:15px 17px 17px!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy h3{font-size:21px!important;line-height:1.35!important;margin:5px 0 4px!important;word-break:keep-all!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy p{font-size:11.5px!important;line-height:1.52!important;margin:0!important;word-break:keep-all!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-link,
+html[data-sudam-layout="layout1"] #space .sd-slide-link{margin-top:9px!important}
+
+html[data-sudam-layout="layout1"] #menu .sd-menu-card{min-height:154px!important;grid-template-columns:43% 57%!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .media{min-height:154px!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .body{padding:13px 14px!important;justify-content:center!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card h3{font-size:21px!important;margin:3px 0!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .tag{margin-bottom:2px!important}
+html[data-sudam-layout="layout1"] #menu .sd-course-knot{display:none!important}
+
+/* Review & Location descriptions align with the section, not centered alone. */
+html[data-sudam-layout="layout1"] #reviews>.sd-desc,
+html[data-sudam-layout="layout1"] #location>.sd-desc{
+  text-align:left!important;margin-left:0!important;margin-right:0!important;max-width:100%!important;
+}
+
+/* Explicit review image placeholder for mockup quality control. */
+html[data-sudam-layout="layout1"] #reviews .sd-review-gallery{
+  min-height:220px!important;background:#E8E3DD!important;position:relative!important;display:grid!important;place-items:center!important;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-gallery::before{
+  content:"REVIEW PHOTO\A이미지 교체 영역";white-space:pre;text-align:center;color:#958A80;
+  font:600 10px/1.65 "Pretendard Variable",Pretendard,sans-serif;letter-spacing:.12em;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-photos,
+html[data-sudam-layout="layout1"] #reviews .sd-photo-count{display:none!important}
+
+/* Layout 1 location: practical premium card treatment. */
+html[data-sudam-layout="layout1"] #location .sd-map{margin-top:24px!important;border-radius:16px!important;overflow:hidden!important;box-shadow:0 12px 30px rgba(34,25,19,.08)!important}
+html[data-sudam-layout="layout1"] #location .sd-location-list{margin-top:14px!important;display:grid!important;gap:9px!important}
+html[data-sudam-layout="layout1"] #location .sd-location-row{border:1px solid var(--ly-line,#DED2C7)!important;border-radius:13px!important;background:var(--ly-surface,#fff)!important;padding:14px!important}
+html[data-sudam-layout="layout1"] #location .sd-location-valet{border:1px solid var(--ly-line,#DED2C7)!important;border-radius:13px!important;overflow:hidden!important;background:var(--ly-surface,#fff)!important}
+
+/* =========================================================
+   LAYOUT 2 — RESTAURANT O'NEUL-INSPIRED VISUAL EDITORIAL
+   Key traits: large visual, bilingual intro, generous white space,
+   minimal borders, text-led menu, large room imagery, tiny 'more'.
+   ========================================================= */
+html[data-sudam-layout="layout2"] .sd-brandbar{height:58px!important;min-height:58px!important;background:rgba(255,255,255,.96)!important}
+html[data-sudam-layout="layout2"] .sd-primary-nav{height:42px!important;min-height:42px!important;background:#fff!important;border-top:0!important;border-bottom:1px solid #E8E3DD!important}
+html[data-sudam-layout="layout2"] .sd-primary-links>a{height:42px!important;font-size:11.5px!important;font-weight:500!important;letter-spacing:.04em!important}
+
+html[data-sudam-layout="layout2"] .sd-hero{height:88svh!important;min-height:680px!important;max-height:900px!important;background:#1D1B19!important}
+html[data-sudam-layout="layout2"] .sd-hero-media::before{content:""!important;position:absolute!important;inset:0!important;z-index:2!important;background:linear-gradient(180deg,rgba(10,9,8,.03) 20%,rgba(10,9,8,.12) 54%,rgba(10,9,8,.62) 100%)!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy{left:8%!important;right:8%!important;top:auto!important;bottom:9%!important;width:auto!important;max-width:390px!important;text-align:left!important;transform:none!important}
+html[data-sudam-layout="layout2"] .sd-hero-eyebrow{display:block!important;font-size:0!important;margin-bottom:10px!important}
+html[data-sudam-layout="layout2"] .sd-hero-eyebrow::after{content:"Restaurant Sudam";font:500 15px/1.1 Georgia,"Times New Roman",serif;color:#fff;letter-spacing:.04em}
+html[data-sudam-layout="layout2"] .sd-hero h1{font:500 48px/1.12 "Noto Serif KR",serif!important;color:#fff!important;letter-spacing:-.055em!important;text-shadow:0 2px 14px rgba(0,0,0,.28)!important}
+html[data-sudam-layout="layout2"] .sd-hero h1:after{display:none!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy>p{color:rgba(255,255,255,.92)!important;font-size:14px!important;line-height:1.65!important;margin-top:15px!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy>p::after{
+  content:"Seasonal Korean cuisine and private dining for meaningful occasions.";display:block;margin-top:9px;max-width:310px;
+  color:rgba(255,255,255,.68);font:400 9.5px/1.55 Arial,sans-serif;letter-spacing:.015em;
+}
+
+/* Quiet typographic trust block instead of a dark strip. */
+html[data-sudam-layout="layout2"] .sd-trust{
+  padding:54px 22px 50px!important;background:#FAF9F7!important;color:#2D2A27!important;border:0!important;min-height:0!important;
+}
+html[data-sudam-layout="layout2"] .sd-trust-grid{display:grid!important;grid-template-columns:1fr!important;gap:22px!important}
+html[data-sudam-layout="layout2"] .sd-trust-item{min-height:0!important;padding:0 0 19px!important;border-left:0!important;border-bottom:1px solid #DED9D3!important;color:#2D2A27!important;text-align:left!important}
+html[data-sudam-layout="layout2"] .sd-trust-item:last-child{border-bottom:0!important;padding-bottom:0!important}
+html[data-sudam-layout="layout2"] .sd-trust-item:before{margin-bottom:8px!important;color:#2D2A27!important;font-family:Georgia,"Times New Roman",serif!important;font-weight:400!important}
+html[data-sudam-layout="layout2"] .sd-trust-item:nth-child(1):before{content:"2021 · 2022 · 2025 · 2026"!important;font-size:21px!important;letter-spacing:.02em!important}
+html[data-sudam-layout="layout2"] .sd-trust-item:nth-child(2):before{content:"5,000+"!important;font-size:35px!important}
+html[data-sudam-layout="layout2"] .sd-trust-item strong{font-size:11px!important;color:#7A726B!important;font-weight:500!important;letter-spacing:.02em!important}
+
+/* Repeated restrained brand pretitle, similar editorial cadence. */
+html[data-sudam-layout="layout2"] .sd-section{padding-top:84px!important;padding-bottom:84px!important;background:#fff!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-kicker{font-size:0!important;text-align:left!important;margin-bottom:10px!important;color:#6B625B!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-kicker::after{content:"Sudam Hanjeongsik";font:500 14px/1 Georgia,"Times New Roman",serif;letter-spacing:.03em}
+html[data-sudam-layout="layout2"] .sd-section>.sd-title{display:block!important;text-align:left!important;font-size:28px!important;line-height:1.28!important;font-weight:500!important;margin:0 0 28px!important;color:#262320!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-title:after{display:none!important}
+
+/* Value / Space: large visual first, copy underneath; no floating controls. */
+html[data-sudam-layout="layout2"] #strength,
+html[data-sudam-layout="layout2"] #space{padding-left:0!important;padding-right:0!important;background:#fff!important}
+html[data-sudam-layout="layout2"] #strength>.sd-kicker,
+html[data-sudam-layout="layout2"] #strength>.sd-title,
+html[data-sudam-layout="layout2"] #space>.sd-kicker,
+html[data-sudam-layout="layout2"] #space>.sd-title{margin-left:22px!important;margin-right:22px!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide,
+html[data-sudam-layout="layout2"] #space .sd-slide{height:auto!important;min-height:0!important;background:#fff!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide:after,
+html[data-sudam-layout="layout2"] #space .sd-slide:after{display:none!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-media,
+html[data-sudam-layout="layout2"] #space .sd-slide-media{height:auto!important;aspect-ratio:4/3!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy{
+  position:relative!important;inset:auto!important;width:auto!important;padding:21px 22px 28px!important;background:#fff!important;color:#262320!important;text-align:left!important;
+}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy small,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy small{color:#9A8777!important;font-size:9px!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy h3{color:#262320!important;font:500 25px/1.34 "Noto Serif KR",serif!important;margin:7px 0!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy p{color:#69615B!important;font-size:12px!important;line-height:1.72!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-link,
+html[data-sudam-layout="layout2"] #space .sd-slide-link{color:#262320!important;border:0!important;font-size:9px!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+html[data-sudam-layout="layout2"] #strength .sd-layout-slider-meta,
+html[data-sudam-layout="layout2"] #space .sd-layout-slider-meta{top:auto!important;right:22px!important;bottom:17px!important;color:#756D67!important;text-shadow:none!important}
+html[data-sudam-layout="layout2"] .sd-layout-slider-meta:before{content:""!important;margin:0!important}
+
+/* Meeting: quiet large menu list. */
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-list{margin-top:5px!important;border-top:1px solid #DCD7D1!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card{min-height:78px!important;grid-template-columns:38px minmax(0,1fr) 24px!important;border-bottom:1px solid #DCD7D1!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .no{font-family:Georgia,"Times New Roman",serif!important;font-size:11px!important;color:#948B84!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card h3{font:500 20px/1.3 "Noto Serif KR",serif!important;color:#272421!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .go{font-size:17px!important;color:#8E857D!important}
+
+/* Menu: text-led, like a restaurant menu index. */
+html[data-sudam-layout="layout2"] #menu .sd-menu-grid{gap:0!important;border-top:1px solid #D8D3CD!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card{
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;align-items:center!important;min-height:112px!important;
+  padding:18px 2px!important;border-bottom:1px solid #D8D3CD!important;background:transparent!important;
+}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .media{display:none!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .body{padding:0!important;display:grid!important;grid-template-columns:auto 1fr!important;grid-template-rows:auto auto!important;align-items:end!important;column-gap:12px!important;text-align:left!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .tag{grid-column:1/3!important;font-size:8px!important;margin:0 0 7px!important;background:none!important;padding:0!important;color:#9B8877!important;letter-spacing:.14em!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card h3{grid-column:1!important;font:500 26px/1.15 "Noto Serif KR",serif!important;margin:0!important;color:#262320!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .price{grid-column:2!important;justify-self:end!important;font-size:12px!important;color:#655E58!important;margin:0!important}
+html[data-sudam-layout="layout2"] #menu .sd-course-knot{display:none!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-cta{margin-top:26px!important;border:0!important;border-top:1px solid #D8D3CD!important;border-radius:0!important;padding:20px 0!important;background:none!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-cta-bg{display:none!important}
+
+/* Reviews remain photographic but restrained. */
+html[data-sudam-layout="layout2"] #reviews>.sd-desc{max-width:360px!important;text-align:left!important;margin-left:0!important;margin-right:0!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-card{border-top:1px solid #D8D3CD!important;padding-top:22px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body h3{font-size:22px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-photos img{border-radius:0!important}
+
+/* Reservation/location: information first, map after — mirroring the source site's calm reservation section. */
+html[data-sudam-layout="layout2"] #location{display:flex!important;flex-direction:column!important;background:#F6F4F1!important;padding-left:22px!important;padding-right:22px!important}
+html[data-sudam-layout="layout2"] #location>.sd-kicker{order:1!important}
+html[data-sudam-layout="layout2"] #location>.sd-title{order:2!important;margin-bottom:10px!important}
+html[data-sudam-layout="layout2"] #location>.sd-desc{order:3!important;text-align:left!important;margin:0 0 28px!important;color:#706861!important}
+html[data-sudam-layout="layout2"] #location>.sd-location-list{order:4!important;margin:0 0 34px!important}
+html[data-sudam-layout="layout2"] #location>.sd-map{order:5!important;margin:0 -22px!important;width:calc(100% + 44px)!important;border-radius:0!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #location .sd-location-row{border:0!important;border-top:1px solid #D7D1CA!important;border-radius:0!important;padding:16px 0!important;background:transparent!important}
+html[data-sudam-layout="layout2"] #location .sd-location-valet{border:0!important;border-top:1px solid #D7D1CA!important;border-radius:0!important;background:transparent!important;padding-top:16px!important}
+html[data-sudam-layout="layout2"] #location .sd-location-row .ico{display:none!important}
+
+/* =========================================================
+   LAYOUT 3 — EDITORIAL PREMIUM / preserve v5.35 character
+   Fix only requested quality/readability issues.
+   ========================================================= */
+html[data-sudam-layout="layout3"] .sd-hero{height:82svh!important;min-height:650px!important;max-height:840px!important;overflow:hidden!important}
+html[data-sudam-layout="layout3"] .sd-hero-media::before{
+  content:""!important;position:absolute!important;inset:0!important;z-index:2!important;background:linear-gradient(135deg,rgba(20,16,13,.05) 10%,rgba(20,16,13,.12) 54%,rgba(20,16,13,.52) 100%)!important;
+}
+html[data-sudam-layout="layout3"] .sd-hero-copy{
+  left:7%!important;right:auto!important;top:auto!important;bottom:9%!important;width:77%!important;max-width:350px!important;
+  border-left:1px solid rgba(255,255,255,.5)!important;padding:0 0 0 17px!important;text-align:left!important;
+}
+html[data-sudam-layout="layout3"] .sd-hero-copy::before{
+  content:"SUDAM / PRIVATE DINING";display:block;margin-bottom:10px;color:rgba(255,255,255,.72);
+  font:700 8px/1 "Pretendard Variable",Pretendard,sans-serif;letter-spacing:.22em;
+}
+html[data-sudam-layout="layout3"] .sd-hero-eyebrow{font-size:16px!important;color:#E6C6A4!important;letter-spacing:.01em!important}
+html[data-sudam-layout="layout3"] .sd-hero h1{font-size:47px!important;line-height:1.1!important;color:#fff!important;letter-spacing:-.055em!important;text-shadow:0 2px 14px rgba(0,0,0,.3)!important}
+html[data-sudam-layout="layout3"] .sd-hero-copy>p{color:rgba(255,255,255,.86)!important;font-size:13px!important;line-height:1.65!important}
+
+/* Asymmetric trust typography, no icons. */
+html[data-sudam-layout="layout3"] .sd-trust{
+  padding:44px 20px 48px!important;background:var(--tone-page,#F3EEE8)!important;border:0!important;overflow:hidden!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust:before,
+html[data-sudam-layout="layout3"] .sd-trust-particle,
+html[data-sudam-layout="layout3"] .sd-trust-caption,
+html[data-sudam-layout="layout3"] .sd-trust-icon{display:none!important}
+html[data-sudam-layout="layout3"] .sd-trust-grid{display:grid!important;grid-template-columns:1.25fr .75fr!important;gap:14px!important;align-items:end!important;width:100%!important;margin:0!important}
+html[data-sudam-layout="layout3"] .sd-trust-grid:after{display:none!important}
+html[data-sudam-layout="layout3"] .sd-trust-item{padding:0!important;min-height:0!important;display:block!important;text-align:left!important;border:0!important;background:transparent!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(1){padding-right:14px!important;border-right:1px solid var(--ly-line,#D7CBC0)!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:before{display:block!important;color:var(--ly-text,#332C27)!important;font-family:"Noto Serif KR",serif!important;font-weight:400!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(1):before{content:"2021 · 2022\A2025 · 2026"!important;white-space:pre!important;font-size:25px!important;line-height:1.22!important;letter-spacing:-.035em!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(2):before{content:"5,000+"!important;font-size:37px!important;line-height:1!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:after{display:block!important;margin-top:8px!important;color:var(--ly-accent,#8D6A4F)!important;font:700 8px/1.2 "Pretendard Variable",Pretendard,sans-serif;letter-spacing:.16em!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(1):after{content:"BLUE RIBBON · SELECTED 4 TIMES"!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(2):after{content:"ANNUAL MEETINGS"!important}
+html[data-sudam-layout="layout3"] .sd-trust-item strong{font-size:10px!important;line-height:1.5!important;margin-top:6px!important;color:var(--ly-sub,#74695F)!important}
+
+/* Meeting: retain editorial mosaic, fix spacing/alignment/word breaking. */
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-list{gap:1px!important;margin-top:26px!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card{padding:16px!important;column-gap:8px!important;row-gap:10px!important;letter-spacing:0!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card h3{font-size:18px!important;line-height:1.3!important;letter-spacing:-.035em!important;word-break:keep-all!important;overflow-wrap:normal!important;white-space:normal!important;margin:0!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(2) h3,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(3) h3{max-width:100%!important}
+
+/* Signature tag readability. */
+html[data-sudam-layout="layout3"] #menu .tag-signature{
+  background:#EFE1D2!important;color:#3A2B22!important;border:1px solid rgba(82,59,43,.12)!important;font-weight:800!important;
+}
+html[data-sudam-layout="layout3"] #menu .tag-premium{color:#2F2924!important}
+
+/* Remove decorative diamond/line ornaments from Space only. */
+html[data-sudam-layout="layout3"] #space>.sd-title::before,
+html[data-sudam-layout="layout3"] #space>.sd-title::after,
+html[data-sudam-layout="layout3"] #space>.sd-kicker::after,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy::before,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy::after{display:none!important;content:none!important}
+
+/* Review/location supporting copy alignment. */
+html[data-sudam-layout="layout3"] #reviews>.sd-desc,
+html[data-sudam-layout="layout3"] #location>.sd-desc{text-align:left!important;margin-left:0!important;margin-right:0!important;max-width:100%!important}
+
+/* Review photo placeholder. */
+html[data-sudam-layout="layout3"] #reviews .sd-review-gallery{
+  min-height:210px!important;background:linear-gradient(135deg,#E7E1DA,#DCD4CB)!important;position:relative!important;display:grid!important;place-items:center!important;
+}
+html[data-sudam-layout="layout3"] #reviews .sd-review-gallery::before{
+  content:"REVIEW IMAGE\A사진 교체 예정";white-space:pre;text-align:center;color:#8E8277;
+  font:700 9px/1.7 "Pretendard Variable",Pretendard,sans-serif;letter-spacing:.14em;
+}
+html[data-sudam-layout="layout3"] #reviews .sd-review-photos,
+html[data-sudam-layout="layout3"] #reviews .sd-photo-count{display:none!important}
+
+/* Editorial location: offset map + inset information panel. */
+html[data-sudam-layout="layout3"] #location{overflow:hidden!important;padding-bottom:86px!important}
+html[data-sudam-layout="layout3"] #location .sd-map{
+  width:88%!important;margin:30px 0 0 auto!important;border-radius:0!important;overflow:hidden!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout3"] #location .sd-location-list{
+  width:92%!important;margin:-28px auto 0 0!important;position:relative!important;z-index:5!important;padding:18px!important;
+  background:var(--ly-surface,#fff)!important;border-left:3px solid var(--ly-accent,#8F6C4D)!important;box-shadow:0 14px 34px rgba(35,26,20,.11)!important;
+}
+html[data-sudam-layout="layout3"] #location .sd-location-row{border:0!important;border-bottom:1px solid var(--ly-line,#DDD1C6)!important;border-radius:0!important;background:transparent!important;padding:12px 0!important}
+html[data-sudam-layout="layout3"] #location .sd-location-row .ico{display:none!important}
+html[data-sudam-layout="layout3"] #location .sd-location-valet{border:0!important;border-radius:0!important;background:transparent!important;padding-top:14px!important}
+
+@media(max-width:390px){
+  html[data-sudam-layout="layout1"] .sd-hero h1{font-size:43px!important}
+  html[data-sudam-layout="layout1"] #meeting>.sd-title,
+  html[data-sudam-layout="layout1"] #menu>.sd-title{font-size:23px!important}
+  html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(1):before{font-size:19px!important}
+  html[data-sudam-layout="layout2"] .sd-hero h1{font-size:43px!important}
+  html[data-sudam-layout="layout2"] .sd-section>.sd-title{font-size:26px!important}
+  html[data-sudam-layout="layout3"] .sd-hero h1{font-size:42px!important}
+  html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(1):before{font-size:22px!important}
+  html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(2):before{font-size:33px!important}
+}
