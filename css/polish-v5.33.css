@@ -1,0 +1,563 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.33 — independent layout comparison
+   default / layout1 Premium Editorial / layout2 Meeting First /
+   layout3 Visual Luxury
+   Tone and Hero image selections stay independent.
+   ========================================================= */
+
+/* ---------- layout compare control ---------- */
+.sd-layout-compare{
+  width:100%;
+  box-sizing:border-box;
+  margin-top:7px;
+  padding-top:7px;
+  border-top:1px solid rgba(120,105,92,.22);
+}
+.sd-layout-compare-label{
+  display:block;
+  margin:0 0 5px;
+  font-size:7px;
+  line-height:1;
+  letter-spacing:.13em;
+  font-weight:800;
+  text-align:center;
+  opacity:.58;
+}
+.sd-layout-compare-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:4px;
+}
+.sd-layout-compare button{
+  width:32px!important;
+  min-width:32px!important;
+  height:28px!important;
+  min-height:28px!important;
+  padding:0!important;
+  font-size:8.5px!important;
+  border-radius:8px!important;
+}
+.sd-layout-compare button.is-active,
+.sd-layout-compare button[aria-pressed="true"]{
+  background:var(--tone-button-bg)!important;
+  color:var(--tone-button-text)!important;
+}
+html[data-sudam-theme="minimal"] .sd-layout-compare{
+  border-top-color:#CFC6BC!important;
+}
+
+/* ---------- shared alternate-layout design tokens ---------- */
+html[data-sudam-layout="layout1"],
+html[data-sudam-layout="layout2"],
+html[data-sudam-layout="layout3"]{
+  --lay-bg:#FAF7F2;
+  --lay-surface:#F3ECE4;
+  --lay-surface-2:#EEE4DA;
+  --lay-text:#342D28;
+  --lay-muted:#756A61;
+  --lay-line:rgba(74,61,51,.15);
+  --lay-accent:#9A704D;
+  --lay-dark:#3B342E;
+  --lay-light:#FFF9F2;
+}
+html[data-sudam-theme="minimal"][data-sudam-layout="layout1"],
+html[data-sudam-theme="minimal"][data-sudam-layout="layout2"],
+html[data-sudam-theme="minimal"][data-sudam-layout="layout3"]{
+  --lay-bg:#F7F6F3;
+  --lay-surface:#ECEAE6;
+  --lay-surface-2:#E4E1DC;
+  --lay-text:#292724;
+  --lay-muted:#6F6A64;
+  --lay-line:rgba(40,37,34,.15);
+  --lay-accent:#59524B;
+  --lay-dark:#39342F;
+  --lay-light:#FAF7F2;
+}
+html[data-sudam-theme="heritage"][data-sudam-layout="layout1"],
+html[data-sudam-theme="heritage"][data-sudam-layout="layout2"],
+html[data-sudam-theme="heritage"][data-sudam-layout="layout3"]{
+  --lay-bg:#F5F4EE;
+  --lay-surface:#E8E9DF;
+  --lay-surface-2:#DDE0D0;
+  --lay-text:#34382D;
+  --lay-muted:#6C705F;
+  --lay-line:rgba(73,80,57,.17);
+  --lay-accent:#687050;
+  --lay-dark:#4A503A;
+  --lay-light:#F8F6EF;
+}
+html[data-sudam-theme="editorial"][data-sudam-layout="layout1"],
+html[data-sudam-theme="editorial"][data-sudam-layout="layout2"],
+html[data-sudam-theme="editorial"][data-sudam-layout="layout3"]{
+  --lay-bg:#FFF9F6;
+  --lay-surface:#F6EAE6;
+  --lay-surface-2:#F0DFDC;
+  --lay-text:#443B3B;
+  --lay-muted:#786B6C;
+  --lay-line:rgba(123,89,92,.15);
+  --lay-accent:#A6767E;
+  --lay-dark:#544648;
+  --lay-light:#FFF9F6;
+}
+
+/* =========================================================
+   LAYOUT 1 — Premium Editorial
+   image-led magazine rhythm; stacked strengths; 2x2 meetings;
+   asymmetric menu; quote-first reviews.
+   ========================================================= */
+html[data-sudam-layout="layout1"] .sd-trust{
+  padding:24px 22px 25px!important;
+  background:var(--lay-surface)!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-particle{display:none!important}
+html[data-sudam-layout="layout1"] .sd-trust-caption{
+  margin:0 0 15px!important;
+  font-size:13px!important;
+  line-height:1.45!important;
+  letter-spacing:-.02em!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-grid{
+  border-top:1px solid var(--lay-line)!important;
+  padding-top:15px!important;
+  gap:0!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-item{
+  min-height:54px!important;
+  display:grid!important;
+  grid-template-columns:42px 1fr!important;
+  align-items:center!important;
+  text-align:left!important;
+  gap:10px!important;
+  padding:0 12px!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-icon{
+  width:38px!important;
+  margin:0!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-item strong{
+  font-size:14px!important;
+  line-height:1.42!important;
+}
+
+html[data-sudam-layout="layout1"] #strength{
+  padding-top:62px!important;
+  padding-bottom:66px!important;
+  background:var(--lay-bg)!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slider{
+  margin-top:34px!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slider-window{
+  overflow:visible!important;
+  border-radius:0!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slider-track{
+  display:grid!important;
+  gap:44px!important;
+  transform:none!important;
+  transition:none!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide{
+  min-width:0!important;
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  background:transparent!important;
+  overflow:visible!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide:after{display:none!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-media{
+  order:1!important;
+  aspect-ratio:4/5!important;
+  border-radius:2px!important;
+  box-shadow:0 14px 34px rgba(44,35,29,.08)!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy{
+  order:2!important;
+  position:static!important;
+  inset:auto!important;
+  padding:18px 3px 0!important;
+  color:var(--lay-text)!important;
+  text-align:left!important;
+  transform:none!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide:nth-child(even) .sd-slide-copy{
+  order:0!important;
+  padding:0 3px 18px!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy small{
+  color:var(--lay-accent)!important;
+  font-size:11px!important;
+  letter-spacing:.08em!important;
+  opacity:1!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy h3{
+  margin:8px 0 9px!important;
+  color:var(--lay-text)!important;
+  font-size:27px!important;
+  line-height:1.28!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy p{
+  color:var(--lay-muted)!important;
+  opacity:1!important;
+  font-size:12.5px!important;
+  line-height:1.65!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide-link{
+  color:var(--lay-text)!important;
+  border-bottom-color:var(--lay-accent)!important;
+  font-size:12px!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slider-btn,
+html[data-sudam-layout="layout1"] #strength .sd-dots{display:none!important}
+
+html[data-sudam-layout="layout1"] #meeting{
+  background:var(--lay-surface)!important;
+  padding-top:60px!important;
+  padding-bottom:62px!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-list{
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+  margin-top:30px!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card{
+  min-height:142px!important;
+  grid-template-columns:1fr auto!important;
+  grid-template-rows:auto 1fr!important;
+  align-items:start!important;
+  gap:10px!important;
+  padding:16px!important;
+  background:color-mix(in srgb,var(--lay-bg) 92%,white)!important;
+  border:1px solid var(--lay-line)!important;
+  border-radius:4px!important;
+  backdrop-filter:none!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .no{
+  grid-column:1!important;
+  font-size:11px!important;
+  color:var(--lay-accent)!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card>div{
+  grid-column:1 / -1!important;
+  align-self:end!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card h3{
+  margin:0!important;
+  font-size:18px!important;
+  line-height:1.35!important;
+  color:var(--lay-text)!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .go{
+  grid-column:2!important;
+  grid-row:1!important;
+  width:26px!important;
+  height:26px!important;
+  border:0!important;
+  color:var(--lay-text)!important;
+}
+
+html[data-sudam-layout="layout1"] #menu{
+  padding-top:64px!important;
+  padding-bottom:66px!important;
+  background:var(--lay-bg)!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-grid{
+  display:block!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card{
+  width:100%!important;
+  margin:0!important;
+  border-radius:3px!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card + .sd-menu-card{
+  width:86%!important;
+  margin:34px 0 0 auto!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .media{
+  aspect-ratio:5/4!important;
+  border-radius:2px!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card:first-child .media{
+  aspect-ratio:4/5!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .body{
+  padding:14px 0 0!important;
+  text-align:left!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card h3{
+  font-size:25px!important;
+  color:var(--lay-text)!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .tag{color:var(--lay-accent)!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .price{color:var(--lay-muted)!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-cta{
+  margin-top:32px!important;
+  border-radius:3px!important;
+}
+
+html[data-sudam-layout="layout1"] #space{
+  padding-top:62px!important;
+  padding-bottom:64px!important;
+}
+html[data-sudam-layout="layout1"] #space .sd-slide-media{aspect-ratio:4/5!important}
+html[data-sudam-layout="layout1"] #space .sd-slider-window{border-radius:3px!important}
+
+html[data-sudam-layout="layout1"] #reviews{
+  padding-top:62px!important;
+  padding-bottom:66px!important;
+  background:var(--lay-surface)!important;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-grid{
+  grid-template-columns:1fr!important;
+  gap:22px!important;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-card{
+  display:flex!important;
+  flex-direction:column!important;
+  border-radius:3px!important;
+  border:1px solid var(--lay-line)!important;
+  background:var(--lay-bg)!important;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-body{
+  order:1!important;
+  padding:22px 20px 18px!important;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-gallery{
+  order:2!important;
+  border-top:1px solid var(--lay-line)!important;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-body h3{
+  font-size:21px!important;
+  line-height:1.45!important;
+  margin:5px 0 11px!important;
+  color:var(--lay-text)!important;
+}
+html[data-sudam-layout="layout1"] #reviews .sd-review-body p{
+  display:block!important;
+  -webkit-line-clamp:unset!important;
+  overflow:visible!important;
+  color:var(--lay-muted)!important;
+  font-size:12.5px!important;
+}
+
+/* =========================================================
+   LAYOUT 2 — Meeting First
+   conversion-oriented hierarchy; meeting section rises directly
+   after trust and becomes large service navigation.
+   ========================================================= */
+html[data-sudam-layout="layout2"] .sd-trust{
+  padding:30px 22px!important;
+}
+html[data-sudam-layout="layout2"] #meeting{
+  padding-top:56px!important;
+  padding-bottom:62px!important;
+  background:var(--lay-bg)!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-title{
+  text-align:left!important;
+  max-width:320px!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-kicker{text-align:left!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-list{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+  margin-top:31px!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card{
+  min-height:112px!important;
+  grid-template-columns:54px 1fr 38px!important;
+  padding:18px 16px!important;
+  border-radius:4px!important;
+  border:1px solid var(--lay-line)!important;
+  background:var(--lay-surface)!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card:nth-child(even){
+  background:var(--lay-surface-2)!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .no{
+  font-size:28px!important;
+  line-height:1!important;
+  color:var(--lay-accent)!important;
+  opacity:.7!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card h3{
+  font-size:23px!important;
+  line-height:1.25!important;
+  color:var(--lay-text)!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .go{
+  width:34px!important;
+  height:34px!important;
+  color:var(--lay-text)!important;
+  border-color:var(--lay-line)!important;
+}
+html[data-sudam-layout="layout2"] #strength{
+  padding-top:62px!important;
+  border-top:1px solid var(--lay-line)!important;
+}
+html[data-sudam-layout="layout2"] #menu,
+html[data-sudam-layout="layout2"] #reviews{background:var(--lay-bg)!important}
+html[data-sudam-layout="layout2"] #space{background:var(--lay-surface)!important}
+html[data-sudam-layout="layout2"] .sd-section{
+  padding-bottom:62px!important;
+}
+
+/* =========================================================
+   LAYOUT 3 — Visual Luxury
+   full-bleed image rhythm; less card chrome; large visual chapters.
+   ========================================================= */
+html[data-sudam-layout="layout3"] #strength,
+html[data-sudam-layout="layout3"] #space{
+  padding-left:0!important;
+  padding-right:0!important;
+  padding-top:64px!important;
+  padding-bottom:68px!important;
+  overflow:hidden!important;
+}
+html[data-sudam-layout="layout3"] #strength>.sd-kicker,
+html[data-sudam-layout="layout3"] #strength>.sd-title,
+html[data-sudam-layout="layout3"] #space>.sd-kicker,
+html[data-sudam-layout="layout3"] #space>.sd-title{
+  margin-left:22px!important;
+  margin-right:22px!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slider,
+html[data-sudam-layout="layout3"] #space .sd-slider{
+  margin-top:30px!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slider-window,
+html[data-sudam-layout="layout3"] #space .sd-slider-window{
+  border-radius:0!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slide-media,
+html[data-sudam-layout="layout3"] #space .sd-slide-media{
+  height:min(72svh,690px)!important;
+  aspect-ratio:auto!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slide:after,
+html[data-sudam-layout="layout3"] #space .sd-slide:after{
+  background:linear-gradient(180deg,rgba(20,16,13,.04) 0%,rgba(20,16,13,.10) 48%,rgba(20,16,13,.68) 100%)!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy{
+  top:auto!important;
+  bottom:54px!important;
+  left:24px!important;
+  right:24px!important;
+  text-align:left!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy small,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy small{
+  font-size:10px!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy h3{
+  max-width:315px!important;
+  font-size:30px!important;
+  line-height:1.25!important;
+  margin:8px 0!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy p{
+  max-width:280px!important;
+  font-size:11.5px!important;
+  opacity:.9!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slider-btn,
+html[data-sudam-layout="layout3"] #space .sd-slider-btn{
+  top:50%!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust{
+  padding:28px 22px 30px!important;
+  background:var(--lay-bg)!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust-caption{
+  margin-bottom:18px!important;
+  font-size:13px!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust-item strong{
+  font-size:15px!important;
+}
+html[data-sudam-layout="layout3"] #menu{
+  padding-top:64px!important;
+  padding-bottom:66px!important;
+  background:var(--lay-bg)!important;
+}
+html[data-sudam-layout="layout3"] #menu .sd-menu-grid{
+  grid-template-columns:1fr!important;
+  gap:18px!important;
+}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card{
+  display:grid!important;
+  grid-template-columns:58% 42%!important;
+  align-items:stretch!important;
+  border-radius:0!important;
+  background:var(--lay-surface)!important;
+  border:0!important;
+}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card:nth-child(even){
+  grid-template-columns:42% 58%!important;
+}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card:nth-child(even) .media{order:2!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card .media{
+  aspect-ratio:auto!important;
+  min-height:190px!important;
+}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card .body{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  text-align:left!important;
+  padding:18px 15px!important;
+}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card h3{
+  font-size:24px!important;
+  color:var(--lay-text)!important;
+}
+html[data-sudam-layout="layout3"] #meeting{
+  background:var(--lay-dark)!important;
+  color:var(--lay-light)!important;
+  padding-top:60px!important;
+  padding-bottom:62px!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-title,
+html[data-sudam-layout="layout3"] #meeting .sd-kicker{color:var(--lay-light)!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card{
+  background:transparent!important;
+  color:var(--lay-light)!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.18)!important;
+  border-radius:0!important;
+  min-height:84px!important;
+  padding-left:0!important;
+  padding-right:0!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card h3,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .go{color:var(--lay-light)!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .go{border-color:rgba(255,255,255,.28)!important}
+html[data-sudam-layout="layout3"] #reviews{background:var(--lay-bg)!important}
+
+@media(max-width:390px){
+  .sd-layout-compare button{
+    width:30px!important;
+    min-width:30px!important;
+    height:27px!important;
+    min-height:27px!important;
+    font-size:8px!important;
+  }
+  html[data-sudam-layout="layout1"] #meeting .sd-meeting-card{min-height:132px!important;padding:14px!important}
+  html[data-sudam-layout="layout3"] #menu .sd-menu-card{grid-template-columns:56% 44%!important}
+  html[data-sudam-layout="layout3"] #menu .sd-menu-card:nth-child(even){grid-template-columns:44% 56%!important}
+}
