@@ -1,0 +1,333 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.37 — Rebalanced layout candidates
+   Base: v5.35 (preserve Layout 3 editorial character)
+   - Layout 1: Balanced Premium
+   - Layout 2: Visual Premium
+   - Layout 3: intentionally left on v5.35 visual language
+   ========================================================= */
+
+/* ---------- Utility: TOP is a true external floating control ---------- */
+.sd-compare-top{
+  position:fixed!important;
+  left:calc(50% + 300px)!important;
+  right:auto!important;
+  top:118px!important;
+  bottom:auto!important;
+  transform:none!important;
+  z-index:12050!important;
+  width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;
+  padding:0!important;
+  display:grid!important;place-items:center!important;align-content:center!important;gap:1px!important;
+  border:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 78%,transparent)!important;
+  border-radius:12px!important;
+  background:color-mix(in srgb,var(--tone-control-bg,#FFFDF9) 96%,transparent)!important;
+  color:var(--tone-control-text,#3A291C)!important;
+  box-shadow:0 8px 24px rgba(20,16,12,.12)!important;
+  backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;
+  opacity:0!important;visibility:hidden!important;pointer-events:none!important;
+  transition:opacity .18s ease,transform .18s ease!important;
+}
+.sd-compare-top.is-visible{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.sd-compare-top>span{font-size:17px!important;line-height:.85!important;font-weight:500!important}
+.sd-compare-top>small{font:700 7px/1 "Pretendard Variable",Pretendard,sans-serif!important;letter-spacing:.12em!important}
+.sd-compare-top:active{transform:scale(.95)!important}
+@media(max-width:610px){
+  .sd-compare-top{
+    left:auto!important;right:5px!important;top:auto!important;bottom:76px!important;
+    width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;
+    border-radius:11px!important;
+  }
+}
+
+/* =========================================================
+   LAYOUT 1 — BALANCED PREMIUM
+   Readable, polished, commercially strongest candidate.
+   ========================================================= */
+html[data-sudam-layout="layout1"] .sd-brandbar{height:60px!important;min-height:60px!important}
+html[data-sudam-layout="layout1"] .sd-primary-nav{
+  width:100%!important;margin:0!important;height:44px!important;min-height:44px!important;
+  border:0!important;border-top:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 32%,transparent)!important;
+  border-bottom:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 52%,transparent)!important;
+  border-radius:0!important;box-shadow:none!important;background:var(--tone-header,#fff)!important;
+}
+html[data-sudam-layout="layout1"] .sd-primary-links>a{height:44px!important;font-size:13.5px!important;font-weight:600!important}
+
+/* Hero: generous image, anchored editorial copy rather than a generic centered block. */
+html[data-sudam-layout="layout1"] .sd-hero{height:70svh!important;min-height:560px!important;max-height:720px!important}
+html[data-sudam-layout="layout1"] .sd-hero-copy{
+  left:7%!important;right:auto!important;top:auto!important;bottom:8%!important;
+  width:78%!important;max-width:350px!important;text-align:left!important;
+  padding-left:15px!important;border-left:2px solid color-mix(in srgb,var(--hero-v530-accent-light,#E4C39E) 75%,transparent)!important;
+}
+html[data-sudam-layout="layout1"] .sd-hero-eyebrow{font-size:16px!important;letter-spacing:.02em!important;margin-bottom:6px!important}
+html[data-sudam-layout="layout1"] .sd-hero h1{font:600 43px/1.13 "Noto Serif KR",serif!important;letter-spacing:-.05em!important}
+html[data-sudam-layout="layout1"] .sd-hero h1:after{display:none!important}
+html[data-sudam-layout="layout1"] .sd-hero-copy>p{font-size:14px!important;line-height:1.65!important;margin-top:13px!important}
+/* Preserve the specifically approved image 1 / 3 positioning logic. */
+html[data-sudam-layout="layout1"][data-sudam-hero-image="image1"] .sd-hero-copy{left:auto!important;right:7%!important;text-align:right!important;border-left:0!important;border-right:2px solid rgba(255,249,242,.55)!important;padding-left:0!important;padding-right:15px!important}
+html[data-sudam-layout="layout1"][data-sudam-hero-image="image3"] .sd-hero-copy{left:50%!important;right:auto!important;bottom:13%!important;transform:translateX(-50%)!important;width:84%!important;text-align:center!important;border:0!important;padding:0!important}
+
+/* Trust: no icon-card cliché. Two strong facts immediately after hero. */
+html[data-sudam-layout="layout1"] .sd-trust{
+  padding:0!important;background:var(--tone-page,#F4ECE4)!important;border-bottom:1px solid var(--ly-line)!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust:before,
+html[data-sudam-layout="layout1"] .sd-trust-particle,
+html[data-sudam-layout="layout1"] .sd-trust-caption,
+html[data-sudam-layout="layout1"] .sd-trust-icon{display:none!important}
+html[data-sudam-layout="layout1"] .sd-trust-grid{
+  display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;width:100%!important;max-width:none!important;margin:0!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-grid:after{display:none!important}
+html[data-sudam-layout="layout1"] .sd-trust-item{
+  min-height:108px!important;padding:22px 17px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;text-align:left!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-item+ .sd-trust-item{border-left:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:before{display:block!important;margin-bottom:5px!important;font:500 24px/1.05 "Noto Serif KR",serif!important;color:var(--ly-text)!important;letter-spacing:-.04em!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(1):before{content:"2025 · 2026"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(2):before{content:"5,000+"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:after{display:block!important;margin-top:4px!important;font:700 8px/1 "Pretendard Variable",Pretendard,sans-serif!important;letter-spacing:.14em!important;color:var(--ly-accent)!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(1):after{content:"BLUE RIBBON"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(2):after{content:"ANNUAL MEETINGS"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item strong{order:2!important;margin-top:7px!important;font-size:11px!important;line-height:1.45!important;color:var(--ly-sub)!important;font-weight:600!important}
+
+/* Section rhythm: calm and consistent, not repetitive boxed UI. */
+html[data-sudam-layout="layout1"] .sd-section{padding-top:72px!important;padding-bottom:72px!important}
+html[data-sudam-layout="layout1"] .sd-section>.sd-kicker{font-size:9px!important;letter-spacing:.17em!important;margin-bottom:8px!important}
+html[data-sudam-layout="layout1"] .sd-section>.sd-title{font-size:30px!important;line-height:1.3!important;font-weight:600!important}
+html[data-sudam-layout="layout1"] .sd-section>.sd-title:after{width:34px!important;margin-top:14px!important;opacity:.55!important}
+
+/* Strength / Space: premium image card, clean lower information surface. */
+html[data-sudam-layout="layout1"] #strength .sd-slider,
+html[data-sudam-layout="layout1"] #space .sd-slider{margin-top:28px!important}
+html[data-sudam-layout="layout1"] #strength .sd-slider-window,
+html[data-sudam-layout="layout1"] #space .sd-slider-window{
+  border:1px solid var(--ly-line)!important;border-radius:16px!important;overflow:hidden!important;
+  box-shadow:0 16px 38px rgba(38,29,22,.075)!important;background:var(--ly-surface)!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide,
+html[data-sudam-layout="layout1"] #space .sd-slide{background:var(--ly-surface)!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-media,
+html[data-sudam-layout="layout1"] #space .sd-slide-media{aspect-ratio:4/3!important;border-radius:0!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy{
+  position:relative!important;inset:auto!important;width:auto!important;min-height:190px!important;padding:20px 19px 23px!important;
+  background:var(--ly-surface)!important;color:var(--ly-text)!important;text-align:left!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy small,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy small{color:var(--ly-accent)!important;font-size:9px!important;letter-spacing:.08em!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy h3{color:var(--ly-text)!important;font-size:24px!important;line-height:1.3!important;margin:7px 0!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy p{color:var(--ly-sub)!important;font-size:12px!important;line-height:1.6!important}
+html[data-sudam-layout="layout1"] #strength .sd-slider-btn,
+html[data-sudam-layout="layout1"] #space .sd-slider-btn{
+  top:31%!important;width:38px!important;height:38px!important;border-radius:50%!important;background:rgba(255,252,247,.95)!important;color:#44372E!important;
+  box-shadow:0 6px 18px rgba(0,0,0,.12)!important;border:1px solid rgba(80,65,52,.12)!important;
+}
+html[data-sudam-layout="layout1"] #strength .sd-slider-prev,
+html[data-sudam-layout="layout1"] #space .sd-slider-prev{left:-19px!important}
+html[data-sudam-layout="layout1"] #strength .sd-slider-next,
+html[data-sudam-layout="layout1"] #space .sd-slider-next{right:-19px!important}
+
+/* Meeting: four equal, immediately understandable choices. */
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin-top:28px!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card{
+  min-height:142px!important;padding:15px!important;border-radius:14px!important;border:1px solid var(--ly-line)!important;background:var(--tone-meeting-card,var(--ly-surface))!important;
+  grid-template-columns:1fr 30px!important;grid-template-rows:auto 1fr 30px!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .no{grid-column:1/3!important;grid-row:1!important;font-size:10px!important;letter-spacing:.10em!important;color:var(--ly-accent)!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card>div{grid-column:1/3!important;grid-row:2!important;align-self:center!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card h3{font-size:18px!important;line-height:1.35!important;margin:0!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .go{grid-column:2!important;grid-row:3!important;width:30px!important;height:30px!important;justify-self:end!important;border-radius:50%!important}
+
+/* Menu: one-column horizontal cards are more legible on mobile than compressed 2-up tiles. */
+html[data-sudam-layout="layout1"] #menu .sd-menu-grid{display:grid!important;grid-template-columns:1fr!important;gap:12px!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card{
+  display:grid!important;grid-template-columns:44% 56%!important;min-height:184px!important;border-radius:15px!important;border:1px solid var(--ly-line)!important;
+  overflow:hidden!important;background:var(--ly-surface)!important;box-shadow:0 10px 26px rgba(35,26,19,.05)!important;
+}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .media{grid-column:1!important;grid-row:1!important;aspect-ratio:auto!important;min-height:184px!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .media img{height:100%!important;object-fit:cover!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .body{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:flex-start!important;text-align:left!important;padding:18px 16px!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card h3{font-size:23px!important;margin:5px 0!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .price{font-size:12.5px!important}
+html[data-sudam-layout="layout1"] #menu .sd-course-knot{margin-left:0!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-cta{border-radius:14px!important;margin-top:16px!important}
+
+html[data-sudam-layout="layout1"] #reviews .sd-review-grid{grid-template-columns:1fr!important;gap:16px!important}
+html[data-sudam-layout="layout1"] #reviews .sd-review-card{border-radius:15px!important;border:1px solid var(--ly-line)!important;box-shadow:0 10px 28px rgba(35,26,19,.05)!important}
+html[data-sudam-layout="layout1"] #reviews .sd-review-body{padding:20px!important}
+html[data-sudam-layout="layout1"] #reviews .sd-review-body h3{font-size:21px!important;line-height:1.42!important}
+
+/* Refined footer + floating 3-way CTA. */
+html[data-sudam-layout="layout1"] .sd-footer:before{background-image:none!important}
+html[data-sudam-layout="layout1"] .sd-footer{padding:38px 20px 94px!important}
+html[data-sudam-layout="layout1"] .sd-footer-tools--main{border:1px solid rgba(255,255,255,.12)!important;border-radius:12px!important;padding:12px!important}
+html[data-sudam-layout="layout1"] .sd-bottom-cta{
+  left:50%!important;right:auto!important;bottom:8px!important;width:min(calc(100% - 16px),calc(var(--sd-max) - 16px))!important;
+  border-radius:15px!important;overflow:hidden!important;transform:translateX(-50%)!important;box-shadow:0 6px 24px rgba(25,18,13,.15)!important;
+}
+html[data-sudam-layout="layout1"] .sd-bottom-cta.is-hidden{transform:translate(-50%,12px)!important}
+html[data-sudam-layout="layout1"] .sd-bottom-cta:not(.is-hidden){transform:translate(-50%,0)!important}
+
+/* =========================================================
+   LAYOUT 2 — VISUAL PREMIUM
+   Photography leads only where photography is persuasive.
+   ========================================================= */
+html[data-sudam-layout="layout2"] .sd-brandbar{height:52px!important;min-height:52px!important;border-bottom:0!important}
+html[data-sudam-layout="layout2"] .sd-primary-nav{
+  height:38px!important;min-height:38px!important;padding:0 10px!important;border:0!important;
+  border-top:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 30%,transparent)!important;
+  border-bottom:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 42%,transparent)!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout2"] .sd-primary-links>a{height:38px!important;font-size:12px!important;font-weight:600!important;letter-spacing:.01em!important}
+
+html[data-sudam-layout="layout2"] .sd-hero{height:80svh!important;min-height:640px!important;max-height:820px!important}
+html[data-sudam-layout="layout2"] .sd-hero-eyebrow{display:none!important}
+html[data-sudam-layout="layout2"] .sd-hero h1{font:500 47px/1.08 "Noto Serif KR",serif!important;letter-spacing:-.055em!important}
+html[data-sudam-layout="layout2"] .sd-hero h1:after{width:34px!important;height:1px!important;margin-top:16px!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy>p{font-size:13.5px!important;line-height:1.68!important;margin-top:14px!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy{left:7%!important;right:auto!important;top:auto!important;bottom:9%!important;width:76%!important;max-width:340px!important;text-align:left!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image1"] .sd-hero-copy{left:auto!important;right:7%!important;text-align:right!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image1"] .sd-hero h1:after{margin-left:auto!important;margin-right:0!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image3"] .sd-hero-copy{left:50%!important;right:auto!important;top:44%!important;bottom:auto!important;transform:translate(-50%,-50%)!important;width:84%!important;text-align:center!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image3"] .sd-hero h1:after{margin-left:auto!important;margin-right:auto!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image4"] .sd-hero-copy{left:auto!important;right:7%!important;top:13%!important;bottom:auto!important;text-align:right!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image4"] .sd-hero h1:after{margin-left:auto!important;margin-right:0!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image5"] .sd-hero-copy,
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image6"] .sd-hero-copy{left:7%!important;right:auto!important;top:11%!important;bottom:auto!important;text-align:left!important}
+
+/* Trust: a slim factual strip, no icons, no separate decorative section. */
+html[data-sudam-layout="layout2"] .sd-trust{
+  position:relative!important;padding:0!important;background:#2F2A26!important;color:#fff!important;border:0!important;min-height:82px!important;
+}
+html[data-sudam-layout="layout2"] .sd-trust:before,
+html[data-sudam-layout="layout2"] .sd-trust-particle,
+html[data-sudam-layout="layout2"] .sd-trust-caption,
+html[data-sudam-layout="layout2"] .sd-trust-icon{display:none!important}
+html[data-sudam-layout="layout2"] .sd-trust-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;width:100%!important;max-width:none!important;margin:0!important}
+html[data-sudam-layout="layout2"] .sd-trust-grid:after{display:none!important}
+html[data-sudam-layout="layout2"] .sd-trust-item{min-height:82px!important;padding:15px 18px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;text-align:left!important;color:#fff!important}
+html[data-sudam-layout="layout2"] .sd-trust-item+ .sd-trust-item{border-left:1px solid rgba(255,255,255,.15)!important}
+html[data-sudam-layout="layout2"] .sd-trust-item:before{display:block!important;margin-bottom:5px!important;font:500 19px/1.05 "Noto Serif KR",serif!important;color:#FFF9F2!important;letter-spacing:-.035em!important}
+html[data-sudam-layout="layout2"] .sd-trust-item:nth-child(1):before{content:"2025 · 2026"!important}
+html[data-sudam-layout="layout2"] .sd-trust-item:nth-child(2):before{content:"5,000+"!important}
+html[data-sudam-layout="layout2"] .sd-trust-item strong{font-size:9.5px!important;line-height:1.4!important;color:rgba(255,255,255,.72)!important;font-weight:600!important}
+
+html[data-sudam-layout="layout2"] .sd-section{padding-top:78px!important;padding-bottom:78px!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-title{font-size:31px!important;line-height:1.28!important;font-weight:500!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-title:after{display:none!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-kicker{font-size:8.5px!important;letter-spacing:.20em!important;margin-bottom:9px!important}
+html[data-sudam-layout="layout2"] #strength>.sd-title,
+html[data-sudam-layout="layout2"] #space>.sd-title{display:none!important}
+html[data-sudam-layout="layout2"] #strength>.sd-kicker,
+html[data-sudam-layout="layout2"] #space>.sd-kicker{display:flex!important;align-items:center!important;gap:10px!important;margin:0 20px 18px!important}
+html[data-sudam-layout="layout2"] #strength>.sd-kicker:after,
+html[data-sudam-layout="layout2"] #space>.sd-kicker:after{content:""!important;height:1px!important;flex:1!important;background:currentColor!important;opacity:.22!important}
+
+/* Full-bleed swipe stories: no chrome. */
+html[data-sudam-layout="layout2"] #strength,
+html[data-sudam-layout="layout2"] #space{padding-left:0!important;padding-right:0!important}
+html[data-sudam-layout="layout2"] #strength .sd-slider,
+html[data-sudam-layout="layout2"] #space .sd-slider{margin-top:0!important}
+html[data-sudam-layout="layout2"] #strength .sd-slider-window,
+html[data-sudam-layout="layout2"] #space .sd-slider-window{border:0!important;border-radius:0!important;box-shadow:none!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide,
+html[data-sudam-layout="layout2"] #space .sd-slide{height:min(70svh,630px)!important;min-height:540px!important;background:#211D1A!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-media,
+html[data-sudam-layout="layout2"] #space .sd-slide-media{width:100%!important;height:100%!important;aspect-ratio:auto!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-media img,
+html[data-sudam-layout="layout2"] #space .sd-slide-media img{height:100%!important;object-fit:cover!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide:after,
+html[data-sudam-layout="layout2"] #space .sd-slide:after{display:block!important;background:linear-gradient(180deg,rgba(17,14,12,.01) 22%,rgba(17,14,12,.08) 48%,rgba(17,14,12,.74) 100%)!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy{
+  position:absolute!important;left:22px!important;right:22px!important;top:auto!important;bottom:30px!important;width:auto!important;padding:0!important;
+  background:transparent!important;border:0!important;box-shadow:none!important;color:#fff!important;text-align:left!important;
+}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy small,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy small{color:#F0DCC8!important;font-size:9.5px!important;letter-spacing:.08em!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy h3{color:#fff!important;font-size:30px!important;line-height:1.25!important;margin:8px 0!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy p{color:rgba(255,255,255,.86)!important;font-size:12.5px!important;line-height:1.58!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-link,
+html[data-sudam-layout="layout2"] #space .sd-slide-link{color:#fff!important;border-bottom-color:rgba(255,255,255,.45)!important;margin-top:12px!important;font-size:10.5px!important}
+html[data-sudam-layout="layout2"] #strength .sd-slider-btn,
+html[data-sudam-layout="layout2"] #space .sd-slider-btn,
+html[data-sudam-layout="layout2"] #strength .sd-dots,
+html[data-sudam-layout="layout2"] #space .sd-dots{display:none!important}
+html[data-sudam-layout="layout2"] #strength .sd-layout-slider-meta,
+html[data-sudam-layout="layout2"] #space .sd-layout-slider-meta{
+  display:flex!important;position:absolute!important;z-index:5!important;right:18px!important;top:16px!important;gap:6px!important;
+  color:#fff!important;font-size:10px!important;letter-spacing:.08em!important;text-shadow:0 1px 8px rgba(0,0,0,.35)!important;
+}
+html[data-sudam-layout="layout2"] .sd-layout-slider-meta:before{content:"SWIPE"!important;margin-right:5px!important;font-size:7.5px!important;letter-spacing:.16em!important;opacity:.7!important}
+html[data-sudam-layout="layout2"] .sd-layout-slider-meta .current{font-family:"Noto Serif KR",serif!important;font-size:15px!important}
+
+/* Meeting: selection-first; no decorative card chrome. */
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-list{display:grid!important;grid-template-columns:1fr!important;gap:0!important;margin-top:30px!important;border-top:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card{
+  width:100%!important;min-height:92px!important;display:grid!important;grid-template-columns:48px minmax(0,1fr) 28px!important;align-items:center!important;gap:9px!important;
+  padding:0!important;border:0!important;border-bottom:1px solid var(--ly-line)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .no{font:500 12px/1 "Noto Serif KR",serif!important;opacity:.5!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card>div{min-width:0!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card h3{font-size:22px!important;line-height:1.3!important;font-weight:500!important;margin:0!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .go{width:auto!important;height:auto!important;border:0!important;background:none!important;font-size:21px!important;justify-self:end!important}
+
+/* Menu: photography-led stories, information directly beneath. */
+html[data-sudam-layout="layout2"] #menu .sd-menu-grid{display:grid!important;grid-template-columns:1fr!important;gap:30px!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card{display:block!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .media{aspect-ratio:16/10!important;border-radius:0!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .body{padding:14px 1px 0!important;text-align:left!important;display:block!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card h3{font-size:26px!important;margin:5px 0!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .price{font-size:13px!important}
+html[data-sudam-layout="layout2"] #menu .sd-course-knot{margin-left:0!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-cta{border-radius:0!important;border-left:2px solid var(--ly-accent)!important;margin-top:30px!important}
+
+/* Reviews: words first, then visual proof. */
+html[data-sudam-layout="layout2"] #reviews .sd-review-grid{display:grid!important;grid-template-columns:1fr!important;gap:38px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-card{display:flex!important;flex-direction:column!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body{order:1!important;padding:0 0 18px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-gallery{order:2!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body h3{font:500 24px/1.42 "Noto Serif KR",serif!important;margin:7px 0 10px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body p{font-size:12.5px!important;line-height:1.7!important;-webkit-line-clamp:4!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-photos{padding:0 18px 8px 0!important;gap:8px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-photos img{flex:0 0 88%!important;width:88%!important;border-radius:0!important}
+
+/* Minimal footer / low-chrome bottom navigation. */
+html[data-sudam-layout="layout2"] .sd-footer:before{display:none!important}
+html[data-sudam-layout="layout2"] .sd-footer{padding:42px 22px 80px!important;background:var(--tone-footer)!important}
+html[data-sudam-layout="layout2"] .sd-footer-links--top{justify-content:flex-start!important;text-align:left!important;gap:8px 13px!important;margin:0 0 20px!important}
+html[data-sudam-layout="layout2"] .sd-footer-tools--main{padding:13px 0!important;border-top:1px solid rgba(255,255,255,.11)!important;border-bottom:1px solid rgba(255,255,255,.11)!important}
+html[data-sudam-layout="layout2"] .sd-footer-language-row{justify-content:flex-start!important}
+html[data-sudam-layout="layout2"] .sd-footer-logo{width:68px!important;height:68px!important;margin:26px 0 10px!important}
+html[data-sudam-layout="layout2"] .sd-footer-logo img{width:68px!important;height:68px!important}
+html[data-sudam-layout="layout2"] .sd-footer-intro{text-align:left!important;margin:0!important;max-width:370px!important}
+html[data-sudam-layout="layout2"] .sd-footer-intro .en{display:none!important}
+html[data-sudam-layout="layout2"] .sd-footer-knot{display:none!important}
+html[data-sudam-layout="layout2"] .sd-footer-info,
+html[data-sudam-layout="layout2"] .sd-copy{text-align:left!important}
+html[data-sudam-layout="layout2"] .sd-bottom-cta{
+  min-height:54px!important;border-radius:0!important;background:var(--tone-button-bg,#3A291C)!important;box-shadow:0 -1px 0 rgba(255,255,255,.12)!important;
+}
+html[data-sudam-layout="layout2"] .sd-bottom-cta>a{color:var(--tone-button-text,#fff)!important;background:transparent!important;border-right:1px solid rgba(255,255,255,.13)!important}
+html[data-sudam-layout="layout2"] .sd-bottom-cta>a:last-child{border-right:0!important}
+html[data-sudam-layout="layout2"] .sd-bottom-cta .phone{background:rgba(255,255,255,.07)!important}
+
+/* ---------- Mobile safety ---------- */
+@media(max-width:390px){
+  html[data-sudam-layout="layout1"] .sd-hero h1{font-size:39px!important}
+  html[data-sudam-layout="layout1"] #menu .sd-menu-card{grid-template-columns:42% 58%!important}
+  html[data-sudam-layout="layout1"] #meeting .sd-meeting-card{min-height:134px!important;padding:13px!important}
+  html[data-sudam-layout="layout2"] .sd-hero{min-height:600px!important}
+  html[data-sudam-layout="layout2"] .sd-hero h1{font-size:43px!important}
+  html[data-sudam-layout="layout2"] #meeting .sd-meeting-card h3{font-size:20px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .sd-compare-top{transition:none!important}
+}

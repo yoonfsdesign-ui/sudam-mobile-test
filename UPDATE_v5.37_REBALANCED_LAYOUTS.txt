@@ -1,0 +1,42 @@
+SUDAM v5.37 — Rebalanced Layout Candidates
+
+기준
+- v5.35를 베이스로 재작업
+- v5.36의 정형화된 레이아웃 규칙은 사용하지 않음
+- Layout 3은 v5.35 디자인 언어를 그대로 보존
+- Layout 1, 2만 다시 완성도 보완
+- 기존 콘텐츠/섹션 순서/링크/메인 이미지 비교 기능/톤 비교 기능 유지
+
+Layout 1 — Balanced Premium
+- Hero: 하단 앵커형 카피 + 세로 라인
+- Trust: 기존 아이콘 대신 2025·2026 / 5,000+ 숫자 중심 2분할 정보 영역
+- Strength/Space: 큰 이미지 + 정돈된 하단 정보 패널
+- Meeting: 안정적인 2x2 선택 카드
+- Menu: 모바일 가독성을 위해 2열 작은 카드가 아닌 1열 가로형 카드
+- Review: 1열 프리미엄 카드
+- Footer / Bottom CTA: 정돈된 프리미엄 UI
+
+Layout 2 — Visual Premium
+- Hero: 80svh 이미지 중심
+- 이미지별로 기존 승인된 카피 위치 성격 유지
+- Trust: 아이콘 없이 얇은 다크 정보 스트립
+- Strength/Space: 버튼 없는 풀블리드 스와이프 + 01/03
+- Meeting: 큰 타이포 1열 리스트
+- Menu: 큰 음식 이미지 + 하단 정보
+- Review: 후기 문장 먼저, 사진 다음
+- Header/Footer/Bottom CTA: 최소 UI
+
+Layout 3 — Editorial Premium
+- v5.35의 Offset Editorial 규칙을 그대로 사용
+- v5.37 CSS에는 Layout 3 전용 override를 추가하지 않음
+
+TOP
+- 비교 패널/콘텐츠와 분리된 fixed 플로팅 버튼
+- PC: 콘텐츠 최대폭 바깥
+- 모바일: 우측 화면 가장자리
+- 220px 이상 스크롤 시 노출
+
+패치 파일
+- index.html
+- css/polish-v5.37.css
+- js/layout-v5.37.js
