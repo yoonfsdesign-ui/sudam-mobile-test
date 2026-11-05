@@ -1,0 +1,423 @@
+@charset "utf-8";
+/* =========================================================
+   SUDAM v5.36 — Layout quality rework
+   Purpose: each layout is a viable final candidate, not a gimmick.
+   Content / links / section order stay the same.
+   ========================================================= */
+
+/* ---------- compare utility: TOP lives outside the content, beside controls ---------- */
+.sd-compare-top{
+  position:fixed!important;
+  left:calc(50% + 304px)!important;
+  right:auto!important;
+  top:50%!important;
+  bottom:auto!important;
+  transform:translateY(-50%)!important;
+  z-index:12001!important;
+  width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;
+  border-radius:12px!important;
+  box-shadow:0 8px 26px rgba(20,16,12,.12)!important;
+}
+.sd-compare-top:active{transform:translateY(-50%) scale(.96)!important}
+@media(max-width:610px){
+  .sd-compare-top{
+    left:auto!important;right:5px!important;
+    top:auto!important;bottom:76px!important;
+    transform:none!important;
+  }
+  .sd-compare-top:active{transform:scale(.96)!important}
+}
+@media(max-width:390px){.sd-compare-top{right:3px!important}}
+
+/* ---------- alternate trust markup ---------- */
+.sd-trust-alt{display:none}
+html[data-sudam-layout^="layout"] .sd-trust-particle{display:none!important}
+
+/* Shared typography hygiene */
+html[data-sudam-layout^="layout"] .sd-section>.sd-title,
+html[data-sudam-layout^="layout"] .sd-slide-copy h3,
+html[data-sudam-layout^="layout"] .sd-meeting-card h3,
+html[data-sudam-layout^="layout"] .sd-review-card h3{word-break:keep-all!important}
+
+/* =========================================================
+   LAYOUT 1 — BALANCED PREMIUM
+   Best all-round readability / conversion / polish.
+   ========================================================= */
+html[data-sudam-layout="layout1"]{
+  --l536-gap:16px;
+  --l536-radius:18px;
+}
+html[data-sudam-layout="layout1"] .sd-header-wrap{box-shadow:0 6px 24px rgba(45,34,25,.07)!important}
+html[data-sudam-layout="layout1"] .sd-brandbar{height:58px!important;min-height:58px!important}
+html[data-sudam-layout="layout1"] .sd-primary-nav{
+  width:100%!important;margin:0!important;height:44px!important;min-height:44px!important;
+  border:0!important;border-top:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 45%,transparent)!important;
+  border-bottom:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 60%,transparent)!important;
+  border-radius:0!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout1"] .sd-primary-links>a{font-size:13px!important;font-weight:600!important}
+
+/* Hero: elegant but restrained. Image-specific placement from v5.32 remains useful. */
+html[data-sudam-layout="layout1"] .sd-hero{height:70svh!important;min-height:560px!important;max-height:710px!important}
+html[data-sudam-layout="layout1"] .sd-hero-copy{max-width:330px!important}
+html[data-sudam-layout="layout1"] .sd-hero-eyebrow{font:500 17px/1.4 "Noto Serif KR",serif!important;letter-spacing:-.025em!important}
+html[data-sudam-layout="layout1"] .sd-hero h1{font-size:44px!important;line-height:1.15!important;font-weight:600!important}
+html[data-sudam-layout="layout1"] .sd-hero h1:after{width:48px!important;height:1px!important;margin-top:16px!important}
+html[data-sudam-layout="layout1"] .sd-hero-copy>p{font-size:14px!important;line-height:1.68!important;margin-top:15px!important}
+
+/* Trust: no icons, no decorative caption; two useful facts immediately after hero. */
+html[data-sudam-layout="layout1"] .sd-trust{
+  margin:0!important;padding:0 18px!important;min-height:118px!important;
+  display:flex!important;align-items:center!important;
+  border:0!important;border-radius:0!important;box-shadow:none!important;
+  background:color-mix(in srgb,var(--tone-card,#FFFDF9) 88%,var(--tone-page,#F4ECE4))!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust:before,
+html[data-sudam-layout="layout1"] .sd-trust-caption,
+html[data-sudam-layout="layout1"] .sd-trust-grid{display:none!important}
+html[data-sudam-layout="layout1"] .sd-trust-alt{
+  display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important;
+  border-top:1px solid var(--ly-line)!important;border-bottom:1px solid var(--ly-line)!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-stat{
+  min-width:0!important;padding:19px 14px 18px!important;text-align:left!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-stat+ .sd-trust-stat{border-left:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout1"] .sd-trust-stat b{display:block!important;font:600 19px/1.15 "Noto Serif KR",serif!important;color:var(--ly-text)!important;white-space:nowrap!important}
+html[data-sudam-layout="layout1"] .sd-trust-stat span{display:block!important;margin-top:5px!important;font-size:8px!important;font-weight:800!important;letter-spacing:.14em!important;color:var(--ly-accent)!important}
+html[data-sudam-layout="layout1"] .sd-trust-stat small{display:block!important;margin-top:5px!important;font-size:10.5px!important;line-height:1.45!important;color:var(--ly-sub)!important}
+
+/* Section rhythm */
+html[data-sudam-layout="layout1"] .sd-section{padding:72px 20px!important}
+html[data-sudam-layout="layout1"] .sd-section>.sd-kicker{margin-bottom:7px!important;font-size:9px!important;letter-spacing:.18em!important;text-align:left!important}
+html[data-sudam-layout="layout1"] .sd-section>.sd-title{font-size:30px!important;line-height:1.3!important;text-align:left!important;margin:0!important}
+html[data-sudam-layout="layout1"] .sd-section>.sd-title:after{display:block!important;width:40px!important;height:1px!important;margin:15px 0 0!important;background:var(--ly-accent)!important;opacity:.68!important}
+
+/* Strength + Space: polished media card, clear controls */
+html[data-sudam-layout="layout1"] #strength .sd-slider,
+html[data-sudam-layout="layout1"] #space .sd-slider{margin-top:28px!important}
+html[data-sudam-layout="layout1"] #strength .sd-slider-window,
+html[data-sudam-layout="layout1"] #space .sd-slider-window{border-radius:var(--l536-radius)!important;box-shadow:0 14px 38px rgba(37,28,20,.08)!important;border:1px solid var(--ly-line)!important;background:var(--ly-surface)!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-media,
+html[data-sudam-layout="layout1"] #space .sd-slide-media{aspect-ratio:4/3!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy{padding:22px 20px 24px!important;min-height:206px!important;background:var(--ly-surface)!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy h3{font-size:25px!important;line-height:1.28!important;margin:8px 0!important}
+html[data-sudam-layout="layout1"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout1"] #space .sd-slide-copy p{font-size:12px!important;line-height:1.62!important}
+html[data-sudam-layout="layout1"] #strength .sd-slider-btn,
+html[data-sudam-layout="layout1"] #space .sd-slider-btn{top:32%!important;width:40px!important;height:40px!important;background:rgba(255,253,249,.94)!important;box-shadow:0 6px 18px rgba(0,0,0,.12)!important}
+html[data-sudam-layout="layout1"] #strength .sd-dots,
+html[data-sudam-layout="layout1"] #space .sd-dots{margin-top:14px!important}
+
+/* Meeting: simple 2x2 choice grid, equal importance. */
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;margin-top:28px!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card{
+  min-height:138px!important;padding:15px!important;border-radius:15px!important;
+  display:grid!important;grid-template-columns:1fr 30px!important;grid-template-rows:auto 1fr 30px!important;
+  background:var(--tone-meeting-card,#FBF7F1)!important;border:1px solid var(--ly-line)!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .no{grid-column:1/3!important;grid-row:1!important;font-size:11px!important;letter-spacing:.08em!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card>div{grid-column:1/3!important;grid-row:2!important;align-self:center!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card h3{font-size:18px!important;line-height:1.34!important;margin:0!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .go{grid-column:2!important;grid-row:3!important;width:30px!important;height:30px!important;justify-self:end!important}
+
+/* Menu: easy to compare, consistent cards. */
+html[data-sudam-layout="layout1"] #menu .sd-menu-grid{grid-template-columns:1fr 1fr!important;gap:12px!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card{border-radius:16px!important;box-shadow:0 10px 26px rgba(35,26,19,.06)!important;border:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .media{aspect-ratio:1/1!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .body{padding:16px 12px 17px!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card h3{font-size:21px!important;margin:6px 0!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-cta{border-radius:14px!important;margin-top:14px!important}
+
+/* Reviews: one-column readability first. */
+html[data-sudam-layout="layout1"] #reviews .sd-review-grid{grid-template-columns:1fr!important;gap:16px!important}
+html[data-sudam-layout="layout1"] #reviews .sd-review-card{border-radius:16px!important;border:1px solid var(--ly-line)!important;box-shadow:0 10px 30px rgba(35,26,19,.055)!important}
+html[data-sudam-layout="layout1"] #reviews .sd-review-body{padding:22px!important}
+html[data-sudam-layout="layout1"] #reviews .sd-review-body h3{font-size:21px!important;line-height:1.4!important}
+
+/* Footer / CTA */
+html[data-sudam-layout="layout1"] .sd-footer{padding:38px 20px 92px!important}
+html[data-sudam-layout="layout1"] .sd-footer-tools--main{border-radius:12px!important;padding:12px!important}
+html[data-sudam-layout="layout1"] .sd-bottom-cta{bottom:8px!important;width:min(calc(100% - 16px),calc(var(--sd-max) - 16px))!important;border-radius:15px!important;overflow:hidden!important}
+
+/* =========================================================
+   LAYOUT 2 — VISUAL PREMIUM
+   Photography does the selling; text UI is deliberately reduced.
+   ========================================================= */
+html[data-sudam-layout="layout2"] .sd-header-wrap{box-shadow:none!important}
+html[data-sudam-layout="layout2"] .sd-brandbar{height:52px!important;min-height:52px!important}
+html[data-sudam-layout="layout2"] .sd-primary-nav{height:38px!important;min-height:38px!important;border:0!important;border-bottom:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 45%,transparent)!important;box-shadow:none!important}
+html[data-sudam-layout="layout2"] .sd-primary-links>a{height:38px!important;font-size:12px!important;font-weight:600!important}
+
+/* Hero: taller and image-led. Copy stays concise; positions adapt to image content. */
+html[data-sudam-layout="layout2"] .sd-hero{height:78svh!important;min-height:620px!important;max-height:790px!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy{width:72%!important;max-width:340px!important;padding:0!important;text-align:left!important}
+html[data-sudam-layout="layout2"] .sd-hero-eyebrow{display:none!important}
+html[data-sudam-layout="layout2"] .sd-hero h1{font:500 48px/1.08 "Noto Serif KR",serif!important;letter-spacing:-.055em!important}
+html[data-sudam-layout="layout2"] .sd-hero h1:after{display:block!important;width:34px!important;height:1px!important;margin:17px 0 0!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy>p{font-size:13.5px!important;line-height:1.65!important;margin-top:14px!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy{left:7%!important;right:auto!important;top:auto!important;bottom:9%!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image1"] .sd-hero-copy{left:auto!important;right:6%!important;text-align:right!important;bottom:8%!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image1"] .sd-hero h1:after{margin-left:auto!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image3"] .sd-hero-copy{left:50%!important;right:auto!important;bottom:10%!important;transform:translateX(-50%)!important;text-align:center!important;width:82%!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image3"] .sd-hero h1:after{margin-left:auto!important;margin-right:auto!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image4"] .sd-hero-copy{left:auto!important;right:6%!important;top:10%!important;bottom:auto!important;text-align:right!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image4"] .sd-hero h1:after{margin-left:auto!important}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image5"],
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image6"]{}
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image5"] .sd-hero-copy,
+html[data-sudam-layout="layout2"][data-sudam-hero-image="image6"] .sd-hero-copy{top:10%!important;bottom:auto!important}
+
+/* Trust becomes a thin strip that visually belongs to the hero. */
+html[data-sudam-layout="layout2"] .sd-trust{
+  margin-top:-72px!important;min-height:72px!important;padding:0 18px!important;
+  display:flex!important;align-items:stretch!important;position:relative!important;z-index:6!important;
+  background:color-mix(in srgb,var(--tone-brand,#2E1F12) 86%,transparent)!important;
+  backdrop-filter:blur(10px)!important;-webkit-backdrop-filter:blur(10px)!important;
+  border:0!important;
+}
+html[data-sudam-layout="layout2"] .sd-trust:before,
+html[data-sudam-layout="layout2"] .sd-trust-caption,
+html[data-sudam-layout="layout2"] .sd-trust-grid{display:none!important}
+html[data-sudam-layout="layout2"] .sd-trust-alt{display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important;align-items:center!important}
+html[data-sudam-layout="layout2"] .sd-trust-stat{padding:12px 10px!important;text-align:left!important;color:#FFF8F0!important}
+html[data-sudam-layout="layout2"] .sd-trust-stat+ .sd-trust-stat{border-left:1px solid rgba(255,255,255,.18)!important}
+html[data-sudam-layout="layout2"] .sd-trust-stat b{display:block!important;font-size:15px!important;line-height:1.1!important;font-family:"Noto Serif KR",serif!important;color:#FFF9F2!important;white-space:nowrap!important}
+html[data-sudam-layout="layout2"] .sd-trust-stat span{display:block!important;margin-top:4px!important;font-size:7.5px!important;font-weight:800!important;letter-spacing:.13em!important;color:rgba(255,255,255,.75)!important}
+html[data-sudam-layout="layout2"] .sd-trust-stat small{display:none!important}
+
+/* Section headers: only where they help. */
+html[data-sudam-layout="layout2"] .sd-section{padding:76px 20px!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-kicker{display:none!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-title{font-size:31px!important;line-height:1.25!important;text-align:left!important;font-weight:500!important;margin:0!important}
+html[data-sudam-layout="layout2"] .sd-section>.sd-title:after{display:none!important}
+html[data-sudam-layout="layout2"] #strength>.sd-title,
+html[data-sudam-layout="layout2"] #space>.sd-title{display:block!important;margin-bottom:24px!important}
+
+/* Strength: full-bleed swipe, no arrows/dots, just numeric progress. */
+html[data-sudam-layout="layout2"] #strength,
+html[data-sudam-layout="layout2"] #space{padding-left:0!important;padding-right:0!important}
+html[data-sudam-layout="layout2"] #strength>.sd-title,
+html[data-sudam-layout="layout2"] #space>.sd-title{padding:0 20px!important}
+html[data-sudam-layout="layout2"] #strength .sd-slider,
+html[data-sudam-layout="layout2"] #space .sd-slider{margin-top:0!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #strength .sd-slider-window,
+html[data-sudam-layout="layout2"] #space .sd-slider-window{border:0!important;border-radius:0!important;box-shadow:none!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide,
+html[data-sudam-layout="layout2"] #space .sd-slide{min-height:570px!important;position:relative!important;background:#2B2723!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-media,
+html[data-sudam-layout="layout2"] #space .sd-slide-media{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;aspect-ratio:auto!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-media:after,
+html[data-sudam-layout="layout2"] #space .sd-slide-media:after{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(180deg,transparent 37%,rgba(28,24,21,.22) 58%,rgba(28,24,21,.78) 100%)!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy{position:absolute!important;left:20px!important;right:20px!important;bottom:36px!important;top:auto!important;padding:0!important;background:none!important;color:#fff!important;text-align:left!important;min-height:0!important;z-index:3!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy small,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy small{color:rgba(255,255,255,.74)!important;font-size:10px!important;letter-spacing:.08em!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy h3{color:#fff!important;font-size:31px!important;line-height:1.23!important;margin:7px 0 8px!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout2"] #space .sd-slide-copy p{color:rgba(255,255,255,.82)!important;font-size:12.5px!important;line-height:1.6!important}
+html[data-sudam-layout="layout2"] #strength .sd-slide-link,
+html[data-sudam-layout="layout2"] #space .sd-slide-link{color:#fff!important;border-bottom:1px solid rgba(255,255,255,.45)!important;margin-top:16px!important;font-size:11px!important}
+html[data-sudam-layout="layout2"] #strength .sd-slider-btn,
+html[data-sudam-layout="layout2"] #space .sd-slider-btn,
+html[data-sudam-layout="layout2"] #strength .sd-dots,
+html[data-sudam-layout="layout2"] #space .sd-dots{display:none!important}
+html[data-sudam-layout="layout2"] #strength .sd-layout-slider-meta,
+html[data-sudam-layout="layout2"] #space .sd-layout-slider-meta{display:flex!important;position:absolute!important;right:18px!important;bottom:18px!important;z-index:5!important;gap:5px!important;align-items:center!important;color:#fff!important;font:600 10px/1 "Pretendard Variable",Pretendard,sans-serif!important;letter-spacing:.08em!important}
+html[data-sudam-layout="layout2"] #strength .sd-layout-slider-meta .sep,
+html[data-sudam-layout="layout2"] #space .sd-layout-slider-meta .sep{opacity:.5!important}
+
+/* Meeting: choice efficiency over decorative imagery. */
+html[data-sudam-layout="layout2"] #meeting{padding-left:20px!important;padding-right:20px!important;background:none!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-list{display:block!important;margin-top:28px!important;border-top:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card{
+  min-height:86px!important;width:100%!important;display:grid!important;grid-template-columns:42px minmax(0,1fr) 32px!important;align-items:center!important;
+  padding:0!important;border:0!important;border-bottom:1px solid var(--ly-line)!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .no{font:500 12px/1 "Noto Serif KR",serif!important;color:var(--ly-accent)!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card h3{font-size:20px!important;line-height:1.3!important;margin:0!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .go{width:auto!important;height:auto!important;border:0!important;border-radius:0!important;font-size:19px!important;justify-self:end!important}
+
+/* Menu: photography + concise labels, no card chrome. */
+html[data-sudam-layout="layout2"] #menu .sd-menu-head{margin-top:24px!important;border-bottom:1px solid var(--ly-line)!important;padding-bottom:10px!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-grid{grid-template-columns:1fr!important;gap:28px!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card{border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .media{aspect-ratio:4/3!important;border-radius:0!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .body{padding:13px 0 0!important;text-align:left!important;display:grid!important;grid-template-columns:1fr auto!important;align-items:end!important;gap:3px 14px!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .tag{grid-column:1/-1!important;font-size:8px!important;letter-spacing:.14em!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card h3{font-size:25px!important;margin:3px 0 0!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .price{font-size:12px!important;align-self:center!important}
+html[data-sudam-layout="layout2"] #menu .sd-course-knot{display:none!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-cta{margin-top:26px!important;border-radius:0!important;border-top:1px solid var(--ly-line)!important;border-bottom:1px solid var(--ly-line)!important;background:none!important;padding:18px 0!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-cta-bg{display:none!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-cta>b{background:none!important;color:var(--ly-text)!important;padding:0!important}
+
+/* Review: statement first. */
+html[data-sudam-layout="layout2"] #reviews .sd-desc{max-width:335px!important;text-align:left!important;margin:12px 0 0!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-grid{grid-template-columns:1fr!important;gap:38px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-card{display:flex!important;flex-direction:column!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body{order:1!important;padding:0 0 16px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-gallery{order:2!important;border-radius:0!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body h3{font:500 26px/1.4 "Noto Serif KR",serif!important;margin:10px 0!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body>p{font-size:12px!important;line-height:1.7!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-tags{display:none!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-meta{border-top:1px solid var(--ly-line)!important;padding-top:11px!important}
+
+/* Location / footer / bottom CTA */
+html[data-sudam-layout="layout2"] #location .sd-map{margin-top:22px!important}
+html[data-sudam-layout="layout2"] #location .sd-location-row{border-radius:0!important;border-left:0!important;border-right:0!important}
+html[data-sudam-layout="layout2"] .sd-footer{padding:48px 20px 88px!important}
+html[data-sudam-layout="layout2"] .sd-footer:before{background-image:none!important}
+html[data-sudam-layout="layout2"] .sd-footer-knot{display:none!important}
+html[data-sudam-layout="layout2"] .sd-bottom-cta{height:54px!important;min-height:54px!important;border-radius:0!important;background:color-mix(in srgb,var(--tone-button-bg,#3A291C) 96%,transparent)!important}
+html[data-sudam-layout="layout2"] .sd-bottom-cta>a{background:transparent!important;color:var(--tone-button-text,#fff)!important;border-right:1px solid rgba(255,255,255,.13)!important}
+html[data-sudam-layout="layout2"] .sd-bottom-cta>a:last-child{border-right:0!important}
+html[data-sudam-layout="layout2"] .sd-bottom-cta .sd-cta-icon{transform:scale(.82)!important}
+
+/* =========================================================
+   LAYOUT 3 — EDITORIAL PREMIUM
+   Distinctive brand presentation without sacrificing clarity.
+   ========================================================= */
+html[data-sudam-layout="layout3"] .sd-header-wrap{box-shadow:none!important}
+html[data-sudam-layout="layout3"] .sd-brandbar{height:60px!important;min-height:60px!important;border-bottom:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 52%,transparent)!important}
+html[data-sudam-layout="layout3"] .sd-primary-nav{height:43px!important;min-height:43px!important;border-bottom:1px solid color-mix(in srgb,var(--tone-control-border,#D9C7B5) 58%,transparent)!important;box-shadow:none!important}
+html[data-sudam-layout="layout3"] .sd-primary-links>a{font-size:12.5px!important;letter-spacing:.03em!important}
+
+/* Hero: graphic composition, while selected image still stays readable. */
+html[data-sudam-layout="layout3"] .sd-hero{height:72svh!important;min-height:590px!important;max-height:730px!important}
+html[data-sudam-layout="layout3"] .sd-hero-copy{
+  width:68%!important;max-width:320px!important;padding:0 0 0 16px!important;
+  border-left:1px solid rgba(255,255,255,.48)!important;
+  left:7%!important;right:auto!important;top:13%!important;bottom:auto!important;text-align:left!important;
+}
+html[data-sudam-layout="layout3"] .sd-hero-eyebrow{font-size:11px!important;letter-spacing:.14em!important;text-transform:uppercase!important}
+html[data-sudam-layout="layout3"] .sd-hero h1{font:500 43px/1.14 "Noto Serif KR",serif!important;letter-spacing:-.05em!important}
+html[data-sudam-layout="layout3"] .sd-hero h1:after{display:none!important}
+html[data-sudam-layout="layout3"] .sd-hero-copy>p{font-size:13px!important;line-height:1.7!important;margin-top:17px!important}
+html[data-sudam-layout="layout3"][data-sudam-hero-image="image1"] .sd-hero-copy{left:auto!important;right:6%!important;top:auto!important;bottom:10%!important;border-left:0!important;border-right:1px solid rgba(255,255,255,.48)!important;padding:0 16px 0 0!important;text-align:right!important}
+html[data-sudam-layout="layout3"][data-sudam-hero-image="image2"] .sd-hero-copy{top:auto!important;bottom:10%!important}
+html[data-sudam-layout="layout3"][data-sudam-hero-image="image3"] .sd-hero-copy{left:50%!important;top:10%!important;transform:translateX(-50%)!important;width:78%!important;max-width:none!important;text-align:center!important;border-left:0!important;padding-left:0!important}
+html[data-sudam-layout="layout3"][data-sudam-hero-image="image4"] .sd-hero-copy{left:auto!important;right:6%!important;text-align:right!important;border-left:0!important;border-right:1px solid rgba(255,255,255,.42)!important;padding:0 16px 0 0!important}
+
+/* Trust: numbers become the visual asset. */
+html[data-sudam-layout="layout3"] .sd-trust{
+  margin:0!important;padding:44px 20px 46px!important;background:var(--tone-page,#F4ECE4)!important;border:0!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust:before,
+html[data-sudam-layout="layout3"] .sd-trust-caption,
+html[data-sudam-layout="layout3"] .sd-trust-grid{display:none!important}
+html[data-sudam-layout="layout3"] .sd-trust-alt{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;border-top:1px solid var(--ly-line)!important;border-bottom:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout3"] .sd-trust-stat{padding:24px 13px 23px!important;min-width:0!important}
+html[data-sudam-layout="layout3"] .sd-trust-stat+ .sd-trust-stat{border-left:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout3"] .sd-trust-stat b{display:block!important;font:500 27px/1.05 "Noto Serif KR",serif!important;color:var(--ly-text)!important;letter-spacing:-.04em!important;white-space:nowrap!important}
+html[data-sudam-layout="layout3"] .sd-trust-stat span{display:block!important;margin-top:8px!important;font-size:8px!important;font-weight:800!important;letter-spacing:.15em!important;color:var(--ly-accent)!important}
+html[data-sudam-layout="layout3"] .sd-trust-stat small{display:block!important;margin-top:7px!important;font-size:10.5px!important;line-height:1.5!important;color:var(--ly-sub)!important}
+
+/* Chapter headers */
+html[data-sudam-layout="layout3"] .sd-section{padding:78px 20px!important}
+html[data-sudam-layout="layout3"] .sd-section>.sd-kicker{font-size:8px!important;letter-spacing:.18em!important;margin-bottom:10px!important;display:flex!important;align-items:center!important;gap:9px!important}
+html[data-sudam-layout="layout3"] .sd-section>.sd-kicker:before{width:auto!important;height:auto!important;border:0!important;border-radius:0!important;font:500 10px/1 "Noto Serif KR",serif!important;color:var(--ly-accent)!important;opacity:1!important}
+html[data-sudam-layout="layout3"] .sd-section>.sd-kicker:after{content:""!important;height:1px!important;flex:1!important;background:currentColor!important;opacity:.2!important}
+html[data-sudam-layout="layout3"] .sd-section>.sd-title{font-size:31px!important;line-height:1.26!important;text-align:left!important;margin:0!important}
+html[data-sudam-layout="layout3"] .sd-section>.sd-title:after{display:none!important}
+
+/* Strength / Space: offset image + clean information panel. */
+html[data-sudam-layout="layout3"] #strength .sd-slider,
+html[data-sudam-layout="layout3"] #space .sd-slider{margin-top:30px!important;padding-bottom:44px!important}
+html[data-sudam-layout="layout3"] #strength .sd-slider-window,
+html[data-sudam-layout="layout3"] #space .sd-slider-window{overflow:visible!important;border:0!important;background:none!important;box-shadow:none!important}
+html[data-sudam-layout="layout3"] #strength .sd-slide,
+html[data-sudam-layout="layout3"] #space .sd-slide{min-height:560px!important;background:none!important;position:relative!important;padding-bottom:170px!important}
+html[data-sudam-layout="layout3"] #strength .sd-slide-media,
+html[data-sudam-layout="layout3"] #space .sd-slide-media{width:88%!important;aspect-ratio:4/3!important;margin-left:12%!important;position:relative!important;border-radius:0!important;overflow:hidden!important}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy{
+  position:absolute!important;left:0!important;right:9%!important;bottom:0!important;top:auto!important;
+  min-height:188px!important;padding:20px 20px 22px!important;background:var(--ly-surface)!important;border:1px solid var(--ly-line)!important;
+  color:var(--ly-text)!important;text-align:left!important;box-shadow:0 16px 38px rgba(35,26,19,.08)!important;
+}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy small,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy small{font-size:9px!important;letter-spacing:.08em!important;color:var(--ly-accent)!important}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy h3,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy h3{font-size:25px!important;line-height:1.28!important;color:var(--ly-text)!important;margin:7px 0!important}
+html[data-sudam-layout="layout3"] #strength .sd-slide-copy p,
+html[data-sudam-layout="layout3"] #space .sd-slide-copy p{font-size:11.5px!important;line-height:1.58!important;color:var(--ly-sub)!important}
+html[data-sudam-layout="layout3"] #strength .sd-slide-link,
+html[data-sudam-layout="layout3"] #space .sd-slide-link{font-size:10.5px!important;color:var(--ly-accent)!important;border-bottom:1px solid color-mix(in srgb,var(--ly-accent) 42%,transparent)!important}
+html[data-sudam-layout="layout3"] #strength .sd-slider-btn,
+html[data-sudam-layout="layout3"] #space .sd-slider-btn{display:grid!important;top:auto!important;bottom:0!important;width:36px!important;height:36px!important;border-radius:0!important;background:transparent!important;border:1px solid var(--ly-line)!important;color:var(--ly-text)!important;box-shadow:none!important}
+html[data-sudam-layout="layout3"] #strength .sd-slider-prev,
+html[data-sudam-layout="layout3"] #space .sd-slider-prev{left:auto!important;right:44px!important}
+html[data-sudam-layout="layout3"] #strength .sd-slider-next,
+html[data-sudam-layout="layout3"] #space .sd-slider-next{right:0!important}
+html[data-sudam-layout="layout3"] #strength .sd-dots,
+html[data-sudam-layout="layout3"] #space .sd-dots{display:none!important}
+html[data-sudam-layout="layout3"] #strength .sd-layout-slider-meta,
+html[data-sudam-layout="layout3"] #space .sd-layout-slider-meta{display:flex!important;position:absolute!important;left:0!important;bottom:11px!important;gap:5px!important;font:600 9px/1 "Pretendard Variable",Pretendard,sans-serif!important;letter-spacing:.08em!important;color:var(--ly-sub)!important}
+
+/* Meeting: editorial numbers, but every option has equal weight and is easy to scan. */
+html[data-sudam-layout="layout3"] #meeting{background:none!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-list{display:block!important;margin-top:30px!important;border-top:1px solid var(--ly-line)!important;background:none!important;padding:0!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card{
+  width:100%!important;min-height:96px!important;display:grid!important;grid-template-columns:66px minmax(0,1fr) 34px!important;grid-template-rows:1fr!important;align-items:center!important;
+  padding:0!important;background:transparent!important;border:0!important;border-bottom:1px solid var(--ly-line)!important;border-radius:0!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .no{grid-column:1!important;grid-row:1!important;font:400 27px/1 "Noto Serif KR",serif!important;color:var(--ly-accent)!important;opacity:.62!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card>div{grid-column:2!important;grid-row:1!important;align-self:center!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card h3{font:500 20px/1.35 "Noto Serif KR",serif!important;margin:0!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .go{grid-column:3!important;grid-row:1!important;align-self:center!important;justify-self:end!important;width:30px!important;height:30px!important;border-radius:0!important;border:1px solid var(--ly-line)!important}
+
+/* Menu: alternating composition without changing course hierarchy/content. */
+html[data-sudam-layout="layout3"] #menu .sd-menu-grid{grid-template-columns:1fr!important;gap:34px!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card{display:grid!important;grid-template-columns:62% 38%!important;min-height:250px!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;overflow:visible!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card:nth-child(even){grid-template-columns:38% 62%!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card:nth-child(even) .media{grid-column:2!important;grid-row:1!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card:nth-child(even) .body{grid-column:1!important;grid-row:1!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card .media{min-height:250px!important;aspect-ratio:auto!important;overflow:hidden!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card .body{display:flex!important;flex-direction:column!important;justify-content:flex-end!important;align-items:flex-start!important;text-align:left!important;padding:20px 14px!important;border-top:1px solid var(--ly-line)!important;border-bottom:1px solid var(--ly-line)!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-card h3{font-size:25px!important;margin:7px 0!important}
+html[data-sudam-layout="layout3"] #menu .sd-course-knot{display:none!important}
+html[data-sudam-layout="layout3"] #menu .sd-menu-cta{margin-top:30px!important;border-radius:0!important}
+
+/* Reviews: image + quote split, readable on mobile. */
+html[data-sudam-layout="layout3"] #reviews .sd-review-grid{grid-template-columns:1fr!important;gap:26px!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-card{display:grid!important;grid-template-columns:42% 58%!important;border:1px solid var(--ly-line)!important;border-radius:0!important;background:var(--ly-surface)!important;overflow:hidden!important;box-shadow:none!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-gallery{min-width:0!important;height:100%!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-photos{height:100%!important;min-height:280px!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-photos img{width:100%!important;min-width:100%!important;height:100%!important;object-fit:cover!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-body{padding:20px 16px!important;min-width:0!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-body h3{font-size:18px!important;line-height:1.45!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-body>p{font-size:11px!important;line-height:1.62!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-tags{display:none!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-meta{display:block!important;font-size:9px!important;line-height:1.5!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-meta time{display:block!important;margin-top:5px!important}
+
+/* Footer */
+html[data-sudam-layout="layout3"] .sd-footer{padding:44px 20px 92px!important}
+html[data-sudam-layout="layout3"] .sd-footer:before{background-image:none!important}
+html[data-sudam-layout="layout3"] .sd-footer-logo{width:78px!important;height:auto!important;margin:28px 0 16px!important}
+html[data-sudam-layout="layout3"] .sd-footer-intro{text-align:left!important}
+html[data-sudam-layout="layout3"] .sd-footer-info{text-align:left!important;border-top:1px solid rgba(255,255,255,.12)!important;padding-top:18px!important}
+html[data-sudam-layout="layout3"] .sd-copy{text-align:left!important}
+html[data-sudam-layout="layout3"] .sd-bottom-cta{min-height:58px!important;grid-template-columns:.9fr 1.25fr .9fr!important}
+html[data-sudam-layout="layout3"] .sd-bottom-cta .phone{margin:6px 4px!important;border-radius:999px!important;min-height:46px!important}
+
+/* compact phones */
+@media(max-width:390px){
+  html[data-sudam-layout="layout1"] .sd-hero h1{font-size:40px!important}
+  html[data-sudam-layout="layout1"] .sd-trust-stat{padding-left:10px!important;padding-right:10px!important}
+  html[data-sudam-layout="layout1"] .sd-trust-stat b{font-size:17px!important}
+  html[data-sudam-layout="layout2"] .sd-hero h1{font-size:43px!important}
+  html[data-sudam-layout="layout2"] #strength .sd-slide,
+  html[data-sudam-layout="layout2"] #space .sd-slide{min-height:530px!important}
+  html[data-sudam-layout="layout3"] .sd-hero h1{font-size:39px!important}
+  html[data-sudam-layout="layout3"] .sd-trust-stat b{font-size:23px!important}
+  html[data-sudam-layout="layout3"] #menu .sd-menu-card{grid-template-columns:58% 42%!important}
+  html[data-sudam-layout="layout3"] #menu .sd-menu-card:nth-child(even){grid-template-columns:42% 58%!important}
+  html[data-sudam-layout="layout3"] #reviews .sd-review-card{grid-template-columns:40% 60%!important}
+}
+.sd-compare-top{opacity:0!important;visibility:hidden!important;pointer-events:none!important;transition:opacity .2s ease,visibility .2s ease,transform .2s ease!important}
+.sd-compare-top.is-visible{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
