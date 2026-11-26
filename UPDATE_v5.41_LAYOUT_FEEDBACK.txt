@@ -1,0 +1,51 @@
+SUDAM MOBILE v5.41 — v5.40 incremental feedback patch
+Base: https://github.com/yoonfsdesign-ui/sudam-mobile-test (main, v5.40 files present)
+
+[Installation]
+1. Keep all existing index.html, CSS/JS (except the one replaced below), images and subpages.
+2. Overwrite js/polish-v5.40.js with the included file. Original v5.40 swipe-progress logic is included without removal.
+3. Add css/polish-v5.41.css as a new file.
+4. Commit/deploy both files to the SAME paths in the existing GitHub Pages repository.
+5. Refresh with Ctrl+Shift+R or use a private browser tab. Because index.html still requests js/polish-v5.40.js?v=20261105-540, a stale browser cache may temporarily load the old file. For a definitive cache bust, separately change that existing script tag's query parameter to ?v=20261126-541 in index.html (no other index changes needed).
+
+[Common]
+- Blue Ribbon wording: 5 selections, 2025–2027 three consecutive years (as requested; not externally verified).
+- Existing 5,000+ annual meetings, menus, images, reservation links, other pages remain intact.
+
+[Layout 1 — Balanced Premium]
+- Hero copy returned to its lower, previous placement while preserving special image-1/3 alignments.
+- Trust grid made stable in two balanced columns; 5x updated.
+- Four meeting cards: number upper-left, title centered within its body, arrow lower-right.
+- Menu course names made larger.
+
+[Layout 2 — Visual Premium]
+- Hero text positioned near 36% of hero height.
+- Trust main labels standardized to the same font/size.
+- Strength/Space: explicit prev/next photo controls; break tags removed while active and text dynamically fitted.
+- Meeting numbers and titles on one line with visual divider.
+- Signature/Premium tags distinguished, with appropriate contrast.
+- Menu heading follows site-wide title grammar (rather than unique English heading).
+- Reviews changed to a photo-first editorial story card, with gallery counter/dots/arrows.
+- Location: address/phone first; small buttons in a second row.
+
+[Layout 3 — Editorial Premium]
+- Hero copy anchored lower-left, out of sticky navigation.
+- Trust changed to asymmetrical oversized 5x / supporting 5,000+ editorial treatment.
+- Meeting: number / divider / title in the same row, offset card rhythm retained.
+- Menu badges use contrasting signature/premium colors.
+- Strength/Space line breaks removed while active; original text restored in default/layout1.
+- Review multiple-photo control, count and dots made visible.
+- Map platform buttons given margin above/below divider.
+
+[All layouts]
+- TOP button follows the 3안 choice, directly beneath it where space allows; falls back to an accessible visible position when the choice clips.
+- Tone, hero image, layout comparisons are independently controlled and untouched.
+- Existing users' images, icons, links, menus and subpages are not replaced.
+
+[QA status]
+- JS parse: PASS (Node --check).
+- CSS parse: PASS (tinycss2 parser, 0 syntax errors).
+- Actual deployed GitHub Pages browser screenshot: NOT VERIFIED. This environment blocked browser navigation (ERR_BLOCKED_BY_ADMINISTRATOR); visual regression and real-device viewport verification remain required before production acceptance.
+- Suggested widths: 320, 360, 375, 390, 430 px. Test all TONE x MAIN IMAGE x LAYOUT combos for copy legibility and sliders, especially images 1 & 3.
+
+Only included production files: css/polish-v5.41.css and js/polish-v5.40.js.
