@@ -1,0 +1,365 @@
+@charset "utf-8";
+/* SUDAM v5.42 — cohesive visual QA correction against v5.40.
+   Explicitly load after polish-v5.40.css. Never load v5.41.css.
+   Layout selectors remain independent of TONE and MAIN IMAGE.
+   Palette follows the active theme where appropriate. */
+
+/* ---- Universal safety ---- */
+.sd-trust-grid, .sd-trust-item, .sd-meeting-card, .sd-meeting-card>div,
+.sd-menu-card, .sd-menu-card .body, #location .sd-location-row,
+#location .sd-location-row>div {min-width:0;box-sizing:border-box}
+.sd-trust-main,.sd-trust-note {display:block!important;overflow-wrap:normal!important;word-break:keep-all!important}
+.sd-trust-main {font-weight:650!important}
+.sd-trust-note {font-weight:500!important;line-height:1.4!important}
+html[data-sudam-layout^="layout"] .sd-section>.sd-title {overflow-wrap:break-word}
+html[data-sudam-layout^="layout"] #meeting .sd-meeting-card h3 {word-break:keep-all!important;overflow-wrap:normal!important}
+
+/* ---- 1. BALANCED PREMIUM: stable and recognizably conventional ---- */
+/* Preserve v5.40's hero location: special compositions for image1/image3 survive. */
+html[data-sudam-layout="layout1"] .sd-hero-copy {
+  position:absolute!important;top:auto!important;bottom:5.5%!important;
+  left:7%!important;right:7%!important;width:auto!important;max-width:370px!important;
+  transform:none!important;padding:0!important;border:0!important;text-align:left!important;
+}
+html[data-sudam-layout="layout1"][data-sudam-hero-image="image1"] .sd-hero-copy {
+  left:auto!important;right:7%!important;bottom:5.5%!important;width:86%!important;
+  text-align:right!important;transform:none!important;
+}
+html[data-sudam-layout="layout1"][data-sudam-hero-image="image3"] .sd-hero-copy {
+  left:50%!important;right:auto!important;bottom:7%!important;width:86%!important;
+  max-width:370px!important;text-align:center!important;transform:translateX(-50%)!important;
+}
+/* A balanced proof strip. Two columns are allowed to shrink instead of widening the page. */
+html[data-sudam-layout="layout1"] .sd-trust {overflow:hidden!important}
+html[data-sudam-layout="layout1"] .sd-trust-grid {
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:10px!important;width:100%!important;max-width:100%!important;align-items:stretch!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-item {
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  min-width:0!important;min-height:130px!important;height:auto!important;padding:14px 7px!important;text-align:center!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-icon {display:none!important}
+html[data-sudam-layout="layout1"] .sd-trust-item::before {
+  display:block!important;position:static!important;white-space:nowrap!important;margin:0!important;
+  line-height:1!important;font-family:Georgia,"Noto Serif KR",serif!important;
+  letter-spacing:-.04em!important;
+}
+html[data-sudam-layout="layout1"] .sd-trust-item:first-child::before {content:"5×"!important;font-size:clamp(32px,9vw,42px)!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(2)::before {content:"5,000+"!important;font-size:clamp(26px,7.7vw,35px)!important}
+html[data-sudam-layout="layout1"] .sd-trust-item::after {display:block!important;position:static!important;margin:8px 0 0!important;font:700 8px/1.2 Arial,sans-serif!important;letter-spacing:.09em!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:first-child::after {content:"BLUE RIBBON"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item:nth-child(2)::after {content:"ANNUAL MEETINGS"!important}
+html[data-sudam-layout="layout1"] .sd-trust-item strong {display:block!important;width:100%!important;margin:9px 0 0!important;font-size:11px!important;line-height:1.35!important}
+html[data-sudam-layout="layout1"] .sd-trust-main {font-size:clamp(10.5px,2.8vw,12px)!important;line-height:1.4!important}
+html[data-sudam-layout="layout1"] .sd-trust-note {font-size:clamp(9px,2.35vw,10.5px)!important;margin-top:3px!important;white-space:normal!important}
+/* Deliberate card grammar: number top-left, headline on the middle axis, arrow bottom-right. */
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-list {
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;
+  align-items:stretch!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card {
+  display:grid!important;grid-template-columns:minmax(0,1fr) 24px!important;
+  grid-template-rows:23px minmax(54px,1fr) 24px!important;
+  min-height:154px!important;height:auto!important;padding:14px!important;gap:4px!important;
+}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .no {grid-column:1!important;grid-row:1!important;align-self:start!important;justify-self:start!important;line-height:1!important;margin:0!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card>div {grid-column:1/3!important;grid-row:2!important;align-self:center!important;display:flex!important;align-items:center!important;min-height:0!important;margin:0!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card h3 {margin:0!important;font-size:clamp(16px,4.55vw,19px)!important;line-height:1.36!important;letter-spacing:-.055em!important}
+html[data-sudam-layout="layout1"] #meeting .sd-meeting-card .go {grid-column:2!important;grid-row:3!important;align-self:end!important;justify-self:end!important;margin:0!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .body {min-width:0!important;padding:12px 11px!important;justify-content:center!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card h3 {font:600 clamp(24px,6.5vw,30px)/1.22 "Noto Serif KR",serif!important;letter-spacing:-.06em!important;margin:4px 0!important}
+html[data-sudam-layout="layout1"] #menu .sd-menu-card .price {font-size:clamp(10px,2.8vw,12px)!important}
+
+/* ---- 2. VISUAL PREMIUM: photo-led, generous rhythm, unmistakable photo controls ---- */
+html[data-sudam-layout="layout2"] .sd-hero-copy,
+html[data-sudam-layout="layout2"][data-sudam-hero-image^="image"] .sd-hero-copy {
+  position:absolute!important;top:36%!important;bottom:auto!important;left:50%!important;right:auto!important;
+  width:min(88%,380px)!important;max-width:380px!important;transform:translate(-50%,-50%)!important;
+  text-align:center!important;box-sizing:border-box!important;padding:0 4px!important;
+}
+html[data-sudam-layout="layout2"] .sd-hero-media::before {background:rgba(0,0,0,.35)!important}
+html[data-sudam-layout="layout2"] .sd-hero-copy>p {max-width:320px!important;margin:13px auto 0!important}
+/* Two proof items with the same typographic treatment and consistent support text. */
+html[data-sudam-layout="layout2"] .sd-trust {
+  position:relative!important;width:calc(100% - 34px)!important;min-height:0!important;
+  margin:-42px auto 0!important;padding:0!important;background:rgba(29,27,25,.94)!important;
+  color:#fff!important;border:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:0 12px 27px rgba(17,14,12,.17)!important;z-index:9!important;
+}
+html[data-sudam-layout="layout2"] .sd-trust-item::before,
+html[data-sudam-layout="layout2"] .sd-trust-item::after {display:none!important;content:none!important}
+html[data-sudam-layout="layout2"] .sd-trust-caption,
+html[data-sudam-layout="layout2"] .sd-trust-particle,
+html[data-sudam-layout="layout2"] .sd-trust-icon {display:none!important}
+html[data-sudam-layout="layout2"] .sd-trust-grid {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important}
+html[data-sudam-layout="layout2"] .sd-trust-item {min-width:0!important;min-height:92px!important;padding:15px 12px!important;justify-content:center!important}
+html[data-sudam-layout="layout2"] .sd-trust-item strong {min-width:0!important;margin:0!important}
+html[data-sudam-layout="layout2"] .sd-trust-item .sd-trust-main,
+html[data-sudam-layout="layout2"] .sd-trust-item:nth-child(2) .sd-trust-main {font:600 clamp(13px,3.5vw,16px)/1.36 "Noto Serif KR",serif!important;letter-spacing:-.035em!important;color:#FFF8EF!important}
+html[data-sudam-layout="layout2"] .sd-trust-item .sd-trust-note {font:500 clamp(9px,2.45vw,10px)/1.4 Pretendard,Arial,sans-serif!important;color:rgba(255,255,255,.78)!important;margin-top:5px!important}
+/* Identical title grammar at the section level. No lone English headline. */
+html[data-sudam-layout="layout2"] #menu>.sd-kicker {display:block!important;margin:0 22px 9px!important}
+html[data-sudam-layout="layout2"] #menu>.sd-title {
+  display:block!important;max-width:none!important;margin:0 22px 24px!important;
+  font:500 clamp(28px,7.5vw,34px)/1.28 "Noto Serif KR",serif!important;
+  text-align:left!important;color:var(--ly-text,#29231f)!important;letter-spacing:-.045em!important;
+}
+html[data-sudam-layout="layout2"] #menu>.sd-title::before {display:none!important;content:none!important}
+html[data-sudam-layout="layout2"] #menu>.sd-title br {display:block!important}
+/* Caption below a large image, not a caption spread over the image. */
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slide {display:flex!important;flex-direction:column!important;height:auto!important;min-height:0!important}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slide-media {position:relative!important;inset:auto!important;flex:none!important;width:100%!important;aspect-ratio:4/3!important;height:auto!important;min-height:0!important}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slide-copy {
+  position:relative!important;inset:auto!important;min-width:0!important;width:100%!important;min-height:0!important;
+  box-sizing:border-box!important;padding:19px 22px 27px!important;
+  background:var(--tone-page,#fff)!important;color:var(--ly-text,#29231f)!important;
+  text-align:left!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slide-copy h3 {font:500 clamp(21px,5.7vw,25px)/1.3 "Noto Serif KR",serif!important;letter-spacing:-.045em!important;margin:7px 0!important}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slide-copy p {font-size:clamp(12px,3.2vw,13px)!important;line-height:1.7!important;letter-spacing:-.023em!important}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slide-link {display:inline-flex!important;margin-top:13px!important;font-size:10px!important;font-weight:650!important}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slider-btn {
+  display:grid!important;place-items:center!important;position:absolute!important;top:32%!important;bottom:auto!important;
+  transform:translateY(-50%)!important;width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important;
+  border-radius:50%!important;background:rgba(24,22,19,.65)!important;border:1px solid rgba(255,255,255,.65)!important;
+  color:#fff!important;font:400 27px/1 Arial,sans-serif!important;opacity:1!important;visibility:visible!important;
+  pointer-events:auto!important;z-index:25!important;box-shadow:0 3px 13px rgba(0,0,0,.18)!important;
+}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slider-prev {left:13px!important;right:auto!important}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-slider-next {right:13px!important;left:auto!important}
+html[data-sudam-layout="layout2"] :is(#strength,#space) .sd-layout-slider-meta {top:auto!important;bottom:13px!important;right:22px!important;text-shadow:none!important}
+/* A real editorial index: numeric rail / headline / slim arrow. */
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card {
+  display:grid!important;grid-template-columns:47px minmax(0,1fr) 23px!important;
+  grid-template-rows:1fr!important;min-height:76px!important;height:auto!important;
+  gap:12px!important;align-items:center!important;padding:7px 2px!important;
+}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .no {grid-column:1!important;grid-row:1!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;align-self:center!important;line-height:1!important;min-height:24px!important;margin:0!important;padding:0 10px 0 0!important;border-right:1px solid var(--ly-accent,#A47F60)!important;color:var(--ly-accent,#94765B)!important;font-size:13px!important;opacity:1!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card>div {grid-column:2!important;grid-row:1!important;min-width:0!important;min-height:0!important;display:flex!important;align-items:center!important;align-self:center!important;margin:0!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card h3 {font:500 clamp(18px,5vw,21px)/1.3 "Noto Serif KR",serif!important;margin:0!important;letter-spacing:-.05em!important}
+html[data-sudam-layout="layout2"] #meeting .sd-meeting-card .go {grid-column:3!important;grid-row:1!important;justify-self:end!important;align-self:center!important;margin:0!important}
+/* Elegant small label, legible for either comparison tone. */
+/* Keep the menu a genuinely swipeable photo carousel, never two narrow text stacks. */
+html[data-sudam-layout="layout2"] #menu {padding-left:0!important;padding-right:0!important;overflow:hidden!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-head {display:flex!important;margin:0 22px 18px!important;padding:0!important;border:0!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-grid {
+  display:flex!important;grid-template-columns:none!important;gap:14px!important;
+  overflow-x:auto!important;overflow-y:hidden!important;padding:0 22px 5px!important;margin:0!important;
+  scroll-snap-type:x mandatory!important;scroll-padding-left:22px!important;
+  -webkit-overflow-scrolling:touch!important;scrollbar-width:none!important;
+}
+html[data-sudam-layout="layout2"] #menu .sd-menu-grid::-webkit-scrollbar {display:none!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card {
+  position:relative!important;display:flex!important;flex-direction:column!important;
+  flex:0 0 min(76vw,320px)!important;width:min(76vw,320px)!important;min-width:min(76vw,320px)!important;
+  min-height:0!important;aspect-ratio:auto!important;scroll-snap-align:start!important;
+  padding:0!important;border:1px solid color-mix(in srgb,var(--ly-accent,#A47F60) 25%,#E2D9CF)!important;
+  border-radius:2px!important;overflow:hidden!important;background:var(--tone-meeting-card,#F7F1E9)!important;
+}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .media {
+  display:block!important;position:relative!important;inset:auto!important;flex:none!important;
+  width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:4/5!important;overflow:hidden!important;
+}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .media img {width:100%!important;height:100%!important;object-fit:cover!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .body {
+  position:relative!important;inset:auto!important;display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;
+  gap:4px 10px!important;align-items:end!important;min-width:0!important;
+  padding:15px!important;color:var(--ly-text,#302922)!important;
+  background:var(--tone-meeting-card,#F7F1E9)!important;border-left:3px solid var(--ly-accent,#A47F60)!important;
+}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card h3 {grid-column:1!important;grid-row:2!important;min-width:0!important;margin:0!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .price {grid-column:2!important;grid-row:2!important;margin:0!important;font-size:11px!important;white-space:nowrap!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-progress {display:grid!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .tag {
+  position:static!important;display:inline-flex!important;align-items:center!important;justify-self:start!important;
+  grid-column:1/3!important;min-height:21px!important;margin:0 0 5px!important;
+  padding:4px 9px!important;width:max-content!important;
+  background:color-mix(in srgb,var(--ly-accent,#AD8664) 18%,#FAF4EB)!important;
+  border:1px solid color-mix(in srgb,var(--ly-accent,#AD8664) 45%,transparent)!important;
+  border-radius:2px!important;color:var(--ly-text,#3B3028)!important;
+  font:750 9px/1.2 Pretendard,Arial,sans-serif!important;letter-spacing:.095em!important;
+}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card .tag-premium {background:#42372E!important;border-color:#42372E!important;color:#FFF5E8!important}
+html[data-sudam-layout="layout2"] #menu .sd-menu-card h3 {font-size:clamp(22px,6vw,25px)!important}
+/* Photo-first review story: photo, title, quote, tags and attribution form ONE card. */
+html[data-sudam-layout="layout2"] #reviews .sd-review-grid {display:grid!important;grid-template-columns:1fr!important;gap:22px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-card {
+  display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-areas:"photo" "story"!important;
+  gap:0!important;overflow:hidden!important;position:relative!important;padding:0!important;margin:0!important;
+  border:1px solid color-mix(in srgb,var(--ly-accent,#BDA48D) 22%,#DDD7CE)!important;
+  background:var(--tone-meeting-card,#fff)!important;border-radius:3px!important;box-shadow:0 8px 28px rgba(39,25,14,.05)!important;
+}
+html[data-sudam-layout="layout2"] #reviews .sd-review-card::before {top:14px!important;left:14px!important;z-index:6!important;padding:6px 9px!important;background:rgba(22,19,16,.72)!important;color:#fff!important;font:700 8px/1.2 Arial,sans-serif!important;letter-spacing:.1em!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-gallery {
+  grid-area:photo!important;display:block!important;position:relative!important;min-height:0!important;
+  height:auto!important;aspect-ratio:5/3.5!important;overflow:hidden!important;background:#E7DED4!important;
+}
+html[data-sudam-layout="layout2"] #reviews .sd-review-gallery::before {display:none!important;content:none!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body {grid-area:story!important;display:block!important;position:relative!important;min-width:0!important;padding:22px 19px 22px!important;background:var(--tone-meeting-card,#fff)!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body h3 {font:600 clamp(19px,5.4vw,23px)/1.38 "Noto Serif KR",serif!important;letter-spacing:-.045em!important;margin:8px 0 10px!important;color:var(--ly-text,#2C241F)!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-body>p {font-size:clamp(12px,3.2vw,13px)!important;line-height:1.7!important;color:var(--ly-sub,#645951)!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-tags {margin-top:13px!important}
+html[data-sudam-layout="layout2"] #reviews .sd-review-meta {margin-top:16px!important}
+/* Location as a restrained visitor information ledger, not a cluster of giant CTAs. */
+html[data-sudam-layout="layout2"] #location .sd-map {margin-bottom:18px!important;border:0!important;box-shadow:none!important}
+html[data-sudam-layout="layout2"] #location .sd-map-switch {display:flex!important;gap:8px!important;justify-content:flex-start!important;margin:12px 0 0!important;padding:0 0 7px!important;border:0!important;background:transparent!important}
+html[data-sudam-layout="layout2"] #location .sd-map-switch a {flex:0 0 auto!important;min-height:33px!important;padding:7px 11px!important;border-radius:4px!important;font-size:10px!important;width:auto!important}
+html[data-sudam-layout="layout2"] #location .sd-location-list {display:block!important;margin-top:21px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+html[data-sudam-layout="layout2"] #location .sd-location-row {
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;
+  gap:7px 10px!important;align-items:start!important;padding:16px 0!important;
+  border:0!important;border-bottom:1px solid var(--ly-line,#DDD5CD)!important;
+  min-height:0!important;background:transparent!important;box-shadow:none!important;
+}
+html[data-sudam-layout="layout2"] #location .sd-location-row>.ico {display:none!important}
+html[data-sudam-layout="layout2"] #location .sd-location-row>div {grid-column:1/-1!important;grid-row:1!important;min-width:0!important}
+html[data-sudam-layout="layout2"] #location .sd-location-row strong {display:block!important;color:var(--ly-text,#2D2823)!important;font-size:15px!important;line-height:1.35!important}
+html[data-sudam-layout="layout2"] #location .sd-location-row small {display:block!important;color:var(--ly-sub,#6D625B)!important;font-size:12px!important;line-height:1.55!important;word-break:keep-all!important}
+html[data-sudam-layout="layout2"] #location .sd-phone-link {font-size:21px!important;line-height:1.25!important}
+html[data-sudam-layout="layout2"] #location .sd-copy-address-btn,
+html[data-sudam-layout="layout2"] #location .sd-naver-reserve {
+  grid-column:2!important;grid-row:2!important;justify-self:end!important;align-self:center!important;
+  min-height:31px!important;height:auto!important;width:auto!important;max-width:max-content!important;
+  font-size:10px!important;line-height:1.2!important;padding:7px 10px!important;border-radius:3px!important;
+  box-shadow:none!important;white-space:nowrap!important;
+}
+html[data-sudam-layout="layout2"] #location .sd-location-valet {margin-top:19px!important}
+
+/* ---- 3. EDITORIAL PREMIUM: offset imagery, asymmetric proof and rhythm ---- */
+html[data-sudam-layout="layout3"] .sd-hero-copy {
+  position:absolute!important;top:auto!important;bottom:clamp(31px,5.5%,55px)!important;
+  left:7%!important;right:auto!important;width:81%!important;max-width:355px!important;
+  padding:0 0 0 16px!important;border-left:1px solid rgba(255,255,255,.72)!important;
+  transform:none!important;text-align:left!important;
+}
+html[data-sudam-layout="layout3"] .sd-hero-media::before {background:linear-gradient(180deg,rgba(22,18,14,.08) 15%,rgba(22,18,14,.30) 56%,rgba(22,18,14,.66) 100%)!important}
+html[data-sudam-layout="layout3"] .sd-hero h1 {font-size:clamp(36px,10vw,44px)!important;line-height:1.16!important}
+/* A page-like typographic feature, not the 1/2 two-up cards. */
+html[data-sudam-layout="layout3"] .sd-trust {
+  position:relative!important;margin:0!important;min-height:0!important;
+  background:var(--tone-page,#F2EDE6)!important;padding:35px 20px 51px!important;overflow:hidden!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust:before,
+html[data-sudam-layout="layout3"] .sd-trust-particle,
+html[data-sudam-layout="layout3"] .sd-trust-icon {display:none!important}
+html[data-sudam-layout="layout3"] .sd-trust-caption {
+  display:block!important;max-width:100%!important;text-align:left!important;margin:0 0 24px!important;
+  padding:0 0 12px!important;border-bottom:1px solid var(--ly-line,#CEBCAA)!important;
+  color:var(--ly-sub,#5F564F)!important;font-size:10.5px!important;line-height:1.5!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust-grid {
+  display:grid!important;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
+  align-items:start!important;gap:12px!important;width:100%!important;margin:0!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust-grid::after {display:none!important}
+html[data-sudam-layout="layout3"] .sd-trust-item {
+  display:flex!important;min-width:0!important;flex-direction:column!important;align-items:flex-start!important;
+  justify-content:flex-start!important;text-align:left!important;min-height:0!important;
+  padding:0!important;border:0!important;background:transparent!important;
+}
+html[data-sudam-layout="layout3"] .sd-trust-item:first-child {padding:0 12px 0 0!important;border-right:1px solid var(--ly-line,#CEBCAA)!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(2) {padding:37px 0 0 2px!important}
+html[data-sudam-layout="layout3"] .sd-trust-item::before {display:block!important;position:static!important;white-space:nowrap!important;line-height:1!important;margin:0!important;color:var(--ly-text,#332C27)!important;font-family:Georgia,"Noto Serif KR",serif!important;font-weight:400!important;letter-spacing:-.06em!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:first-child::before {content:"5×"!important;font-size:clamp(56px,17vw,82px)!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(2)::before {content:"5,000+"!important;font-size:clamp(27px,7.9vw,35px)!important;letter-spacing:-.045em!important}
+html[data-sudam-layout="layout3"] .sd-trust-item::after {display:block!important;position:static!important;margin:9px 0 0!important;line-height:1.25!important;font:700 8px/1.2 Arial,sans-serif!important;letter-spacing:.12em!important;color:var(--ly-accent,#8B6D52)!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:first-child::after {content:"BLUE RIBBON"!important}
+html[data-sudam-layout="layout3"] .sd-trust-item:nth-child(2)::after {content:"ANNUAL MEETINGS"!important}
+html[data-sudam-layout="layout3"] .sd-trust-item strong {display:block!important;width:100%!important;margin:11px 0 0!important;line-height:1.45!important}
+html[data-sudam-layout="layout3"] .sd-trust-main {color:var(--ly-text,#302821)!important;font-size:clamp(11px,2.9vw,13px)!important;line-height:1.5!important}
+html[data-sudam-layout="layout3"] .sd-trust-note {color:var(--ly-sub,#6C6258)!important;font-size:clamp(10px,2.5vw,11px)!important;white-space:normal!important}
+/* Preserve v5.35 alternating grid. Small cards need a compact 2-column treatment. */
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-list {display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1px!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card {position:relative!important;box-sizing:border-box!important;min-width:0!important;gap:8px!important;min-height:115px!important;padding:14px!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(1),
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(4) {
+  grid-column:1/-1!important;display:grid!important;
+  grid-template-columns:56px minmax(0,1fr) 25px!important;grid-template-rows:1fr!important;
+  min-height:96px!important;align-items:center!important;gap:10px!important;padding:17px!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(2),
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(3) {
+  grid-column:auto!important;display:grid!important;
+  grid-template-columns:34px minmax(0,1fr)!important;grid-template-rows:1fr!important;
+  align-items:center!important;min-height:115px!important;gap:8px!important;padding:10px!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .no,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(1) .no,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(4) .no {
+  grid-column:1!important;grid-row:1!important;display:flex!important;align-items:center!important;
+  justify-self:start!important;align-self:center!important;min-width:0!important;min-height:33px!important;
+  margin:0!important;padding:0 11px 0 0!important;border-right:1px solid var(--ly-accent,#9D8065)!important;
+  font:400 clamp(20px,6.5vw,28px)/1 Georgia,"Noto Serif KR",serif!important;opacity:.8!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(2) .no,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(3) .no {font-size:20px!important;min-height:28px!important;padding-right:7px!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card>div,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(1)>div,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(4)>div {
+  grid-column:2!important;grid-row:1!important;display:flex!important;align-items:center!important;
+  min-width:0!important;align-self:center!important;margin:0!important;padding:0!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card h3 {font:500 clamp(15px,4.5vw,18px)/1.33 "Noto Serif KR",serif!important;letter-spacing:-.052em!important;margin:0!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(2) h3,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(3) h3 {font-size:clamp(14px,4.2vw,17px)!important}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .go {
+  grid-column:3!important;grid-row:1!important;position:static!important;justify-self:end!important;align-self:center!important;
+  width:25px!important;height:25px!important;font-size:16px!important;
+}
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(2) .go,
+html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(3) .go {position:absolute!important;right:9px!important;bottom:8px!important;grid-column:auto!important;grid-row:auto!important;width:18px!important;height:18px!important;opacity:.5!important;font-size:13px!important}
+html[data-sudam-layout="layout3"] #menu .tag-signature {background:color-mix(in srgb,var(--ly-accent,#A27B56) 19%,#F5E8D9)!important;color:var(--ly-text,#38291F)!important;border:1px solid var(--ly-accent,#9C7555)!important;font-size:9px!important;font-weight:800!important}
+html[data-sudam-layout="layout3"] #menu .tag-premium {background:#413228!important;color:#FFF4E4!important;border:1px solid #413228!important;font-size:9px!important;font-weight:800!important}
+/* Editorial slide captions are offset but content has enough space for legible full lines. */
+html[data-sudam-layout="layout3"] :is(#strength,#space) .sd-slide-copy h3 {font-size:clamp(19px,5.5vw,24px)!important;line-height:1.35!important}
+html[data-sudam-layout="layout3"] :is(#strength,#space) .sd-slide-copy p {font-size:clamp(11.5px,3.1vw,13px)!important;line-height:1.6!important}
+html[data-sudam-layout="layout3"] :is(#strength,#space) .sd-slide-copy {box-sizing:border-box!important;min-width:0!important;max-width:100%!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-card {position:relative!important;display:flex!important;flex-direction:column!important;overflow:visible!important;margin:0 0 17px!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-gallery {position:relative!important;display:block!important;width:90%!important;height:auto!important;aspect-ratio:5/3.5!important;margin:0 0 0 auto!important;overflow:hidden!important;background:#E5DACD!important;min-height:0!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-gallery::before {display:none!important;content:none!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-body {position:relative!important;z-index:3!important;width:92%!important;max-width:92%!important;box-sizing:border-box!important;margin:-22px auto 0 0!important;padding:20px 18px 20px!important;background:var(--tone-meeting-card,#fff)!important;border-left:3px solid var(--ly-accent,#8E7054)!important;box-shadow:0 10px 25px rgba(32,24,18,.075)!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-body h3 {margin-top:9px!important}
+html[data-sudam-layout="layout3"] #reviews .sd-review-card::before {top:10px!important;left:auto!important;right:14px!important;z-index:6!important;background:rgba(23,18,15,.6)!important;color:#fff!important;padding:5px 8px!important;font:700 8px/1.2 Arial,sans-serif!important}
+html[data-sudam-layout="layout3"] #location .sd-map-switch {display:flex!important;gap:9px!important;justify-content:flex-end!important;padding:15px 0 9px!important;margin:0!important;border-top:0!important;background:transparent!important}
+html[data-sudam-layout="layout3"] #location .sd-map-switch a {flex:0 0 auto!important;margin:0!important;padding:7px 11px!important;min-height:32px!important}
+
+/* ---- Shared slide headings: each deliberate phrase occupies a line, without micro-font hacks. ---- */
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) :is(#strength,#space) .sd-v542-copy-line {display:block!important;width:100%!important;white-space:nowrap!important;overflow:visible!important;word-break:keep-all!important;letter-spacing:-.045em!important}
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) :is(#strength,#space) .sd-v542-copy-line + .sd-v542-copy-line {margin-top:1px!important}
+/* If a rare font/rendering mismatch exists, let an intentionally long phrase wrap rather than clip. */
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) :is(#strength,#space) .sd-v542-copy-line.sd-v542-allow-wrap {white-space:normal!important;overflow-wrap:break-word!important}
+/* Layout 3 photo buttons use sober squared-off controls, not Layout 2 circles. */
+html[data-sudam-layout="layout3"] :is(#strength,#space) .sd-slider-btn {display:grid!important;place-items:center!important;position:absolute!important;z-index:25!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;width:34px!important;height:34px!important;min-width:34px!important;min-height:34px!important;background:rgba(28,23,19,.68)!important;color:#fff!important;border:1px solid rgba(255,255,255,.55)!important;border-radius:0!important;font-size:19px!important}
+html[data-sudam-layout="layout3"] :is(#strength,#space) .sd-slider-prev {left:10px!important}
+html[data-sudam-layout="layout3"] :is(#strength,#space) .sd-slider-next {right:10px!important}
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) :is(#strength,#space) .sd-slider-btn:focus-visible,
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) .sd-v542-gallery-nav button:focus-visible {outline:2px solid #ECD2B2!important;outline-offset:3px!important}
+
+/* All review photos remain the originals in the source. Their swipe/auto behavior stays in main.js. */
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) #reviews .sd-review-photos {display:flex!important;position:relative!important;width:100%!important;height:100%!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory!important;scrollbar-width:none!important;scroll-behavior:smooth!important}
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) #reviews .sd-review-photos::-webkit-scrollbar {display:none!important}
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) #reviews .sd-review-photos img {display:block!important;flex:0 0 100%!important;min-width:100%!important;width:100%!important;height:100%!important;object-fit:cover!important;scroll-snap-align:start!important;border-radius:0!important}
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) #reviews .sd-photo-count {display:block!important;position:absolute!important;z-index:6!important;top:12px!important;right:11px!important;bottom:auto!important;left:auto!important;padding:6px 9px!important;border-radius:2px!important;background:rgba(23,20,17,.7)!important;color:#fff!important;font:650 10px/1.2 Arial,sans-serif!important;letter-spacing:.04em!important}
+.sd-v542-gallery-nav {display:none}
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) .sd-v542-gallery-nav {position:absolute!important;display:flex!important;align-items:center!important;gap:8px!important;z-index:10!important;bottom:12px!important;right:12px!important;padding:5px 7px!important;background:rgba(24,21,18,.76)!important;border-radius:999px!important}
+html:is([data-sudam-layout="layout2"],[data-sudam-layout="layout3"]) .sd-v542-gallery-nav button {display:grid!important;place-items:center!important;width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;padding:0!important;color:#fff!important;background:transparent!important;border:1px solid rgba(255,255,255,.5)!important;border-radius:50%!important;font-size:18px!important;line-height:1!important;cursor:pointer!important}
+.sd-v542-gallery-dots {display:flex;align-items:center;gap:5px}
+.sd-v542-gallery-dots i {display:block;width:5px;height:5px;border-radius:999px;background:rgba(255,255,255,.5)}
+.sd-v542-gallery-dots i.is-active {width:13px;background:#FFEACC}
+html[data-sudam-layout="layout3"] .sd-v542-gallery-nav {border-radius:2px!important}
+html[data-sudam-layout="layout3"] .sd-v542-gallery-nav button {border-radius:0!important}
+
+/* TOP stays below the Layout 3 selection as long as the comparison panel fits. */
+.sd-compare-top[data-v542-placed] {position:fixed!important;top:var(--sd-v542-top-y)!important;left:var(--sd-v542-top-x)!important;right:auto!important;bottom:auto!important;transform:none!important;margin:0!important;z-index:1362!important;box-sizing:border-box!important;width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important}
+.sd-compare-top[data-v542-placed]:active {transform:scale(.96)!important}
+@media(max-width:350px){
+  html[data-sudam-layout="layout1"] #meeting .sd-meeting-card {padding:11px!important}
+  html[data-sudam-layout="layout1"] #meeting .sd-meeting-card h3 {font-size:16px!important}
+  html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(2),
+  html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(3) {padding:9px 7px!important;gap:5px!important;grid-template-columns:30px minmax(0,1fr)!important}
+  html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(2) h3,
+  html[data-sudam-layout="layout3"] #meeting .sd-meeting-card:nth-child(3) h3 {font-size:13px!important}
+}
+@media(prefers-reduced-motion:reduce){.sd-v542-gallery-nav *{transition:none!important}}
