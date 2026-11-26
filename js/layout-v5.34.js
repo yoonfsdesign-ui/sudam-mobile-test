@@ -26,27 +26,6 @@
     btn.addEventListener('click',function(){apply(btn.getAttribute('data-layout-choice'),true)});
   });
 
-  // Small current/total indicator used by layout2 and layout3 only.
-  ['#strength .sd-slider','#space .sd-slider'].forEach(function(sel){
-    var slider=document.querySelector(sel);
-    if(!slider)return;
-    var slides=Array.prototype.slice.call(slider.querySelectorAll('.sd-slide'));
-    if(!slides.length)return;
-    var meta=document.createElement('div');
-    meta.className='sd-layout-slider-meta';
-    meta.setAttribute('aria-hidden','true');
-    meta.innerHTML='<span class="current">01</span><span class="sep">/</span><span class="total">'+String(slides.length).padStart(2,'0')+'</span>';
-    (slider.querySelector('.sd-slider-controls') || slider).appendChild(meta);
-    function update(){
-      var idx=slides.findIndex(function(s){return s.classList.contains('is-active')});
-      if(idx<0)idx=0;
-      meta.querySelector('.current').textContent=String(idx+1).padStart(2,'0');
-    }
-    var obs=new MutationObserver(update);
-    slides.forEach(function(s){obs.observe(s,{attributes:true,attributeFilter:['class']})});
-    update();
-  });
-
   var requested=null;
   try{requested=new URLSearchParams(location.search).get('layout')}catch(e){}
   var saved=root.getAttribute('data-sudam-layout')||'default';

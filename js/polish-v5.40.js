@@ -8,6 +8,7 @@
   const previous=navigation.querySelector('[data-course-step="-1"]');
   const next=navigation.querySelector('[data-course-step="1"]');
   const thumb=navigation.querySelector('.sd-menu-progress-thumb');
+  const count=navigation.querySelector('[data-course-count]');
   const cards=Array.from(rail.querySelectorAll('.sd-menu-card'));
   if(cards.length<2)return;
   const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -16,7 +17,9 @@
   function sync(){
     const max=maxScroll();
     const left=Math.max(0,Math.min(rail.scrollLeft,max));
-    thumb.style.left=(max ? left/max*66 : 0)+'%';
+    const fraction=max ? left/max : 0;
+    thumb.style.left=fraction*66+'%';
+    if(count)count.textContent=`${1+Math.round(fraction*(cards.length-1))} / ${cards.length}`;
     previous.disabled=left<=1;
     next.disabled=max-left<=1;
   }
