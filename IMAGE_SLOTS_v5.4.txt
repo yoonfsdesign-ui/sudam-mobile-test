@@ -39,9 +39,9 @@ meeting-default-bg.jpg
   - 1~4안은 컬러 배경 유지
 
 [모임에 맞는 메뉴]
-menu-jinyeon.jpg
+menu-jinyeon.png
   - 진연상 카드 이미지
-menu-sura.jpg
+menu-sura.png
   - 수라상 카드 이미지
 menu-consult-bg.jpg
   - '코스 비교 & 상담 안내' CTA 배경 이미지
@@ -53,16 +53,8 @@ space-03.jpg
   - 슬라이드 순서대로 교체
 
 [실제 고객후기]
-review-01-01.jpg
-review-01-02.jpg
-review-01-03.jpg
-  - 후기 1의 1~3번째 이미지
-review-02-01.jpg
-review-02-02.jpg
-review-02-03.jpg
-  - 후기 2의 1~3번째 이미지
-  - 각 후기는 자동전환 + 좌우 버튼 + 손가락 Swipe 모두 지원
-  - 4:3 가로 이미지 권장
+  - 실제 후기 사진이 준비되기 전에는 각 카드에 이미지 영역만 표시
+  - 후기 사진 등록 시 카드의 해당 이미지 영역에 실제 사진을 연결
 
 [오시는 길]
 - 지도는 이미지가 아니라 실제 위치 지도 iframe으로 구현됨.

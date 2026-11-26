@@ -36,7 +36,7 @@
     meta.className='sd-layout-slider-meta';
     meta.setAttribute('aria-hidden','true');
     meta.innerHTML='<span class="current">01</span><span class="sep">/</span><span class="total">'+String(slides.length).padStart(2,'0')+'</span>';
-    slider.appendChild(meta);
+    (slider.querySelector('.sd-slider-controls') || slider).appendChild(meta);
     function update(){
       var idx=slides.findIndex(function(s){return s.classList.contains('is-active')});
       if(idx<0)idx=0;

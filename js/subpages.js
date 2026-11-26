@@ -74,20 +74,30 @@
    const assetsPrefix=gallery.dataset.assetPrefix||'../images/';
    const rooms=[
      {category:'외관',title:'수담한정식 외관',desc:'매장 방문 전 위치와 외관을 확인할 수 있는 영역입니다.',file:'valet-building.jpg'},
-     {category:'로비',title:'로비 및 입구',desc:'방문 고객을 맞이하는 매장 공간을 살펴보세요.',file:'space-temp.jpg'},
-     {category:'프라이빗룸',title:'프라이빗룸',desc:'소중한 모임을 위한 독립된 공간입니다.',file:'strength-temp.jpg'},
-     {category:'행사 공간',title:'행사 공간',desc:'기업 및 단체 모임에 활용되는 공간입니다.',file:'meeting-temp.jpg'},
-     {category:'프라이빗룸',title:'다양한 공간 구성',desc:'실제 공간 사진과 수용 인원 정보는 확인 후 추가됩니다.',file:'space-temp.jpg'}
+     {category:'로비',title:'로비 및 입구',desc:'방문 고객을 맞이하는 매장 공간을 살펴보세요.'},
+     {category:'프라이빗룸',title:'프라이빗룸',desc:'소중한 모임을 위한 독립된 공간입니다.'},
+     {category:'행사 공간',title:'행사 공간',desc:'기업 및 단체 모임에 활용되는 공간입니다.'},
+     {category:'프라이빗룸',title:'다양한 공간 구성',desc:'실제 공간 사진과 수용 인원 정보는 확인 후 추가됩니다.'}
    ];
    const filters=$$('[data-gallery-filter]');
+   const view=$('[data-gallery-zoom]',gallery);
+   const photo=$('[data-gallery-photo]',gallery);
+   const placeholder=$('[data-gallery-placeholder]',gallery);
    let category='전체',position=0;
    const visible=()=>rooms.filter(s=>category==='전체'||s.category===category);
    function render(){
      const list=visible(); if(!list.length)return;
      position=(position+list.length)%list.length;
      const item=list[position];
-     const photo=$('[data-gallery-photo]',gallery);
-     photo.src=assetsPrefix+item.file;photo.alt=item.title+' (임시 테스트 이미지)';
+     photo.hidden=!item.file;
+     placeholder.hidden=!!item.file;
+     view.classList.toggle('has-placeholder',!item.file);
+     view.setAttribute('aria-disabled',String(!item.file));
+     view.setAttribute('aria-label',item.file ? item.title+' 이미지 크게 보기' : item.title+' 이미지 영역');
+     if(item.file){
+       photo.src=assetsPrefix+item.file;
+       photo.alt=item.title;
+     }
      $('[data-gallery-title]',gallery).textContent=item.title;
      $('[data-gallery-desc]',gallery).textContent=item.desc;
      $('[data-gallery-count]',gallery).textContent=`${String(position+1).padStart(2,'0')} / ${String(list.length).padStart(2,'0')}`;
@@ -97,9 +107,9 @@
    filters.forEach(f=>f.addEventListener('click',()=>{category=f.dataset.galleryFilter;position=0;render()}));
    $('[data-gallery-prev]',gallery)?.addEventListener('click',()=>{position--;render()});
    $('[data-gallery-next]',gallery)?.addEventListener('click',()=>{position++;render()});
-   $('[data-gallery-zoom]',gallery)?.addEventListener('click',()=>{
+   view.addEventListener('click',()=>{
      const item=visible()[position];
-     openModal(item.title,`<img src="${assetsPrefix+item.file}" alt="${item.title}" /><p>${item.title} · 테스트 이미지</p>`,true);
+     if(item.file)openModal(item.title,`<img src="${assetsPrefix+item.file}" alt="${item.title}" /><p>${item.title}</p>`,true);
    });
    let x=null;
    $('[data-gallery-zoom]',gallery)?.addEventListener('touchstart',e=>{x=e.touches[0]?.clientX},{passive:true});

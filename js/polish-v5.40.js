@@ -1,16 +1,42 @@
-/* SUDAM v5.40 — original menu swipe progress, restored as-is. */
+/* Scroll controls and progress for the representative course rail. */
 (function(){
   'use strict';
-  var grid=document.querySelector('#menu .sd-menu-grid');
-  var thumb=document.querySelector('#menu .sd-menu-progress-thumb');
-  if(!grid||!thumb)return;
+  const rail=document.querySelector('#sdCourseRail');
+  const navigation=document.querySelector('.sd-menu-navigation');
+  if(!rail||!navigation)return;
+
+  const previous=navigation.querySelector('[data-course-step="-1"]');
+  const next=navigation.querySelector('[data-course-step="1"]');
+  const thumb=navigation.querySelector('.sd-menu-progress-thumb');
+  const cards=Array.from(rail.querySelectorAll('.sd-menu-card'));
+  if(cards.length<2)return;
+  const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const maxScroll=()=>Math.max(0,rail.scrollWidth-rail.clientWidth);
+
   function sync(){
-    var max=Math.max(0,grid.scrollWidth-grid.clientWidth);
-    var ratio=max?Math.max(0,Math.min(1,grid.scrollLeft/max)):0;
-    thumb.style.left=(ratio*66)+'%';
+    const max=maxScroll();
+    const left=Math.max(0,Math.min(rail.scrollLeft,max));
+    thumb.style.left=(max ? left/max*66 : 0)+'%';
+    previous.disabled=left<=1;
+    next.disabled=max-left<=1;
   }
-  grid.addEventListener('scroll',sync,{passive:true});
+
+  function step(direction){
+    const max=maxScroll();
+    const first=cards[0].getBoundingClientRect().left;
+    const positions=cards.map(card=>Math.min(max,card.getBoundingClientRect().left-first));
+    const left=rail.scrollLeft;
+    const destination=direction>0
+      ? positions.find(position=>position>left+1)
+      : positions.reverse().find(position=>position<left-1);
+    if(destination!==undefined){
+      rail.scrollTo({left:destination,behavior:motion.matches?'instant':'smooth'});
+    }
+  }
+  previous.addEventListener('click',()=>step(-1));
+  next.addEventListener('click',()=>step(1));
+  rail.addEventListener('scroll',sync,{passive:true});
   window.addEventListener('resize',sync,{passive:true});
-  window.addEventListener('sudam:layoutchange',function(){requestAnimationFrame(sync)});
+  window.addEventListener('sudam:layoutchange',()=>requestAnimationFrame(sync));
   sync();
 })();
