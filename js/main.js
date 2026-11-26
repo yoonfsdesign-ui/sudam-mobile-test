@@ -60,8 +60,13 @@
       this.prev?.addEventListener('click',()=>this.go(this.i-1,true));
       this.next?.addEventListener('click',()=>this.go(this.i+1,true));
       this.dots.forEach((d,n)=>d.addEventListener('click',()=>this.go(n,true)));
-      this.track?.addEventListener('pointerdown',e=>{this.startX=e.clientX;this.track.setPointerCapture?.(e.pointerId)});
+      this.track?.addEventListener('pointerdown',e=>{
+        if(e.target.closest('a, button')) return;
+        this.startX=e.clientX;
+        this.track.setPointerCapture?.(e.pointerId);
+      });
       this.track?.addEventListener('pointerup',e=>{if(this.startX==null)return;const dx=e.clientX-this.startX;this.startX=null;if(Math.abs(dx)>40)this.go(this.i+(dx<0?1:-1),true)});
+      this.track?.addEventListener('pointercancel',()=>{this.startX=null});
       document.addEventListener('visibilitychange',()=>document.hidden?this.stopAuto():this.startAuto());
     }
     norm(n){return this.loop?(n+this.slides.length)%this.slides.length:Math.max(0,Math.min(this.slides.length-1,n))}
@@ -210,6 +215,11 @@
         clearTimeout(item.snapTimer);
         item.snapTimer=setTimeout(()=>syncFrom(item),140);
       },{passive:false});
+
+      item.gallery.addEventListener('sudam:reviewstep',e=>{
+        pauseAndResume();
+        goAll(sharedIndex+e.detail,reduceMotion?'instant':'smooth');
+      });
 
       // Native mobile swipe remains enabled; synchronize the other review after swipe settles.
       scroller.addEventListener('touchstart',()=>{

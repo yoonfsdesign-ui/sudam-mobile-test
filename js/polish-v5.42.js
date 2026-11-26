@@ -6,7 +6,6 @@
   var root=document.documentElement;
   var q=function(s,c){return (c||document).querySelector(s)};
   var qa=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
-  var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var rafPending=false;
   var savedCopy=[];
 
@@ -113,7 +112,7 @@
     var dots=document.createElement('span');dots.className='sd-v542-gallery-dots';dots.setAttribute('aria-hidden','true');
     images.forEach(function(){dots.appendChild(document.createElement('i'))});
     nav.appendChild(prev);nav.appendChild(dots);nav.appendChild(next);gallery.appendChild(nav);
-    var current=0,queued=false;
+    var queued=false;
     function nearest(){
       var center=scroller.scrollLeft+scroller.clientWidth/2,idx=0,distance=Infinity;
       images.forEach(function(img,i){
@@ -124,16 +123,11 @@
     }
     function sync(){
       queued=false;if(!scroller.clientWidth)return;
-      current=nearest();
+      var current=nearest();
       qa('i',dots).forEach(function(dot,i){dot.classList.toggle('is-active',i===current)});
-      nav.setAttribute('aria-label','후기 사진 이동, '+(current+1)+' / '+images.length);
     }
     function move(direction){
-      current=nearest();var i=(current+direction+images.length)%images.length;
-      var pad=parseFloat(getComputedStyle(scroller).paddingLeft)||0;
-      var left=Math.max(0,images[i].offsetLeft-pad);
-      scroller.scrollTo({left:left,behavior:reduced?'instant':'smooth'});
-      current=i;qa('i',dots).forEach(function(dot,k){dot.classList.toggle('is-active',k===current)});
+      gallery.dispatchEvent(new CustomEvent('sudam:reviewstep',{detail:direction}));
     }
     prev.addEventListener('click',function(e){e.preventDefault();move(-1)});
     next.addEventListener('click',function(e){e.preventDefault();move(1)});
@@ -141,36 +135,17 @@
     requestAnimationFrame(sync);
   });
 
-  /* TOP: align under the Layout 3 choice; only move when the selector is clipped or
-     when there is genuinely no safe room beneath the entire comparison panel. */
-  var top=q('[data-scroll-top]'),choice=q('[data-layout-choice="layout3"]');
-  var compare=q('.sd-theme-compare'),bottom=q('.sd-bottom-cta');
-  var posQueued=false;
-  function reposition(){
-    posQueued=false;if(!top||!choice)return;
-    var r=choice.getBoundingClientRect(),panel=compare?compare.getBoundingClientRect():r;
-    var w=window.innerWidth,h=window.innerHeight,size=38,gap=9;
-    var barVisible=bottom && !bottom.classList.contains('is-hidden');
-    var barTop=barVisible?bottom.getBoundingClientRect().top:h;
-    var safeBottom=Math.min(h-8,barTop-8);
-    var panelFits=panel.top>=0&&panel.bottom<=safeBottom&&r.top>=0&&r.bottom<=safeBottom;
-    var belowY=r.bottom+gap;
-    var fits=panelFits&&belowY+size<=safeBottom;
-    var x,y;
-    if(fits){x=r.left+(r.width-size)/2;y=belowY;top.dataset.v542Placed='under-layout3';}
-    else {
-      // Reposition only for clipped/tall controls; avoid obscuring the selector.
-      x=Math.max(7,panel.left-size-10);
-      y=Math.min(Math.max(84,r.top),Math.max(84,safeBottom-size-5));
-      top.dataset.v542Placed='fallback';
-    }
-    top.style.setProperty('--sd-v542-top-x',Math.max(4,Math.min(w-size-4,Math.round(x)))+'px');
-    top.style.setProperty('--sd-v542-top-y',Math.max(4,Math.min(h-size-4,Math.round(y)))+'px');
+  var dock=q('.sd-compare-dock'),compare=dock && q('details',dock);
+  if(compare){
+    document.addEventListener('click',function(e){
+      if(!dock.contains(e.target)||e.target.closest('[data-scroll-top]'))compare.open=false;
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&compare.open){
+        compare.open=false;
+        q('summary',compare).focus();
+      }
+    });
   }
-  function queuePosition(){if(posQueued)return;posQueued=true;requestAnimationFrame(reposition)}
-  window.addEventListener('resize',function(){queueFit();queuePosition()},{passive:true});
-  window.addEventListener('scroll',queuePosition,{passive:true});
-  window.addEventListener('sudam:layoutchange',function(){queueFit();queuePosition()});
-  if(typeof ResizeObserver!=='undefined'&&compare){new ResizeObserver(queuePosition).observe(compare)}
-  queueFit();queuePosition();
+  queueFit();
 })();
