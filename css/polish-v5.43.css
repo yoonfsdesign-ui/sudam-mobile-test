@@ -155,36 +155,6 @@ html[data-sudam-layout^="layout"] #location :is(.sd-map-switch a, .sd-copy-addre
   font-size: 12px !important;
 }
 
-html[data-sudam-layout="layout1"] #reviews .sd-v542-gallery-nav {
-  position: absolute;
-  z-index: 10;
-  right: 12px;
-  bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 3px;
-  border-radius: 999px;
-  background: rgb(24 21 18 / 80%);
-}
-
-html[data-sudam-layout^="layout"] #reviews .sd-v542-gallery-nav button {
-  display: grid !important;
-  place-items: center;
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
-  min-height: 44px !important;
-  padding: 0;
-  color: #fff;
-  background: transparent;
-  border: 1px solid rgb(255 255 255 / 52%);
-  border-radius: 50%;
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .sd-hero-copy > * {
     opacity: 1 !important;
@@ -366,15 +336,6 @@ html[data-sudam-layout="layout1"] #reviews .sd-review-photos img {
   border-radius: 0 !important;
 }
 
-html[data-sudam-layout="layout1"] #reviews .sd-photo-count {
-  display: block !important;
-  top: 10px !important;
-  right: 10px !important;
-  bottom: auto !important;
-  color: #fff !important;
-  background: rgba(29, 21, 15, .82) !important;
-}
-
 html[data-sudam-layout="layout1"] #menu > .sd-title br {
   display: initial !important;
 }
@@ -503,17 +464,6 @@ html[data-sudam-layout="layout2"] :is(#strength, #space) .sd-slider-btn {
   min-width: 44px !important;
   min-height: 44px !important;
 }
-html[data-sudam-layout="layout2"] :is(#strength, #space) .sd-layout-slider-meta {
-  top: calc(68.75cqw - 38px) !important;
-  right: var(--visual-gutter) !important;
-  bottom: auto !important;
-  z-index: 25 !important;
-  padding: 0 9px !important;
-  background: rgb(23 20 17 / .77) !important;
-  border-radius: 3px;
-  color: #fff !important;
-}
-
 html[data-sudam-layout="layout2"] #meeting .sd-meeting-card {
   min-height: 62px !important;
 }
@@ -849,10 +799,6 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-body {
   box-shadow: none !important;
 }
 
-html[data-sudam-layout="layout3"] #reviews .sd-v542-gallery-nav {
-  bottom: calc(var(--editorial-overlap) + 9px) !important;
-}
-
 html[data-sudam-layout="layout3"] #reviews .sd-review-body > p {
   display: block !important;
   min-height: 0 !important;
@@ -899,56 +845,44 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-meta time {
 }
 
 html[data-sudam-layout^="layout"] #sdMain :is(#meeting, #menu) > .sd-title,
-html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-slide-copy :is(h3, p) {
+#sdMain :is(#strength, #space) .sd-slide-copy :is(h3, p) {
   max-width: none !important;
 }
 
-/* Award recognition uses a blue version of the existing ribbon artwork. */
-.sd-trust-item .sd-award-mark {
-  --ribbon-ink: #245e9c;
-  --ribbon-field: #e7eff9;
-  display: inline-grid;
-  width: 52px;
-  height: 52px;
-  flex: none;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--ribbon-field);
+/* Use the original icon artwork for both trust metrics in every layout. */
+html[data-sudam-layout^="layout"] .sd-trust-grid .sd-trust-item {
+  justify-content: flex-start !important;
 }
 
-.sd-award-mark::before {
-  content: "";
-  width: 44px;
-  height: 44px;
-  -webkit-mask: url("../images/trust-blue-ribbon-icon.png") center / 100% no-repeat;
-  mask: url("../images/trust-blue-ribbon-icon.png") center / 100% no-repeat;
-  background: var(--ribbon-ink);
-}
-
-.sd-trust-item .sd-trust-amount {
-  color: #245e9c;
-  font-size: 1.14em;
-  font-weight: 800;
-}
-
-html[data-sudam-layout^="layout"] .sd-trust .sd-trust-grid .sd-trust-item:first-child::before {
+html[data-sudam-layout^="layout"] .sd-trust-grid .sd-trust-item::before,
+html[data-sudam-layout^="layout"] .sd-trust-grid .sd-trust-item::after {
   content: none !important;
   display: none !important;
 }
 
-html[data-sudam-layout="layout2"] .sd-trust-item .sd-award-mark {
-  --ribbon-ink: #b7d5ff;
-  --ribbon-field: #303d50;
-  width: 42px;
-  height: 42px;
-  margin-bottom: 5px;
+html[data-sudam-layout^="layout"] .sd-trust-grid .sd-trust-item .sd-trust-icon {
+  display: grid !important;
+  width: clamp(44px, 13vw, 54px) !important;
+  height: clamp(44px, 13vw, 54px) !important;
+  flex: none;
+  margin: 0 0 6px !important;
 }
 
-html[data-sudam-layout="layout2"] .sd-award-mark::before { width: 36px; height: 36px; }
-html[data-sudam-layout="layout2"] .sd-trust-item .sd-trust-amount { color: #b7d5ff; }
+html[data-sudam-layout^="layout"] .sd-trust-grid .sd-trust-icon img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain;
+}
 
-html[data-sudam-layout="layout3"] .sd-trust-grid .sd-trust-item:first-child > strong {
-  margin-top: 7px !important;
+html[data-sudam-layout^="layout"] .sd-trust-grid .sd-trust-item strong {
+  margin-top: 0 !important;
+}
+
+html[data-sudam-layout="layout2"] .sd-trust-grid .sd-trust-item .sd-trust-icon img {
+  filter: brightness(1.12) !important;
 }
 
 /* A single division between items. */
@@ -979,7 +913,6 @@ html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid {
 }
 
 html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid .sd-trust-item + .sd-trust-item {
-  justify-content: flex-end !important;
   padding-inline-start: clamp(12px, 4vw, 23px) !important;
 }
 
@@ -1010,39 +943,48 @@ html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .no {
   content: none !important;
 }
 
-/* Missing review photos occupy one quiet slot per review. */
-#reviews .sd-review-card .sd-review-gallery--empty {
-  min-height: 0 !important;
-  height: auto !important;
-  aspect-ratio: 16 / 8 !important;
-}
+/* Photo controls follow a shared progress, count, and arrow order. */
+.sd-menu-navigation { display: none; }
 
-#reviews .sd-review-gallery--empty::before,
-#reviews .sd-review-gallery--empty::after,
-#reviews .sd-review-card:has(.sd-review-gallery--empty)::before {
-  content: none !important;
-  display: none !important;
-}
-
-html[data-sudam-layout="layout3"] #reviews .sd-review-card:has(.sd-review-gallery--empty) .sd-review-body {
-  margin-top: 0 !important;
-}
-
-/* The photo controls sit below the feature, away from the image. */
-.sd-slider-controls { display: contents; }
-
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls {
+#sdMain :is(#strength, #space) .sd-slider-controls,
+html[data-sudam-layout="layout2"] #menu .sd-menu-navigation,
+#reviews .sd-review-gallery > .sd-gallery-controls {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) 44px 44px;
+  grid-template-columns: minmax(36px, 1fr) auto 44px 44px;
   align-items: center;
-  gap: 2px 6px;
-  margin-inline: var(--slider-control-gutter, 0px);
-  padding-block: 8px 0;
+  gap: 4px;
+  color: var(--ly-text, var(--sd-text));
 }
 
-html[data-sudam-layout="layout2"] { --slider-control-gutter: var(--visual-gutter); }
+#sdMain :is(#strength, #space) .sd-slider-controls {
+  margin-top: 6px;
+}
 
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls :is(.sd-slider-btn, .sd-layout-slider-meta, .sd-dots) {
+html[data-sudam-layout="layout2"] #sdMain :is(#strength, #space) .sd-slider-controls {
+  margin-inline: var(--visual-gutter);
+}
+
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-slider-controls {
+  border-top: 1px solid var(--ly-line);
+}
+
+html[data-sudam-layout="layout2"] #menu .sd-menu-navigation {
+  margin: 8px var(--visual-gutter) 0;
+}
+
+html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress {
+  width: min(100%, 148px);
+  margin: 0 !important;
+}
+
+html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::after {
+  content: none;
+}
+
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dots,
+#sdMain #reviews .sd-gallery-controls .sd-photo-count,
+#sdMain :is(#menu, #reviews) .sd-gallery-controls .sd-gallery-arrow,
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-arrow {
   position: static !important;
   inset: auto !important;
   transform: none !important;
@@ -1050,35 +992,23 @@ html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#
   box-shadow: none !important;
 }
 
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-layout-slider-meta {
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dots {
   grid-column: 1;
   grid-row: 1;
   display: flex !important;
-  align-items: baseline;
-  gap: 3px;
-  padding: 0 !important;
-  color: var(--ly-text) !important;
-  background: transparent !important;
-  font-variant-numeric: tabular-nums;
-  text-shadow: none !important;
-}
-
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-dots {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex !important;
   justify-self: start;
+  justify-content: start;
   align-items: center;
-  gap: 2px !important;
+  gap: 4px !important;
   padding: 0 !important;
   background: transparent !important;
-  backdrop-filter: none;
+  backdrop-filter: none !important;
 }
 
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-dot {
-  width: 24px !important;
-  height: 32px !important;
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot {
   display: grid !important;
+  width: clamp(24px, 8vw, 36px) !important;
+  height: 28px !important;
   place-items: center;
   padding: 0 !important;
   border: 0 !important;
@@ -1088,94 +1018,158 @@ html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#
   animation: none !important;
 }
 
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-dot::after {
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot::after {
   content: "";
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--ly-text) 38%, transparent);
-}
-
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-dot.is-active::after {
-  width: 12px;
-  border-radius: 4px;
-  background: var(--ly-text);
-}
-
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-slider-btn {
-  grid-row: 1;
-  display: grid !important;
-  place-items: center;
-  padding: 0 !important;
-  opacity: 1 !important;
-  touch-action: manipulation;
-}
-
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-slider-prev { grid-column: 3; }
-html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) main :is(#strength, #space) .sd-slider-controls .sd-slider-next { grid-column: 4; }
-
-html[data-sudam-layout="layout2"] main :is(#strength, #space) .sd-slider-controls .sd-slider-btn,
-html[data-sudam-layout="layout2"] #menu .sd-menu-arrow {
-  border: 1px solid color-mix(in srgb, var(--ly-text) 25%, transparent) !important;
-  border-radius: 50% !important;
-  background: var(--tone-card, #fffdf9) !important;
-  color: var(--ly-text) !important;
-  font: 400 26px/1 system-ui, sans-serif !important;
-}
-
-html[data-sudam-layout="layout3"] main :is(#strength, #space) .sd-slider-controls {
-  margin-top: 9px;
-  border-top: 1px solid var(--ly-line);
-}
-
-html[data-sudam-layout="layout3"] main :is(#strength, #space) .sd-slider-controls .sd-slider-btn {
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: var(--ly-text) !important;
-  font-size: 0 !important;
-}
-
-html[data-sudam-layout="layout3"] main :is(#strength, #space) .sd-slider-controls .sd-slider-btn::after {
-  content: "←";
-  font: 400 24px/1 Georgia, serif;
-}
-html[data-sudam-layout="layout3"] main :is(#strength, #space) .sd-slider-controls .sd-slider-next::after { content: "→"; }
-
-html[data-sudam-layout="layout3"] main :is(#strength, #space) .sd-slider-controls .sd-dot::after {
-  width: 14px;
+  width: 100%;
   height: 1px;
   border-radius: 0;
+  background: color-mix(in srgb, currentColor 30%, transparent);
 }
-html[data-sudam-layout="layout3"] main :is(#strength, #space) .sd-slider-controls .sd-dot.is-active::after {
-  width: 18px;
+
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot.is-active::after {
   height: 2px;
-  border-radius: 0;
+  background: var(--ly-accent, var(--sd-gold-dark));
 }
 
-/* Layout 2 keeps both swipe and visible access to the next course. */
-.sd-menu-navigation { display: none; }
-html[data-sudam-layout="layout2"] #menu .sd-menu-navigation {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 44px 44px;
-  align-items: center;
-  gap: 6px;
-  margin: 8px var(--visual-gutter) 0;
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-count,
+#sdMain :is(#menu, #reviews) .sd-gallery-controls .sd-gallery-count {
+  grid-column: 2;
+  grid-row: 1;
+  display: block !important;
+  justify-self: center;
+  align-self: center;
+  padding: 0 !important;
+  color: inherit !important;
+  background: none !important;
+  font: 600 12px/1.2 system-ui, sans-serif !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0 !important;
+  white-space: nowrap;
 }
 
-html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress {
-  width: min(100%, 148px);
-  margin: 0 !important;
-}
-html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::after { content: none; }
-
-.sd-menu-arrow {
-  display: grid;
-  width: 44px;
-  height: 44px;
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-arrow,
+#sdMain :is(#menu, #reviews) .sd-gallery-controls .sd-gallery-arrow {
+  grid-row: 1;
+  display: grid !important;
+  width: 44px !important;
+  height: 44px !important;
   place-items: center;
-  padding: 0;
-  cursor: pointer;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: inherit !important;
+  background: none !important;
+  font: 500 22px/1 system-ui, sans-serif !important;
+  opacity: 1 !important;
   touch-action: manipulation;
+  cursor: pointer;
 }
-.sd-menu-arrow:disabled { opacity: .38; cursor: default; }
+
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-prev { grid-column: 3; }
+#sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-next { grid-column: 4; }
+
+.sd-gallery-controls > :is(.sd-review-progress, .sd-menu-progress) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.sd-gallery-controls > :is([data-course-step="-1"], [data-review-step="-1"]) { grid-column: 3; }
+.sd-gallery-controls > :is([data-course-step="1"], [data-review-step="1"]) { grid-column: 4; }
+
+#sdMain #menu .sd-gallery-controls .sd-gallery-arrow:disabled {
+  opacity: .38 !important;
+  cursor: default;
+}
+
+/* Keep a sliver of the next review frame in view at the start of the rail. */
+#sdMain #reviews .sd-review-gallery {
+  --review-count: 3;
+  --review-index: 0;
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  background: transparent !important;
+}
+
+#sdMain #reviews .sd-review-gallery::before,
+#sdMain #reviews .sd-review-gallery::after,
+#sdMain #reviews .sd-review-card:has(.sd-review-photos .sd-image-slot)::before {
+  content: none !important;
+  display: none !important;
+}
+
+#sdMain #reviews .sd-review-photos {
+  display: flex !important;
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  padding: 0 0 0 8px !important;
+  gap: 8px !important;
+  overflow-x: auto !important;
+  scroll-padding-left: 8px !important;
+  scroll-snap-type: x mandatory !important;
+}
+
+#sdMain #reviews .sd-review-photos > :is(.sd-image-slot, img) {
+  position: relative;
+  flex: 0 0 88% !important;
+  width: 88% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 16 / 9 !important;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+#reviews .sd-review-photos .sd-image-slot > small {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+#reviews .sd-review-gallery > .sd-gallery-controls {
+  width: calc(100% - 18px);
+  margin-inline: 9px;
+}
+
+#reviews .sd-review-progress {
+  position: relative;
+  display: block;
+  width: min(100%, 104px);
+  height: 1px;
+  background: color-mix(in srgb, currentColor 30%, transparent);
+}
+
+#reviews .sd-review-progress::before {
+  content: "";
+  position: absolute;
+  top: -0.5px;
+  left: 0;
+  width: calc(100% / var(--review-count));
+  height: 2px;
+  transform: translateX(calc(var(--review-index) * 100%));
+  background: var(--ly-accent, var(--sd-gold-dark));
+}
+
+html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-body {
+  margin-top: 0 !important;
+}
+
+/* The existing layout keeps two narrow review cards side by side. */
+html[data-sudam-layout="default"] #sdMain #reviews .sd-review-gallery > .sd-gallery-controls {
+  grid-template-columns: minmax(0, 1fr) 44px 44px;
+  gap: 0;
+  width: calc(100% - 8px);
+  margin-inline: 4px;
+}
+
+html[data-sudam-layout="default"] #reviews .sd-review-progress { display: none; }
+
+html[data-sudam-layout="default"] #sdMain #reviews .sd-gallery-count { grid-column: 1; }
+html[data-sudam-layout="default"] #reviews [data-review-step="-1"] { grid-column: 2; }
+html[data-sudam-layout="default"] #reviews [data-review-step="1"] { grid-column: 3; }
