@@ -946,7 +946,11 @@ html[data-sudam-layout="layout3"] #meeting .sd-meeting-card .no {
 /* Photo controls follow a shared progress, count, and arrow order. */
 .sd-menu-navigation { display: none; }
 
-#sdMain :is(#strength, #space) .sd-slider-controls,
+/* Default uses the overlay arrows and dots from 9aaf081. */
+html[data-sudam-layout="default"] .sd-slider-controls { display: contents; }
+html[data-sudam-layout="default"] .sd-slider-controls > .sd-gallery-count { display: none; }
+
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-slider-controls,
 html[data-sudam-layout="layout2"] #menu .sd-menu-navigation,
 #reviews .sd-review-gallery > .sd-gallery-controls {
   display: grid;
@@ -956,7 +960,7 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation,
   color: var(--ly-text, var(--sd-text));
 }
 
-#sdMain :is(#strength, #space) .sd-slider-controls {
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-slider-controls {
   margin-top: 6px;
 }
 
@@ -981,10 +985,10 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::a
   content: none;
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dots,
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dots,
 #sdMain #reviews .sd-gallery-controls .sd-photo-count,
 #sdMain :is(#menu, #reviews) .sd-gallery-controls .sd-gallery-arrow,
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-arrow {
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-arrow {
   position: static !important;
   inset: auto !important;
   transform: none !important;
@@ -992,7 +996,7 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::a
   box-shadow: none !important;
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dots {
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dots {
   grid-column: 1;
   grid-row: 1;
   display: flex !important;
@@ -1005,7 +1009,7 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::a
   backdrop-filter: none !important;
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot {
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot {
   display: grid !important;
   width: clamp(24px, 8vw, 36px) !important;
   height: 28px !important;
@@ -1018,7 +1022,7 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::a
   animation: none !important;
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot::after {
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -1026,12 +1030,12 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::a
   background: color-mix(in srgb, currentColor 30%, transparent);
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot.is-active::after {
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot.is-active::after {
   height: 2px;
   background: var(--ly-accent, var(--sd-gold-dark));
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-count,
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-count,
 #sdMain :is(#menu, #reviews) .sd-gallery-controls .sd-gallery-count {
   grid-column: 2;
   grid-row: 1;
@@ -1047,7 +1051,7 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::a
   white-space: nowrap;
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-arrow,
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-gallery-arrow,
 #sdMain :is(#menu, #reviews) .sd-gallery-controls .sd-gallery-arrow {
   grid-row: 1;
   display: grid !important;
@@ -1065,8 +1069,8 @@ html[data-sudam-layout="layout2"] #menu .sd-menu-navigation .sd-menu-progress::a
   cursor: pointer;
 }
 
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-prev { grid-column: 3; }
-#sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-next { grid-column: 4; }
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-prev { grid-column: 3; }
+html[data-sudam-layout^="layout"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-next { grid-column: 4; }
 
 .sd-gallery-controls > :is(.sd-review-progress, .sd-menu-progress) {
   grid-column: 1;
@@ -1208,30 +1212,284 @@ html[data-sudam-layout="default"] #reviews [data-review-step="1"] { grid-column:
   font-size: 18px !important;
 }
 
-html[data-sudam-layout="layout1"] #reviews .sd-review-progress {
-  visibility: hidden;
-}
-
 html[data-sudam-layout="layout1"] #sdMain #reviews .sd-gallery-count {
   grid-column: 1;
   justify-self: start;
 }
 
-html[data-sudam-layout="layout2"] #reviews .sd-review-progress {
-  width: min(100%, 148px);
+/* Balanced review controls sit just inside the photo edge. The visible backing
+   is shallow while the left/right targets retain their 44-pixel hit area. */
+html[data-sudam-layout="layout1"] #sdMain #reviews .sd-review-gallery > .sd-gallery-controls {
+  position: absolute;
+  right: 7px;
+  bottom: 3px;
+  z-index: 7;
+  isolation: isolate;
+  grid-template-columns: auto 44px 44px;
+  gap: 0;
+  width: auto;
+  margin: 0;
+  padding-inline-start: 9px;
+  color: #fff7ee;
+  pointer-events: none;
 }
 
-html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-gallery > .sd-gallery-controls {
-  grid-template-columns: auto minmax(0, 1fr) 44px 44px;
+html[data-sudam-layout="layout1"] #reviews .sd-review-gallery > .sd-gallery-controls::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 10px 0;
+  border-radius: 4px;
+  background: rgb(32 24 19 / 82%);
+}
+
+html[data-sudam-layout="layout1"] #reviews .sd-review-gallery .sd-review-progress { display: none; }
+html[data-sudam-layout="layout1"] #sdMain #reviews .sd-review-gallery .sd-gallery-count { color: inherit !important; }
+html[data-sudam-layout="layout1"] #reviews [data-review-step="-1"] { grid-column: 2; }
+html[data-sudam-layout="layout1"] #reviews [data-review-step="1"] { grid-column: 3; }
+html[data-sudam-layout="layout1"] #reviews [data-review-step] { pointer-events: auto; }
+
+/* Visual Premium ties progress to the edge of the picture. */
+html[data-sudam-layout="layout2"] #reviews .sd-review-gallery > .sd-gallery-controls {
+  position: relative;
+  grid-template-columns: minmax(0, 1fr) auto 44px 44px;
+  width: 100%;
+  margin: 0;
+  padding-inline: 12px 4px;
+}
+
+html[data-sudam-layout="layout2"] #reviews .sd-review-progress {
+  position: absolute;
+  grid-area: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+html[data-sudam-layout="layout2"] #reviews .sd-review-progress::before {
+  top: 0;
+  height: 2px;
+}
+
+/* Editorial controls read as a folio, after the small previous/next pair. */
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space, #reviews) .sd-gallery-controls {
+  grid-template-columns: 44px 44px minmax(0, 1fr) auto;
+  gap: 0;
+  border-top: 0;
   border-bottom: 1px solid var(--ly-line);
 }
 
-html[data-sudam-layout="layout3"] #sdMain #reviews .sd-gallery-count {
-  grid-column: 1;
-  font-family: Georgia, serif !important;
+html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-gallery > .sd-gallery-controls {
+  margin-inline: 0;
+  width: 100%;
 }
 
-html[data-sudam-layout="layout3"] #reviews .sd-review-progress {
-  grid-column: 2;
-  margin-inline-start: 7px;
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-prev,
+html[data-sudam-layout="layout3"] #reviews [data-review-step="-1"] { grid-column: 1; }
+
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-next,
+html[data-sudam-layout="layout3"] #reviews [data-review-step="1"] { grid-column: 2; }
+
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space, #reviews) .sd-gallery-controls .sd-gallery-count {
+  grid-column: 4;
+  margin-inline: 10px 1px !important;
+  padding-inline-start: 9px !important;
+  border-inline-start: 1px solid var(--ly-line);
+  font: 400 13px/1 Georgia, "Noto Serif KR", serif !important;
 }
+
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dots {
+  grid-column: 3;
+  justify-self: end;
+  gap: 0 !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot {
+  width: 24px !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot::after {
+  width: 1px;
+  height: 5px;
+}
+
+html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-dot.is-active::after {
+  width: 1px;
+  height: 9px;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-progress { display: none; }
+
+.sd-trust-item .sd-trust-figure {
+  display: inline;
+  margin: 0;
+  color: inherit;
+  font: inherit !important;
+}
+
+/* In the editorial layout, the original ribbon is the seal and the meeting
+   total provides the typographic counterpoint. */
+html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid {
+  grid-template-columns: minmax(0, 1.03fr) minmax(0, .97fr) !important;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid .sd-trust-item {
+  min-width: 0;
+  justify-content: flex-end !important;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:first-child .sd-trust-icon {
+  width: clamp(50px, 16vw, 68px) !important;
+  height: clamp(50px, 16vw, 68px) !important;
+  margin-bottom: 7px !important;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:last-child .sd-trust-icon {
+  width: 29px !important;
+  height: 29px !important;
+  margin-bottom: 2px !important;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:first-child .sd-trust-main {
+  font-family: "Noto Serif KR", serif;
+  font-size: clamp(14px, 4.2vw, 18px) !important;
+  letter-spacing: -.04em;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:last-child .sd-trust-main {
+  font-size: clamp(10px, 3vw, 13px) !important;
+  letter-spacing: -.025em;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust-item .sd-trust-figure {
+  font: 400 clamp(25px, 8.1vw, 38px)/1 Georgia, serif !important;
+  letter-spacing: -.055em;
+  font-variant-numeric: lining-nums;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust .sd-trust-note {
+  margin-top: 5px !important;
+}
+
+/* Keep the existing meeting mosaic and give all four links a common index
+   treatment and arrow weight. */
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-list {
+  border-block: 1px solid var(--ly-line);
+}
+
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-card {
+  grid-template-columns: 28px minmax(0, 1fr) 24px !important;
+  min-height: 66px !important;
+  gap: 6px !important;
+  padding: 11px 12px !important;
+  background: var(--ly-surface);
+}
+
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-card:last-child {
+  border-bottom: 0 !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-card:is(:nth-child(2), :nth-child(3)) {
+  grid-template-columns: minmax(0, 1fr) 24px !important;
+  grid-template-rows: auto auto !important;
+  gap: 3px 6px !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-card .no {
+  min-height: 0 !important;
+  font: 400 14px/1 Georgia, serif !important;
+  font-variant-numeric: tabular-nums;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-card:is(:nth-child(2), :nth-child(3)) > div {
+  grid-area: 2 / 1 !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-card .go {
+  position: static !important;
+  grid-area: 1 / 3 !important;
+  width: 24px !important;
+  height: 22px !important;
+  color: var(--ly-text) !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  font: 400 19px/1 system-ui, sans-serif !important;
+  opacity: 1 !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #meeting .sd-meeting-card:is(:nth-child(2), :nth-child(3)) .go {
+  grid-area: 1 / 2 / 3 / 3 !important;
+}
+
+/* Menu as a two-column plate spread. The portraits keep their size; the names
+   and prices sit on the page beneath them. */
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  aspect-ratio: auto !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card::before,
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card::after,
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .media::after {
+  display: none !important;
+  content: none !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .media {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 3 / 4 !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  filter: none !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .body {
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  padding: 11px 0 12px !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--ly-line) !important;
+  background: none !important;
+  color: var(--ly-text) !important;
+  text-shadow: none !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .tag {
+  position: static !important;
+  min-height: 0 !important;
+  display: block;
+  padding: 0 !important;
+  color: var(--ly-sub) !important;
+  border: 0 !important;
+  background: none !important;
+  letter-spacing: .12em;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card h3 {
+  margin: 5px 0 4px !important;
+  color: var(--ly-text) !important;
+  font: 500 clamp(23px, 6.9vw, 31px)/1.25 "Noto Serif KR", serif !important;
+  text-shadow: none !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .price {
+  margin: 0 !important;
+  color: var(--ly-sub) !important;
+  font-size: 12px !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .sd-course-knot { display: none !important; }
