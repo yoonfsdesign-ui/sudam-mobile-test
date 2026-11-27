@@ -225,6 +225,56 @@
     sync();
   });
 
+  // The outer review rail turns whole pages, independently of each photo rail.
+  const reviewPager=$('#reviews .sd-review-pagination');
+  if(reviewPager){
+    const rail=$('#reviews .sd-review-grid');
+    const buttons=$$('button[aria-controls]',reviewPager);
+    const pages=buttons.map(button=>document.getElementById(button.getAttribute('aria-controls')));
+    const isEditorial=()=>document.documentElement.dataset.sudamLayout==='layout3';
+    const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    let current=0;
+    let frame;
+
+    function syncReviewPage(){
+      if(!isEditorial())return;
+      const left=rail.getBoundingClientRect().left;
+      let nearest=Infinity;
+      pages.forEach((page,index)=>{
+        const distance=Math.abs(page.getBoundingClientRect().left-left);
+        if(distance<nearest){
+          nearest=distance;
+          current=index;
+        }
+      });
+      buttons.forEach((button,index)=>{
+        if(index===current)button.setAttribute('aria-current','page');
+        else button.removeAttribute('aria-current');
+      });
+    }
+
+    function showReviewPage(index,behavior){
+      const left=pages[index].getBoundingClientRect().left-rail.getBoundingClientRect().left+rail.scrollLeft;
+      rail.scrollTo({left,behavior});
+    }
+
+    buttons.forEach((button,index)=>{
+      button.addEventListener('click',()=>{
+        if(isEditorial())showReviewPage(index,motion.matches?'instant':'smooth');
+      });
+    });
+    rail.addEventListener('scroll',()=>{
+      cancelAnimationFrame(frame);
+      frame=requestAnimationFrame(syncReviewPage);
+    },{passive:true});
+    window.addEventListener('sudam:layoutchange',()=>{
+      if(isEditorial()){
+        showReviewPage(current,'instant');
+        syncReviewPage();
+      }
+    });
+  }
+
   // Kakao Map Web(JavaScript) SDK-ready map.
   // Requires SUDAM_CONFIG.kakaoMapJavaScriptKey.
   // Without a key, the replaceable static map image remains visible and links to Kakao Map.
