@@ -753,8 +753,24 @@ html[data-sudam-layout="layout3"] :is(#menu .sd-menu-head, #reviews .sd-review-s
 
 /* Review pages snap as a spread. Each photo gallery remains its own scroll area. */
 .sd-review-pagination,
-.sd-review-folio {
+.sd-review-folio,
+.sd-review-editorial-title {
   display: none;
+}
+
+html:not([data-sudam-layout="layout3"]) #sdMain #reviews .sd-review-card--sample,
+html[data-sudam-layout="layout3"] #reviews .sd-review-original-title {
+  display: none !important;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-editorial-title {
+  display: inline;
+}
+
+html[data-sudam-layout="layout3"] #reviews {
+  --review-paper: color-mix(in srgb, var(--ly-surface) 89%, #edc699);
+  --review-warm: color-mix(in srgb, var(--ly-text) 70%, #b97842);
+  --review-rule: color-mix(in srgb, var(--ly-line), #b68a58 25%);
 }
 
 html[data-sudam-layout="layout3"] #reviews .sd-review-pagination {
@@ -784,8 +800,9 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-pagination button {
 }
 
 html[data-sudam-layout="layout3"] #reviews .sd-review-pagination button[aria-current="page"] {
-  border-bottom-color: var(--ly-accent);
-  color: var(--ly-text);
+  border-bottom-color: var(--review-warm);
+  background: color-mix(in srgb, var(--review-warm) 8%, transparent);
+  color: var(--review-warm);
   font-weight: 700;
 }
 
@@ -810,8 +827,8 @@ html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-card {
   min-height: 0 !important;
   margin: 0 !important;
   padding-block: 0 15px !important;
-  border-block: 1px solid var(--ly-line) !important;
-  background: color-mix(in srgb, var(--ly-surface) 50%, transparent) !important;
+  border-block: 1px solid var(--review-rule) !important;
+  background: linear-gradient(180deg, var(--review-paper), var(--ly-surface)) !important;
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
@@ -820,30 +837,46 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-card::before {
   content: none !important;
 }
 
+html[data-sudam-layout="layout3"] #sdMain #reviews :is(.sd-review-folio, .sd-review-gallery, .sd-review-body) {
+  width: 90% !important;
+  max-width: none !important;
+  margin-inline: auto !important;
+}
+
 html[data-sudam-layout="layout3"] #reviews .sd-review-folio {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 47px;
+  margin-block: 0;
+  color: var(--review-warm);
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-folio-index {
   display: flex;
   align-items: baseline;
   gap: 7px;
-  margin: 0;
-  padding-block: 10px 12px;
-  color: var(--ly-sub);
+  padding-block: 3px;
+  border-bottom: 1px solid var(--review-rule);
   font: 600 9px/1.1 system-ui, sans-serif;
-  letter-spacing: .14em;
+  letter-spacing: .13em;
 }
 
-html[data-sudam-layout="layout3"] #reviews .sd-review-folio span {
-  color: var(--ly-text);
-  font: 400 17px/1 Georgia, serif;
+html[data-sudam-layout="layout3"] #reviews .sd-review-folio-index > span {
+  font: 400 18px/1 Georgia, serif;
   letter-spacing: 0;
 }
 
-html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(odd) .sd-review-folio {
-  padding-inline-start: 10%;
+html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(even) .sd-review-folio {
+  flex-direction: row-reverse;
 }
 
-html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(even) .sd-review-folio {
-  justify-content: flex-end;
-  padding-inline-end: 10%;
+html[data-sudam-layout="layout3"] #reviews .sd-review-sample-label {
+  padding: 3px 7px;
+  border: 1px solid var(--review-rule);
+  color: var(--review-warm);
+  font-size: 10px;
+  line-height: 1.4;
 }
 
 html[data-sudam-layout="layout3"] #reviews .sd-review-photos {
@@ -856,10 +889,6 @@ html[data-sudam-layout="layout3"] #reviews .sd-photo-count::before {
   font: 400 10px/1.2 system-ui, sans-serif;
 }
 
-html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(even) .sd-review-gallery {
-  margin-inline: 0 auto !important;
-}
-
 html[data-sudam-layout="layout3"] #reviews .sd-review-photos img {
   min-height: 0 !important;
 }
@@ -869,17 +898,11 @@ html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-body {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 0 10px;
   flex: none !important;
-  width: 90% !important;
-  max-width: none !important;
-  margin: 0 0 0 auto !important;
+  margin-block: 0 !important;
   padding: 15px 0 0 !important;
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-}
-
-html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-card:nth-child(even) .sd-review-body {
-  margin-inline: 0 auto !important;
 }
 
 html[data-sudam-layout="layout3"] #reviews .sd-review-body > :is(a, p, .sd-review-meta) {
@@ -893,6 +916,7 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-body > a {
 
 html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-body h3 {
   margin: 0 !important;
+  color: var(--review-warm) !important;
   font-size: 13px !important;
   line-height: 1.5 !important;
   text-wrap: wrap;
@@ -913,7 +937,6 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-quote {
   position: relative;
   display: block;
   margin-bottom: 9px;
-  padding-inline-start: 16px;
   color: var(--ly-text);
   font: 600 clamp(19px, 5.5vw, 24px)/1.54 "Noto Serif KR", serif;
   letter-spacing: -.035em;
@@ -926,9 +949,14 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(even) .sd-r
 html[data-sudam-layout="layout3"] #reviews .sd-review-quote::before {
   content: "“" / "";
   position: absolute;
-  inset-inline-start: 0;
-  color: var(--ly-accent);
-  font: 400 22px/1 Georgia, serif;
+  inset-inline-start: -11px;
+  top: 3px;
+  color: var(--review-warm);
+  font: 400 16px/1 Georgia, serif;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-card--sample .sd-review-quote::before {
+  content: none;
 }
 
 html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-tags {
@@ -952,7 +980,7 @@ html[data-sudam-layout="layout3"] #sdMain #reviews .sd-stars {
   grid-area: 3 / 2;
   align-self: center;
   margin: 0 !important;
-  color: var(--ly-sub) !important;
+  color: var(--review-warm) !important;
   font-size: 10px !important;
   letter-spacing: .09em !important;
 }
@@ -966,7 +994,7 @@ html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-meta {
   min-height: 0 !important;
   margin: 0 !important;
   padding: 8px 0 0 !important;
-  border-top: 1px solid var(--ly-line);
+  border-top: 1px solid var(--review-rule);
   color: var(--ly-sub) !important;
   font-size: 11px !important;
 }
@@ -1418,6 +1446,7 @@ html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space, #reviews) .sd-g
 html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-gallery > .sd-gallery-controls {
   margin-inline: 0;
   width: 100%;
+  border-bottom-color: var(--review-rule);
 }
 
 html[data-sudam-layout="layout3"] #sdMain :is(#strength, #space) .sd-gallery-controls .sd-slider-prev,
