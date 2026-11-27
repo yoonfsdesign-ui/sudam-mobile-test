@@ -1173,3 +1173,65 @@ html[data-sudam-layout="default"] #reviews .sd-review-progress { display: none; 
 html[data-sudam-layout="default"] #sdMain #reviews .sd-gallery-count { grid-column: 1; }
 html[data-sudam-layout="default"] #reviews [data-review-step="-1"] { grid-column: 2; }
 html[data-sudam-layout="default"] #reviews [data-review-step="1"] { grid-column: 3; }
+
+/* Leave the photograph unobstructed and tune the footer to each review card. */
+#sdMain #reviews .sd-review-photos:has(> img),
+#sdMain #reviews .sd-review-photos:has(> :only-child) {
+  padding: 0 !important;
+  scroll-padding-left: 0 !important;
+}
+
+#sdMain #reviews .sd-review-photos > img[src],
+#sdMain #reviews .sd-review-photos > :only-child {
+  flex-basis: 100% !important;
+  width: 100% !important;
+}
+
+#sdMain #reviews .sd-review-photos > img {
+  display: block;
+  object-fit: cover !important;
+  object-position: var(--review-focus, center);
+  filter: none !important;
+  transform: none !important;
+}
+
+#sdMain #reviews .sd-review-gallery > .sd-gallery-controls[hidden] {
+  display: none;
+}
+
+#sdMain #reviews .sd-review-gallery .sd-gallery-count {
+  color: var(--ly-sub, var(--sd-sub)) !important;
+  font-size: 11px !important;
+}
+
+#sdMain #reviews .sd-review-gallery .sd-gallery-arrow {
+  font-size: 18px !important;
+}
+
+html[data-sudam-layout="layout1"] #reviews .sd-review-progress {
+  visibility: hidden;
+}
+
+html[data-sudam-layout="layout1"] #sdMain #reviews .sd-gallery-count {
+  grid-column: 1;
+  justify-self: start;
+}
+
+html[data-sudam-layout="layout2"] #reviews .sd-review-progress {
+  width: min(100%, 148px);
+}
+
+html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-gallery > .sd-gallery-controls {
+  grid-template-columns: auto minmax(0, 1fr) 44px 44px;
+  border-bottom: 1px solid var(--ly-line);
+}
+
+html[data-sudam-layout="layout3"] #sdMain #reviews .sd-gallery-count {
+  grid-column: 1;
+  font-family: Georgia, serif !important;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-progress {
+  grid-column: 2;
+  margin-inline-start: 7px;
+}

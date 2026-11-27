@@ -131,134 +131,99 @@
     }
   });
 
-  // Review galleries v5.9:
-  // partial-next preview + touch swipe + desktop mouse drag + ONE shared autoplay clock.
-  // Manual movement on either review synchronizes both galleries to the same image index.
-  const reviewGalleries=$$('[data-review-gallery]').map(gallery=>{
+  // Each review uses its own native scroll position and frame count.
+  $$('[data-review-gallery]').forEach(gallery=>{
     const scroller=$('.sd-review-photos',gallery);
     const count=$('.sd-photo-count',gallery);
-    const frames=scroller?Array.from(scroller.children):[];
-    return {gallery,scroller,count,frames,snapTimer:null};
-  }).filter(x=>x.count&&x.frames.length);
+    const controls=count?.closest('.sd-gallery-controls');
+    const frames=scroller ? Array.from(scroller.children) : [];
+    if(!scroller||!controls||!frames.length)return;
 
-  if(reviewGalleries.length){
-    let sharedIndex=0;
-    let reviewTimer=null;
-    let resumeTimer=null;
-    const autoplayDelays=reviewGalleries.map(x=>Number(x.gallery.dataset.reviewAutoplay??5200))
-      .filter(value=>Number.isFinite(value)&&value>0);
-    const delay=autoplayDelays.length ? Math.min(...autoplayDelays) : 0;
-    const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const total=frames.length;
+    controls.hidden=total===1;
+    gallery.style.setProperty('--review-count',total);
+    if(total===1){
+      scroller.removeAttribute('tabindex');
+      return;
+    }
 
-    const nearestIndex=item=>{
-      const {scroller,frames}=item;
+    const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+    const labelPart=value=>String(value).padStart(2,'0');
+    let current=0;
+    let target=null;
+    let settleTimer;
+    let drag=null;
+
+    function sync(){
       const center=scroller.scrollLeft+scroller.clientWidth/2;
-      let best=0,dist=Infinity;
-      frames.forEach((frame,i)=>{
-        const c=frame.offsetLeft+frame.offsetWidth/2;
-        const d=Math.abs(c-center);
-        if(d<dist){dist=d;best=i;}
-      });
-      return best;
-    };
-    const goItem=(item,n,behavior='smooth')=>{
-      const len=item.frames.length;
-      const index=(n+len)%len;
-      const pad=parseFloat(getComputedStyle(item.scroller).paddingLeft||0);
-      const left=Math.max(0,item.frames[index].offsetLeft-pad);
-      item.scroller.scrollTo({left,behavior});
-      const label=`${index+1} / ${len}`;
-      if(item.count.textContent!==label)item.count.textContent=label;
-      item.gallery.style.setProperty('--review-count',len);
-      item.gallery.style.setProperty('--review-index',index);
-    };
-    const goAll=(n,behavior='smooth')=>{
-      const maxLen=Math.min(...reviewGalleries.map(x=>x.frames.length));
-      sharedIndex=(n+maxLen)%maxLen;
-      reviewGalleries.forEach(item=>goItem(item,sharedIndex,behavior));
-    };
-    const stop=()=>{if(reviewTimer){clearInterval(reviewTimer);reviewTimer=null;}};
-    const start=()=>{
-      if(reduceMotion||!delay||reviewGalleries.length===0)return;
-      stop();
-      reviewTimer=setInterval(()=>goAll(sharedIndex+1),delay);
-    };
-    const pauseAndResume=()=>{
-      stop();
-      clearTimeout(resumeTimer);
-      resumeTimer=setTimeout(start,7000);
-    };
-    const syncFrom=item=>{
-      const n=nearestIndex(item);
-      goAll(n);
-    };
-
-    reviewGalleries.forEach(item=>{
-      const {scroller}=item;
-      let pointerId=null,startX=0,startScroll=0;
-
-      scroller.addEventListener('pointerdown',e=>{
-        if(e.pointerType==='touch') return;
-        pointerId=e.pointerId; startX=e.clientX; startScroll=scroller.scrollLeft;
-        scroller.classList.add('is-dragging');
-        scroller.setPointerCapture?.(e.pointerId);
-        pauseAndResume();
-      });
-      scroller.addEventListener('pointermove',e=>{
-        if(pointerId!==e.pointerId) return;
-        const dx=e.clientX-startX;
-        scroller.scrollLeft=startScroll-dx;
-      });
-      const endDrag=e=>{
-        if(pointerId==null||(e.pointerId!=null&&pointerId!==e.pointerId))return;
-        try{scroller.releasePointerCapture?.(pointerId)}catch(_){}
-        pointerId=null; scroller.classList.remove('is-dragging');
-        syncFrom(item);
-      };
-      scroller.addEventListener('pointerup',endDrag);
-      scroller.addEventListener('pointercancel',endDrag);
-
-      // Mouse wheel / trackpad: vertical wheel becomes horizontal only over the gallery.
-      scroller.addEventListener('wheel',e=>{
-        if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){
-          e.preventDefault();
-          scroller.scrollLeft+=e.deltaY;
+      let distance=Infinity;
+      frames.forEach((frame,index)=>{
+        const delta=Math.abs(frame.offsetLeft+frame.offsetWidth/2-center);
+        if(delta<distance){
+          distance=delta;
+          current=index;
         }
-        pauseAndResume();
-        clearTimeout(item.snapTimer);
-        item.snapTimer=setTimeout(()=>syncFrom(item),140);
-      },{passive:false});
-
-      $$('[data-review-step]',item.gallery).forEach(button=>{
-        button.addEventListener('click',()=>{
-          pauseAndResume();
-          goAll(sharedIndex+Number(button.dataset.reviewStep),reduceMotion?'instant':'smooth');
-        });
       });
+      target=null;
+      const label=`${labelPart(current+1)} / ${labelPart(total)}`;
+      if(count.textContent!==label)count.textContent=label;
+      gallery.style.setProperty('--review-index',current);
+    }
 
-      // Native mobile swipe remains enabled; synchronize the other review after swipe settles.
-      scroller.addEventListener('touchstart',pauseAndResume,{passive:true});
-      scroller.addEventListener('touchend',()=>{
-        clearTimeout(item.snapTimer);
-        item.snapTimer=setTimeout(()=>syncFrom(item),180);
-      },{passive:true});
+    function move(index,behavior){
+      target=(index+total)%total;
+      const padding=parseFloat(getComputedStyle(scroller).scrollPaddingLeft)||0;
+      scroller.scrollTo({left:frames[target].offsetLeft-padding,behavior});
+      queueSync();
+    }
 
-      scroller.addEventListener('keydown',e=>{
-        if(e.key==='ArrowRight'){e.preventDefault();pauseAndResume();goAll(sharedIndex+1)}
-        if(e.key==='ArrowLeft'){e.preventDefault();pauseAndResume();goAll(sharedIndex-1)}
-      });
+    function queueSync(){
+      clearTimeout(settleTimer);
+      settleTimer=setTimeout(sync,100);
+    }
+
+    const step=direction=>move((target??current)+direction,motion.matches?'instant':'smooth');
+    scroller.addEventListener('scroll',queueSync,{passive:true});
+    scroller.addEventListener('scrollend',sync);
+    $$('[data-review-step]',gallery).forEach(button=>{
+      button.addEventListener('click',()=>step(Number(button.dataset.reviewStep)));
     });
 
-    const reviewsSection=$('.sd-reviews');
-    reviewsSection?.addEventListener('mouseenter',stop);
-    reviewsSection?.addEventListener('mouseleave',start);
-    const alignGalleries=()=>goAll(sharedIndex,'instant');
-    window.addEventListener('resize',alignGalleries);
-    window.addEventListener('sudam:layoutchange',()=>requestAnimationFrame(alignGalleries));
-    document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
-    alignGalleries();
-    start();
-  }
+    scroller.addEventListener('keydown',event=>{
+      if(event.key!=='ArrowRight'&&event.key!=='ArrowLeft')return;
+      event.preventDefault();
+      step(event.key==='ArrowRight'?1:-1);
+    });
+
+    scroller.addEventListener('pointerdown',event=>{
+      if(event.pointerType!=='mouse'||event.button!==0)return;
+      drag={id:event.pointerId,x:event.clientX,left:scroller.scrollLeft};
+      scroller.classList.add('is-dragging');
+      scroller.setPointerCapture(event.pointerId);
+    });
+    scroller.addEventListener('pointermove',event=>{
+      if(drag?.id===event.pointerId)scroller.scrollLeft=drag.left+drag.x-event.clientX;
+    });
+    function endDrag(event){
+      if(drag?.id!==event.pointerId)return;
+      drag=null;
+      scroller.classList.remove('is-dragging');
+      sync();
+      move(current,'instant');
+    }
+    scroller.addEventListener('pointerup',endDrag);
+    scroller.addEventListener('pointercancel',endDrag);
+    scroller.addEventListener('wheel',event=>{
+      if(Math.abs(event.deltaY)<=Math.abs(event.deltaX))return;
+      event.preventDefault();
+      scroller.scrollLeft+=event.deltaY;
+    },{passive:false});
+
+    const align=()=>move(target??current,'instant');
+    window.addEventListener('resize',align);
+    window.addEventListener('sudam:layoutchange',()=>requestAnimationFrame(align));
+    sync();
+  });
 
   // Kakao Map Web(JavaScript) SDK-ready map.
   // Requires SUDAM_CONFIG.kakaoMapJavaScriptKey.
