@@ -53,8 +53,12 @@ space-03.jpg
   - 슬라이드 순서대로 교체
 
 [실제 고객후기]
-  - 실제 후기 사진이 준비되기 전에는 각 카드에서 3장의 이미지 영역을 미리 확인할 수 있음
-  - 후기 사진 등록 시 .sd-review-photos의 해당 이미지 영역을 실제 img로 교체
+  - images/reviews/에 제공 이미지 16장을 원본 구도와 해상도로 변환한 WebP 자산 보관
+  - 홈 생신·가족 모임 후기: birthday-celebration, family-dinner, birthday-course
+  - 홈 상견례 후기: formal-meeting, sashimi-course
+  - index.html에서 .sd-review-photos 직계 img의 순서를 조정하거나 교체하면 장수 자동 반영
+  - 사진마다 --review-focus로 16:9 프레임 안에서 보이는 위치를 지정
+  - 사진 미등록 시 이미지 영역을 유지하고, 한 장만 등록하면 이동 UI 자동 숨김
 
 [오시는 길]
 - 지도는 이미지가 아니라 실제 위치 지도 iframe으로 구현됨.
