@@ -626,32 +626,8 @@ html[data-sudam-layout="layout3"] .sd-trust::after {
 }
 
 html[data-sudam-layout="layout3"] .sd-trust-caption {
-  margin-bottom: 17px !important;
+  margin-bottom: 0 !important;
   font-size: 12px !important;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust-grid {
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) !important;
-  align-items: end !important;
-  gap: clamp(12px, 4vw, 23px) !important;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust-item + .sd-trust-item {
-  padding: 0 !important;
-  border-left: 0 !important;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust-grid .sd-trust-item::after {
-  display: none !important;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust-main {
-  font-size: clamp(12px, 3.6vw, 15px) !important;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust-note {
-  font-size: clamp(10px, 2.9vw, 12px) !important;
-  opacity: 1 !important;
 }
 
 html[data-sudam-layout="layout3"] :is(#strength, #meeting, #menu, #space, #reviews) {
@@ -905,15 +881,6 @@ html[data-sudam-layout^="layout"] .sd-trust .sd-trust-grid .sd-trust-item + .sd-
 
 html[data-sudam-layout="layout2"] .sd-trust .sd-trust-grid .sd-trust-item + .sd-trust-item {
   border-inline-start-color: rgb(255 255 255 / 22%) !important;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid {
-  align-items: stretch !important;
-  gap: 0 !important;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid .sd-trust-item + .sd-trust-item {
-  padding-inline-start: clamp(12px, 4vw, 23px) !important;
 }
 
 html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) #meeting .sd-meeting-list .sd-meeting-card::before {
@@ -1327,48 +1294,65 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-progress { display: none; 
   font: inherit !important;
 }
 
-/* In the editorial layout, the original ribbon is the seal and the meeting
-   total provides the typographic counterpoint. */
+/* Layout 3 uses one ruled list with a common right edge for both figures. */
+.sd-trust-editorial {
+  display: none;
+}
+
 html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid {
-  grid-template-columns: minmax(0, 1.03fr) minmax(0, .97fr) !important;
+  display: none !important;
 }
 
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-grid .sd-trust-item {
-  min-width: 0;
-  justify-content: flex-end !important;
+html[data-sudam-layout="layout3"] .sd-trust-editorial {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--ly-line);
+  color: var(--ly-text);
 }
 
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:first-child .sd-trust-icon {
-  width: clamp(50px, 16vw, 68px) !important;
-  height: clamp(50px, 16vw, 68px) !important;
-  margin-bottom: 7px !important;
+html[data-sudam-layout="layout3"] .sd-trust-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: center;
+  align-items: center;
+  gap: 5px 8px;
+  min-height: 77px;
+  padding-block: 12px;
 }
 
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:last-child .sd-trust-icon {
-  width: 29px !important;
-  height: 29px !important;
-  margin-bottom: 2px !important;
+html[data-sudam-layout="layout3"] .sd-trust-entry + .sd-trust-entry {
+  border-top: 1px solid var(--ly-line);
 }
 
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:first-child .sd-trust-main {
-  font-family: "Noto Serif KR", serif;
-  font-size: clamp(14px, 4.2vw, 18px) !important;
-  letter-spacing: -.04em;
+html[data-sudam-layout="layout3"] .sd-trust-entry-title {
+  grid-column: 1;
+  font: 600 15px/1.3 "Noto Serif KR", serif;
 }
 
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-item:last-child .sd-trust-main {
-  font-size: clamp(10px, 3vw, 13px) !important;
-  letter-spacing: -.025em;
+html[data-sudam-layout="layout3"] .sd-trust-entry-note {
+  grid-column: 1;
+  color: var(--ly-sub);
+  font-size: 11px;
+  line-height: 1.4;
 }
 
-html[data-sudam-layout="layout3"] .sd-trust-item .sd-trust-figure {
-  font: 400 clamp(25px, 8.1vw, 38px)/1 Georgia, serif !important;
+html[data-sudam-layout="layout3"] .sd-trust-entry-value {
+  grid-area: 1 / 2 / span 2;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+html[data-sudam-layout="layout3"] .sd-trust-entry-value > span {
+  font: 400 clamp(35px, 11vw, 48px)/1 Georgia, serif;
+  font-variant-numeric: lining-nums tabular-nums;
   letter-spacing: -.055em;
-  font-variant-numeric: lining-nums;
-}
-
-html[data-sudam-layout="layout3"] .sd-trust .sd-trust-note {
-  margin-top: 5px !important;
 }
 
 /* Keep the existing meeting mosaic and give all four links a common index
