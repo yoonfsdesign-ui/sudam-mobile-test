@@ -751,13 +751,109 @@ html[data-sudam-layout="layout3"] :is(#menu .sd-menu-head, #reviews .sd-review-s
   opacity: 1 !important;
 }
 
-/* Align each unboxed story with its photo while keeping the alternating edges. */
-html[data-sudam-layout="layout3"] #reviews .sd-review-card {
-  margin: 0 0 clamp(26px, 8vw, 40px) !important;
+/* Review pages snap as a spread. Each photo gallery remains its own scroll area. */
+.sd-review-pagination,
+.sd-review-folio {
+  display: none;
 }
 
-html[data-sudam-layout="layout3"] #reviews .sd-review-card:last-child {
-  margin-bottom: 0 !important;
+html[data-sudam-layout="layout3"] #reviews .sd-review-pagination {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-block: 0 10px;
+  color: var(--ly-sub);
+  font-size: 11px;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-pagination > span {
+  margin-inline-end: auto;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-pagination button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ly-sub);
+  font: 400 15px/1 Georgia, serif;
+  cursor: pointer;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-pagination button[aria-current="page"] {
+  border-bottom-color: var(--ly-accent);
+  color: var(--ly-text);
+  font-weight: 700;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-grid {
+  display: flex !important;
+  align-items: stretch;
+  gap: 14px !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-grid::-webkit-scrollbar {
+  display: none;
+}
+
+html[data-sudam-layout="layout3"] #sdMain #reviews .sd-review-card {
+  flex: 0 0 100%;
+  min-width: 0;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding-block: 0 15px !important;
+  border-block: 1px solid var(--ly-line) !important;
+  background: color-mix(in srgb, var(--ly-surface) 50%, transparent) !important;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-card::before {
+  content: none !important;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-folio {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin: 0;
+  padding-block: 10px 12px;
+  color: var(--ly-sub);
+  font: 600 9px/1.1 system-ui, sans-serif;
+  letter-spacing: .14em;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-folio span {
+  color: var(--ly-text);
+  font: 400 17px/1 Georgia, serif;
+  letter-spacing: 0;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(odd) .sd-review-folio {
+  padding-inline-start: 10%;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(even) .sd-review-folio {
+  justify-content: flex-end;
+  padding-inline-end: 10%;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-photos {
+  overscroll-behavior-x: contain;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-photo-count::before {
+  content: "사진" / "";
+  margin-inline-end: 5px;
+  font: 400 10px/1.2 system-ui, sans-serif;
 }
 
 html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(even) .sd-review-gallery {
@@ -821,6 +917,10 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-quote {
   color: var(--ly-text);
   font: 600 clamp(19px, 5.5vw, 24px)/1.54 "Noto Serif KR", serif;
   letter-spacing: -.035em;
+}
+
+html[data-sudam-layout="layout3"] #reviews .sd-review-card:nth-child(even) .sd-review-quote {
+  font-size: clamp(18px, 5.1vw, 22px);
 }
 
 html[data-sudam-layout="layout3"] #reviews .sd-review-quote::before {
