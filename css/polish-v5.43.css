@@ -369,7 +369,7 @@ html[data-sudam-layout="layout2"] .sd-hero-copy > p {
 }
 
 html[data-sudam-layout="layout2"] .sd-trust {
-  background: color-mix(in srgb, var(--tone-brand) 38%, #201c19) !important;
+  background: var(--tone-footer) !important;
   border-radius: 4px !important;
 }
 html[data-sudam-layout="layout2"] .sd-trust::after {
@@ -387,7 +387,7 @@ html[data-sudam-layout="layout2"] .sd-trust-item:nth-child(2) .sd-trust-main {
   font-size: clamp(14px, 3.85vw, 17px) !important;
 }
 html[data-sudam-layout="layout2"] .sd-trust-item .sd-trust-note {
-  color: #ede4db !important;
+  color: color-mix(in srgb, var(--tone-footer-text) 86%, transparent) !important;
   font-size: clamp(10px, 2.82vw, 11px) !important;
   opacity: 1 !important;
 }
@@ -768,9 +768,9 @@ html[data-sudam-layout="layout3"] #reviews .sd-review-editorial-title {
 }
 
 html[data-sudam-layout="layout3"] #reviews {
-  --review-paper: color-mix(in srgb, var(--ly-surface) 89%, #edc699);
-  --review-warm: color-mix(in srgb, var(--ly-text) 70%, #b97842);
-  --review-rule: color-mix(in srgb, var(--ly-line), #b68a58 25%);
+  --review-paper: color-mix(in srgb, var(--ly-surface) 89%, var(--tone-chip-bg));
+  --review-warm: color-mix(in srgb, var(--ly-text) 70%, var(--ly-accent));
+  --review-rule: color-mix(in srgb, var(--ly-line), var(--tone-accent-2) 25%);
 }
 
 html[data-sudam-layout="layout3"] #reviews .sd-review-pagination {
@@ -1081,7 +1081,7 @@ html[data-sudam-layout^="layout"] .sd-trust .sd-trust-grid .sd-trust-item + .sd-
 }
 
 html[data-sudam-layout="layout2"] .sd-trust .sd-trust-grid .sd-trust-item + .sd-trust-item {
-  border-inline-start-color: rgb(255 255 255 / 22%) !important;
+  border-inline-start-color: color-mix(in srgb, var(--tone-footer-text) 22%, transparent) !important;
 }
 
 html:is([data-sudam-layout="layout2"], [data-sudam-layout="layout3"]) #meeting .sd-meeting-list .sd-meeting-card::before {
@@ -1394,7 +1394,7 @@ html[data-sudam-layout="layout1"] #sdMain #reviews .sd-review-gallery > .sd-gall
   width: auto;
   margin: 0;
   padding-inline-start: 9px;
-  color: #fff7ee;
+  color: var(--tone-button-text);
   pointer-events: none;
 }
 
@@ -1404,7 +1404,7 @@ html[data-sudam-layout="layout1"] #reviews .sd-review-gallery > .sd-gallery-cont
   z-index: -1;
   inset: 10px 0;
   border-radius: 4px;
-  background: rgb(32 24 19 / 82%);
+  background: color-mix(in srgb, var(--tone-button-bg) 82%, transparent);
 }
 
 html[data-sudam-layout="layout1"] #reviews .sd-review-gallery .sd-review-progress { display: none; }
@@ -1675,3 +1675,64 @@ html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .price {
 }
 
 html[data-sudam-layout="layout3"] #sdMain #menu .sd-menu-card .sd-course-knot { display: none !important; }
+
+/* Connect older layout-specific color overrides to the existing tone roles. */
+html[data-sudam-layout^="layout"] #sdMain .sd-hero .sd-hero-copy h1 {
+  color: var(--tone-button-text) !important;
+}
+
+html[data-sudam-layout^="layout"] #sdMain .sd-hero .sd-hero-copy > p {
+  color: var(--tone-footer-text) !important;
+}
+
+html[data-sudam-layout^="layout"] #sdMain .sd-hero .sd-hero-eyebrow {
+  color: color-mix(in srgb, var(--tone-button-text) 75%, var(--tone-accent-2)) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain .sd-hero {
+  background-color: var(--tone-brand) !important;
+}
+
+html[data-sudam-layout="layout3"] #sdMain .sd-hero-copy {
+  border-left-color: color-mix(in srgb, var(--tone-footer-text) 78%, transparent) !important;
+}
+
+html[data-sudam-layout="layout1"] #sdMain .sd-trust {
+  border-color: var(--ly-line) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain .sd-trust {
+  color: var(--tone-footer-text) !important;
+  border-color: color-mix(in srgb, var(--tone-footer-text) 12%, transparent) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain .sd-trust .sd-trust-main {
+  color: var(--tone-footer-text) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain .sd-section,
+html[data-sudam-layout="layout2"] #sdMain :is(#meeting .sd-meeting-card, #menu .sd-menu-card) h3 {
+  color: var(--ly-text) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain #strength {
+  background-color: var(--tone-card) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain #menu {
+  background-color: var(--tone-menu-bg) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain #location {
+  background-color: var(--tone-location-bg) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain :is(#meeting, #reviews) {
+  border-color: var(--ly-line) !important;
+}
+
+html[data-sudam-layout="layout2"] #sdMain #menu .sd-menu-card .tag-premium {
+  background-color: var(--tone-button-bg) !important;
+  border-color: var(--tone-button-bg) !important;
+  color: var(--tone-button-text) !important;
+}
